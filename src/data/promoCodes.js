@@ -29,6 +29,35 @@ export const PROMO_CODES = [
     minAmount: 0,
     description: 'Livraison standard UE offerte',
     badge: 'Livraison Offerte'
+  },
+  // Loyalty & Referral Program Codes
+  {
+    code: 'FIDELITE5',
+    fixedDiscount: 5.0,
+    minAmount: 25,
+    description: 'Bon fidélité de -5 € débloqué',
+    badge: '-5 €'
+  },
+  {
+    code: 'FIDELITE10',
+    fixedDiscount: 10.0,
+    minAmount: 40,
+    description: 'Bon fidélité de -10 € débloqué',
+    badge: '-10 €'
+  },
+  {
+    code: 'FIDELITE20',
+    fixedDiscount: 20.0,
+    minAmount: 60,
+    description: 'Bon fidélité VIP de -20 € débloqué',
+    badge: '-20 €'
+  },
+  {
+    code: 'PARRAIN10',
+    fixedDiscount: 10.0,
+    minAmount: 40,
+    description: 'Offre parrainage : -10 € offerts',
+    badge: '-10 €'
   }
 ];
 
@@ -44,7 +73,18 @@ export function validatePromoCode(codeRaw, subtotal) {
   }
 
   const normalized = codeRaw.trim().toUpperCase();
-  const match = PROMO_CODES.find((p) => p.code === normalized);
+  let match = PROMO_CODES.find((p) => p.code === normalized);
+
+  // Dynamic referral code support (e.g. ESHOP-EU4821)
+  if (!match && normalized.startsWith('ESHOP-')) {
+    match = {
+      code: normalized,
+      fixedDiscount: 10.0,
+      minAmount: 40,
+      description: 'Code de parrainage ami : -10 € de réduction immédiate',
+      badge: '-10 €'
+    };
+  }
 
   if (!match) {
     return {
@@ -70,6 +110,8 @@ export function validatePromoCode(codeRaw, subtotal) {
   let discountAmount = 0;
   if (match.discountPercent) {
     discountAmount = Math.round((subtotal * (match.discountPercent / 100)) * 100) / 100;
+  } else if (match.fixedDiscount) {
+    discountAmount = Math.min(subtotal, match.fixedDiscount);
   }
 
   return {

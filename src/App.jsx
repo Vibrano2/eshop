@@ -24,12 +24,14 @@ import LegalPagesModal from './components/LegalPagesModal';
 import ReassuranceModal from './components/ReassuranceModal';
 import AboutModal from './components/AboutModal';
 import ChatWidget from './components/ChatWidget';
+import LoyaltyModal from './components/LoyaltyModal';
 
 // Data
 import { PRODUCTS } from './data/products';
 import { MAIN_CATEGORIES } from './data/categories';
 import { ShieldCheck } from 'lucide-react';
 import { validatePromoCode } from './data/promoCodes';
+import { INITIAL_LOYALTY_STATE, calculatePointsForAmount } from './data/loyalty';
 
 const VALID_CATEGORY_SLUGS = [
   'mode',
@@ -116,7 +118,46 @@ export default function App() {
   const [isLegalOpen, setIsLegalOpen] = useState(false);
   const [isReassuranceOpen, setIsReassuranceOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isLoyaltyOpen, setIsLoyaltyOpen] = useState(false);
   const [legalTab, setLegalTab] = useState('cgv');
+
+  // Loyalty & Referral Program State persisted in localStorage
+  const [loyaltyState, setLoyaltyState] = useState(() => {
+    try {
+      const saved = localStorage.getItem('eshop_loyalty');
+      return saved ? JSON.parse(saved) : INITIAL_LOYALTY_STATE;
+    } catch {
+      return INITIAL_LOYALTY_STATE;
+    }
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('eshop_loyalty', JSON.stringify(loyaltyState));
+    } catch (err) {
+      console.error(err);
+    }
+  }, [loyaltyState]);
+
+  const handleClaimReward = (reward) => {
+    if (loyaltyState.points < reward.pointsRequired) return;
+    setLoyaltyState((prev) => ({
+      ...prev,
+      points: prev.points - reward.pointsRequired,
+      claimedCoupons: [...(prev.claimedCoupons || []), reward.code],
+      history: [
+        {
+          id: `claim-${Date.now()}`,
+          date: new Date().toLocaleDateString('fr-FR'),
+          label: `Échange : ${reward.title[currentLang] || reward.title.fr}`,
+          points: reward.pointsRequired,
+          type: 'debit'
+        },
+        ...prev.history
+      ]
+    }));
+    handleApplyPromo(reward.code);
+  };
 
   // Language state persisted in localStorage
   const [currentLang, setCurrentLang] = useState(() => {
@@ -265,7 +306,24 @@ export default function App() {
     setIsCheckoutOpen(true);
   };
 
-  const handleOrderSuccess = () => {
+  const handleOrderSuccess = (order) => {
+    const earned = calculatePointsForAmount(order?.totalAmount || finalCheckoutAmount);
+    if (earned > 0) {
+      setLoyaltyState((prev) => ({
+        ...prev,
+        points: prev.points + earned,
+        history: [
+          {
+            id: `order-${order?.orderNumber || Date.now()}`,
+            date: new Date().toLocaleDateString('fr-FR'),
+            label: `Commande ${order?.orderNumber || ''}`,
+            points: earned,
+            type: 'credit'
+          },
+          ...prev.history
+        ]
+      }));
+    }
     setCartItems([]);
     setDiscountCode('');
     setDiscountAmount(0);
@@ -471,6 +529,8 @@ export default function App() {
         onOpenTracking={() => setIsTrackingOpen(true)}
         onOpenReassurance={() => setIsReassuranceOpen(true)}
         onOpenAbout={() => setIsAboutOpen(true)}
+        onOpenLoyalty={() => setIsLoyaltyOpen(true)}
+        loyaltyPoints={loyaltyState.points}
         onNavigateHome={handleNavigateHome}
         activeView={activeView}
         selectedCategory={selectedCategory}
@@ -837,6 +897,8 @@ export default function App() {
         promoMessage={promoMessage}
         onApplyPromo={handleApplyPromo}
         onRemovePromo={handleRemovePromo}
+        onOpenLoyalty={() => setIsLoyaltyOpen(true)}
+        lang={currentLang}
         onProceedToCheckout={() => {
           setIsCartOpen(false);
           setIsCheckoutOpen(true);
@@ -906,6 +968,16 @@ export default function App() {
         lang={currentLang}
         onOpenShop={handleOpenShop}
         onOpenReassurance={() => setIsReassuranceOpen(true)}
+      />
+
+      {/* Loyalty & Referral Modal */}
+      <LoyaltyModal
+        isOpen={isLoyaltyOpen}
+        onClose={() => setIsLoyaltyOpen(false)}
+        loyaltyState={loyaltyState}
+        onClaimReward={handleClaimReward}
+        onApplyPromoCode={(c) => handleApplyPromo(c)}
+        lang={currentLang}
       />
 
       {/* Automated Support Chatbot Widget */}

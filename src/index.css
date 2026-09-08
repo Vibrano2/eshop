@@ -5297,6 +5297,714 @@ a {
   }
 }
 
+/* ==========================================================================
+   LOYALTY & REFERRAL PROGRAM STYLES
+   ========================================================================== */
+
+/* 1. Header Loyalty Pill Button */
+.action-pill-loyalty {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #fdf2f8;
+  border: 1px solid #fbcfe8;
+  border-radius: 9999px;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #db2777;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-pill-loyalty:hover {
+  background: #fce7f3;
+  border-color: #f472b6;
+  transform: translateY(-1px);
+}
+
+.pill-points-val {
+  font-weight: 800;
+  color: #be185d;
+}
+
+.pill-points-unit {
+  font-size: 0.6875rem;
+  opacity: 0.85;
+}
+
+/* 2. Cart Loyalty Incentive Pill */
+.cart-loyalty-earning-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #fdf2f8;
+  border: 1px dashed #f472b6;
+  border-radius: 10px;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #9d174d;
+  margin-bottom: 0.85rem;
+  transition: background 0.15s ease;
+}
+
+.cart-loyalty-earning-pill:hover {
+  background: #fce7f3;
+}
+
+/* 3. Checkout Success Loyalty Card */
+.success-loyalty-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  background: #fdf2f8;
+  border: 1px solid #fbcfe8;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.loyalty-card-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #fce7f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.success-loyalty-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #9d174d;
+  margin: 0 0 0.25rem;
+}
+
+.success-loyalty-desc {
+  font-size: 0.78rem;
+  color: #be185d;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* 4. Loyalty & Referral Modal Card */
+.loyalty-modal-card {
+  background: #ffffff;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 660px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  animation: zoomIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.loyalty-modal-header {
+  padding: 1.5rem 1.75rem 1.25rem;
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.loyalty-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.loyalty-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #fdf2f8;
+  color: #db2777;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  margin-bottom: 0.4rem;
+}
+
+.loyalty-modal-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.25rem;
+}
+
+.loyalty-modal-subtitle {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.loyalty-balance-pill {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 0.45rem 0.85rem;
+  border-radius: 9999px;
+}
+
+.balance-val {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #f472b6;
+}
+
+.balance-unit {
+  font-size: 0.72rem;
+  color: #cbd5e1;
+}
+
+.loyalty-close-btn {
+  background: #f1f5f9;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.15s ease;
+}
+
+.loyalty-close-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+/* Tabs */
+.loyalty-tabs-nav {
+  display: flex;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.loyalty-tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.loyalty-tab-btn:hover {
+  color: #0f172a;
+}
+
+.loyalty-tab-btn.active {
+  background: #ffffff;
+  border-bottom-color: #ec4899;
+  color: #be185d;
+}
+
+.loyalty-modal-body {
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Referral Tab Content */
+.referral-hero-banner {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  background: linear-gradient(135deg, #fdf2f8 0%, #eff6ff 100%);
+  border: 1px solid #fbcfe8;
+  border-radius: 16px;
+  padding: 1.25rem;
+}
+
+.hero-gift-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(236, 72, 153, 0.15);
+}
+
+.referral-hero-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #831843;
+  margin: 0 0 0.35rem;
+}
+
+.referral-hero-desc {
+  font-size: 0.84rem;
+  color: #9d174d;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.referral-codes-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.referral-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.referral-box-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.referral-input-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 0.6rem 0.85rem;
+}
+
+.referral-code-highlight {
+  font-family: monospace;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1e293b;
+  letter-spacing: 0.08em;
+}
+
+.referral-link-preview {
+  font-size: 0.8125rem;
+  color: #64748b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 75%;
+}
+
+.copy-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.copy-action-btn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+.copied-text {
+  color: #059669;
+  font-weight: 700;
+}
+
+.referral-share-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.share-social-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem;
+  border-radius: 10px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.whatsapp-btn {
+  background: #25d366;
+  color: #ffffff;
+}
+
+.email-btn {
+  background: #0f172a;
+  color: #ffffff;
+}
+
+.share-social-btn:hover {
+  opacity: 0.9;
+}
+
+.referral-steps-container {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.25rem;
+}
+
+.referral-steps-heading {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.referral-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+}
+
+@media (max-width: 600px) {
+  .referral-steps-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.step-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.step-badge {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+}
+
+.step-title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.step-desc {
+  font-size: 0.75rem;
+  color: #64748b;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Rewards Tab Content */
+.points-status-box {
+  background: #0f172a;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+}
+
+.points-status-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.points-label-small {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  display: block;
+}
+
+.points-large-display {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.points-number {
+  font-size: 2.25rem;
+  font-weight: 900;
+  color: #f472b6;
+  line-height: 1;
+}
+
+.points-unit {
+  font-size: 1rem;
+  color: #cbd5e1;
+  font-weight: 700;
+}
+
+.points-next-target {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8125rem;
+}
+
+.points-remaining {
+  font-size: 0.72rem;
+  color: #38bdf8;
+  margin-top: 0.2rem;
+}
+
+.points-progress-bar-wrap {
+  width: 100%;
+  height: 8px;
+  background: #334155;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.points-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ec4899 0%, #38bdf8 100%);
+  border-radius: 9999px;
+  transition: width 0.4s ease;
+}
+
+.rewards-section-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.rewards-cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.reward-tier-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 1rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: all 0.15s ease;
+}
+
+.reward-tier-card.is-available {
+  border-color: #fbcfe8;
+  background: #fdf2f8;
+}
+
+.reward-tier-card.is-claimed {
+  border-color: #bbf7d0;
+  background: #f0fdf4;
+}
+
+.reward-tier-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.reward-tier-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #db2777;
+  flex-shrink: 0;
+}
+
+.reward-tier-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.2rem;
+}
+
+.reward-tier-desc {
+  font-size: 0.78rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.reward-points-badge {
+  margin-left: auto;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  color: #db2777;
+  background: #ffffff;
+  border: 1px solid #fbcfe8;
+  padding: 0.25rem 0.55rem;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.reward-tier-action {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.claim-reward-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.95rem;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.claim-reward-btn.can-claim {
+  background: #db2777;
+  color: #ffffff;
+  border: none;
+}
+
+.claim-reward-btn.can-claim:hover {
+  background: #be185d;
+}
+
+.claim-reward-btn.disabled {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.claimed-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.claimed-code-pill {
+  font-size: 0.78rem;
+  color: #166534;
+  background: #dcfce7;
+  border: 1px solid #bbf7d0;
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+}
+
+.apply-coupon-btn {
+  background: #16a34a;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.apply-coupon-btn:hover {
+  background: #15803d;
+}
+
+.points-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.points-history-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.85rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  font-size: 0.8125rem;
+}
+
+.history-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.history-label {
+  font-weight: 600;
+  color: #334155;
+}
+
+.history-date {
+  font-size: 0.6875rem;
+  color: #94a3b8;
+}
+
+.history-points {
+  font-weight: 800;
+}
+
+.history-points.credit {
+  color: #059669;
+}
+
+.history-points.debit {
+  color: #dc2626;
+}
+
+.loyalty-modal-footer {
+  padding: 1rem 1.75rem;
+  border-top: 1px solid #f1f5f9;
+  background: #fafafa;
+  border-radius: 0 0 24px 24px;
+}
+
+.loyalty-footer-note {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin: 0;
+  text-align: center;
+}
+
+
 
 
 

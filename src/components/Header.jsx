@@ -1,3 +1,4 @@
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import {
   Search,
   ShoppingBag,
@@ -9,7 +10,8 @@ import {
   ChevronDown,
   ChevronRight,
   Sparkles,
-  Globe
+  Globe,
+  Gift
 } from 'lucide-react';
 import { PRODUCTS } from '../data/products';
 import { MAIN_CATEGORIES } from '../data/categories';
@@ -31,7 +33,9 @@ export default function Header({
   selectedCategory,
   lang = 'fr',
   setLang,
-  onOpenAbout
+  onOpenAbout,
+  onOpenLoyalty,
+  loyaltyPoints = 50
 }) {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -253,6 +257,17 @@ export default function Header({
             >
               <ShieldCheck size={16} color="#10b981" />
               <span className="pill-text">{t.nav.guarantees || 'Garanties UE'}</span>
+            </button>
+
+            {/* Loyalty & Referral Button */}
+            <button
+              className="action-pill-loyalty"
+              onClick={onOpenLoyalty}
+              title={t.loyalty?.headerBtn || 'Fidélité & Parrainage'}
+            >
+              <Gift size={15} color="#ec4899" />
+              <span className="pill-points-val">{loyaltyPoints}</span>
+              <span className="pill-points-unit">{t.loyalty?.pointsSuffix || 'pts'}</span>
             </button>
 
             {/* Order Tracking */}
@@ -578,6 +593,17 @@ export default function Header({
                     }}
                   >
                     {t.nav.about || 'À propos'}
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => {
+                      onOpenLoyalty?.();
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    <Gift size={15} style={{ marginRight: 6, color: '#ec4899' }} />
+                    {t.loyalty?.headerBtn || 'Fidélité & Parrainage'} ({loyaltyPoints} pts)
                   </button>
                 </li>
               </ul>

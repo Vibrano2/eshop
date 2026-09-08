@@ -14,7 +14,8 @@ import {
   ShoppingBag,
   ChevronDown,
   ChevronUp,
-  AlertCircle
+  AlertCircle,
+  Gift
 } from 'lucide-react';
 import { PROMO_CODES } from '../data/promoCodes';
 
@@ -738,6 +739,21 @@ export default function CheckoutModal({
               <p style={{ fontSize: '0.8125rem', color: '#64748b', margin: 0 }}>
                 Expédié via <strong>{createdOrder.carrier}</strong> avec remise sécurisée à l'adresse : {createdOrder.customer.address}, {createdOrder.customer.postalCode} {createdOrder.customer.city} ({selectedCountry.name}).
               </p>
+            </div>
+
+            {/* Loyalty Points Earned Card */}
+            <div className="success-loyalty-card">
+              <div className="loyalty-card-icon-wrap">
+                <Gift size={20} color="#ec4899" />
+              </div>
+              <div>
+                <h5 className="success-loyalty-title">
+                  +{Math.floor(totalAmount)} points fidélité crédités !
+                </h5>
+                <p className="success-loyalty-desc">
+                  Votre solde Privilège a été crédité. Utilisez vos points pour débloquer des bons de réduction lors de votre prochain achat.
+                </p>
+              </div>
             </div>
 
             {/* Tracking Steps Preview */}

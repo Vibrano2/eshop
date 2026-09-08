@@ -27,7 +27,9 @@ export default function CartDrawer({
   promoMessage = '',
   onApplyPromo,
   onRemovePromo,
-  onProceedToCheckout
+  onProceedToCheckout,
+  onOpenLoyalty,
+  lang = 'fr'
 }) {
   if (!isOpen) return null;
 
@@ -378,6 +380,23 @@ export default function CartDrawer({
                 <span>Total TTC</span>
                 <span>{finalTotal.toFixed(2)} €</span>
               </div>
+            </div>
+
+            {/* Loyalty Points Preview */}
+            <div
+              className="cart-loyalty-earning-pill"
+              onClick={onOpenLoyalty}
+              style={{ cursor: onOpenLoyalty ? 'pointer' : 'default' }}
+              title="Club Fidélité & Parrainage"
+            >
+              <Gift size={14} color="#ec4899" />
+              <span>
+                {lang === 'de'
+                  ? `🎁 Bei dieser Bestellung sammeln Sie +${Math.floor(finalTotal)} Treuepunkte !`
+                  : lang === 'en'
+                  ? `🎁 This order earns you +${Math.floor(finalTotal)} loyalty points!`
+                  : `🎁 Cette commande vous rapportera +${Math.floor(finalTotal)} points fidélité !`}
+              </span>
             </div>
 
             {/* Checkout CTA */}
