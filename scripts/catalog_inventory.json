@@ -1,0 +1,882 @@
+[
+  {
+    "idx": 1,
+    "id": "robe-fluide-ete",
+    "category": "mode",
+    "name": "Robe portefeuille fluide",
+    "image": "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=800&q=80",
+    "mode": "cover"
+  },
+  {
+    "idx": 2,
+    "id": "t-shirt-oversize-coton",
+    "category": "mode",
+    "name": "T-shirt oversize en coton lourd",
+    "image": "/products/tshirt-oversize-coton.jpg",
+    "mode": "cover"
+  },
+  {
+    "idx": 3,
+    "id": "jean-slim-confort",
+    "category": "mode",
+    "name": "Jean confort stretch taille haute",
+    "image": "/products/jean-taille-haute-femme.jpg",
+    "mode": "cover"
+  },
+  {
+    "idx": 4,
+    "id": "chemise-lin-homme",
+    "category": "mode",
+    "name": "Chemise casual en lin col mao",
+    "image": "/products/chemise-lin-homme.jpg",
+    "mode": "cover"
+  },
+  {
+    "idx": 5,
+    "id": "polo-coton-homme",
+    "category": "mode",
+    "name": "Polo classique en coton piqué",
+    "image": "/products/polo-classique-homme.jpg",
+    "mode": "cover"
+  },
+  {
+    "idx": 6,
+    "id": "baskets-casual-respirantes",
+    "category": "mode",
+    "name": "Baskets casual respirantes",
+    "image": "/products/baskets-casual-respirantes.jpg",
+    "mode": "cover"
+  },
+  {
+    "idx": 7,
+    "id": "sac-bandouliere-demi-lune",
+    "category": "mode",
+    "name": "Sac bandoulière demi-lune",
+    "image": "/products/sac-bandouliere.jpg",
+    "mode": "cover"
+  },
+  {
+    "idx": 8,
+    "id": "ensemble-lounge-confort",
+    "category": "mode",
+    "name": "Ensemble détente en coton côtelé",
+    "image": "/products/ensemble-lounge-cotele.jpg",
+    "mode": "cover"
+  },
+  {
+    "idx": 9,
+    "id": "rouleau-glace-visage",
+    "category": "beaute",
+    "name": "Rouleau de glace visage",
+    "image": "/products/rouleau-glace-visage.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 10,
+    "id": "rouleau-boucles-sans-chaleur",
+    "category": "beaute",
+    "name": "Rouleau boucles sans chaleur",
+    "image": "/products/rouleau-boucles-sans-chaleur.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 11,
+    "id": "masseur-cuir-chevelu",
+    "category": "beaute",
+    "name": "Brosse de massage cuir chevelu",
+    "image": "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 12,
+    "id": "organisateur-maquillage",
+    "category": "beaute",
+    "name": "Organisateur maquillage rotatif 360°",
+    "image": "/products/organisateur-maquillage.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 13,
+    "id": "brosse-nettoyante-visage",
+    "category": "beaute",
+    "name": "Brosse nettoyante visage sonique",
+    "image": "/products/brosse-nettoyante-visage.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 14,
+    "id": "support-ordinateur-portable",
+    "category": "technologie",
+    "name": "Support PC aluminium réglable",
+    "image": "/products/support-ordinateur-portable.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 15,
+    "id": "hub-usb-c-7en1",
+    "category": "technologie",
+    "name": "Hub USB-C 7-en-1 multifonction",
+    "image": "/products/hub-usb-c-7en1.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 16,
+    "id": "ecouteurs-bluetooth-pro",
+    "category": "technologie",
+    "name": "Écouteurs sans fil réduction de bruit",
+    "image": "/products/ecouteurs-bluetooth-pro.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 17,
+    "id": "organisateur-cables",
+    "category": "technologie",
+    "name": "Organisateur de câbles magnétique",
+    "image": "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 18,
+    "id": "repose-pieds-ergonomique",
+    "category": "technologie",
+    "name": "Repose-pieds ergonomique bureau",
+    "image": "/products/repose-pieds-ergonomique.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 19,
+    "id": "doublures-silicone-airfryer",
+    "category": "maison",
+    "name": "Moules silicone pour Air Fryer (x2)",
+    "image": "/products/doublures-silicone-airfryer.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 20,
+    "id": "pulverisateur-huile",
+    "category": "maison",
+    "name": "Pulvérisateur d'huile en verre",
+    "image": "/products/pulverisateur-huile.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 21,
+    "id": "accessoires-airfryer",
+    "category": "maison",
+    "name": "Kit d'accessoires Air Fryer (8 pièces)",
+    "image": "/products/accessoires-airfryer.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 22,
+    "id": "organisateur-sous-evier",
+    "category": "maison",
+    "name": "Rangement sous-évier coulissant",
+    "image": "/products/organisateur-sous-evier.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 23,
+    "id": "brosse-anti-poils",
+    "category": "animaux",
+    "name": "Brosse anti-poils autonettoyante",
+    "image": "/products/brosse-anti-poils.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 24,
+    "id": "rouleau-anti-peluches",
+    "category": "animaux",
+    "name": "Rouleau anti-poils lavable en gel",
+    "image": "/products/rouleau-anti-peluches.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 25,
+    "id": "nettoyeur-pattes-chiens",
+    "category": "animaux",
+    "name": "Nettoyeur de pattes en silicone",
+    "image": "/products/nettoyeur-pattes-chiens.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 26,
+    "id": "gourde-portable-chiens",
+    "category": "animaux",
+    "name": "Gourde portable pour chien étanche",
+    "image": "/products/gourde-portable-chiens.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 27,
+    "id": "gamelle-pliable",
+    "category": "animaux",
+    "name": "Gamelle pliable en silicone avec mousqueton",
+    "image": "/products/gamelle-pliable.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 28,
+    "id": "housse-siege-animaux",
+    "category": "animaux",
+    "name": "Housse de protection banquette auto",
+    "image": "/products/housse-siege-animaux.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 29,
+    "id": "bandeaux-fitness",
+    "category": "sport",
+    "name": "Bandes de résistance en tissu (Lot de 3)",
+    "image": "/products/bandes-resistance.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 30,
+    "id": "ceinture-course",
+    "category": "sport",
+    "name": "Ceinture running sans rebond",
+    "image": "/products/ceinture-course.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 31,
+    "id": "sac-sport-compact",
+    "category": "sport",
+    "name": "Sac de sport compartiment chaussures",
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 32,
+    "id": "bouteille-eau-pliable",
+    "category": "sport",
+    "name": "Gourde pliable en silicone 600 ml",
+    "image": "https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 33,
+    "id": "sacoche-velo",
+    "category": "sport",
+    "name": "Sacoche de cadre vélo tactile étanche",
+    "image": "/products/sacoche-velo.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 34,
+    "id": "support-telephone-voiture",
+    "category": "auto",
+    "name": "Support téléphone magnétique 360° pour voiture",
+    "image": "/products/support-telephone-voiture.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 35,
+    "id": "organisateur-coffre",
+    "category": "auto",
+    "name": "Organisateur de coffre pliable renforcé",
+    "image": "/products/organisateur-coffre.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 36,
+    "id": "organisateur-entre-sieges",
+    "category": "auto",
+    "name": "Organisateurs interstice sièges auto (Paire)",
+    "image": "/products/organisateur-entre-sieges.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 37,
+    "id": "aspirateur-voiture-sans-fil",
+    "category": "auto",
+    "name": "Mini aspirateur de voiture sans fil",
+    "image": "/products/aspirateur-voiture-sans-fil.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 38,
+    "id": "camera-surveillance-wifi",
+    "category": "securite",
+    "name": "Caméra WiFi motorisée 360° intérieure/extérieure",
+    "image": "/products/camera-surveillance-wifi.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 39,
+    "id": "sonnette-video-connectee",
+    "category": "securite",
+    "name": "Sonnette vidéo connectée HD sans fil",
+    "image": "/products/sonnette-video-connectee.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 40,
+    "id": "prise-connectee-wifi",
+    "category": "securite",
+    "name": "Prise connectée WiFi avec mesure d'énergie",
+    "image": "/products/prise-connectee-wifi.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 41,
+    "id": "detecteur-mouvement-connecte",
+    "category": "securite",
+    "name": "Détecteur de mouvement sans fil WiFi",
+    "image": "/products/detecteur-mouvement-connecte.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 42,
+    "id": "cubes-rangement-valise",
+    "category": "voyage",
+    "name": "Cubes de compression valise (Lot de 6)",
+    "image": "/products/cubes-rangement-valise.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 43,
+    "id": "trousse-toilette-suspendue",
+    "category": "voyage",
+    "name": "Trousse de toilette suspendue dépliable",
+    "image": "/products/trousse-toilette-suspendue.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 44,
+    "id": "oreiller-voyage-memoire",
+    "category": "voyage",
+    "name": "Oreiller de voyage ergonomique à mémoire de forme",
+    "image": "/products/oreiller-voyage-memoire.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 45,
+    "id": "organisateur-bureau",
+    "category": "accessoires",
+    "name": "Organisateur de bureau rotatif 360°",
+    "image": "/products/organisateur-bureau.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 46,
+    "id": "montre-quartz-minimaliste",
+    "category": "accessoires",
+    "name": "Montre quartz minimaliste unisexe",
+    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 47,
+    "id": "parapluie-compact",
+    "category": "accessoires",
+    "name": "Parapluie pliant ultra-compact coupe-vent",
+    "image": "https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 48,
+    "id": "chargeur-rapide-65w-gan",
+    "category": "technologie",
+    "name": "Chargeur USB-C rapide 65W GaN",
+    "image": "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 49,
+    "id": "chargeur-sans-fil-induction",
+    "category": "technologie",
+    "name": "Chargeur sans fil rapide induction 15W",
+    "image": "/products/chargeur-sans-fil-induction.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 50,
+    "id": "batterie-externe-compacte-10000",
+    "category": "technologie",
+    "name": "Power bank compact 10000mAh charge rapide",
+    "image": "/products/batterie-externe-compacte.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 51,
+    "id": "mini-microphone-sans-fil",
+    "category": "technologie",
+    "name": "Mini microphone cravate sans fil pour smartphone",
+    "image": "https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 52,
+    "id": "support-telephone-bureau-pliable",
+    "category": "technologie",
+    "name": "Support téléphone pliable réglable en aluminium",
+    "image": "https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 53,
+    "id": "tapis-souris-xxl-ergonomique",
+    "category": "technologie",
+    "name": "Tapis de souris XXL en cuir PU imperméable",
+    "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+    "mode": "cover"
+  },
+  {
+    "idx": 54,
+    "id": "souris-sans-fil-ergonomique",
+    "category": "technologie",
+    "name": "Souris ergonomique sans fil silencieuse 2.4G & Bluetooth",
+    "image": "/products/souris-sans-fil-ergonomique.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 55,
+    "id": "lampe-led-bureau-tactile",
+    "category": "technologie",
+    "name": "Lampe LED de bureau tactile avec variateur et port USB",
+    "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 56,
+    "id": "webcam-full-hd-1080p",
+    "category": "technologie",
+    "name": "Webcam USB Full HD 1080p avec cache confidentialité et micro",
+    "image": "/products/webcam-full-hd-1080p.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 57,
+    "id": "bandeau-spa-velours",
+    "category": "beaute",
+    "name": "Bandeau spa en velours éponge pour soins et maquillage",
+    "image": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 58,
+    "id": "miroir-led-tactile",
+    "category": "beaute",
+    "name": "Miroir de maquillage LED lumineux tactile avec variateur",
+    "image": "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 59,
+    "id": "gua-sha-quartz-rose",
+    "category": "beaute",
+    "name": "Gua sha en quartz rose naturel pour massage facial",
+    "image": "/products/gua-sha-quartz-rose.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 60,
+    "id": "trousse-maquillage-voyage",
+    "category": "beaute",
+    "name": "Trousse de maquillage compartimentée grand format",
+    "image": "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 61,
+    "id": "bonnet-satin-cheveux",
+    "category": "beaute",
+    "name": "Bonnet de nuit en satin double épaisseur pour cheveux",
+    "image": "https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 62,
+    "id": "kit-pinceaux-maquillage",
+    "category": "beaute",
+    "name": "Kit de 8 pinceaux de maquillage essentiels avec étui",
+    "image": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 63,
+    "id": "vaporisateur-parfum-rechargeable",
+    "category": "beaute",
+    "name": "Mini vaporisateur de parfum rechargeable de poche 5ml",
+    "image": "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 64,
+    "id": "brosse-demelante-anti-casse",
+    "category": "beaute",
+    "name": "Brosse démêlante flexible anti-casse pour cheveux",
+    "image": "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 65,
+    "id": "robe-longue-boheme",
+    "category": "mode",
+    "name": "Robe longue fluide ceinturée",
+    "image": "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=80",
+    "mode": "cover"
+  },
+  {
+    "idx": 66,
+    "id": "pantalon-large-fluide",
+    "category": "mode",
+    "name": "Pantalon fluide taille haute jambe large",
+    "image": "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80",
+    "mode": "cover"
+  },
+  {
+    "idx": 67,
+    "id": "legging-sport-gainant",
+    "category": "mode",
+    "name": "Legging de sport gainant taille haute sans couture",
+    "image": "https://images.unsplash.com/photo-1506619216599-9d16d0903dfd?auto=format&fit=crop&w=800&q=80",
+    "mode": "cover"
+  },
+  {
+    "idx": 68,
+    "id": "t-shirt-classique-homme",
+    "category": "mode",
+    "name": "T-shirt classique col rond en coton bio peigné",
+    "image": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80",
+    "mode": "cover"
+  },
+  {
+    "idx": 69,
+    "id": "pantalon-chino-stretch",
+    "category": "mode",
+    "name": "Pantalon chino casual stretch coupe droite ajustée",
+    "image": "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=800&q=80",
+    "mode": "cover"
+  },
+  {
+    "idx": 70,
+    "id": "pantalon-cargo-homme",
+    "category": "mode",
+    "name": "Pantalon cargo casual avec poches latérales",
+    "image": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=800&q=80",
+    "mode": "cover"
+  },
+  {
+    "idx": 71,
+    "id": "sweat-capuche-confort",
+    "category": "mode",
+    "name": "Sweat à capuche confort molletonné épais",
+    "image": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80",
+    "mode": "cover"
+  },
+  {
+    "idx": 72,
+    "id": "sandales-cuir-plates",
+    "category": "mode",
+    "name": "Sandales plates à brides croisées en cuir souple",
+    "image": "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80",
+    "mode": "cover"
+  },
+  {
+    "idx": 73,
+    "id": "chaussures-marche-legeres",
+    "category": "mode",
+    "name": "Chaussures de marche respirantes semelle amortissante",
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 74,
+    "id": "sac-banane-multipoche",
+    "category": "mode",
+    "name": "Sac banane bandoulière multipoche déperlant",
+    "image": "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 75,
+    "id": "sac-a-dos-urbain-pc",
+    "category": "mode",
+    "name": "Sac à dos urbain antivol pour ordinateur 15.6 pouces",
+    "image": "/products/sac-a-dos-urbain.jpg",
+    "mode": "cover"
+  },
+  {
+    "idx": 76,
+    "id": "separateurs-tiroirs-modulables",
+    "category": "maison",
+    "name": "Séparateurs de tiroirs modulables extensibles (Lot de 4)",
+    "image": "/products/separateurs-tiroirs-modulables.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 77,
+    "id": "range-epices-rotatif",
+    "category": "maison",
+    "name": "Support à épices rotatif 360° pour plan de travail",
+    "image": "/products/range-epices-rotatif.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 78,
+    "id": "brosse-nettoyage-electrique",
+    "category": "maison",
+    "name": "Brosse de nettoyage électrique rotative sans fil multi-surfaces",
+    "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 79,
+    "id": "distributeur-savon-automatique",
+    "category": "maison",
+    "name": "Distributeur de savon automatique sans contact à capteur infrarouge",
+    "image": "/products/distributeur-savon-automatique.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 80,
+    "id": "porte-eponge-evier-inox",
+    "category": "maison",
+    "name": "Support d'évier télescopique avec porte-éponge et égouttoir",
+    "image": "/products/porte-eponge-evier-inox.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 81,
+    "id": "boites-hermetiques-lot4",
+    "category": "maison",
+    "name": "Lot de 4 boîtes alimentaires hermétiques avec couvercles à clips",
+    "image": "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 82,
+    "id": "reglette-led-detecteur-mouvement",
+    "category": "maison",
+    "name": "Réglette LED sans fil sous meuble avec détecteur de mouvement",
+    "image": "https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 83,
+    "id": "balle-interactive-chat",
+    "category": "animaux",
+    "name": "Balle interactive lumineuse automatique 360° pour chat",
+    "image": "https://images.unsplash.com/photo-1545249390-6bdfa286032f?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 84,
+    "id": "jouet-distributeur-friandises",
+    "category": "animaux",
+    "name": "Balle distributrice de friandises anti-glouton pour chien",
+    "image": "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 85,
+    "id": "ceinture-securite-chien-auto",
+    "category": "animaux",
+    "name": "Ceinture de sécurité auto élastique avec amortisseur pour chien",
+    "image": "https://images.unsplash.com/photo-1535294435445-d7249524ef2e?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 86,
+    "id": "tapis-gamelle-silicone",
+    "category": "animaux",
+    "name": "Tapis de gamelle en silicone étanche avec rebord anti-débordement",
+    "image": "https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 87,
+    "id": "coupe-griffes-led-animaux",
+    "category": "animaux",
+    "name": "Coupe-griffes professionnel pour animaux avec éclairage LED",
+    "image": "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 88,
+    "id": "distributeur-sacs-dejections",
+    "category": "animaux",
+    "name": "Distributeur de sacs à déjections avec mousqueton + 6 rouleaux biodégradables",
+    "image": "https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 89,
+    "id": "chargeur-voiture-usb-c-60w",
+    "category": "auto",
+    "name": "Chargeur allume-cigare USB-C 60W double port charge rapide",
+    "image": "/products/chargeur-voiture-usb-c.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 90,
+    "id": "chiffons-microfibres-auto-lot3",
+    "category": "auto",
+    "name": "Chiffons microfibres haute densité 800 GSM pour lustrage auto (Lot de 3)",
+    "image": "https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 91,
+    "id": "mini-poubelle-voiture-etanche",
+    "category": "auto",
+    "name": "Mini poubelle de voiture étanche avec couvercle à clapet",
+    "image": "https://images.unsplash.com/photo-1508974239320-0a029497e820?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 92,
+    "id": "organisateur-dossier-siege-auto",
+    "category": "auto",
+    "name": "Organisateur dossier de siège auto avec support tablette tactile",
+    "image": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 93,
+    "id": "pare-soleil-retractable-parebrise",
+    "category": "auto",
+    "name": "Pare-soleil rétractable pliable parapluie pour pare-brise",
+    "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 94,
+    "id": "tapis-yoga-antiderapant-tpe",
+    "category": "sport",
+    "name": "Tapis de yoga écologique TPE antidérapant avec lignes d'alignement",
+    "image": "/products/tapis-yoga-antiderapant-tpe.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 95,
+    "id": "rouleau-massage-mousse-muscle",
+    "category": "sport",
+    "name": "Rouleau de massage musculaire en mousse haute densité (Foam roller)",
+    "image": "https://images.unsplash.com/photo-1600618528240-fb9fc964b853?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 96,
+    "id": "corde-a-sauter-roulements-acier",
+    "category": "sport",
+    "name": "Corde à sauter de vitesse réglable avec roulements à billes",
+    "image": "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 97,
+    "id": "gants-fitness-respirants",
+    "category": "sport",
+    "name": "Gants d'entraînement fitness respirants avec protège-poignets",
+    "image": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 98,
+    "id": "shaker-sport-inox",
+    "category": "sport",
+    "name": "Shaker sport étanche 700ml avec bille mélangeuse en acier",
+    "image": "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 99,
+    "id": "pese-bagages-electronique",
+    "category": "voyage",
+    "name": "Pèse-bagages électronique portable précis jusqu'à 50 kg",
+    "image": "/products/pese-bagages-electronique.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 100,
+    "id": "etiquettes-bagages-cuir-lot2",
+    "category": "voyage",
+    "name": "Étiquettes de bagage en cuir avec rabat de confidentialité (Lot de 2)",
+    "image": "/products/etiquettes-bagages-cuir.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 101,
+    "id": "organisateur-electronique-voyage",
+    "category": "voyage",
+    "name": "Pochette organisatrice de câbles et accessoires électroniques de voyage",
+    "image": "/products/organisateur-electronique-voyage.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 102,
+    "id": "masque-sommeil-3d-occultant",
+    "category": "voyage",
+    "name": "Masque de sommeil 3D occultant à mémoire de forme",
+    "image": "/products/masque-sommeil-3d-occultant.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 103,
+    "id": "ampoule-connectee-wifi-rgb",
+    "category": "securite",
+    "name": "Ampoule connectée WiFi E27 RGB + Blanc chaud/froid",
+    "image": "/products/ampoule-connectee-wifi-rgb.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 104,
+    "id": "detecteur-ouverture-porte-fenetre",
+    "category": "securite",
+    "name": "Capteur d'ouverture porte et fenêtre sans fil connecté WiFi",
+    "image": "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 105,
+    "id": "mini-camera-surveillance-aimant",
+    "category": "securite",
+    "name": "Mini caméra de surveillance magnétique HD 1080p avec vision nocturne",
+    "image": "/products/mini-camera-surveillance-aimant.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 106,
+    "id": "porte-cartes-aluminium-anti-rfid",
+    "category": "accessoires",
+    "name": "Porte-cartes automatique en aluminium avec protection anti-RFID",
+    "image": "/products/porte-cartes-aluminium-anti-rfid.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 107,
+    "id": "portefeuille-compact-cuir",
+    "category": "accessoires",
+    "name": "Portefeuille compact en cuir véritable avec pince à billets",
+    "image": "https://images.unsplash.com/photo-1559563458-527698bf5295?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 108,
+    "id": "lunettes-soleil-polarisees-classiques",
+    "category": "accessoires",
+    "name": "Lunettes de soleil polarisées monture classique protection UV400",
+    "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  },
+  {
+    "idx": 109,
+    "id": "ceinture-cuir-automatique",
+    "category": "accessoires",
+    "name": "Ceinture en cuir véritable avec boucle automatique sans trous",
+    "image": "/products/ceinture-cuir.jpg",
+    "mode": "contain"
+  },
+  {
+    "idx": 110,
+    "id": "bracelet-jonc-acier-inoxydable",
+    "category": "accessoires",
+    "name": "Bracelet jonc ouvert minimaliste en acier inoxydable",
+    "image": "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&w=800&q=80",
+    "mode": "contain"
+  }
+]

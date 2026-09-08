@@ -1,0 +1,295 @@
+export const TRANSLATIONS = {
+  fr: {
+    code: 'fr',
+    label: 'Français',
+    flag: '🇫🇷',
+    nav: {
+      home: 'Accueil',
+      shop: 'Boutique',
+      about: 'À propos',
+      tracking: 'Suivi de colis',
+      guarantees: 'Garanties UE',
+      searchPlaceholder: 'Rechercher un produit, une idée, une catégorie...',
+      cart: 'Panier',
+      wishlist: 'Favoris',
+      allCategories: 'Toutes les catégories',
+      menu: 'Menu',
+      close: 'Fermer',
+      categoriesCount: '10 univers du quotidien'
+    },
+    announcement: {
+      freeShipping: 'Livraison offerte dès 40€ en France et Europe 🇪🇺 Expédition sous 24/48h',
+      returns: 'Retours 14 jours garantis'
+    },
+    trust: {
+      deliveryTitle: 'Livraison Rapide UE',
+      deliveryDesc: 'Expédié sous 24/48h depuis nos entrepôts européens',
+      paymentTitle: 'Paiement 100% Sécurisé',
+      paymentDesc: 'CB, Visa, Mastercard, PayPal & Apple Pay',
+      warrantyTitle: 'Garantie Légale 2 Ans',
+      warrantyDesc: 'Conformité et assistance réactive 7j/7',
+      returnsTitle: 'Satisfait ou Remboursé',
+      returnsDesc: "14 jours pour changer d'avis sans motif"
+    },
+    hero: {
+      badge: 'Boutique Certifiée Union Européenne 🇪🇺',
+      title: 'Des gadgets pratiques qui simplifient votre quotidien',
+      subtitle: 'Sélection rigoureuse d’objets ingénieux pour la maison, le bureau, la voiture, le voyage et les animaux. Livraison rapide depuis l’Union Européenne.',
+      ctaShop: 'Découvrir la boutique',
+      ctaBestSellers: 'Voir les meilleures ventes',
+      stockNotice: 'Stock garanti en entrepôt UE'
+    },
+    product: {
+      addToCart: 'Ajouter au panier',
+      buyNow: 'Acheter maintenant',
+      inStock: 'En stock — expédié en 24h',
+      freeShippingBadge: 'Livraison offerte dès 40€',
+      reviews: 'avis vérifiés',
+      bestSeller: 'Bestseller',
+      newBadge: 'Nouveau',
+      promoBadge: 'Promo'
+    },
+    cart: {
+      title: 'Votre Panier',
+      empty: 'Votre panier est vide',
+      continueShopping: 'Continuer vos achats',
+      subtotal: 'Sous-total',
+      shipping: 'Livraison',
+      free: 'Offerte',
+      total: 'Total estimé',
+      checkoutBtn: 'Passer la commande sécurisée',
+      freeShippingUnlocked: 'Félicitations ! Livraison offerte débloquée 🎉',
+      addMorePrefix: 'Ajoutez encore ',
+      addMoreSuffix: ' pour bénéficier de la livraison gratuite !',
+      promoCodeLabel: 'Code promotionnel',
+      apply: 'Appliquer'
+    },
+    about: {
+      title: 'À propos d’eshop-store.eu',
+      subtitle: 'Votre boutique européenne d’objets pratiques, fiables et utiles.',
+      ourMission: 'Notre Mission',
+      missionDesc: 'Créée pour éliminer les gadgets inutiles et les délais de livraison interminables, eshop-store.eu sélectionne des objets du quotidien véritablement astucieux, testés par notre équipe et expédiés directement depuis l’Union Européenne.',
+      pillarsTitle: 'Nos 4 Engagements Fondamentaux',
+      pillar1Title: 'Entrepôts basés en UE',
+      pillar1Desc: 'Tous nos stocks sont centralisés en France, Allemagne et Benelux pour une livraison express en 2 à 5 jours ouvrés.',
+      pillar2Title: 'Contrôle qualité strict',
+      pillar2Desc: 'Chaque référence est minutieusement vérifiée et validée pour sa durabilité et sa conformité aux normes CE.',
+      pillar3Title: 'Protection Acheteur Européenne',
+      pillar3Desc: 'Droit de rétractation de 14 jours légal sans justification requise, et garantie légale de conformité de 2 ans.',
+      pillar4Title: 'Support Réactif 7j/7',
+      pillar4Desc: 'Une équipe humaine et francophone disponible pour répondre à toutes vos questions sous 24h.',
+      closeBtn: 'Fermer la présentation'
+    },
+    chat: {
+      launcherTooltip: 'Besoin d’aide ? Discutons en direct !',
+      headerTitle: 'Support Client eshop-store.eu',
+      status: 'En ligne — Réponse en moins d’une minute',
+      welcomeMessage: 'Bonjour ! 👋 Bienvenue sur eshop-store.eu. Je suis votre assistant virtuel. Comment puis-je vous aider à trouver votre bonheur ou suivre une commande ?',
+      quickTopicsTitle: 'Questions fréquentes :',
+      topicDelivery: '🚚 Délais & Frais de livraison',
+      topicTracking: '📦 Suivi de commande',
+      topicReturns: '🔄 Retours & Rétractation 14j',
+      topicPromo: '🎁 Codes promo disponibles',
+      topicWarranty: '🛡️ Garanties & Normes CE',
+      topicHuman: '💬 Parler à un conseiller',
+      inputPlaceholder: 'Écrivez votre message...',
+      send: 'Envoyer'
+    }
+  },
+
+  en: {
+    code: 'en',
+    label: 'English',
+    flag: '🇬🇧',
+    nav: {
+      home: 'Home',
+      shop: 'Shop',
+      about: 'About Us',
+      tracking: 'Track Order',
+      guarantees: 'EU Guarantees',
+      searchPlaceholder: 'Search for a product, idea, category...',
+      cart: 'Cart',
+      wishlist: 'Wishlist',
+      allCategories: 'All Categories',
+      menu: 'Menu',
+      close: 'Close',
+      categoriesCount: '10 daily life categories'
+    },
+    announcement: {
+      freeShipping: 'Free shipping over €40 across Europe 🇪🇺 Shipped within 24/48h',
+      returns: '14-day guaranteed returns'
+    },
+    trust: {
+      deliveryTitle: 'Fast EU Delivery',
+      deliveryDesc: 'Shipped within 24/48h from our European warehouses',
+      paymentTitle: '100% Secure Payment',
+      paymentDesc: 'Credit cards, PayPal, Apple Pay & Google Pay',
+      warrantyTitle: '2-Year Legal Warranty',
+      warrantyDesc: 'EU compliance and responsive 7/7 support',
+      returnsTitle: 'Money Back Guarantee',
+      returnsDesc: '14 days to change your mind without reason'
+    },
+    hero: {
+      badge: 'Certified European Store 🇪🇺',
+      title: 'Smart everyday gadgets designed to simplify your life',
+      subtitle: 'Handpicked ingenious items for home, office, car, travel and pets. Fast delivery directly from the European Union.',
+      ctaShop: 'Explore the Store',
+      ctaBestSellers: 'View Best Sellers',
+      stockNotice: 'Stock guaranteed in EU warehouses'
+    },
+    product: {
+      addToCart: 'Add to Cart',
+      buyNow: 'Buy Now',
+      inStock: 'In stock — ships in 24h',
+      freeShippingBadge: 'Free shipping over €40',
+      reviews: 'verified reviews',
+      bestSeller: 'Best Seller',
+      newBadge: 'New',
+      promoBadge: 'Sale'
+    },
+    cart: {
+      title: 'Your Cart',
+      empty: 'Your cart is empty',
+      continueShopping: 'Continue shopping',
+      subtotal: 'Subtotal',
+      shipping: 'Shipping',
+      free: 'Free',
+      total: 'Estimated Total',
+      checkoutBtn: 'Proceed to Secure Checkout',
+      freeShippingUnlocked: 'Congratulations! Free shipping unlocked 🎉',
+      addMorePrefix: 'Add another ',
+      addMoreSuffix: ' to get free delivery!',
+      promoCodeLabel: 'Promo code',
+      apply: 'Apply'
+    },
+    about: {
+      title: 'About eshop-store.eu',
+      subtitle: 'Your European boutique for practical, reliable, and useful products.',
+      ourMission: 'Our Mission',
+      missionDesc: 'Created to eliminate useless gimmicks and endless shipping waits, eshop-store.eu curates genuinely clever everyday objects, tested by our team and dispatched straight from the European Union.',
+      pillarsTitle: 'Our 4 Core Commitments',
+      pillar1Title: 'EU-Based Warehouses',
+      pillar1Desc: 'All our stocks are located in France, Germany and the Benelux for rapid 2-to-5 working day delivery.',
+      pillar2Title: 'Strict Quality Control',
+      pillar2Desc: 'Every product is rigorously checked and certified for durability and full CE compliance.',
+      pillar3Title: 'EU Buyer Protection',
+      pillar3Desc: 'Statutory 14-day return window with no questions asked, plus a 2-year legal conformity warranty.',
+      pillar4Title: 'Responsive 7/7 Support',
+      pillar4Desc: 'A dedicated customer team available to answer any inquiry within 24 hours.',
+      closeBtn: 'Close presentation'
+    },
+    chat: {
+      launcherTooltip: 'Need help? Chat with us live!',
+      headerTitle: 'eshop-store.eu Support',
+      status: 'Online — Replies in under a minute',
+      welcomeMessage: 'Hello! 👋 Welcome to eshop-store.eu. I am your virtual shopping assistant. How can I help you discover products or track an order today?',
+      quickTopicsTitle: 'Popular topics:',
+      topicDelivery: '🚚 Delivery Times & Costs',
+      topicTracking: '📦 Order Tracking',
+      topicReturns: '🔄 14-day Returns & Refunds',
+      topicPromo: '🎁 Active Promo Codes',
+      topicWarranty: '🛡️ CE Standards & Warranty',
+      topicHuman: '💬 Talk to a Human Specialist',
+      inputPlaceholder: 'Type your message...',
+      send: 'Send'
+    }
+  },
+
+  de: {
+    code: 'de',
+    label: 'Deutsch',
+    flag: '🇩🇪',
+    nav: {
+      home: 'Startseite',
+      shop: 'Shop',
+      about: 'Über uns',
+      tracking: 'Bestellung verfolgen',
+      guarantees: 'EU-Garantien',
+      searchPlaceholder: 'Produkt, Idee, Kategorie suchen...',
+      cart: 'Warenkorb',
+      wishlist: 'Wunschliste',
+      allCategories: 'Alle Kategorien',
+      menu: 'Menü',
+      close: 'Schließen',
+      categoriesCount: '10 Alltagskategorien'
+    },
+    announcement: {
+      freeShipping: 'Kostenloser Versand ab 40€ in Europa 🇪🇺 Versand innerhalb 24/48 Std.',
+      returns: '14 Tage garantiertes Rückgaberecht'
+    },
+    trust: {
+      deliveryTitle: 'Schnelle EU-Lieferung',
+      deliveryDesc: 'Versand innerhalb 24/48h aus europäischen Lagern',
+      paymentTitle: '100% Sichere Bezahlung',
+      paymentDesc: 'Kreditkarten, PayPal, Apple Pay & Google Pay',
+      warrantyTitle: '2 Jahre gesetzliche Garantie',
+      warrantyDesc: 'EU-Konformität und reaktionsschneller 7/7 Support',
+      returnsTitle: 'Geld-zurück-Garantie',
+      returnsDesc: '14 Tage Bedenkzeit ohne Angabe von Gründen'
+    },
+    hero: {
+      badge: 'Zertifizierter Europäischer Shop 🇪🇺',
+      title: 'Praktische Gadgets, die Ihren Alltag vereinfachen',
+      subtitle: 'Sorgfältig ausgewählte geniale Produkte für Zuhause, Büro, Auto, Reisen und Haustiere. Schneller Versand direkt aus der EU.',
+      ctaShop: 'Shop entdecken',
+      ctaBestSellers: 'Bestseller ansehen',
+      stockNotice: 'Garantierter Bestand in EU-Lagern'
+    },
+    product: {
+      addToCart: 'In den Warenkorb',
+      buyNow: 'Jetzt kaufen',
+      inStock: 'Auf Lager — Versand in 24h',
+      freeShippingBadge: 'Kostenloser Versand ab 40€',
+      reviews: 'verifizierte Bewertungen',
+      bestSeller: 'Bestseller',
+      newBadge: 'Neu',
+      promoBadge: 'Angebot'
+    },
+    cart: {
+      title: 'Ihr Warenkorb',
+      empty: 'Ihr Warenkorb ist leer',
+      continueShopping: 'Weiter einkaufen',
+      subtotal: 'Zwischensumme',
+      shipping: 'Versand',
+      free: 'Kostenlos',
+      total: 'Geschätzte Gesamtsumme',
+      checkoutBtn: 'Zur sicheren Kasse',
+      freeShippingUnlocked: 'Glückwunsch! Kostenloser Versand freigeschaltet 🎉',
+      addMorePrefix: 'Noch ',
+      addMoreSuffix: ' hinzufügen für kostenlose Lieferung!',
+      promoCodeLabel: 'Rabattcode',
+      apply: 'Einlösen'
+    },
+    about: {
+      title: 'Über eshop-store.eu',
+      subtitle: 'Ihr europäischer Shop für praktische, zuverlässige und nützliche Produkte.',
+      ourMission: 'Unsere Mission',
+      missionDesc: 'Gegründet, um unnützen Schnickschnack und lange Lieferzeiten zu beenden. eshop-store.eu wählt alltagstaugliche clevere Gadgets aus, die von unserem Team getestet und direkt aus der EU versendet werden.',
+      pillarsTitle: 'Unsere 4 Grundversprechen',
+      pillar1Title: 'Lagerstandorte in der EU',
+      pillar1Desc: 'Unsere Bestände lagern in Frankreich, Deutschland und den Benelux-Ländern für eine Expresslieferung in 2–5 Werktagen.',
+      pillar2Title: 'Strenge Qualitätskontrolle',
+      pillar2Desc: 'Jedes Produkt wird sorgfältig auf Langlebigkeit und vollständige CE-Konformität geprüft.',
+      pillar3Title: 'Europäischer Käuferschutz',
+      pillar3Desc: 'Gesetzliches 14-tägiges Widerrufsrecht ohne Begründung und 2 Jahre gesetzliche Gewährleistung.',
+      pillar4Title: 'Reaktionsschneller 7/7 Support',
+      pillar4Desc: 'Ein engagiertes Team, das Ihre Fragen innerhalb von 24 Stunden beantwortet.',
+      closeBtn: 'Präsentation schließen'
+    },
+    chat: {
+      launcherTooltip: 'Brauchen Sie Hilfe? Live chatten!',
+      headerTitle: 'eshop-store.eu Kundenservice',
+      status: 'Online — Antwortet in unter einer Minute',
+      welcomeMessage: 'Guten Tag! 👋 Willkommen bei eshop-store.eu. Ich bin Ihr virtueller Berater. Wie kann ich Ihnen heute helfen oder eine Bestellung verfolgen?',
+      quickTopicsTitle: 'Häufige Themen:',
+      topicDelivery: '🚚 Lieferzeiten & Versandkosten',
+      topicTracking: '📦 Sendungsverfolgung',
+      topicReturns: '🔄 14 Tage Rückgabe & Erstattung',
+      topicPromo: '🎁 Aktuelle Rabattcodes',
+      topicWarranty: '🛡️ CE-Normen & Garantie',
+      topicHuman: '💬 Mit einem Berater sprechen',
+      inputPlaceholder: 'Ihre Nachricht eingeben...',
+      send: 'Senden'
+    }
+  }
+};
