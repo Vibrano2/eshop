@@ -1,3 +1,4 @@
+import crypto from 'node:crypto';
 import { db, initDatabase } from './db.js';
 import { PRODUCTS } from '../src/data/products.js';
 import { PROMO_CODES } from '../src/data/promoCodes.js';
@@ -11,6 +12,13 @@ db.exec(`
   DELETE FROM products;
   DELETE FROM promo_codes;
 `);
+
+// Helper to hash password
+function hashPassword(password) {
+  const salt = crypto.randomBytes(16).toString('hex');
+  const hash = crypto.scryptSync(password, salt, 64).toString('hex');
+  return { salt, hash };
+}
 
 // 1. Seed Products
 const insertProductStmt = db.prepare(`
@@ -97,6 +105,24 @@ if (res.count === 0) {
   `).run();
 
   console.log('✓ Created initial loyalty account (ESHOP-EU4821 with 50 points).');
+}
+
+// 4. Seed Demo User Account
+const checkUserStmt = db.prepare(`SELECT count(*) as count FROM users WHERE email = 'demo@eshop-store.eu'`);
+const userRes = checkUserStmt.get();
+if (userRes.count === 0) {
+  const { salt, hash } = hashPassword('Eshop2026!');
+  db.prepare(`
+    INSERT INTO users (
+      email, password_hash, salt, first_name, last_name, phone,
+      shipping_address, postal_code, city, country_code, role, loyalty_code, created_at
+    ) VALUES (
+      'demo@eshop-store.eu', ?, ?, 'Claire', 'Laurent', '+33 6 12 34 56 78',
+      '15 Rue de Rivoli', '75001', 'Paris', 'FR', 'customer', 'ESHOP-EU4821', datetime('now')
+    )
+  `).run(hash, salt);
+
+  console.log('✓ Created demo user account: demo@eshop-store.eu (Password: Eshop2026!).');
 }
 
 console.log('--- Seeding Completed Successfully! ---');

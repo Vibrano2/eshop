@@ -11,7 +11,10 @@ import {
   ChevronRight,
   Sparkles,
   Globe,
-  Gift
+  Gift,
+  User,
+  UserCheck,
+  LogOut
 } from 'lucide-react';
 import { PRODUCTS } from '../data/products';
 import { MAIN_CATEGORIES } from '../data/categories';
@@ -35,16 +38,21 @@ export default function Header({
   setLang,
   onOpenAbout,
   onOpenLoyalty,
-  loyaltyPoints = 50
+  loyaltyPoints = 50,
+  currentUser = null,
+  onOpenAuth,
+  onLogout
 }) {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [expandedMobileCats, setExpandedMobileCats] = useState({});
   const [activeMegaMenu, setActiveMegaMenu] = useState(null);
   const searchContainerRef = useRef(null);
   const megaMenuTimeoutRef = useRef(null);
   const langMenuRef = useRef(null);
+  const userMenuRef = useRef(null);
 
   const t = TRANSLATIONS[lang] || TRANSLATIONS.fr;
   const currentLangObj = TRANSLATIONS[lang] || TRANSLATIONS.fr;
@@ -71,6 +79,9 @@ export default function Header({
       }
       if (langMenuRef.current && !langMenuRef.current.contains(e.target)) {
         setIsLangMenuOpen(false);
+      }
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
+        setIsUserMenuOpen(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -266,9 +277,82 @@ export default function Header({
               title={t.loyalty?.headerBtn || 'Fidélité & Parrainage'}
             >
               <Gift size={15} color="#ec4899" />
-              <span className="pill-points-val">{loyaltyPoints}</span>
+              <span className="pill-points-val">{currentUser?.loyaltyPoints !== undefined ? currentUser.loyaltyPoints : loyaltyPoints}</span>
               <span className="pill-points-unit">{t.loyalty?.pointsSuffix || 'pts'}</span>
             </button>
+
+            {/* User Account / Login Action */}
+            {currentUser ? (
+              <div className="header-user-wrapper" ref={userMenuRef}>
+                <button
+                  className="action-pill-user"
+                  onClick={() => setIsUserMenuOpen((prev) => !prev)}
+                  title={`Mon compte (${currentUser.firstName || 'Client'})`}
+                  aria-expanded={isUserMenuOpen}
+                >
+                  <div className="user-avatar-badge">
+                    {currentUser.firstName ? currentUser.firstName.charAt(0).toUpperCase() : 'U'}
+                  </div>
+                  <span className="user-name-text">{currentUser.firstName}</span>
+                  <ChevronDown size={12} className={`lang-chevron ${isUserMenuOpen ? 'open' : ''}`} />
+                </button>
+
+                {isUserMenuOpen && (
+                  <div className="header-user-dropdown">
+                    <div className="user-dropdown-header">
+                      <div className="user-dropdown-name">{currentUser.firstName} {currentUser.lastName}</div>
+                      <div className="user-dropdown-email">{currentUser.email}</div>
+                      <div className="user-dropdown-loyalty">
+                        <Gift size={13} color="#ec4899" />
+                        <span>{currentUser.loyaltyPoints !== undefined ? currentUser.loyaltyPoints : loyaltyPoints} points fidélité</span>
+                      </div>
+                    </div>
+                    <div className="user-dropdown-divider" />
+                    <button
+                      className="user-dropdown-item"
+                      onClick={() => {
+                        setIsUserMenuOpen(false);
+                        if (onOpenTracking) onOpenTracking();
+                      }}
+                    >
+                      <Package size={16} />
+                      <span>Mes Commandes & Colis</span>
+                    </button>
+                    <button
+                      className="user-dropdown-item"
+                      onClick={() => {
+                        setIsUserMenuOpen(false);
+                        if (onOpenLoyalty) onOpenLoyalty();
+                      }}
+                    >
+                      <Gift size={16} color="#ec4899" />
+                      <span>Mon Club Fidélité & Parrainage</span>
+                    </button>
+                    <div className="user-dropdown-divider" />
+                    <button
+                      className="user-dropdown-item logout"
+                      onClick={() => {
+                        setIsUserMenuOpen(false);
+                        if (onLogout) onLogout();
+                      }}
+                    >
+                      <LogOut size={16} />
+                      <span>Se déconnecter</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <button
+                className="header-icon-action"
+                onClick={() => onOpenAuth && onOpenAuth('login')}
+                title="Se connecter / Mon compte"
+                aria-label="Se connecter"
+              >
+                <User size={20} />
+                <span className="action-text">Connexion</span>
+              </button>
+            )}
 
             {/* Order Tracking */}
             <button
@@ -560,6 +644,61 @@ export default function Header({
                     />
                   </div>
                 </form>
+              </div>
+
+              {/* User Account / Profile Section (Mobile) */}
+              <div className="mobile-user-section">
+                {currentUser ? (
+                  <div className="mobile-user-card">
+                    <div className="mobile-user-header">
+                      <div className="user-avatar-badge large">
+                        {currentUser.firstName ? currentUser.firstName.charAt(0).toUpperCase() : 'U'}
+                      </div>
+                      <div className="mobile-user-info">
+                        <div className="mobile-user-name">{currentUser.firstName} {currentUser.lastName}</div>
+                        <div className="mobile-user-email">{currentUser.email}</div>
+                      </div>
+                    </div>
+                    <div className="mobile-user-points">
+                      <Gift size={14} color="#ec4899" />
+                      <span>{currentUser.loyaltyPoints !== undefined ? currentUser.loyaltyPoints : loyaltyPoints} points fidélité</span>
+                    </div>
+                    <div className="mobile-user-actions">
+                      <button
+                        className="mobile-user-btn"
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          if (onOpenTracking) onOpenTracking();
+                        }}
+                      >
+                        <Package size={15} />
+                        <span>Mes Commandes</span>
+                      </button>
+                      <button
+                        className="mobile-user-btn logout"
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          if (onLogout) onLogout();
+                        }}
+                      >
+                        <LogOut size={15} />
+                        <span>Déconnexion</span>
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <button
+                    className="mobile-auth-btn"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      if (onOpenAuth) onOpenAuth('login');
+                    }}
+                  >
+                    <User size={18} />
+                    <span>Se connecter / Créer un compte</span>
+                    <span className="mobile-auth-badge">+50 pts</span>
+                  </button>
+                )}
               </div>
 
               {/* Quick links */}

@@ -15,7 +15,8 @@ import {
   ChevronDown,
   ChevronUp,
   AlertCircle,
-  Gift
+  Gift,
+  UserCheck
 } from 'lucide-react';
 import { PROMO_CODES } from '../data/promoCodes';
 import { apiCreateOrder } from '../services/api';
@@ -43,25 +44,43 @@ export default function CheckoutModal({
   onApplyPromo,
   onRemovePromo,
   onOrderSuccess,
-  onOpenTracking
+  onOpenTracking,
+  currentUser = null
 }) {
   if (!isOpen) return null;
 
   const [step, setStep] = useState(1); // 1: Shipping, 2: Payment, 3: Success
   const [formData, setFormData] = useState({
-    email: '',
-    firstName: '',
-    lastName: '',
-    address: '',
-    postalCode: '',
-    city: '',
-    country: 'FR',
-    phone: '',
+    email: currentUser?.email || '',
+    firstName: currentUser?.firstName || '',
+    lastName: currentUser?.lastName || '',
+    address: currentUser?.address || '',
+    postalCode: currentUser?.postalCode || '',
+    city: currentUser?.city || '',
+    country: currentUser?.countryCode || 'FR',
+    phone: currentUser?.phone || '',
     paymentMethod: 'card', // card, applepay, paypal
     cardNumber: '4242 •••• •••• 4242',
     cardExp: '12/28',
     cardCvc: '123'
   });
+
+  // Re-sync with currentUser if modal opened while already logged in or state updated
+  React.useEffect(() => {
+    if (currentUser) {
+      setFormData((prev) => ({
+        ...prev,
+        email: prev.email || currentUser.email || '',
+        firstName: prev.firstName || currentUser.firstName || '',
+        lastName: prev.lastName || currentUser.lastName || '',
+        address: prev.address || currentUser.address || '',
+        postalCode: prev.postalCode || currentUser.postalCode || '',
+        city: prev.city || currentUser.city || '',
+        country: prev.country || currentUser.countryCode || 'FR',
+        phone: prev.phone || currentUser.phone || ''
+      }));
+    }
+  }, [currentUser]);
 
   const [formErrors, setFormErrors] = useState({});
   const [isSummaryExpanded, setIsSummaryExpanded] = useState(false);
@@ -266,6 +285,15 @@ export default function CheckoutModal({
                   <Truck size={14} /> Stock UE 24h
                 </span>
               </div>
+
+              {currentUser && (
+                <div className="checkout-logged-banner">
+                  <UserCheck size={16} color="#10b981" />
+                  <span>
+                    Connecté en tant que <strong>{currentUser.firstName} {currentUser.lastName}</strong> — vos informations sont pré-remplies.
+                  </span>
+                </div>
+              )}
 
               {/* Email */}
               <div className={`form-group ${formErrors.email ? 'has-error' : ''}`}>

@@ -7,6 +7,7 @@ import ordersRouter from './routes/orders.js';
 import loyaltyRouter from './routes/loyalty.js';
 import promoRouter from './routes/promo.js';
 import newsletterRouter from './routes/newsletter.js';
+import authRouter from './routes/auth.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -29,6 +30,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // Mount Routes
+app.use('/api/auth', authRouter);
 app.use('/api/products', productsRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/api/loyalty', loyaltyRouter);

@@ -151,3 +151,189 @@ export async function apiClaimLoyaltyReward(payload) {
     return { success: false, error: err.message };
   }
 }
+
+// --------------------------------------------------------------------------
+// Authentication & User Profile API
+// --------------------------------------------------------------------------
+
+const TOKEN_KEY = 'eshop_auth_token';
+
+export function getAuthToken() {
+  try {
+    return localStorage.getItem(TOKEN_KEY) || null;
+  } catch {
+    return null;
+  }
+}
+
+export function setAuthToken(token) {
+  try {
+    if (token) {
+      localStorage.setItem(TOKEN_KEY, token);
+    } else {
+      localStorage.removeItem(TOKEN_KEY);
+    }
+  } catch (err) {
+    console.warn('Could not persist auth token:', err);
+  }
+}
+
+export function removeAuthToken() {
+  try {
+    localStorage.removeItem(TOKEN_KEY);
+  } catch {}
+}
+
+/**
+ * Log in with email and password
+ */
+export async function apiLogin(email, password) {
+  try {
+    const res = await fetch(`${API_BASE}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await res.json();
+    if (data.success && data.token) {
+      setAuthToken(data.token);
+    }
+    return data;
+  } catch (err) {
+    console.warn('[API fallback] Local login fallback:', err.message);
+    // Offline simulated demo account
+    if (email.toLowerCase() === 'demo@eshop-store.eu') {
+      const fallbackUser = {
+        id: 1,
+        email: 'demo@eshop-store.eu',
+        firstName: 'Claire',
+        lastName: 'Laurent',
+        phone: '+33 6 12 34 56 78',
+        address: '15 Rue de Rivoli',
+        postalCode: '75001',
+        city: 'Paris',
+        countryCode: 'FR',
+        role: 'customer',
+        loyaltyCode: 'ESHOP-EU4821',
+        loyaltyPoints: 50
+      };
+      setAuthToken('mock-demo-token');
+      return { success: true, token: 'mock-demo-token', user: fallbackUser };
+    }
+    return { success: false, error: 'Serveur indisponible.' };
+  }
+}
+
+/**
+ * Register a new user
+ */
+export async function apiRegister(userData) {
+  try {
+    const res = await fetch(`${API_BASE}/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(userData)
+    });
+    const data = await res.json();
+    if (data.success && data.token) {
+      setAuthToken(data.token);
+    }
+    return data;
+  } catch (err) {
+    console.warn('[API fallback] Local register fallback:', err.message);
+    const fallbackUser = {
+      id: Date.now(),
+      email: userData.email,
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      role: 'customer',
+      loyaltyCode: `ESHOP-EU${Math.floor(1000 + Math.random() * 9000)}`,
+      loyaltyPoints: 50
+    };
+    setAuthToken('mock-reg-token');
+    return { success: true, token: 'mock-reg-token', user: fallbackUser };
+  }
+}
+
+/**
+ * Fetch current authenticated user
+ */
+export async function apiGetMe() {
+  const token = getAuthToken();
+  if (!token) return null;
+
+  try {
+    const res = await fetch(`${API_BASE}/auth/me`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (!res.ok) {
+      if (res.status === 401) removeAuthToken();
+      return null;
+    }
+    const data = await res.json();
+    return data.success ? data.user : null;
+  } catch (err) {
+    console.warn('[API fallback] GetMe fallback:', err.message);
+    // If mock token was used
+    if (token === 'mock-demo-token') {
+      return {
+        id: 1,
+        email: 'demo@eshop-store.eu',
+        firstName: 'Claire',
+        lastName: 'Laurent',
+        address: '15 Rue de Rivoli',
+        postalCode: '75001',
+        city: 'Paris',
+        countryCode: 'FR',
+        role: 'customer',
+        loyaltyCode: 'ESHOP-EU4821',
+        loyaltyPoints: 50
+      };
+    }
+    return null;
+  }
+}
+
+/**
+ * Log out
+ */
+export async function apiLogout() {
+  const token = getAuthToken();
+  try {
+    if (token && !token.startsWith('mock-')) {
+      await fetch(`${API_BASE}/auth/logout`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+    }
+  } catch (err) {
+    console.warn('Logout notification failed:', err);
+  } finally {
+    removeAuthToken();
+  }
+  return { success: true };
+}
+
+/**
+ * Fetch orders for authenticated user
+ */
+export async function apiGetUserOrders() {
+  const token = getAuthToken();
+  if (!token) return [];
+
+  try {
+    const res = await fetch(`${API_BASE}/auth/orders`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.success ? data.orders : [];
+  } catch (err) {
+    console.warn('[API fallback] User orders fallback:', err.message);
+    try {
+      return JSON.parse(localStorage.getItem('eshop_orders') || '[]');
+    } catch {
+      return [];
+    }
+  }
+}

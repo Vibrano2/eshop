@@ -25,6 +25,10 @@ import ReassuranceModal from './components/ReassuranceModal';
 import AboutModal from './components/AboutModal';
 import ChatWidget from './components/ChatWidget';
 import LoyaltyModal from './components/LoyaltyModal';
+import AuthModal from './components/AuthModal';
+
+// Services & API
+import { apiGetMe, apiLogout } from './services/api';
 
 // Data
 import { PRODUCTS } from './data/products';
@@ -119,7 +123,55 @@ export default function App() {
   const [isReassuranceOpen, setIsReassuranceOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isLoyaltyOpen, setIsLoyaltyOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [authModalMode, setAuthModalMode] = useState('login');
   const [legalTab, setLegalTab] = useState('cgv');
+
+  // Authenticated User State
+  const [currentUser, setCurrentUser] = useState(null);
+
+  // Restore authenticated session on app load
+  useEffect(() => {
+    let isMounted = true;
+    apiGetMe()
+      .then((user) => {
+        if (isMounted && user) {
+          setCurrentUser(user);
+          if (user.loyaltyPoints !== undefined) {
+            setLoyaltyState((prev) => ({
+              ...prev,
+              points: user.loyaltyPoints,
+              referralCode: user.loyaltyCode || prev.referralCode
+            }));
+          }
+        }
+      })
+      .catch((err) => console.warn('Could not restore session:', err));
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const handleOpenAuth = (mode = 'login') => {
+    setAuthModalMode(mode);
+    setIsAuthModalOpen(true);
+  };
+
+  const handleAuthSuccess = (user) => {
+    setCurrentUser(user);
+    if (user.loyaltyPoints !== undefined) {
+      setLoyaltyState((prev) => ({
+        ...prev,
+        points: user.loyaltyPoints,
+        referralCode: user.loyaltyCode || prev.referralCode
+      }));
+    }
+  };
+
+  const handleLogout = async () => {
+    await apiLogout();
+    setCurrentUser(null);
+  };
 
   // Loyalty & Referral Program State persisted in localStorage
   const [loyaltyState, setLoyaltyState] = useState(() => {
@@ -536,6 +588,9 @@ export default function App() {
         selectedCategory={selectedCategory}
         lang={currentLang}
         setLang={setCurrentLang}
+        currentUser={currentUser}
+        onOpenAuth={handleOpenAuth}
+        onLogout={handleLogout}
       />
 
       {/* Main Content */}
@@ -932,6 +987,7 @@ export default function App() {
         onRemovePromo={handleRemovePromo}
         onOrderSuccess={handleOrderSuccess}
         onOpenTracking={handleOpenTrackingWithOrder}
+        currentUser={currentUser}
       />
 
       {/* Order Tracking Modal */}
@@ -978,6 +1034,18 @@ export default function App() {
         onClaimReward={handleClaimReward}
         onApplyPromoCode={(c) => handleApplyPromo(c)}
         lang={currentLang}
+      />
+
+      {/* Authentication & Customer Account Modal */}
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        initialMode={authModalMode}
+        onAuthSuccess={handleAuthSuccess}
+        onOpenLoyalty={() => {
+          setIsAuthModalOpen(false);
+          setIsLoyaltyOpen(true);
+        }}
       />
 
       {/* Automated Support Chatbot Widget */}
