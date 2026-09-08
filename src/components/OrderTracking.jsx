@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, Search, Package, CheckCircle, Truck, Clock, MapPin } from 'lucide-react';
+import { apiFetchOrderTracking } from '../services/api';
 
 export default function OrderTracking({ isOpen, onClose, initialOrderNumber = null }) {
   if (!isOpen) return null;
@@ -31,22 +32,44 @@ export default function OrderTracking({ isOpen, onClose, initialOrderNumber = nu
     }
   }, [isOpen, initialOrderNumber]);
 
-  const handleSearch = (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
     setHasSearched(true);
+
+    const q = orderQuery.trim();
+    if (!q) return;
+
+    // Try backend API first
+    try {
+      const apiTracking = await apiFetchOrderTracking(q.toUpperCase());
+      if (apiTracking) {
+        setFoundOrder({
+          orderNumber: apiTracking.orderNumber,
+          carrier: apiTracking.carrier,
+          status: apiTracking.status,
+          estimatedDelivery: apiTracking.estimatedDelivery,
+          trackingSteps: apiTracking.steps,
+          customer: { firstName: 'Client', lastName: 'Vérifié', city: 'Union Européenne', country: 'Europe' }
+        });
+        return;
+      }
+    } catch (err) {
+      console.warn('API tracking call failed:', err);
+    }
+
     try {
       const orders = JSON.parse(localStorage.getItem('eshop_orders') || '[]');
       const match = orders.find(
         (o) =>
-          o.orderNumber.toLowerCase() === orderQuery.trim().toLowerCase() ||
-          o.customer.email.toLowerCase() === orderQuery.trim().toLowerCase()
+          o.orderNumber.toLowerCase() === q.toLowerCase() ||
+          o.customer?.email?.toLowerCase() === q.toLowerCase()
       );
 
       if (match) {
         setFoundOrder(match);
       } else {
         // Fallback demo order if user typed a random query
-        if (orderQuery.trim()) {
+        if (q) {
           setFoundOrder({
             orderNumber: orderQuery.toUpperCase(),
             date: '4 septembre 2026',

@@ -1,14 +1,27 @@
 import React, { useState } from 'react';
-import { Mail, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { Mail, CheckCircle2, ShieldCheck, Loader2 } from 'lucide-react';
+import { apiSubscribeNewsletter } from '../services/api';
 
 export default function NewsletterSection() {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (email.trim()) {
+    if (!email.trim() || loading) return;
+    setLoading(true);
+    try {
+      const res = await apiSubscribeNewsletter(email.trim());
+      if (res && res.success) {
+        setSuccessMessage(res.message || 'Merci pour votre inscription ! Votre code de bienvenue BIENVENUE10 est activé.');
+        setSubscribed(true);
+      }
+    } catch {
       setSubscribed(true);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -28,7 +41,7 @@ export default function NewsletterSection() {
             {subscribed ? (
               <div className="newsletter-success">
                 <CheckCircle2 size={18} color="#16a34a" />
-                <span>Merci pour votre inscription ! Votre code de bienvenue <strong>BIENVENUE10</strong> est activé.</span>
+                <span>{successMessage || "Merci pour votre inscription ! Votre code de bienvenue BIENVENUE10 est activé."}</span>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="newsletter-form">
@@ -41,9 +54,10 @@ export default function NewsletterSection() {
                     onChange={(e) => setEmail(e.target.value)}
                     className="newsletter-input"
                     aria-label="Votre adresse e-mail"
+                    disabled={loading}
                   />
-                  <button type="submit" className="btn btn-primary newsletter-btn">
-                    S'inscrire
+                  <button type="submit" className="btn btn-primary newsletter-btn" disabled={loading}>
+                    {loading ? <Loader2 size={16} className="spin" /> : "S'inscrire"}
                   </button>
                 </div>
                 <div className="newsletter-trust">

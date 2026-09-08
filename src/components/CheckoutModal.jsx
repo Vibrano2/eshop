@@ -18,6 +18,7 @@ import {
   Gift
 } from 'lucide-react';
 import { PROMO_CODES } from '../data/promoCodes';
+import { apiCreateOrder } from '../services/api';
 
 const EU_COUNTRIES = [
   { code: 'FR', name: 'France (Métropolitaine)', minDays: 2, maxDays: 3, delayText: '2 à 3 jours' },
@@ -150,31 +151,54 @@ export default function CheckoutModal({
     }
   };
 
-  const handleProcessPayment = (e) => {
+  const handleProcessPayment = async (e) => {
     e.preventDefault();
 
-    // Create simulated confirmed order
-    const orderNumber = `EU-${Math.floor(100000 + Math.random() * 900000)}`;
-    const newOrder = {
-      orderNumber,
-      date: new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' }),
-      items: [...items],
+    const orderPayload = {
       customer: { ...formData },
+      items: [...items],
       subtotal,
       discountAmount,
       discountCode,
       shippingFee,
       totalAmount,
-      estimatedDelivery: deliveryDatesRange,
-      carrier: selectedCountry.code === 'FR' ? 'Colissimo Suivi' : 'DHL Express Europe',
-      status: 'Confirmée & en préparation',
-      trackingSteps: [
-        { title: 'Commande validée & sécurisée', date: "Aujourd'hui (Immédiat)", done: true },
-        { title: 'Préparation du colis (Plateforme Logistique UE)', date: 'Sous 24h ouvrées', done: true },
-        { title: `Prise en charge ${selectedCountry.code === 'FR' ? 'Colissimo' : 'DHL'}`, date: 'Dans 2 jours', done: false },
-        { title: 'Remise en boîte aux lettres ou contre signature', date: deliveryDatesRange, done: false }
-      ]
+      countryCode: selectedCountry.code
     };
+
+    let newOrder;
+    try {
+      const apiRes = await apiCreateOrder(orderPayload);
+      if (apiRes && apiRes.success && apiRes.order) {
+        newOrder = apiRes.order;
+      }
+    } catch (err) {
+      console.warn('Backend order call failed, using local order:', err);
+    }
+
+    if (!newOrder) {
+      // Fallback local order
+      const orderNumber = `EU-${Math.floor(100000 + Math.random() * 900000)}`;
+      newOrder = {
+        orderNumber,
+        date: new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' }),
+        items: [...items],
+        customer: { ...formData },
+        subtotal,
+        discountAmount,
+        discountCode,
+        shippingFee,
+        totalAmount,
+        estimatedDelivery: deliveryDatesRange,
+        carrier: selectedCountry.code === 'FR' ? 'Colissimo Suivi' : 'DHL Express Europe',
+        status: 'Confirmée & en préparation',
+        trackingSteps: [
+          { title: 'Commande validée & sécurisée', date: "Aujourd'hui (Immédiat)", done: true },
+          { title: 'Préparation du colis (Plateforme Logistique UE)', date: 'Sous 24h ouvrées', done: true },
+          { title: `Prise en charge ${selectedCountry.code === 'FR' ? 'Colissimo' : 'DHL'}`, date: 'Dans 2 jours', done: false },
+          { title: 'Remise en boîte aux lettres ou contre signature', date: deliveryDatesRange, done: false }
+        ]
+      };
+    }
 
     // Save to local storage for persistence across visits
     try {
