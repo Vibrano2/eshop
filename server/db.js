@@ -125,5 +125,21 @@ export function initDatabase() {
       expires_at TEXT NOT NULL,
       FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
     );
+
+    CREATE TABLE IF NOT EXISTS product_reviews (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      product_id TEXT NOT NULL,
+      author_name TEXT NOT NULL,
+      author_email TEXT,
+      rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
+      title TEXT,
+      comment TEXT NOT NULL,
+      is_verified_buyer INTEGER DEFAULT 1,
+      order_number TEXT,
+      helpful_count INTEGER DEFAULT 0,
+      country_code TEXT DEFAULT 'FR',
+      created_at TEXT NOT NULL,
+      FOREIGN KEY (product_id) REFERENCES products (id)
+    );
   `);
 }

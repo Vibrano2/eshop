@@ -10,6 +10,7 @@ import newsletterRouter from './routes/newsletter.js';
 import authRouter from './routes/auth.js';
 import adminRouter from './routes/admin.js';
 import paymentRouter from './routes/payment.js';
+import reviewsRouter, { seedInitialReviews } from './routes/reviews.js';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -20,6 +21,7 @@ app.use(express.json());
 
 // Initialize SQLite database
 initDatabase();
+seedInitialReviews();
 
 // Health Check
 app.get('/api/health', (req, res) => {
@@ -36,6 +38,8 @@ app.use('/api/auth', authRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api/payment', paymentRouter);
 app.use('/api/products', productsRouter);
+app.use('/api/products', reviewsRouter);
+app.use('/api', reviewsRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/api/loyalty', loyaltyRouter);
 app.use('/api/promo', promoRouter);
