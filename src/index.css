@@ -9141,6 +9141,560 @@ a {
   }
 }
 
+/* ==========================================================================
+   STRIPE SANDBOX & 3D SECURE MODAL STYLES
+   ========================================================================== */
+
+/* Payment Error Box */
+.checkout-payment-error-box {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  padding: 0.9rem 1.1rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  margin-bottom: 1.25rem;
+  animation: shakeAlert 0.3s ease;
+}
+
+@keyframes shakeAlert {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.checkout-payment-error-box strong {
+  display: block;
+  font-size: 0.875rem;
+  margin-bottom: 0.15rem;
+}
+
+.checkout-payment-error-box p {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: #b91c1c;
+}
+
+/* Stripe Sandbox Toolbar */
+.stripe-sandbox-toolbar {
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.sandbox-toolbar-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.65rem;
+}
+
+.sandbox-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: #e0e7ff;
+  color: #4338ca;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+  letter-spacing: 0.04em;
+}
+
+.sandbox-hint {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.sandbox-presets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.5rem;
+}
+
+.preset-card-btn {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.5rem 0.6rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  text-align: left;
+  transition: all 0.15s;
+}
+
+.preset-card-btn:hover {
+  border-color: #6366f1;
+  background: #f5f7ff;
+}
+
+.preset-card-btn.active {
+  border-color: #4f46e5;
+  background: #eef2ff;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.15);
+}
+
+.preset-name {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.preset-pill {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+.preset-pill.badge-3ds { background: #dbeafe; color: #1e40af; }
+.preset-pill.badge-direct { background: #d1fae5; color: #065f46; }
+.preset-pill.badge-declined { background: #fee2e2; color: #991b1b; }
+.preset-pill.badge-expired { background: #fef3c7; color: #92400e; }
+
+/* Credit Card Visual Themes */
+.credit-card-preview.brand-visa {
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+}
+
+.credit-card-preview.brand-mastercard {
+  background: linear-gradient(135deg, #0f172a, #dc2626);
+}
+
+.credit-card-preview.brand-cb {
+  background: linear-gradient(135deg, #065f46, #059669);
+}
+
+.card-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.card-brand-tag {
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  opacity: 0.9;
+}
+
+.card-input-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+}
+
+.card-brand-indicator {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.card-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.card-input-lock {
+  position: absolute;
+  right: 0.85rem;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+/* 3DS Confirmation Seal in Step 3 */
+.success-3ds-seal {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.success-3ds-seal strong {
+  display: block;
+  font-size: 0.875rem;
+  color: #065f46;
+  margin-bottom: 0.15rem;
+}
+
+.success-3ds-seal p {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: #047857;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   3D SECURE CHALLENGE MODAL (DSP2 EUROPE)
+   ========================================================================== */
+
+.threeds-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(5px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.threeds-modal-container {
+  background: #ffffff;
+  border-radius: 20px;
+  max-width: 480px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  animation: modalPop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalPop {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.threeds-header {
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.threeds-bank-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.threeds-bank-logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.threeds-bank-title {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.threeds-protocol-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.7rem;
+  color: #059669;
+  font-weight: 700;
+}
+
+.threeds-close-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  transition: all 0.15s;
+}
+
+.threeds-close-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.threeds-summary-box {
+  background: #ffffff;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.threeds-summary-box .summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  padding: 0.2rem 0;
+}
+
+.summary-label {
+  color: #64748b;
+}
+
+.summary-value {
+  color: #0f172a;
+}
+
+.summary-value.text-highlight {
+  font-size: 1rem;
+  color: #2563eb;
+}
+
+.threeds-method-tabs {
+  display: flex;
+  background: #f1f5f9;
+  padding: 0.25rem;
+  margin: 1rem 1.25rem 0 1.25rem;
+  border-radius: 10px;
+  gap: 0.25rem;
+}
+
+.method-tab {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.55rem;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.method-tab.active {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.threeds-body {
+  padding: 1.25rem;
+}
+
+.threeds-instruction {
+  font-size: 0.8125rem;
+  color: #475569;
+  line-height: 1.5;
+  margin: 0 0 0.85rem 0;
+}
+
+.otp-sandbox-hint {
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: #3730a3;
+  margin-bottom: 1rem;
+}
+
+.hint-pill {
+  background: #4338ca;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.65rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+.threeds-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  margin-bottom: 1rem;
+}
+
+.otp-input-group label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.4rem;
+}
+
+.otp-field {
+  width: 100%;
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 1.5rem;
+  letter-spacing: 0.35em;
+  font-family: monospace;
+  font-weight: 800;
+  border: 2px solid #cbd5e1;
+  border-radius: 12px;
+  color: #0f172a;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.otp-field:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.app-push-card {
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+.app-push-icon-pulse {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #eff6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem auto;
+  animation: pulseApp 2s infinite;
+}
+
+@keyframes pulseApp {
+  0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.3); }
+  70% { box-shadow: 0 0 0 16px rgba(37, 99, 235, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+}
+
+.app-push-card h4 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.5rem 0;
+}
+
+.app-push-card p {
+  font-size: 0.8125rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0 0 1rem 0;
+}
+
+.app-timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+}
+
+.threeds-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+}
+
+.threeds-btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #0f172a;
+  color: #ffffff;
+  border: none;
+  padding: 0.85rem 1.25rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.threeds-btn-submit:hover:not(:disabled) {
+  background: #1e293b;
+}
+
+.threeds-btn-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.threeds-btn-cancel {
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.4rem;
+  transition: color 0.15s;
+}
+
+.threeds-btn-cancel:hover {
+  color: #0f172a;
+}
+
+.threeds-footer {
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  padding: 0.85rem 1.25rem;
+  text-align: center;
+}
+
+.threeds-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.4rem;
+}
+
+.threeds-badge-pill {
+  font-size: 0.65rem;
+  font-weight: 800;
+  background: #e2e8f0;
+  color: #334155;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+}
+
+.threeds-legal {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.4;
+}
+
+
 
 
 
