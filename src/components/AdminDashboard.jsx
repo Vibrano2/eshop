@@ -34,6 +34,7 @@ import {
   apiUpdateProductStock,
   apiGetAdminSubscribers,
   apiResendOrderEmail,
+  apiDownloadInvoicePdf,
   exportToCsv
 } from '../services/api';
 
@@ -886,7 +887,18 @@ export default function AdminDashboard({ onNavigateHome, currentUser, onOpenTrac
                     Destinataire : {selectedOrder.customerEmail}
                   </span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                  <button
+                    type="button"
+                    onClick={() => apiDownloadInvoicePdf(selectedOrder.orderNumber)}
+                    className="btn btn-outline btn-sm"
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8125rem' }}
+                    title="Télécharger la facture officielle PDF certifiée"
+                  >
+                    <Download size={14} />
+                    <span>Facture PDF</span>
+                  </button>
+
                   <button
                     type="button"
                     onClick={() => handleResendEmailAdmin(selectedOrder.orderNumber)}

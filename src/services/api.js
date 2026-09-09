@@ -88,6 +88,38 @@ export async function apiResendOrderEmail(orderNumber) {
 }
 
 /**
+ * Get direct download URL for server-generated PDF invoice
+ */
+export function apiGetInvoicePdfUrl(orderNumber) {
+  return `${API_BASE}/orders/${orderNumber}/invoice.pdf`;
+}
+
+/**
+ * Trigger browser download for order invoice PDF
+ */
+export async function apiDownloadInvoicePdf(orderNumber) {
+  const url = apiGetInvoicePdfUrl(orderNumber);
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const blob = await res.blob();
+    const blobUrl = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = blobUrl;
+    link.download = `facture-FAC-${orderNumber}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(blobUrl);
+    return true;
+  } catch (err) {
+    console.warn('[API fallback] Direct PDF download error, opening link:', err);
+    window.open(url, '_blank');
+    return false;
+  }
+}
+
+/**
  * Initialize Payment Intent (Stripe Sandbox / Live)
  */
 export async function apiCreatePaymentIntent(payload) {

@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { db } from '../db.js';
 import { sendOrderConfirmationEmail } from '../services/email.js';
+import { generateInvoicePdf } from '../services/invoicePdf.js';
 
 const router = Router();
 
@@ -278,6 +279,30 @@ router.get('/:orderNumber/track', (req, res) => {
   } catch (err) {
     console.error('Error tracking order:', err);
     res.status(500).json({ success: false, error: 'Erreur lors du suivi' });
+  }
+});
+
+// GET /api/orders/:orderNumber/invoice.pdf
+router.get('/:orderNumber/invoice.pdf', (req, res) => {
+  try {
+    const { orderNumber } = req.params;
+    const order = db.prepare('SELECT * FROM orders WHERE order_number = ?').get(orderNumber);
+
+    if (!order) {
+      return res.status(404).json({ success: false, error: 'Commande introuvable' });
+    }
+
+    const items = db.prepare('SELECT * FROM order_items WHERE order_number = ?').all(orderNumber);
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `attachment; filename="facture-FAC-${orderNumber}.pdf"`);
+
+    generateInvoicePdf(order, items, res);
+  } catch (err) {
+    console.error('Error generating invoice PDF:', err);
+    if (!res.headersSent) {
+      res.status(500).json({ success: false, error: 'Erreur lors de la génération du PDF de facture' });
+    }
   }
 });
 

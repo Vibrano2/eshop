@@ -1,7 +1,10 @@
-import React from 'react';
-import { X, Printer, CheckCircle, ShieldCheck } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, Printer, CheckCircle, ShieldCheck, Download, Loader2 } from 'lucide-react';
+import { apiDownloadInvoicePdf } from '../services/api';
 
 export default function InvoiceModal({ order, isOpen, onClose }) {
+  const [isDownloadingPdf, setIsDownloadingPdf] = useState(false);
+
   if (!isOpen || !order) return null;
 
   const orderDate = order.date ? new Date(order.date).toLocaleDateString('fr-FR', {
@@ -25,6 +28,17 @@ export default function InvoiceModal({ order, isOpen, onClose }) {
     window.print();
   };
 
+  const handleDownloadPdf = async () => {
+    setIsDownloadingPdf(true);
+    try {
+      await apiDownloadInvoicePdf(order.orderNumber);
+    } catch (err) {
+      console.warn('PDF download error:', err);
+    } finally {
+      setIsDownloadingPdf(false);
+    }
+  };
+
   return (
     <div className="invoice-modal-overlay" onClick={onClose} role="dialog" aria-modal="true">
       <div className="invoice-modal-container" onClick={(e) => e.stopPropagation()}>
@@ -39,11 +53,30 @@ export default function InvoiceModal({ order, isOpen, onClose }) {
           <div className="invoice-action-buttons">
             <button
               className="invoice-btn-primary"
+              onClick={handleDownloadPdf}
+              disabled={isDownloadingPdf}
+              title="Télécharger la facture officielle PDF certifiée"
+              style={{ background: '#1e3a8a', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
+            >
+              {isDownloadingPdf ? (
+                <>
+                  <Loader2 size={16} className="spin-icon" />
+                  <span>Téléchargement...</span>
+                </>
+              ) : (
+                <>
+                  <Download size={16} />
+                  <span>Télécharger PDF</span>
+                </>
+              )}
+            </button>
+            <button
+              className="invoice-btn-primary"
               onClick={handlePrint}
               title="Imprimer ou enregistrer en PDF"
             >
               <Printer size={16} />
-              <span>Imprimer / PDF</span>
+              <span>Imprimer</span>
             </button>
             <button
               className="invoice-btn-close"
