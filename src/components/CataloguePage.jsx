@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { CATEGORIES } from '../data/products';
 import { MAIN_CATEGORIES } from '../data/categories';
+import { updatePageSEO, injectBreadcrumbJsonLd, resetSEO } from '../services/seo';
 
 export default function CataloguePage({
   products,
@@ -53,6 +54,32 @@ export default function CataloguePage({
   const currentCategoryData = useMemo(() => {
     return MAIN_CATEGORIES.find((c) => c.id === selectedCategory) || null;
   }, [selectedCategory]);
+
+  // Synchronize category SEO & Breadcrumb Schema
+  useEffect(() => {
+    const catObj = MAIN_CATEGORIES.find((c) => c.id === selectedCategory);
+    const catName = catObj ? catObj.name : 'Tous les Produits';
+    const subName = selectedSubcategory ? ` • ${selectedSubcategory}` : '';
+    const title = `${catName}${subName} — Catalogue E-Commerce UE | eshop-store.eu`;
+    const desc = `Explorez notre collection ${catName}. Des gadgets innovants du quotidien sélectionnés avec soin et expédiés rapidement en 2 à 5 jours dans toute l'Union Européenne.`;
+
+    updatePageSEO({
+      title,
+      description: desc,
+      url: `https://eshop-store.eu/?category=${selectedCategory}`,
+      type: 'website'
+    });
+
+    injectBreadcrumbJsonLd([
+      { name: 'Accueil', url: '/' },
+      { name: 'Catalogue', url: '/?category=all' },
+      ...(catObj ? [{ name: catObj.name, url: `/?category=${catObj.id}` }] : [])
+    ]);
+
+    return () => {
+      resetSEO();
+    };
+  }, [selectedCategory, selectedSubcategory]);
 
   const resetAllFilters = () => {
     setSelectedCategory('all');

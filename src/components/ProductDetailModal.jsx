@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { PRODUCTS } from '../data/products';
 import { apiFetchProductReviews, apiSubmitProductReview, apiVoteReviewHelpful } from '../services/api';
+import { updatePageSEO, injectProductJsonLd, injectBreadcrumbJsonLd, resetSEO } from '../services/seo';
 
 export default function ProductDetailModal({
   product,
@@ -91,6 +92,36 @@ export default function ProductDetailModal({
       .catch((err) => console.warn('Reviews fetch error:', err))
       .finally(() => setIsLoadingReviews(false));
   }, [product?.id]);
+
+  // Synchronize dynamic SEO, OpenGraph and Schema.org Product Rich Snippet
+  useEffect(() => {
+    if (!product) return;
+    const priceFormatted = Number(product.price || 0).toFixed(2);
+    const title = `${product.name} • ${priceFormatted} € | eshop-store.eu`;
+    const desc = product.shortDescription || product.short_description || `Achetez ${product.name} à ${priceFormatted} €. Expédition express UE en 2 à 5 jours, garantie légale 2 ans et retours 30 jours.`;
+    const img = product.image;
+    const url = `https://eshop-store.eu/?product=${product.id}`;
+
+    updatePageSEO({
+      title,
+      description: desc,
+      image: img,
+      url,
+      type: 'product'
+    });
+
+    injectProductJsonLd(product, reviews);
+
+    injectBreadcrumbJsonLd([
+      { name: 'Accueil', url: '/' },
+      { name: product.category || 'Catalogue', url: `/?category=${product.category || 'all'}` },
+      { name: product.name, url: `/?product=${product.id}` }
+    ]);
+
+    return () => {
+      resetSEO();
+    };
+  }, [product, reviews]);
 
   const handleSubmitReview = async (e) => {
     e.preventDefault();

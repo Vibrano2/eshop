@@ -1,0 +1,9 @@
+# robots.txt for https://eshop-store.eu
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/admin/
+Disallow: /api/auth/
+
+# Sitemap location
+Sitemap: https://eshop-store.eu/sitemap.xml
