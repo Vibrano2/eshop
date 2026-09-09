@@ -9694,6 +9694,402 @@ a {
   line-height: 1.4;
 }
 
+/* ==========================================================================
+   ENHANCED LIVE SEARCH AUTOCOMPLETE & TRENDS OVERLAY
+   ========================================================================== */
+
+.search-suggestions-zero-state {
+  padding: 0.85rem 1rem;
+}
+
+.suggestions-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+}
+
+.trend-header-icon {
+  color: #ea580c;
+}
+
+.search-trends-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.search-trend-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 9999px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.search-trend-chip:hover {
+  background: #fff7ed;
+  border-color: #fdba74;
+  color: #ea580c;
+  transform: translateY(-1px);
+}
+
+.search-popular-picks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.suggestion-item-rich {
+  padding: 0.65rem 0.85rem;
+  border-radius: 8px;
+}
+
+.suggestion-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.15rem;
+  flex-wrap: wrap;
+}
+
+.suggestion-stock-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #059669;
+  background: #ecfdf5;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+.suggestion-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #d97706;
+}
+
+.suggestion-price-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.suggestion-old-price {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  text-decoration: line-through;
+}
+
+.suggestions-count-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #64748b;
+  background: #e2e8f0;
+  padding: 0.1rem 0.45rem;
+  border-radius: 9999px;
+}
+
+.suggestions-no-results {
+  padding: 1.25rem 1rem;
+  text-align: center;
+}
+
+.no-results-text {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-bottom: 0.75rem;
+}
+
+/* ==========================================================================
+   CATALOGUE ENHANCED FILTERS: INLINE SEARCH, FACETS & ACTIVE TAGS
+   ========================================================================== */
+
+/* Inline Search Bar in Catalogue Controls */
+.catalogue-inline-search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 220px;
+  max-width: 320px;
+  flex: 1;
+}
+
+.catalogue-search-icon {
+  position: absolute;
+  left: 12px;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.catalogue-inline-search-input {
+  width: 100%;
+  padding: 0.55rem 2rem 0.55rem 2.25rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  color: #0f172a;
+  background: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.catalogue-inline-search-input:focus {
+  outline: none;
+  border-color: #ea580c;
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.12);
+}
+
+.catalogue-search-clear-btn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 2px 4px;
+}
+
+.catalogue-search-clear-btn:hover {
+  color: #0f172a;
+}
+
+/* Sidebar Filter Header Row with Sub-Clear */
+.filter-group-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.filter-clear-sub-btn {
+  background: none;
+  border: none;
+  color: #ea580c;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.filter-clear-sub-btn:hover {
+  text-decoration: underline;
+}
+
+/* Dual Numeric Price Inputs */
+.filter-price-inputs-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.price-input-box {
+  display: flex;
+  align-items: center;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 0.35rem 0.5rem;
+  flex: 1;
+  transition: border-color 0.15s ease;
+}
+
+.price-input-box:focus-within {
+  border-color: #ea580c;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(234, 88, 12, 0.1);
+}
+
+.price-currency-sign {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #64748b;
+  margin-right: 0.25rem;
+}
+
+.price-num-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #0f172a;
+  outline: none;
+  -moz-appearance: textfield;
+}
+
+.price-num-input::-webkit-outer-spin-button,
+.price-num-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.price-dash {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+/* Quick Price Preset Pills */
+.filter-price-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.price-preset-pill {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 9999px;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.price-preset-pill:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.price-preset-pill.active {
+  background: #fff7ed;
+  border-color: #fdba74;
+  color: #ea580c;
+  font-weight: 700;
+}
+
+/* Facet Counts in Filters */
+.filter-label-text {
+  flex: 1;
+}
+
+.filter-facet-pill {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  background: #f1f5f9;
+  color: #64748b;
+  padding: 0.1rem 0.45rem;
+  border-radius: 9999px;
+  margin-left: auto;
+}
+
+/* Active Filter Chips Bar */
+.catalogue-active-chips-bar {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.active-chips-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding-top: 0.25rem;
+}
+
+.active-chips-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.75rem;
+  color: #334155;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.filter-chip.chip-highlight {
+  background: #fff7ed;
+  border-color: #fdba74;
+  color: #9a3412;
+}
+
+.filter-chip strong {
+  color: #0f172a;
+}
+
+.filter-chip button {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 0.8rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 2px;
+  transition: color 0.15s ease;
+}
+
+.filter-chip button:hover {
+  color: #dc2626;
+}
+
+.clear-all-chips-btn {
+  background: none;
+  border: none;
+  color: #dc2626;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.3rem 0.5rem;
+  text-decoration: underline;
+}
+
+.clear-all-chips-btn:hover {
+  color: #991b1b;
+}
+
+@media (max-width: 768px) {
+  .catalogue-controls-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .catalogue-inline-search-wrap {
+    min-width: 100%;
+    max-width: 100%;
+  }
+  .catalogue-active-chips-bar {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
 
 
 

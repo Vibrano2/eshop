@@ -8,7 +8,10 @@ import {
   Package,
   Home,
   ChevronRight,
-  Filter
+  Filter,
+  Search,
+  Tag,
+  Sparkles
 } from 'lucide-react';
 import { CATEGORIES } from '../data/products';
 import { MAIN_CATEGORIES } from '../data/categories';
@@ -30,13 +33,21 @@ export default function CataloguePage({
   const [selectedSubcategory, setSelectedSubcategory] = useState(initialSubcategory);
   const [searchQuery, setSearchQuery] = useState(initialSearch);
   const [sortBy, setSortBy] = useState('popular');
-  const [priceFilter, setPriceFilter] = useState('all'); // all, under20, 20to40, over40
+  const [priceFilter, setPriceFilter] = useState('all'); // all, under20, 20to40, over40, custom
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
   const [minRating, setMinRating] = useState(0);
   const [inStockOnly, setInStockOnly] = useState(false);
   const [hasDiscountOnly, setHasDiscountOnly] = useState(false);
   const [selectedGender, setSelectedGender] = useState('all'); // for mode: all, femme, homme, unisexe
   const [selectedSize, setSelectedSize] = useState('all'); // for fashion
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+
+  // Facet real-time counts across the loaded products catalogue
+  const rating45Count = useMemo(() => products.filter((p) => p.rating >= 4.5).length, [products]);
+  const rating48Count = useMemo(() => products.filter((p) => p.rating >= 4.8).length, [products]);
+  const inStockCount = useMemo(() => products.filter((p) => p.stock && p.stock > 0).length, [products]);
+  const discountCount = useMemo(() => products.filter((p) => !!p.compareAtPrice).length, [products]);
 
   // Sync if initialCategory / initialSubcategory / search changes from outside
   useEffect(() => {
@@ -89,6 +100,8 @@ export default function CataloguePage({
     setSearchQuery('');
     setSortBy('popular');
     setPriceFilter('all');
+    setMinPrice('');
+    setMaxPrice('');
     setMinRating(0);
     setInStockOnly(false);
     setHasDiscountOnly(false);
@@ -100,13 +113,26 @@ export default function CataloguePage({
     if (selectedSubcategory) count++;
     if (selectedGender !== 'all') count++;
     if (selectedSize !== 'all') count++;
-    if (priceFilter !== 'all') count++;
+    if (priceFilter !== 'all' && priceFilter !== 'custom') count++;
+    if (minPrice !== '' || maxPrice !== '') count++;
     if (minRating > 0) count++;
     if (inStockOnly) count++;
     if (hasDiscountOnly) count++;
     if (searchQuery.trim()) count++;
     return count;
-  }, [selectedCategory, selectedSubcategory, selectedGender, selectedSize, priceFilter, minRating, inStockOnly, hasDiscountOnly, searchQuery]);
+  }, [
+    selectedCategory,
+    selectedSubcategory,
+    selectedGender,
+    selectedSize,
+    priceFilter,
+    minPrice,
+    maxPrice,
+    minRating,
+    inStockOnly,
+    hasDiscountOnly,
+    searchQuery
+  ]);
 
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
@@ -161,6 +187,10 @@ export default function CataloguePage({
       if (priceFilter === '20to40' && (product.price < 20 || product.price > 40)) return false;
       if (priceFilter === 'over40' && product.price <= 40) return false;
 
+      // Custom numeric price range
+      if (minPrice !== '' && !isNaN(Number(minPrice)) && product.price < Number(minPrice)) return false;
+      if (maxPrice !== '' && !isNaN(Number(maxPrice)) && product.price > Number(maxPrice)) return false;
+
       // Rating
       if (minRating > 0 && product.rating < minRating) return false;
 
@@ -187,6 +217,8 @@ export default function CataloguePage({
     selectedSize,
     searchQuery,
     priceFilter,
+    minPrice,
+    maxPrice,
     minRating,
     inStockOnly,
     hasDiscountOnly,
@@ -317,37 +349,106 @@ export default function CataloguePage({
         </div>
       )}
 
-      {/* Price Filter */}
+      {/* Enhanced Price Filter with Range Inputs & Presets */}
       <div className="filter-group">
-        <h4 className="filter-group-title">Prix</h4>
-        <div className="filter-options-list">
+        <div className="filter-group-header-row">
+          <h4 className="filter-group-title" style={{ marginBottom: 0 }}>Fourchette de Prix</h4>
+          {(minPrice !== '' || maxPrice !== '' || priceFilter !== 'all') && (
+            <button
+              type="button"
+              className="filter-clear-sub-btn"
+              onClick={() => {
+                setMinPrice('');
+                setMaxPrice('');
+                setPriceFilter('all');
+              }}
+            >
+              Effacer
+            </button>
+          )}
+        </div>
+
+        {/* Dual numeric inputs */}
+        <div className="filter-price-inputs-row">
+          <div className="price-input-box">
+            <span className="price-currency-sign">€</span>
+            <input
+              type="number"
+              min="0"
+              placeholder="Min"
+              value={minPrice}
+              onChange={(e) => {
+                setMinPrice(e.target.value);
+                setPriceFilter('custom');
+              }}
+              className="price-num-input"
+              aria-label="Prix minimum en euros"
+            />
+          </div>
+          <span className="price-dash">à</span>
+          <div className="price-input-box">
+            <span className="price-currency-sign">€</span>
+            <input
+              type="number"
+              min="0"
+              placeholder="Max"
+              value={maxPrice}
+              onChange={(e) => {
+                setMaxPrice(e.target.value);
+                setPriceFilter('custom');
+              }}
+              className="price-num-input"
+              aria-label="Prix maximum en euros"
+            />
+          </div>
+        </div>
+
+        {/* Quick price presets */}
+        <div className="filter-price-presets">
           {[
-            { id: 'all', label: 'Tous les prix' },
-            { id: 'under20', label: 'Moins de 20 €' },
-            { id: '20to40', label: '20 € à 40 €' },
-            { id: 'over40', label: 'Plus de 40 €' }
-          ].map((opt) => (
-            <label key={opt.id} className="filter-radio-label">
-              <input
-                type="radio"
-                name="priceFilter"
-                checked={priceFilter === opt.id}
-                onChange={() => setPriceFilter(opt.id)}
-              />
-              <span>{opt.label}</span>
-            </label>
-          ))}
+            { id: 'all', label: 'Tous' },
+            { id: 'under20', label: '< 20 €' },
+            { id: '20to40', label: '20 € - 40 €' },
+            { id: 'over40', label: '> 40 €' }
+          ].map((preset) => {
+            const isActive = priceFilter === preset.id;
+            return (
+              <button
+                key={preset.id}
+                type="button"
+                className={`price-preset-pill ${isActive ? 'active' : ''}`}
+                onClick={() => {
+                  setPriceFilter(preset.id);
+                  if (preset.id === 'all') {
+                    setMinPrice('');
+                    setMaxPrice('');
+                  } else if (preset.id === 'under20') {
+                    setMinPrice('');
+                    setMaxPrice('20');
+                  } else if (preset.id === '20to40') {
+                    setMinPrice('20');
+                    setMaxPrice('40');
+                  } else if (preset.id === 'over40') {
+                    setMinPrice('40');
+                    setMaxPrice('');
+                  }
+                }}
+              >
+                {preset.label}
+              </button>
+            );
+          })}
         </div>
       </div>
 
-      {/* Rating Filter */}
+      {/* Rating Filter with Live Facet Counters */}
       <div className="filter-group">
         <h4 className="filter-group-title">Note minimale</h4>
         <div className="filter-options-list">
           {[
-            { val: 0, label: 'Toutes les notes' },
-            { val: 4.5, label: '★ 4.5 et plus' },
-            { val: 4.8, label: '★ 4.8 et plus (Excellence)' }
+            { val: 0, label: 'Toutes les notes', count: products.length },
+            { val: 4.5, label: '★ 4.5 et plus', count: rating45Count },
+            { val: 4.8, label: '★ 4.8 et plus (Excellence)', count: rating48Count }
           ].map((opt) => (
             <label key={opt.val} className="filter-radio-label">
               <input
@@ -356,13 +457,14 @@ export default function CataloguePage({
                 checked={minRating === opt.val}
                 onChange={() => setMinRating(opt.val)}
               />
-              <span>{opt.label}</span>
+              <span className="filter-label-text">{opt.label}</span>
+              <span className="filter-facet-pill">{opt.count}</span>
             </label>
           ))}
         </div>
       </div>
 
-      {/* Availability & Deals */}
+      {/* Availability & Deals with Live Facet Counters */}
       <div className="filter-group">
         <h4 className="filter-group-title">Disponibilité & Offres</h4>
         <div className="filter-checkbox-list">
@@ -372,7 +474,8 @@ export default function CataloguePage({
               checked={inStockOnly}
               onChange={(e) => setInStockOnly(e.target.checked)}
             />
-            <span>En stock immédiat (UE)</span>
+            <span className="filter-label-text">En stock immédiat (UE)</span>
+            <span className="filter-facet-pill">{inStockCount}</span>
           </label>
           <label className="filter-checkbox-label">
             <input
@@ -380,7 +483,8 @@ export default function CataloguePage({
               checked={hasDiscountOnly}
               onChange={(e) => setHasDiscountOnly(e.target.checked)}
             />
-            <span>En promotion uniquement</span>
+            <span className="filter-label-text">En promotion uniquement</span>
+            <span className="filter-facet-pill">{discountCount}</span>
           </label>
         </div>
       </div>
@@ -447,8 +551,31 @@ export default function CataloguePage({
             </p>
           </div>
 
-          {/* Controls: Search, Sort, Mobile Filter Trigger */}
+          {/* Controls: Inline Search, Sort, Mobile Filter Trigger */}
           <div className="catalogue-controls-row">
+            {/* Inline Catalogue Search */}
+            <div className="catalogue-inline-search-wrap">
+              <Search size={15} className="catalogue-search-icon" />
+              <input
+                type="text"
+                className="catalogue-inline-search-input"
+                placeholder="Filtrer dans ce rayon..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                aria-label="Rechercher dans ce catalogue"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  className="catalogue-search-clear-btn"
+                  onClick={() => setSearchQuery('')}
+                  aria-label="Effacer la recherche"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+
             <div className="catalogue-sort-wrap">
               <ArrowUpDown size={15} color="#64748b" />
               <label htmlFor="catalogue-sort" className="sr-only">
@@ -502,6 +629,149 @@ export default function CataloguePage({
                 </button>
               )}
             </div>
+
+            {/* Active Filter Chips Row */}
+            {activeFilterCount > 0 && (
+              <div className="catalogue-active-chips-bar">
+                <span className="active-chips-label">Filtres actifs :</span>
+                <div className="active-chips-list">
+                  {selectedCategory !== 'all' && (
+                    <span className="filter-chip">
+                      Rayon : <strong>{currentCategoryData ? currentCategoryData.name : selectedCategory}</strong>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSelectedCategory('all');
+                          setSelectedSubcategory(null);
+                        }}
+                        aria-label="Supprimer le filtre rayon"
+                      >
+                        ✕
+                      </button>
+                    </span>
+                  )}
+                  {selectedSubcategory && (
+                    <span className="filter-chip">
+                      Sous-rayon : <strong>{currentCategoryData?.subcategories?.find((s) => s.id === selectedSubcategory)?.name || selectedSubcategory}</strong>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedSubcategory(null)}
+                        aria-label="Supprimer la sous-catégorie"
+                      >
+                        ✕
+                      </button>
+                    </span>
+                  )}
+                  {searchQuery.trim() && (
+                    <span className="filter-chip chip-highlight">
+                      Recherche : <strong>« {searchQuery} »</strong>
+                      <button
+                        type="button"
+                        onClick={() => setSearchQuery('')}
+                        aria-label="Effacer le mot-clé de recherche"
+                      >
+                        ✕
+                      </button>
+                    </span>
+                  )}
+                  {(minPrice !== '' || maxPrice !== '') && (
+                    <span className="filter-chip">
+                      Prix : <strong>{minPrice ? `${minPrice} €` : '0 €'} - {maxPrice ? `${maxPrice} €` : 'illimité'}</strong>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setMinPrice('');
+                          setMaxPrice('');
+                          setPriceFilter('all');
+                        }}
+                        aria-label="Réinitialiser la fourchette de prix"
+                      >
+                        ✕
+                      </button>
+                    </span>
+                  )}
+                  {priceFilter !== 'all' && priceFilter !== 'custom' && minPrice === '' && maxPrice === '' && (
+                    <span className="filter-chip">
+                      Prix : <strong>{priceFilter === 'under20' ? '< 20 €' : priceFilter === '20to40' ? '20 € - 40 €' : '> 40 €'}</strong>
+                      <button
+                        type="button"
+                        onClick={() => setPriceFilter('all')}
+                        aria-label="Réinitialiser le filtre de prix"
+                      >
+                        ✕
+                      </button>
+                    </span>
+                  )}
+                  {minRating > 0 && (
+                    <span className="filter-chip">
+                      Note : <strong>≥ {minRating}★</strong>
+                      <button
+                        type="button"
+                        onClick={() => setMinRating(0)}
+                        aria-label="Réinitialiser la note minimale"
+                      >
+                        ✕
+                      </button>
+                    </span>
+                  )}
+                  {inStockOnly && (
+                    <span className="filter-chip">
+                      <strong>En stock UE</strong>
+                      <button
+                        type="button"
+                        onClick={() => setInStockOnly(false)}
+                        aria-label="Désactiver filtre stock"
+                      >
+                        ✕
+                      </button>
+                    </span>
+                  )}
+                  {hasDiscountOnly && (
+                    <span className="filter-chip">
+                      <strong>En promotion</strong>
+                      <button
+                        type="button"
+                        onClick={() => setHasDiscountOnly(false)}
+                        aria-label="Désactiver filtre promotion"
+                      >
+                        ✕
+                      </button>
+                    </span>
+                  )}
+                  {selectedGender !== 'all' && (
+                    <span className="filter-chip">
+                      Genre : <strong>{selectedGender}</strong>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedGender('all')}
+                        aria-label="Réinitialiser le genre"
+                      >
+                        ✕
+                      </button>
+                    </span>
+                  )}
+                  {selectedSize !== 'all' && (
+                    <span className="filter-chip">
+                      Taille : <strong>{selectedSize}</strong>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedSize('all')}
+                        aria-label="Réinitialiser la taille"
+                      >
+                        ✕
+                      </button>
+                    </span>
+                  )}
+                  <button
+                    type="button"
+                    onClick={resetAllFilters}
+                    className="clear-all-chips-btn"
+                  >
+                    Effacer tout
+                  </button>
+                </div>
+              </div>
+            )}
 
             {filteredProducts.length > 0 ? (
               <div className="catalogue-products-grid">

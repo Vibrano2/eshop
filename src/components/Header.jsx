@@ -15,7 +15,9 @@ import {
   User,
   UserCheck,
   LogOut,
-  LayoutDashboard
+  LayoutDashboard,
+  Star,
+  TrendingUp
 } from 'lucide-react';
 import { PRODUCTS } from '../data/products';
 import { MAIN_CATEGORIES } from '../data/categories';
@@ -132,6 +134,20 @@ export default function Header({
 
   const modeCategory = MAIN_CATEGORIES.find((c) => c.id === 'mode');
 
+  // Search trends and popular picks
+  const SEARCH_TRENDS = [
+    'Airfryer',
+    'Aspirateur sans fil',
+    'Oreiller ergonomique',
+    'Ampoule connectée',
+    'Bandeau spa',
+    'Batterie externe'
+  ];
+
+  const popularPicks = useMemo(() => {
+    return PRODUCTS.filter((p) => p.isBestSeller).slice(0, 3);
+  }, []);
+
   return (
     <header className="site-header-modern">
       {/* Primary Header Row */}
@@ -190,40 +206,151 @@ export default function Header({
             </form>
 
             {/* Live Autocomplete Dropdown */}
-            {showSuggestions && suggestions.length > 0 && (
+            {showSuggestions && (
               <div className="search-suggestions-dropdown">
-                <div className="suggestions-header">Produits suggérés</div>
-                {suggestions.map((item) => (
-                  <div
-                    key={item.id}
-                    className="suggestion-item"
-                    onClick={() => handleSelectSuggestion(item)}
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.altText || item.name}
-                      className="suggestion-thumb"
-                      onError={(e) => {
-                        e.currentTarget.src =
-                          'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100&auto=format&fit=crop&q=80';
-                      }}
-                    />
-                    <div className="suggestion-details">
-                      <span className="suggestion-title">{item.name}</span>
-                      <span className="suggestion-category">
-                        {item.categoryLabel}
-                        {item.subcategory ? ` • ${item.subcategory}` : ''}
-                      </span>
+                {/* Zero-state: Trends & Popular Picks */}
+                {(!searchQuery || searchQuery.trim().length < 2) && (
+                  <div className="search-suggestions-zero-state">
+                    <div className="suggestions-section-header">
+                      <TrendingUp size={14} className="trend-header-icon" />
+                      <span>Recherches tendances</span>
                     </div>
-                    <span className="suggestion-price">{item.price.toFixed(2)} €</span>
+                    <div className="search-trends-chips">
+                      {SEARCH_TRENDS.map((trend) => (
+                        <button
+                          key={trend}
+                          type="button"
+                          className="search-trend-chip"
+                          onClick={() => {
+                            setSearchQuery(trend);
+                            setShowSuggestions(false);
+                            if (onOpenShop) onOpenShop('all');
+                          }}
+                        >
+                          <Search size={12} />
+                          <span>{trend}</span>
+                        </button>
+                      ))}
+                    </div>
+
+                    <div className="suggestions-section-header" style={{ marginTop: '0.75rem' }}>
+                      <Sparkles size={14} color="#f59e0b" />
+                      <span>Coups de cœur du moment</span>
+                    </div>
+                    <div className="search-popular-picks">
+                      {popularPicks.map((pick) => (
+                        <div
+                          key={pick.id}
+                          className="suggestion-item suggestion-item-rich"
+                          onClick={() => handleSelectSuggestion(pick)}
+                        >
+                          <img
+                            src={pick.image}
+                            alt={pick.altText || pick.name}
+                            className="suggestion-thumb"
+                            onError={(e) => {
+                              e.currentTarget.src =
+                                'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100&auto=format&fit=crop&q=80';
+                            }}
+                          />
+                          <div className="suggestion-details">
+                            <span className="suggestion-title">{pick.name}</span>
+                            <div className="suggestion-meta-row">
+                              <span className="suggestion-category">{pick.categoryLabel}</span>
+                              <span className="suggestion-rating">
+                                <Star size={11} fill="#f59e0b" color="#f59e0b" />
+                                <span>{pick.rating}</span>
+                              </span>
+                            </div>
+                          </div>
+                          <span className="suggestion-price">{pick.price.toFixed(2)} €</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                ))}
-                <button
-                  className="suggestion-see-all"
-                  onClick={handleSearchSubmit}
-                >
-                  Voir tous les résultats pour "{searchQuery}"
-                </button>
+                )}
+
+                {/* Query with Results */}
+                {searchQuery && searchQuery.trim().length >= 2 && suggestions.length > 0 && (
+                  <>
+                    <div className="suggestions-header">
+                      <span>Produits suggérés</span>
+                      <span className="suggestions-count-badge">{suggestions.length} trouvé{suggestions.length > 1 ? 's' : ''}</span>
+                    </div>
+                    <div className="suggestions-list">
+                      {suggestions.map((item) => (
+                        <div
+                          key={item.id}
+                          className="suggestion-item suggestion-item-rich"
+                          onClick={() => handleSelectSuggestion(item)}
+                        >
+                          <img
+                            src={item.image}
+                            alt={item.altText || item.name}
+                            className="suggestion-thumb"
+                            onError={(e) => {
+                              e.currentTarget.src =
+                                'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100&auto=format&fit=crop&q=80';
+                            }}
+                          />
+                          <div className="suggestion-details">
+                            <span className="suggestion-title">{item.name}</span>
+                            <div className="suggestion-meta-row">
+                              <span className="suggestion-category">
+                                {item.categoryLabel}
+                                {item.subcategory ? ` • ${item.subcategory}` : ''}
+                              </span>
+                              <span className="suggestion-stock-tag">✓ En stock UE</span>
+                              <span className="suggestion-rating">
+                                <Star size={11} fill="#f59e0b" color="#f59e0b" />
+                                <span>{item.rating}</span>
+                              </span>
+                            </div>
+                          </div>
+                          <div className="suggestion-price-col">
+                            <span className="suggestion-price">{item.price.toFixed(2)} €</span>
+                            {item.compareAtPrice && (
+                              <span className="suggestion-old-price">{item.compareAtPrice.toFixed(2)} €</span>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <button
+                      className="suggestion-see-all"
+                      onClick={handleSearchSubmit}
+                    >
+                      Voir tous les résultats pour « {searchQuery} » ➔
+                    </button>
+                  </>
+                )}
+
+                {/* Query with No Results */}
+                {searchQuery && searchQuery.trim().length >= 2 && suggestions.length === 0 && (
+                  <div className="suggestions-no-results">
+                    <p className="no-results-text">Aucun produit direct pour « <strong>{searchQuery}</strong> »</p>
+                    <div className="suggestions-section-header" style={{ marginTop: '0.5rem' }}>
+                      <TrendingUp size={13} />
+                      <span>Essayez plutôt :</span>
+                    </div>
+                    <div className="search-trends-chips">
+                      {SEARCH_TRENDS.slice(0, 4).map((trend) => (
+                        <button
+                          key={trend}
+                          type="button"
+                          className="search-trend-chip"
+                          onClick={() => {
+                            setSearchQuery(trend);
+                            setShowSuggestions(false);
+                            if (onOpenShop) onOpenShop('all');
+                          }}
+                        >
+                          {trend}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </div>
