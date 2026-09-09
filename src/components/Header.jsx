@@ -43,7 +43,8 @@ export default function Header({
   currentUser = null,
   onOpenAuth,
   onLogout,
-  onOpenAdmin
+  onOpenAdmin,
+  onOpenAccount
 }) {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -311,10 +312,21 @@ export default function Header({
                     </div>
                     <div className="user-dropdown-divider" />
                     <button
+                      className="user-dropdown-item font-medium"
+                      onClick={() => {
+                        setIsUserMenuOpen(false);
+                        if (onOpenAccount) onOpenAccount();
+                      }}
+                    >
+                      <User size={16} color="#2563eb" />
+                      <span>Mon Compte Client</span>
+                    </button>
+                    <button
                       className="user-dropdown-item"
                       onClick={() => {
                         setIsUserMenuOpen(false);
-                        if (onOpenTracking) onOpenTracking();
+                        if (onOpenAccount) onOpenAccount('orders');
+                        else if (onOpenTracking) onOpenTracking();
                       }}
                     >
                       <Package size={16} />
@@ -682,7 +694,18 @@ export default function Header({
                         className="mobile-user-btn"
                         onClick={() => {
                           setIsMobileMenuOpen(false);
-                          if (onOpenTracking) onOpenTracking();
+                          if (onOpenAccount) onOpenAccount();
+                        }}
+                      >
+                        <User size={15} color="#2563eb" />
+                        <span>Mon Compte</span>
+                      </button>
+                      <button
+                        className="mobile-user-btn"
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          if (onOpenAccount) onOpenAccount('orders');
+                          else if (onOpenTracking) onOpenTracking();
                         }}
                       >
                         <Package size={15} />

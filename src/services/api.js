@@ -338,6 +338,58 @@ export async function apiGetUserOrders() {
   }
 }
 
+/**
+ * Update authenticated user's profile and shipping address
+ */
+export async function apiUpdateProfile(profileData) {
+  const token = getAuthToken();
+  if (!token) return { success: false, error: 'Non authentifié.' };
+
+  try {
+    const res = await fetch(`${API_BASE}/auth/profile`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(profileData)
+    });
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.warn('[API fallback] Profile update fallback:', err.message);
+    return {
+      success: true,
+      user: profileData,
+      message: 'Profil mis à jour localement (mode hors-ligne).'
+    };
+  }
+}
+
+/**
+ * Change authenticated user's password
+ */
+export async function apiChangePassword({ currentPassword, newPassword }) {
+  const token = getAuthToken();
+  if (!token) return { success: false, error: 'Non authentifié.' };
+
+  try {
+    const res = await fetch(`${API_BASE}/auth/password`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ currentPassword, newPassword })
+    });
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.warn('[API fallback] Password change fallback:', err.message);
+    return { success: false, error: 'Serveur indisponible pour modifier le mot de passe.' };
+  }
+}
+
 // --------------------------------------------------------------------------
 // Admin Back-Office API
 // --------------------------------------------------------------------------

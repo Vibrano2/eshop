@@ -396,4 +396,49 @@ router.put('/profile', authenticateToken, (req, res) => {
   }
 });
 
+// PUT /api/auth/password
+router.put('/password', authenticateToken, (req, res) => {
+  try {
+    const user = req.user;
+    const { currentPassword, newPassword } = req.body;
+
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({ success: false, error: 'Veuillez renseigner le mot de passe actuel et le nouveau mot de passe.' });
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({ success: false, error: 'Le nouveau mot de passe doit comporter au moins 6 caractères.' });
+    }
+
+    // Retrieve current stored credentials
+    const credentials = db.prepare('SELECT password_hash, salt FROM users WHERE id = ?').get(user.id);
+    if (!credentials || !credentials.password_hash || !credentials.salt) {
+      return res.status(400).json({ success: false, error: 'Impossible de vérifier les identifiants.' });
+    }
+
+    const isValid = verifyPassword(currentPassword, credentials.salt, credentials.password_hash);
+    if (!isValid) {
+      return res.status(401).json({ success: false, error: 'Le mot de passe actuel est incorrect.' });
+    }
+
+    // Hash new password
+    const { salt: newSalt, hash: newHash } = hashPassword(newPassword);
+
+    db.prepare(`
+      UPDATE users
+      SET password_hash = ?, salt = ?
+      WHERE id = ?
+    `).run(newHash, newSalt, user.id);
+
+    res.json({
+      success: true,
+      message: 'Votre mot de passe a été modifié avec succès.'
+    });
+  } catch (err) {
+    console.error('Change password error:', err);
+    res.status(500).json({ success: false, error: 'Erreur lors du changement de mot de passe.' });
+  }
+});
+
 export default router;
+

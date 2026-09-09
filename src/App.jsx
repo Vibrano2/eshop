@@ -27,6 +27,7 @@ import ChatWidget from './components/ChatWidget';
 import LoyaltyModal from './components/LoyaltyModal';
 import AuthModal from './components/AuthModal';
 import AdminDashboard from './components/AdminDashboard';
+import AccountPage from './components/AccountPage';
 
 // Services & API
 import { apiGetMe, apiLogout } from './services/api';
@@ -58,6 +59,9 @@ export default function App() {
     if (path === 'admin') {
       return 'admin';
     }
+    if (path === 'account' || path === 'mon-compte') {
+      return 'account';
+    }
     if (VALID_CATEGORY_SLUGS.includes(path) || path === 'shop') {
       return 'shop';
     }
@@ -81,6 +85,8 @@ export default function App() {
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
       if (path === 'admin') {
         setActiveView('admin');
+      } else if (path === 'account' || path === 'mon-compte') {
+        setActiveView('account');
       } else if (VALID_CATEGORY_SLUGS.includes(path)) {
         setActiveView('shop');
         setSelectedCategory(path);
@@ -132,6 +138,7 @@ export default function App() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authModalMode, setAuthModalMode] = useState('login');
   const [legalTab, setLegalTab] = useState('cgv');
+  const [accountInitialTab, setAccountInitialTab] = useState('orders');
 
   // Authenticated User State
   const [currentUser, setCurrentUser] = useState(null);
@@ -437,6 +444,15 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleOpenAccount = (tab = 'orders') => {
+    setAccountInitialTab(tab);
+    setActiveView('account');
+    if (window.location.pathname !== '/account') {
+      window.history.pushState({}, '', '/account');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   // =========================================================================
   // Homepage Curated Product Slices (Section 13 & 19 Order: 4–8 products max)
   // Balanced across departments to avoid repetitive clustering
@@ -606,6 +622,7 @@ export default function App() {
         onOpenAuth={handleOpenAuth}
         onLogout={handleLogout}
         onOpenAdmin={handleOpenAdmin}
+        onOpenAccount={handleOpenAccount}
       />
 
       {/* Main Content */}
@@ -618,6 +635,22 @@ export default function App() {
             onNavigateHome={handleNavigateHome}
             currentUser={currentUser}
             onOpenTrackingWithOrder={handleOpenTrackingWithOrder}
+          />
+        ) : activeView === 'account' ? (
+          /* ========================================================
+             CUSTOMER MY ACCOUNT VIEW (/account, /mon-compte)
+             ======================================================== */
+          <AccountPage
+            currentUser={currentUser}
+            onUpdateUser={(updated) => setCurrentUser(updated)}
+            onLogout={handleLogout}
+            onNavigateHome={handleNavigateHome}
+            onOpenShop={handleOpenShop}
+            onOpenTrackingWithOrder={handleOpenTrackingWithOrder}
+            onOpenLoyalty={() => setIsLoyaltyOpen(true)}
+            onAddToCart={handleAddToCart}
+            onOpenAuth={handleOpenAuth}
+            initialTab={accountInitialTab}
           />
         ) : activeView === 'shop' ? (
           /* ========================================================
