@@ -26,6 +26,7 @@ import AboutModal from './components/AboutModal';
 import ChatWidget from './components/ChatWidget';
 import LoyaltyModal from './components/LoyaltyModal';
 import AuthModal from './components/AuthModal';
+import AdminDashboard from './components/AdminDashboard';
 
 // Services & API
 import { apiGetMe, apiLogout } from './services/api';
@@ -54,6 +55,9 @@ export default function App() {
   // Navigation / View state initialized from URL pathname if present
   const [activeView, setActiveView] = useState(() => {
     const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+    if (path === 'admin') {
+      return 'admin';
+    }
     if (VALID_CATEGORY_SLUGS.includes(path) || path === 'shop') {
       return 'shop';
     }
@@ -75,7 +79,9 @@ export default function App() {
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
-      if (VALID_CATEGORY_SLUGS.includes(path)) {
+      if (path === 'admin') {
+        setActiveView('admin');
+      } else if (VALID_CATEGORY_SLUGS.includes(path)) {
         setActiveView('shop');
         setSelectedCategory(path);
         setSelectedSubcategory(null);
@@ -423,6 +429,14 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleOpenAdmin = () => {
+    setActiveView('admin');
+    if (window.location.pathname !== '/admin') {
+      window.history.pushState({}, '', '/admin');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   // =========================================================================
   // Homepage Curated Product Slices (Section 13 & 19 Order: 4–8 products max)
   // Balanced across departments to avoid repetitive clustering
@@ -591,11 +605,21 @@ export default function App() {
         currentUser={currentUser}
         onOpenAuth={handleOpenAuth}
         onLogout={handleLogout}
+        onOpenAdmin={handleOpenAdmin}
       />
 
       {/* Main Content */}
       <main>
-        {activeView === 'shop' ? (
+        {activeView === 'admin' ? (
+          /* ========================================================
+             EXECUTIVE ADMIN BACK-OFFICE VIEW (/admin)
+             ======================================================== */
+          <AdminDashboard
+            onNavigateHome={handleNavigateHome}
+            currentUser={currentUser}
+            onOpenTrackingWithOrder={handleOpenTrackingWithOrder}
+          />
+        ) : activeView === 'shop' ? (
           /* ========================================================
              DEDICATED CATALOGUE / CATEGORY VIEW (/shop, /mode, ...)
              ======================================================== */

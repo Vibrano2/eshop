@@ -337,3 +337,165 @@ export async function apiGetUserOrders() {
     }
   }
 }
+
+// --------------------------------------------------------------------------
+// Admin Back-Office API
+// --------------------------------------------------------------------------
+
+/**
+ * Fetch executive store statistics and KPIs
+ */
+export async function apiGetAdminStats() {
+  const token = getAuthToken();
+  try {
+    const res = await fetch(`${API_BASE}/admin/stats`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    return data.stats;
+  } catch (err) {
+    console.warn('[API fallback] Admin stats fallback:', err.message);
+    return null;
+  }
+}
+
+/**
+ * Fetch all store orders with status and search filters
+ */
+export async function apiGetAdminOrders(params = {}) {
+  const token = getAuthToken();
+  try {
+    const query = new URLSearchParams();
+    if (params.status && params.status !== 'all') query.set('status', params.status);
+    if (params.q) query.set('q', params.q);
+    if (params.limit) query.set('limit', params.limit);
+
+    const res = await fetch(`${API_BASE}/admin/orders?${query.toString()}`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    return data.orders || [];
+  } catch (err) {
+    console.warn('[API fallback] Admin orders fallback:', err.message);
+    try {
+      return JSON.parse(localStorage.getItem('eshop_orders') || '[]');
+    } catch {
+      return [];
+    }
+  }
+}
+
+/**
+ * Update order status and carrier tracking
+ */
+export async function apiUpdateOrderStatus(orderNumber, payload) {
+  const token = getAuthToken();
+  try {
+    const res = await fetch(`${API_BASE}/admin/orders/${orderNumber}/status`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('[API fallback] Admin update status fallback:', err.message);
+    return { success: false, error: err.message };
+  }
+}
+
+/**
+ * Fetch product catalog with inventory stock levels
+ */
+export async function apiGetAdminProducts(params = {}) {
+  const token = getAuthToken();
+  try {
+    const query = new URLSearchParams();
+    if (params.category && params.category !== 'all') query.set('category', params.category);
+    if (params.q) query.set('q', params.q);
+    if (params.stockFilter) query.set('stockFilter', params.stockFilter);
+
+    const res = await fetch(`${API_BASE}/admin/products?${query.toString()}`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    return data.products || [];
+  } catch (err) {
+    console.warn('[API fallback] Admin products fallback:', err.message);
+    return PRODUCTS;
+  }
+}
+
+/**
+ * Update stock level for a product
+ */
+export async function apiUpdateProductStock(productId, payload) {
+  const token = getAuthToken();
+  try {
+    const res = await fetch(`${API_BASE}/admin/products/${productId}/stock`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('[API fallback] Admin stock update fallback:', err.message);
+    return { success: false, error: err.message };
+  }
+}
+
+/**
+ * Fetch newsletter subscribers list
+ */
+export async function apiGetAdminSubscribers() {
+  const token = getAuthToken();
+  try {
+    const res = await fetch(`${API_BASE}/admin/subscribers`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    return data.subscribers || [];
+  } catch (err) {
+    console.warn('[API fallback] Admin subscribers fallback:', err.message);
+    return [];
+  }
+}
+
+/**
+ * Helper to export any array of data to CSV file download
+ */
+export function exportToCsv(filename, rows, headers) {
+  if (!rows || !rows.length) return;
+  const separator = ';';
+  const csvContent = [
+    headers.map((h) => `"${h.label}"`).join(separator),
+    ...rows.map((row) =>
+      headers
+        .map((h) => {
+          const val = typeof h.key === 'function' ? h.key(row) : row[h.key];
+          return `"${String(val ?? '').replace(/"/g, '""')}"`;
+        })
+        .join(separator)
+    )
+  ].join('\r\n');
+
+  const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.setAttribute('href', url);
+  link.setAttribute('download', `${filename}.csv`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}

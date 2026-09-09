@@ -14,7 +14,8 @@ import {
   Gift,
   User,
   UserCheck,
-  LogOut
+  LogOut,
+  LayoutDashboard
 } from 'lucide-react';
 import { PRODUCTS } from '../data/products';
 import { MAIN_CATEGORIES } from '../data/categories';
@@ -41,7 +42,8 @@ export default function Header({
   loyaltyPoints = 50,
   currentUser = null,
   onOpenAuth,
-  onLogout
+  onLogout,
+  onOpenAdmin
 }) {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -328,6 +330,18 @@ export default function Header({
                       <Gift size={16} color="#ec4899" />
                       <span>Mon Club Fidélité & Parrainage</span>
                     </button>
+                    {currentUser.role === 'admin' && (
+                      <button
+                        className="user-dropdown-item admin-link"
+                        onClick={() => {
+                          setIsUserMenuOpen(false);
+                          if (onOpenAdmin) onOpenAdmin();
+                        }}
+                      >
+                        <LayoutDashboard size={16} color="#7c3aed" />
+                        <span className="admin-text-highlight">Tableau de Bord Admin</span>
+                      </button>
+                    )}
                     <div className="user-dropdown-divider" />
                     <button
                       className="user-dropdown-item logout"
@@ -674,6 +688,18 @@ export default function Header({
                         <Package size={15} />
                         <span>Mes Commandes</span>
                       </button>
+                      {currentUser.role === 'admin' && (
+                        <button
+                          className="mobile-user-btn admin"
+                          onClick={() => {
+                            setIsMobileMenuOpen(false);
+                            if (onOpenAdmin) onOpenAdmin();
+                          }}
+                        >
+                          <LayoutDashboard size={15} color="#7c3aed" />
+                          <span>Admin</span>
+                        </button>
+                      )}
                       <button
                         className="mobile-user-btn logout"
                         onClick={() => {
