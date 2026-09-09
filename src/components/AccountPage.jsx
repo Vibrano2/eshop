@@ -27,7 +27,7 @@ import {
   Sparkles,
   Share2
 } from 'lucide-react';
-import { apiGetUserOrders, apiUpdateProfile, apiChangePassword } from '../services/api';
+import { apiGetUserOrders, apiUpdateProfile, apiChangePassword, apiResendOrderEmail } from '../services/api';
 import InvoiceModal from './InvoiceModal';
 
 export default function AccountPage({
@@ -83,6 +83,10 @@ export default function AccountPage({
   // Referral Copy Toast
   const [copiedCode, setCopiedCode] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
+
+  // Email Resend State
+  const [resendingEmailOrderNumber, setResendingEmailOrderNumber] = useState(null);
+  const [emailResendFeedback, setEmailResendFeedback] = useState(null);
 
   // Synchronize profile form when currentUser changes
   useEffect(() => {
@@ -234,6 +238,28 @@ export default function AccountPage({
         item.variant || null
       );
     });
+  };
+
+  // Resend order confirmation and invoice email
+  const handleResendEmail = async (order) => {
+    setResendingEmailOrderNumber(order.orderNumber);
+    setEmailResendFeedback(null);
+    try {
+      const res = await apiResendOrderEmail(order.orderNumber);
+      if (res && res.success) {
+        setEmailResendFeedback({
+          orderNumber: order.orderNumber,
+          message: res.message || 'Email de confirmation et facture envoyé avec succès !',
+          previewUrl: res.previewUrl
+        });
+      } else {
+        alert(res?.error || 'Erreur lors du renvoi de l’email.');
+      }
+    } catch (err) {
+      alert('Erreur lors du renvoi de l’email : ' + err.message);
+    } finally {
+      setResendingEmailOrderNumber(null);
+    }
   };
 
   const getStatusBadge = (status) => {
@@ -458,6 +484,68 @@ export default function AccountPage({
               )}
             </div>
 
+            {/* Email resend feedback alert */}
+            {emailResendFeedback && (
+              <div style={{
+                background: '#eff6ff',
+                border: '1px solid #bfdbfe',
+                borderRadius: '0.75rem',
+                padding: '0.85rem 1.25rem',
+                marginBottom: '1.25rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: '0.75rem'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                  <CheckCircle size={18} color="#2563eb" />
+                  <span style={{ fontSize: '0.875rem', color: '#1e40af', fontWeight: 600 }}>
+                    {emailResendFeedback.message} (Commande #{emailResendFeedback.orderNumber})
+                  </span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  {emailResendFeedback.previewUrl && (
+                    <a
+                      href={emailResendFeedback.previewUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-outline btn-sm"
+                      style={{
+                        background: '#ffffff',
+                        color: '#2563eb',
+                        borderColor: '#93c5fd',
+                        fontSize: '0.75rem',
+                        textDecoration: 'none',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.35rem',
+                        fontWeight: 600,
+                        padding: '0.25rem 0.6rem'
+                      }}
+                    >
+                      <ExternalLink size={13} />
+                      <span>Voir l'email (Sandbox Ethereal)</span>
+                    </a>
+                  )}
+                  <button
+                    onClick={() => setEmailResendFeedback(null)}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: '#64748b',
+                      cursor: 'pointer',
+                      fontSize: '0.75rem',
+                      fontWeight: 600,
+                      padding: '0.25rem'
+                    }}
+                  >
+                    Fermer
+                  </button>
+                </div>
+              </div>
+            )}
+
             {isLoadingOrders ? (
               <div className="account-loading-state">
                 <RefreshCw size={28} className="spin-icon" />
@@ -570,6 +658,25 @@ export default function AccountPage({
                         >
                           <Download size={15} />
                           <span>Facture PDF</span>
+                        </button>
+
+                        <button
+                          className="account-btn-action outline"
+                          onClick={() => handleResendEmail(order)}
+                          disabled={resendingEmailOrderNumber === order.orderNumber}
+                          title="Renvoyer l'email de confirmation et de facture"
+                        >
+                          {resendingEmailOrderNumber === order.orderNumber ? (
+                            <>
+                              <RefreshCw size={14} className="spin-icon" />
+                              <span>Envoi...</span>
+                            </>
+                          ) : (
+                            <>
+                              <Mail size={14} />
+                              <span>Renvoyer l'email</span>
+                            </>
+                          )}
                         </button>
 
                         <button

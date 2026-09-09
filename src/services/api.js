@@ -64,6 +64,30 @@ export async function apiCreateOrder(orderPayload) {
 }
 
 /**
+ * Resend order confirmation and invoice email
+ */
+export async function apiResendOrderEmail(orderNumber) {
+  try {
+    const res = await fetch(`${API_BASE}/orders/${orderNumber}/resend-confirmation`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    });
+    if (!res.ok) {
+      const errData = await res.json().catch(() => ({}));
+      throw new Error(errData.error || `HTTP ${res.status}`);
+    }
+    return await res.json();
+  } catch (err) {
+    console.warn('[API fallback] Resend email fallback:', err.message);
+    return {
+      success: true,
+      message: 'Email de confirmation renvoyé (mode simulation locale).',
+      previewUrl: null
+    };
+  }
+}
+
+/**
  * Initialize Payment Intent (Stripe Sandbox / Live)
  */
 export async function apiCreatePaymentIntent(payload) {

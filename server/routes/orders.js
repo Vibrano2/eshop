@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { db } from '../db.js';
+import { sendOrderConfirmationEmail } from '../services/email.js';
 
 const router = Router();
 
@@ -17,7 +18,7 @@ function getEstimatedDeliveryRange(countryCode = 'FR') {
 }
 
 // POST /api/orders
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const {
       customer = {},
@@ -132,6 +133,30 @@ router.post('/', (req, res) => {
 
       db.exec('COMMIT;');
 
+      // Dispatch Order Confirmation Email
+      let emailResult = { success: false, previewUrl: null };
+      try {
+        emailResult = await sendOrderConfirmationEmail({
+          orderNumber,
+          customerEmail: customer.email,
+          customerFirstName: customer.firstName || '',
+          customerLastName: customer.lastName || '',
+          shippingAddress: customer.address,
+          postalCode: customer.postalCode || '',
+          city: customer.city || '',
+          countryCode,
+          carrier,
+          estimatedDelivery,
+          subtotal,
+          discountAmount,
+          shippingFee,
+          totalAmount,
+          items
+        });
+      } catch (mailErr) {
+        console.warn('Non-fatal error sending confirmation email:', mailErr.message);
+      }
+
       res.status(201).json({
         success: true,
         order: {
@@ -148,7 +173,9 @@ router.post('/', (req, res) => {
           carrier,
           status: 'Confirmée & en préparation',
           trackingSteps,
-          pointsEarned
+          pointsEarned,
+          emailSent: emailResult.success,
+          emailPreviewUrl: emailResult.previewUrl
         }
       });
     } catch (txError) {
@@ -158,6 +185,47 @@ router.post('/', (req, res) => {
   } catch (err) {
     console.error('Error creating order:', err);
     res.status(500).json({ success: false, error: 'Échec de création de la commande' });
+  }
+});
+
+// POST /api/orders/:orderNumber/resend-confirmation
+router.post('/:orderNumber/resend-confirmation', async (req, res) => {
+  try {
+    const { orderNumber } = req.params;
+    const order = db.prepare('SELECT * FROM orders WHERE order_number = ?').get(orderNumber);
+
+    if (!order) {
+      return res.status(404).json({ success: false, error: 'Commande introuvable.' });
+    }
+
+    const items = db.prepare('SELECT * FROM order_items WHERE order_number = ?').all(orderNumber);
+
+    const emailResult = await sendOrderConfirmationEmail({
+      orderNumber: order.order_number,
+      customerEmail: order.customer_email,
+      customerFirstName: order.customer_first_name,
+      customerLastName: order.customer_last_name,
+      shippingAddress: order.shipping_address,
+      postalCode: order.postal_code,
+      city: order.city,
+      countryCode: order.country_code,
+      carrier: order.carrier,
+      estimatedDelivery: order.estimated_delivery,
+      subtotal: order.subtotal,
+      discountAmount: order.discount_amount,
+      shippingFee: order.shipping_fee,
+      totalAmount: order.total_amount,
+      items
+    });
+
+    res.json({
+      success: true,
+      message: `Email de confirmation renvoyé à ${order.customer_email}.`,
+      previewUrl: emailResult.previewUrl
+    });
+  } catch (err) {
+    console.error('Error resending order email:', err);
+    res.status(500).json({ success: false, error: 'Erreur lors de l’envoi de l’email.' });
   }
 });
 

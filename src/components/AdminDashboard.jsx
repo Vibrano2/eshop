@@ -23,7 +23,8 @@ import {
   ShieldAlert,
   Loader2,
   X,
-  ChevronRight
+  ChevronRight,
+  Mail
 } from 'lucide-react';
 import {
   apiGetAdminStats,
@@ -32,6 +33,7 @@ import {
   apiGetAdminProducts,
   apiUpdateProductStock,
   apiGetAdminSubscribers,
+  apiResendOrderEmail,
   exportToCsv
 } from '../services/api';
 
@@ -57,6 +59,8 @@ export default function AdminDashboard({ onNavigateHome, currentUser, onOpenTrac
   const [orderSearch, setOrderSearch] = useState('');
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [updatingOrderId, setUpdatingOrderId] = useState(null);
+  const [resendingEmail, setResendingEmail] = useState(false);
+  const [adminEmailPreviewUrl, setAdminEmailPreviewUrl] = useState(null);
 
   // Products & Stock state
   const [products, setProducts] = useState([]);
@@ -129,6 +133,26 @@ export default function AdminDashboard({ onNavigateHome, currentUser, onOpenTrac
       showToast('Erreur lors de la mise à jour.');
     } finally {
       setUpdatingOrderId(null);
+    }
+  };
+
+  // Resend order confirmation email handler
+  const handleResendEmailAdmin = async (orderNumber) => {
+    setResendingEmail(true);
+    try {
+      const res = await apiResendOrderEmail(orderNumber);
+      if (res && res.success) {
+        showToast(`Email de confirmation & facture renvoyé pour #${orderNumber} !`);
+        if (res.previewUrl) {
+          setAdminEmailPreviewUrl(res.previewUrl);
+        }
+      } else {
+        showToast(res?.error || 'Erreur lors du renvoi de l’email.');
+      }
+    } catch (err) {
+      showToast('Erreur lors du renvoi de l’email.');
+    } finally {
+      setResendingEmail(false);
     }
   };
 
@@ -837,6 +861,74 @@ export default function AdminDashboard({ onNavigateHome, currentUser, onOpenTrac
                     </option>
                   ))}
                 </select>
+              </div>
+
+              {/* Email Confirmation Dispatch Card */}
+              <div style={{
+                marginTop: '1rem',
+                marginBottom: '1.25rem',
+                padding: '0.85rem 1.15rem',
+                background: '#f8fafc',
+                border: '1px solid #e2e8f0',
+                borderRadius: '0.625rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: '0.75rem'
+              }}>
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Mail size={16} color="#2563eb" />
+                    <strong style={{ fontSize: '0.875rem', color: '#0f172a' }}>Email & Facture Client</strong>
+                  </div>
+                  <span style={{ fontSize: '0.75rem', color: '#64748b' }}>
+                    Destinataire : {selectedOrder.customerEmail}
+                  </span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <button
+                    type="button"
+                    onClick={() => handleResendEmailAdmin(selectedOrder.orderNumber)}
+                    disabled={resendingEmail}
+                    className="btn btn-outline btn-sm"
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8125rem' }}
+                  >
+                    {resendingEmail ? (
+                      <>
+                        <Loader2 size={14} className="spin-icon" />
+                        <span>Envoi...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Mail size={14} />
+                        <span>Renvoyer l'email de confirmation</span>
+                      </>
+                    )}
+                  </button>
+                  {adminEmailPreviewUrl && (
+                    <a
+                      href={adminEmailPreviewUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-outline btn-sm"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.4rem',
+                        fontSize: '0.8125rem',
+                        color: '#2563eb',
+                        borderColor: '#93c5fd',
+                        background: '#eff6ff',
+                        textDecoration: 'none',
+                        fontWeight: 600
+                      }}
+                    >
+                      <ExternalLink size={13} />
+                      <span>Aperçu Web Sandbox</span>
+                    </a>
+                  )}
+                </div>
               </div>
 
               {/* Items List */}

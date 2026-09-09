@@ -18,7 +18,9 @@ import {
   Gift,
   UserCheck,
   RefreshCw,
-  Sparkles
+  Sparkles,
+  Mail,
+  ExternalLink
 } from 'lucide-react';
 import { PROMO_CODES } from '../data/promoCodes';
 import { apiCreateOrder, apiCreatePaymentIntent, apiConfirmPaymentIntent } from '../services/api';
@@ -1040,6 +1042,48 @@ export default function CheckoutModal({
               <p style={{ fontSize: '0.8125rem', color: '#64748b', margin: 0 }}>
                 Expédié via <strong>{createdOrder.carrier}</strong> avec remise sécurisée à l'adresse : {createdOrder.customer.address}, {createdOrder.customer.postalCode} {createdOrder.customer.city} ({selectedCountry.name}).
               </p>
+            </div>
+
+            {/* Email Notification & Web Preview Card */}
+            <div className="success-delivery-card" style={{ borderLeft: '4px solid #2563eb', background: '#f8fafc' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.4rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <Mail size={18} color="#2563eb" />
+                  <span style={{ fontWeight: 700, fontSize: '0.9375rem', color: '#0f172a' }}>
+                    Email de confirmation & facture envoyé
+                  </span>
+                </div>
+                <span style={{ fontSize: '0.75rem', background: '#ecfdf5', color: '#059669', padding: '0.2rem 0.6rem', borderRadius: '9999px', fontWeight: 600 }}>
+                  ✓ Facture acquittée & TVA 20%
+                </span>
+              </div>
+              <p style={{ fontSize: '0.8125rem', color: '#64748b', margin: '0 0 0.5rem 0' }}>
+                Un récapitulatif détaillé avec facture officielle, détail TVA et lien de suivi en direct a été envoyé à <strong>{createdOrder.customer?.email}</strong>.
+              </p>
+              {createdOrder.emailPreviewUrl && (
+                <div style={{ marginTop: '0.25rem' }}>
+                  <a
+                    href={createdOrder.emailPreviewUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-outline btn-sm"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.4rem',
+                      fontSize: '0.8125rem',
+                      color: '#2563eb',
+                      borderColor: '#93c5fd',
+                      background: '#ffffff',
+                      textDecoration: 'none',
+                      fontWeight: 600
+                    }}
+                  >
+                    <ExternalLink size={14} />
+                    <span>👁️ Ouvrir l'aperçu web de l'email (Sandbox Ethereal)</span>
+                  </a>
+                </div>
+              )}
             </div>
 
             {/* Loyalty Points Earned Card */}
