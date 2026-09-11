@@ -83,6 +83,26 @@ export default function App() {
   const [selectedSubcategory, setSelectedSubcategory] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
 
+  // Global Theme: Dark / Light Mode with localStorage & system preference
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem('eshop_theme');
+    if (savedTheme) {
+      return savedTheme === 'dark';
+    }
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
+
+  useEffect(() => {
+    const theme = isDarkMode ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+    document.body.classList.toggle('dark-theme', isDarkMode);
+    localStorage.setItem('eshop_theme', theme);
+  }, [isDarkMode]);
+
+  const handleToggleDarkMode = () => {
+    setIsDarkMode((prev) => !prev);
+  };
+
   // Synchronize browser history / URL with view state
   useEffect(() => {
     const handlePopState = () => {
@@ -739,6 +759,8 @@ export default function App() {
         onLogout={handleLogout}
         onOpenAdmin={handleOpenAdmin}
         onOpenAccount={handleOpenAccount}
+        isDarkMode={isDarkMode}
+        onToggleDarkMode={handleToggleDarkMode}
       />
 
       {/* Main Content */}

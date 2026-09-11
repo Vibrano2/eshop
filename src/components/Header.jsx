@@ -17,7 +17,9 @@ import {
   LogOut,
   LayoutDashboard,
   Star,
-  TrendingUp
+  TrendingUp,
+  Sun,
+  Moon
 } from 'lucide-react';
 import { PRODUCTS } from '../data/products';
 import { MAIN_CATEGORIES } from '../data/categories';
@@ -46,7 +48,9 @@ export default function Header({
   onOpenAuth,
   onLogout,
   onOpenAdmin,
-  onOpenAccount
+  onOpenAccount,
+  isDarkMode = false,
+  onToggleDarkMode
 }) {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -389,6 +393,22 @@ export default function Header({
                 </div>
               )}
             </div>
+
+            {/* Dark / Light Mode Switcher */}
+            <button
+              type="button"
+              className={`action-pill-theme ${isDarkMode ? 'dark-active' : 'light-active'}`}
+              onClick={onToggleDarkMode}
+              title={isDarkMode ? 'Passer en mode clair' : 'Passer en mode sombre'}
+              aria-label={isDarkMode ? 'Passer en mode clair' : 'Passer en mode sombre'}
+            >
+              <div className="theme-toggle-track">
+                <div className="theme-toggle-thumb">
+                  {isDarkMode ? <Sun size={13} className="theme-sun-icon" /> : <Moon size={13} className="theme-moon-icon" />}
+                </div>
+              </div>
+              <span className="pill-theme-label">{isDarkMode ? 'Clair' : 'Sombre'}</span>
+            </button>
 
             {/* EU Guarantees badge */}
             <button
@@ -938,6 +958,27 @@ export default function Header({
                     <span>{l.code.toUpperCase()}</span>
                   </button>
                 ))}
+              </div>
+
+              {/* Mobile Theme Switcher (Dark / Light) */}
+              <div className="mobile-nav-section-title">Apparence & Thème</div>
+              <div className="mobile-theme-row">
+                <button
+                  type="button"
+                  className={`mobile-theme-pill ${!isDarkMode ? 'active' : ''}`}
+                  onClick={() => isDarkMode && onToggleDarkMode && onToggleDarkMode()}
+                >
+                  <Sun size={15} color="#eab308" />
+                  <span>Mode Clair</span>
+                </button>
+                <button
+                  type="button"
+                  className={`mobile-theme-pill ${isDarkMode ? 'active' : ''}`}
+                  onClick={() => !isDarkMode && onToggleDarkMode && onToggleDarkMode()}
+                >
+                  <Moon size={15} color="#818cf8" />
+                  <span>Mode Sombre</span>
+                </button>
               </div>
 
               {/* 10 Main Categories with Expandable Subcategories */}
