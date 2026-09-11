@@ -426,10 +426,10 @@ export async function apiLogin(email, password) {
   } catch (err) {
     console.warn('[API fallback] Local login fallback:', err.message);
     // Offline simulated demo account
-    if (email.toLowerCase() === 'demo@eshop-store.eu') {
+    if (email.toLowerCase() === 'demo@eshopstore.shop') {
       const fallbackUser = {
         id: 1,
-        email: 'demo@eshop-store.eu',
+        email: 'demo@eshopstore.shop',
         firstName: 'Claire',
         lastName: 'Laurent',
         phone: '+33 6 12 34 56 78',
@@ -502,7 +502,7 @@ export async function apiGetMe() {
     if (token === 'mock-demo-token') {
       return {
         id: 1,
-        email: 'demo@eshop-store.eu',
+        email: 'demo@eshopstore.shop',
         firstName: 'Claire',
         lastName: 'Laurent',
         address: '15 Rue de Rivoli',
@@ -808,7 +808,7 @@ export async function apiCreateReturnRequest(orderNumber, payload) {
     const fallbackReturn = {
       id: rmaId,
       orderNumber,
-      customerEmail: payload.customerEmail || 'client@eshop-store.eu',
+      customerEmail: payload.customerEmail || 'client@eshopstore.shop',
       customerName: payload.customerName || 'Client Eshop',
       reason: payload.reason,
       details: payload.details,

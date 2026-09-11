@@ -81,10 +81,10 @@ export default function ChatWidget({
         actionType = 'reassurance';
       } else if (q.includes('contact') || q.includes('humain') || q.includes('conseiller') || q.includes('email') || q.includes('support')) {
         reply = lang === 'de'
-          ? "💬 Unser Kundenteam steht Ihnen gerne zur Verfügung unter contact@eshop-store.eu. Wir antworten werktags innerhalb von 24 Stunden."
+          ? "💬 Unser Kundenteam steht Ihnen gerne zur Verfügung unter contact@eshopstore.shop. Wir antworten werktags innerhalb von 24 Stunden."
           : lang === 'en'
-          ? "💬 You can contact our human support team directly at contact@eshop-store.eu. We guarantee a reply within 24 hours."
-          : "💬 Notre équipe humaine est à votre disposition par e-mail à contact@eshop-store.eu. Réponse garantie sous 24 heures ouvrées !";
+          ? "💬 You can contact our human support team directly at contact@eshopstore.shop. We guarantee a reply within 24 hours."
+          : "💬 Notre équipe humaine est à votre disposition par e-mail à contact@eshopstore.shop. Réponse garantie sous 24 heures ouvrées !";
       } else {
         reply = lang === 'de'
           ? "Ich habe Ihre Anfrage notiert. Sie können unseren Katalog mit über 110 praktischen Produkten durchsuchen oder eine Option unten auswählen."

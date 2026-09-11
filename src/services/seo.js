@@ -1,13 +1,13 @@
 /**
- * SEO & Schema.org JSON-LD Service for eshop-store.eu
+ * SEO & Schema.org JSON-LD Service for eshopstore.shop
  * Manages dynamic document title, meta tags, OpenGraph cards, Twitter cards,
  * and Google Search Rich Snippet JSON-LD.
  */
 
-const DEFAULT_TITLE = "eshop-store.eu — Gadgets Pratiques du Quotidien | Livraison Rapide UE";
+const DEFAULT_TITLE = "eshopstore.shop — Gadgets Pratiques du Quotidien | Livraison Rapide UE";
 const DEFAULT_DESC = "Découvrez notre sélection de gadgets innovants et astucieux pour la maison, la voiture, les animaux et le voyage. Expédition rapide depuis l'Union Européenne en 2 à 5 jours.";
 const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1200&h=630&q=85";
-const BASE_URL = "https://eshop-store.eu";
+const BASE_URL = "https://eshopstore.shop";
 
 /**
  * Update document head metadata (Title, Meta Description, OG, Twitter, Canonical)
@@ -94,7 +94,7 @@ export function injectProductJsonLd(product, reviews = []) {
     "mpn": product.id,
     "brand": {
       "@type": "Brand",
-      "name": "eshop-store.eu"
+      "name": "eshopstore.shop"
     },
     "offers": {
       "@type": "Offer",

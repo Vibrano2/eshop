@@ -324,7 +324,7 @@ export default function AdminDashboard({ onNavigateHome, currentUser, onOpenTrac
           </button>
           <div className="admin-title-wrap">
             <div className="admin-badge-role">ADMINISTRATEUR</div>
-            <h1 className="admin-site-title">eshop-store.eu — Back-Office</h1>
+            <h1 className="admin-site-title">eshopstore.shop — Back-Office</h1>
           </div>
         </div>
 

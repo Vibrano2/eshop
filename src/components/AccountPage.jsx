@@ -229,7 +229,7 @@ export default function AccountPage({
   // Copy Referral Link
   const handleCopyLink = () => {
     const code = currentUser?.loyaltyCode || 'ESHOP-EU2026';
-    const link = `https://eshop-store.eu?ref=${code}`;
+    const link = `https://eshopstore.shop?ref=${code}`;
     navigator.clipboard.writeText(link);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2500);
@@ -373,7 +373,7 @@ export default function AccountPage({
               </div>
               <div className="account-meta-details">
                 <span className="account-meta-item">
-                  <Mail size={14} /> {currentUser?.email || 'client@eshop-store.eu'}
+                  <Mail size={14} /> {currentUser?.email || 'client@eshopstore.shop'}
                 </span>
                 {currentUser?.city && (
                   <span className="account-meta-item">

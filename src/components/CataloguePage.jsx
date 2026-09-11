@@ -73,13 +73,13 @@ export default function CataloguePage({
     const catObj = MAIN_CATEGORIES.find((c) => c.id === selectedCategory);
     const catName = catObj ? catObj.name : 'Tous les Produits';
     const subName = selectedSubcategory ? ` • ${selectedSubcategory}` : '';
-    const title = `${catName}${subName} — Catalogue E-Commerce UE | eshop-store.eu`;
+    const title = `${catName}${subName} — Catalogue E-Commerce UE | eshopstore.shop`;
     const desc = `Explorez notre collection ${catName}. Des gadgets innovants du quotidien sélectionnés avec soin et expédiés rapidement en 2 à 5 jours dans toute l'Union Européenne.`;
 
     updatePageSEO({
       title,
       description: desc,
-      url: `https://eshop-store.eu/?category=${selectedCategory}`,
+      url: `https://eshopstore.shop/?category=${selectedCategory}`,
       type: 'website'
     });
 

@@ -102,7 +102,7 @@ export default function InvoiceModal({ order, isOpen, onClose }) {
                 <p><strong>ESHOP EUROPE COMMERCE SAS</strong></p>
                 <p>15 Rue de Rivoli, 75001 Paris — France</p>
                 <p>N° TVA : FR 82 912 345 678 | SIRET : 912 345 678 00019</p>
-                <p>support@eshop-store.eu • https://eshop-store.eu</p>
+                <p>support@eshopstore.shop • https://eshopstore.shop</p>
               </div>
             </div>
 
@@ -263,7 +263,7 @@ export default function InvoiceModal({ order, isOpen, onClose }) {
             <p>
               Facture acquittée le {orderDate} via notre passerelle de paiement sécurisé certifiée PCI-DSS.
               TVA non applicable selon directive européenne si autoliquidation B2B.
-              Service client réactif : support@eshop-store.eu ou depuis votre espace client.
+              Service client réactif : support@eshopstore.shop ou depuis votre espace client.
             </p>
           </div>
         </div>

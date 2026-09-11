@@ -1,4 +1,4 @@
-# robots.txt for https://eshop-store.eu
+# robots.txt for https://eshopstore.shop
 User-agent: *
 Allow: /
 Disallow: /admin
@@ -6,4 +6,4 @@ Disallow: /api/admin/
 Disallow: /api/auth/
 
 # Sitemap location
-Sitemap: https://eshop-store.eu/sitemap.xml
+Sitemap: https://eshopstore.shop/sitemap.xml

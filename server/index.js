@@ -39,7 +39,7 @@ app.get('/api/health', (req, res) => {
   const memory = process.memoryUsage();
   res.json({
     status: 'ok',
-    service: 'eshop-store.eu unified API & server',
+    service: 'eshopstore.shop unified API & server',
     version: '1.0.0',
     environment: NODE_ENV,
     uptime: Math.floor(process.uptime()),
@@ -89,7 +89,7 @@ app.use((err, req, res, next) => {
 
 const server = app.listen(PORT, () => {
   console.log(`====================================================`);
-  console.log(`🚀 eshop-store.eu unified server running on port ${PORT}`);
+  console.log(`🚀 eshopstore.shop unified server running on port ${PORT}`);
   console.log(`   Environment:  ${NODE_ENV}`);
   console.log(`   Health check: http://localhost:${PORT}/api/health`);
   console.log(`   API routes:   http://localhost:${PORT}/api/products`);

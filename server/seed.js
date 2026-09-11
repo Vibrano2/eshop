@@ -3,15 +3,17 @@ import { db, initDatabase } from './db.js';
 import { PRODUCTS } from '../src/data/products.js';
 import { PROMO_CODES } from '../src/data/promoCodes.js';
 
-console.log('--- Seeding SQLite Database for eshop-store.eu ---');
+console.log('--- Seeding SQLite Database for eshopstore.shop ---');
 
 initDatabase();
 
-// Clear existing tables
+// Disable foreign keys temporarily for clean seed reset
+db.exec(`PRAGMA foreign_keys = OFF;`);
 db.exec(`
   DELETE FROM products;
   DELETE FROM promo_codes;
 `);
+db.exec(`PRAGMA foreign_keys = ON;`);
 
 // Helper to hash password
 function hashPassword(password) {
@@ -22,7 +24,7 @@ function hashPassword(password) {
 
 // 1. Seed Products
 const insertProductStmt = db.prepare(`
-  INSERT INTO products (
+  INSERT OR REPLACE INTO products (
     id, sku, name, category, subcategory, price, original_price,
     stock, rating, reviews_count, image, image_display_mode,
     is_best_seller, is_new, short_description, details_json
@@ -96,7 +98,7 @@ const res = checkLoyaltyStmt.get();
 if (res.count === 0) {
   db.prepare(`
     INSERT INTO loyalty_accounts (referral_code, email, points, referrals_count, claimed_coupons_json, created_at)
-    VALUES ('ESHOP-EU4821', 'client@eshop-store.eu', 50, 0, '[]', datetime('now'))
+    VALUES ('ESHOP-EU4821', 'client@eshopstore.shop', 50, 0, '[]', datetime('now'))
   `).run();
 
   db.prepare(`
@@ -108,12 +110,12 @@ if (res.count === 0) {
 }
 
 // 4. Seed Users (Admin & Demo)
-// Always ensure demo@eshop-store.eu has admin privileges for seamless testing
+// Always ensure demo@eshopstore.shop has admin privileges for seamless testing
 db.prepare(`
-  UPDATE users SET role = 'admin' WHERE email = 'demo@eshop-store.eu'
+  UPDATE users SET role = 'admin' WHERE email = 'demo@eshopstore.shop'
 `).run();
 
-const checkAdminStmt = db.prepare(`SELECT count(*) as count FROM users WHERE email = 'admin@eshop-store.eu'`);
+const checkAdminStmt = db.prepare(`SELECT count(*) as count FROM users WHERE email = 'admin@eshopstore.shop'`);
 if (checkAdminStmt.get().count === 0) {
   const { salt, hash } = hashPassword('AdminEshop2026!');
   db.prepare(`
@@ -121,12 +123,12 @@ if (checkAdminStmt.get().count === 0) {
       email, password_hash, salt, first_name, last_name, phone,
       shipping_address, postal_code, city, country_code, role, loyalty_code, created_at
     ) VALUES (
-      'admin@eshop-store.eu', ?, ?, 'Admin', 'Directeur', '+33 1 40 00 00 00',
+      'admin@eshopstore.shop', ?, ?, 'Admin', 'Directeur', '+33 1 40 00 00 00',
       '1 Avenue des Champs-Élysées', '75008', 'Paris', 'FR', 'admin', 'ESHOP-ADMIN', datetime('now')
     )
   `).run(hash, salt);
 
-  console.log('✓ Created dedicated admin user: admin@eshop-store.eu (Password: AdminEshop2026!).');
+  console.log('✓ Created dedicated admin user: admin@eshopstore.shop (Password: AdminEshop2026!).');
 }
 
 // 5. Seed Sample Orders for Admin Analytics

@@ -1,4 +1,4 @@
-# UI/UX — eshop-store.eu
+# UI/UX — eshopstore.shop
 
 **Version :** 1.0
 **Plateforme :** Web responsive, priorité mobile (achat majoritairement via smartphone)

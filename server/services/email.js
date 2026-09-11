@@ -64,7 +64,7 @@ export function generateOrderEmailHtml(order) {
       })
     : new Date().toLocaleDateString('fr-FR');
 
-  const trackingUrl = `https://eshop-store.eu?track=${order.orderNumber}`;
+  const trackingUrl = `https://eshopstore.shop?track=${order.orderNumber}`;
 
   return `
 <!DOCTYPE html>
@@ -72,7 +72,7 @@ export function generateOrderEmailHtml(order) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Confirmation de commande #${order.orderNumber} - eshop-store.eu</title>
+  <title>Confirmation de commande #${order.orderNumber} - eshopstore.shop</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #0f172a;">
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #f8fafc; padding: 24px 0;">
@@ -210,7 +210,7 @@ export function generateOrderEmailHtml(order) {
                 Suivre l'acheminement de mon colis ➔
               </a>
               <div style="margin-top: 12px; font-size: 12px; color: #64748b;">
-                Vous pouvez également consulter votre facture officielle PDF sur votre <a href="https://eshop-store.eu/account" style="color: #2563eb; font-weight: 600;">espace Mon Compte</a>.
+                Vous pouvez également consulter votre facture officielle PDF sur votre <a href="https://eshopstore.shop/account" style="color: #2563eb; font-weight: 600;">espace Mon Compte</a>.
               </div>
             </td>
           </tr>
@@ -219,11 +219,11 @@ export function generateOrderEmailHtml(order) {
           <tr>
             <td style="padding: 24px 28px; background-color: #0f172a; text-align: center; color: #94a3b8; font-size: 11px; line-height: 1.6;">
               <p style="margin: 0 0 6px 0; color: #ffffff; font-weight: 700; font-size: 12px;">
-                ESHOP EUROPE COMMERCE SAS — eshop-store.eu
+                ESHOP EUROPE COMMERCE SAS — eshopstore.shop
               </p>
               <p style="margin: 0;">
                 15 Rue de Rivoli, 75001 Paris — N° TVA : FR 82 912 345 678 | SIRET : 912 345 678 00019<br>
-                Garantie légale de conformité 2 ans UE • Droit de rétractation 30 jours • Support 7j/7 : support@eshop-store.eu
+                Garantie légale de conformité 2 ans UE • Droit de rétractation 30 jours • Support 7j/7 : support@eshopstore.shop
               </p>
             </td>
           </tr>
@@ -252,9 +252,9 @@ export async function sendOrderConfirmationEmail(order) {
     const htmlContent = generateOrderEmailHtml(order);
 
     const mailOptions = {
-      from: '"eshop-store.eu" <commandes@eshop-store.eu>',
+      from: '"eshopstore.shop" <commandes@eshopstore.shop>',
       to: customerEmail,
-      subject: `Confirmation de votre commande #${order.orderNumber} • eshop-store.eu`,
+      subject: `Confirmation de votre commande #${order.orderNumber} • eshopstore.shop`,
       html: htmlContent
     };
 

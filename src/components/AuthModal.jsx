@@ -259,7 +259,7 @@ export default function AuthModal({
           <p className="auth-subtitle">
             {mode === 'login'
               ? 'Accédez à vos commandes, vos points de fidélité et vos avantages exclusifs.'
-              : 'Rejoignez eshop-store.eu et recevez instantanément 50 points fidélité de bienvenue.'}
+              : 'Rejoignez eshopstore.shop et recevez instantanément 50 points fidélité de bienvenue.'}
           </p>
         </div>
 

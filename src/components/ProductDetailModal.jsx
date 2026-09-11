@@ -231,10 +231,10 @@ export default function ProductDetailModal({
   useEffect(() => {
     if (!product) return;
     const priceFormatted = Number(product.price || 0).toFixed(2);
-    const title = `${product.name} • ${priceFormatted} € | eshop-store.eu`;
+    const title = `${product.name} • ${priceFormatted} € | eshopstore.shop`;
     const desc = product.shortDescription || product.short_description || `Achetez ${product.name} à ${priceFormatted} €. Expédition express UE en 2 à 5 jours, garantie légale 2 ans et retours 30 jours.`;
     const img = product.image;
-    const url = `https://eshop-store.eu/?product=${product.id}`;
+    const url = `https://eshopstore.shop/?product=${product.id}`;
 
     updatePageSEO({
       title,

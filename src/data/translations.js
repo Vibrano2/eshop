@@ -65,10 +65,10 @@ export const TRANSLATIONS = {
       apply: 'Appliquer'
     },
     about: {
-      title: 'À propos d’eshop-store.eu',
+      title: 'À propos d’eshopstore.shop',
       subtitle: 'Votre boutique européenne d’objets pratiques, fiables et utiles.',
       ourMission: 'Notre Mission',
-      missionDesc: 'Créée pour éliminer les gadgets inutiles et les délais de livraison interminables, eshop-store.eu sélectionne des objets du quotidien véritablement astucieux, testés par notre équipe et expédiés directement depuis l’Union Européenne.',
+      missionDesc: 'Créée pour éliminer les gadgets inutiles et les délais de livraison interminables, eshopstore.shop sélectionne des objets du quotidien véritablement astucieux, testés par notre équipe et expédiés directement depuis l’Union Européenne.',
       pillarsTitle: 'Nos 4 Engagements Fondamentaux',
       pillar1Title: 'Entrepôts basés en UE',
       pillar1Desc: 'Tous nos stocks sont centralisés en France, Allemagne et Benelux pour une livraison express en 2 à 5 jours ouvrés.',
@@ -82,9 +82,9 @@ export const TRANSLATIONS = {
     },
     chat: {
       launcherTooltip: 'Besoin d’aide ? Discutons en direct !',
-      headerTitle: 'Support Client eshop-store.eu',
+      headerTitle: 'Support Client eshopstore.shop',
       status: 'En ligne — Réponse en moins d’une minute',
-      welcomeMessage: 'Bonjour ! 👋 Bienvenue sur eshop-store.eu. Je suis votre assistant virtuel. Comment puis-je vous aider à trouver votre bonheur ou suivre une commande ?',
+      welcomeMessage: 'Bonjour ! 👋 Bienvenue sur eshopstore.shop. Je suis votre assistant virtuel. Comment puis-je vous aider à trouver votre bonheur ou suivre une commande ?',
       quickTopicsTitle: 'Questions fréquentes :',
       topicDelivery: '🚚 Délais & Frais de livraison',
       topicTracking: '📦 Suivi de commande',
@@ -193,10 +193,10 @@ export const TRANSLATIONS = {
       apply: 'Apply'
     },
     about: {
-      title: 'About eshop-store.eu',
+      title: 'About eshopstore.shop',
       subtitle: 'Your European boutique for practical, reliable, and useful products.',
       ourMission: 'Our Mission',
-      missionDesc: 'Created to eliminate useless gimmicks and endless shipping waits, eshop-store.eu curates genuinely clever everyday objects, tested by our team and dispatched straight from the European Union.',
+      missionDesc: 'Created to eliminate useless gimmicks and endless shipping waits, eshopstore.shop curates genuinely clever everyday objects, tested by our team and dispatched straight from the European Union.',
       pillarsTitle: 'Our 4 Core Commitments',
       pillar1Title: 'EU-Based Warehouses',
       pillar1Desc: 'All our stocks are located in France, Germany and the Benelux for rapid 2-to-5 working day delivery.',
@@ -210,9 +210,9 @@ export const TRANSLATIONS = {
     },
     chat: {
       launcherTooltip: 'Need help? Chat with us live!',
-      headerTitle: 'eshop-store.eu Support',
+      headerTitle: 'eshopstore.shop Support',
       status: 'Online — Replies in under a minute',
-      welcomeMessage: 'Hello! 👋 Welcome to eshop-store.eu. I am your virtual shopping assistant. How can I help you discover products or track an order today?',
+      welcomeMessage: 'Hello! 👋 Welcome to eshopstore.shop. I am your virtual shopping assistant. How can I help you discover products or track an order today?',
       quickTopicsTitle: 'Popular topics:',
       topicDelivery: '🚚 Delivery Times & Costs',
       topicTracking: '📦 Order Tracking',
@@ -321,10 +321,10 @@ export const TRANSLATIONS = {
       apply: 'Einlösen'
     },
     about: {
-      title: 'Über eshop-store.eu',
+      title: 'Über eshopstore.shop',
       subtitle: 'Ihr europäischer Shop für praktische, zuverlässige und nützliche Produkte.',
       ourMission: 'Unsere Mission',
-      missionDesc: 'Gegründet, um unnützen Schnickschnack und lange Lieferzeiten zu beenden. eshop-store.eu wählt alltagstaugliche clevere Gadgets aus, die von unserem Team getestet und direkt aus der EU versendet werden.',
+      missionDesc: 'Gegründet, um unnützen Schnickschnack und lange Lieferzeiten zu beenden. eshopstore.shop wählt alltagstaugliche clevere Gadgets aus, die von unserem Team getestet und direkt aus der EU versendet werden.',
       pillarsTitle: 'Unsere 4 Grundversprechen',
       pillar1Title: 'Lagerstandorte in der EU',
       pillar1Desc: 'Unsere Bestände lagern in Frankreich, Deutschland und den Benelux-Ländern für eine Expresslieferung in 2–5 Werktagen.',
@@ -338,9 +338,9 @@ export const TRANSLATIONS = {
     },
     chat: {
       launcherTooltip: 'Brauchen Sie Hilfe? Live chatten!',
-      headerTitle: 'eshop-store.eu Kundenservice',
+      headerTitle: 'eshopstore.shop Kundenservice',
       status: 'Online — Antwortet in unter einer Minute',
-      welcomeMessage: 'Guten Tag! 👋 Willkommen bei eshop-store.eu. Ich bin Ihr virtueller Berater. Wie kann ich Ihnen heute helfen oder eine Bestellung verfolgen?',
+      welcomeMessage: 'Guten Tag! 👋 Willkommen bei eshopstore.shop. Ich bin Ihr virtueller Berater. Wie kann ich Ihnen heute helfen oder eine Bestellung verfolgen?',
       quickTopicsTitle: 'Häufige Themen:',
       topicDelivery: '🚚 Lieferzeiten & Versandkosten',
       topicTracking: '📦 Sendungsverfolgung',

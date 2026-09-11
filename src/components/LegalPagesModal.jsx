@@ -51,7 +51,7 @@ export default function LegalPagesModal({ isOpen, onClose, initialTab = 'cgv' })
               <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem' }}>
                 Conditions Générales de Vente (CGV)
               </h3>
-              <p><strong>1. Champ d'application</strong> : Les présentes CGV s'appliquent à toutes les commandes passées sur la boutique en ligne eshop-store.eu desservant les pays de l'Union Européenne.</p>
+              <p><strong>1. Champ d'application</strong> : Les présentes CGV s'appliquent à toutes les commandes passées sur la boutique en ligne eshopstore.shop desservant les pays de l'Union Européenne.</p>
               <p style={{ marginTop: '0.75rem' }}><strong>2. Prix et Devises</strong> : Tous les prix affichés sont en Euros (€) Toutes Taxes Comprises (TTC). Les frais de livraison sont offerts dès 40 € de commande.</p>
               <p style={{ marginTop: '0.75rem' }}><strong>3. Livraison et Délais</strong> : Nos colis sont expédiés en priorité depuis des centres logistiques situés dans l'UE (délais moyens constatés : 2 à 5 jours ouvrés). Un numéro de suivi vous est automatiquement communiqué dès expédition.</p>
               <p style={{ marginTop: '0.75rem' }}><strong>4. Garantie Légale de Conformité</strong> : Conformément à la législation européenne, tous nos produits bénéficient de la garantie légale de conformité de 2 ans.</p>
@@ -69,7 +69,7 @@ export default function LegalPagesModal({ isOpen, onClose, initialTab = 'cgv' })
               <div style={{ backgroundColor: '#f1f5f9', padding: '1rem', borderRadius: '8px', margin: '1.25rem 0' }}>
                 <h4 style={{ fontWeight: 700, marginBottom: '0.5rem' }}>Modèle de formulaire de rétractation :</h4>
                 <p style={{ fontSize: '0.8125rem', fontFamily: 'monospace' }}>
-                  À l'attention du Service Client eshop-store.eu (support@eshop-store.eu) :<br />
+                  À l'attention du Service Client eshopstore.shop (support@eshopstore.shop) :<br />
                   Je vous notifie par la présente ma rétractation du contrat portant sur la vente du bien ci-dessous :<br />
                   - Numéro de commande : [EU-XXXXXX]<br />
                   - Reçue le : [Date]<br />
@@ -97,7 +97,7 @@ export default function LegalPagesModal({ isOpen, onClose, initialTab = 'cgv' })
                     1. Responsable du Traitement des Données
                   </h4>
                   <p>
-                    Le traitement de vos données personnelles est effectué sous la responsabilité de <strong>eshop-store.eu</strong>. Vos données sont hébergées au sein de l'Union Européenne et ne font l'objet d'aucun transfert non sécurisé hors de l'UE.
+                    Le traitement de vos données personnelles est effectué sous la responsabilité de <strong>eshopstore.shop</strong>. Vos données sont hébergées au sein de l'Union Européenne et ne font l'objet d'aucun transfert non sécurisé hors de l'UE.
                   </p>
                 </div>
 
@@ -131,7 +131,7 @@ export default function LegalPagesModal({ isOpen, onClose, initialTab = 'cgv' })
                   <ul style={{ paddingLeft: '1.25rem', marginTop: '0.35rem' }}>
                     <li><strong>Droit d'accès et de portabilité :</strong> Téléchargement de vos données et factures depuis votre Espace Client.</li>
                     <li><strong>Droit de rectification :</strong> Modification immédiate de vos adresses et coordonnées.</li>
-                    <li><strong>Droit à l'effacement (« droit à l'oubli ») :</strong> Suppression de votre compte et anonymisation de vos données sur simple demande à <em>privacy@eshop-store.eu</em> (sous réserve des délais légaux de conservation comptable).</li>
+                    <li><strong>Droit à l'effacement (« droit à l'oubli ») :</strong> Suppression de votre compte et anonymisation de vos données sur simple demande à <em>privacy@eshopstore.shop</em> (sous réserve des délais légaux de conservation comptable).</li>
                     <li><strong>Droit d'opposition et de retrait du consentement :</strong> Gestion de vos préférences cookies à tout moment via le lien « Gestion des cookies » en pied de page.</li>
                   </ul>
                 </div>
@@ -150,7 +150,7 @@ export default function LegalPagesModal({ isOpen, onClose, initialTab = 'cgv' })
                     6. Réclamation auprès de l'Autorité de Contrôle
                   </h4>
                   <p>
-                    Pour toute question relative à vos données, contactez notre Délégué à la Protection des Données à <strong>dpo@eshop-store.eu</strong>. Vous disposez également du droit d'introduire une réclamation auprès de l'autorité de contrôle compétente (CNIL en France ou autorité locale de votre État membre de l'UE).
+                    Pour toute question relative à vos données, contactez notre Délégué à la Protection des Données à <strong>dpo@eshopstore.shop</strong>. Vous disposez également du droit d'introduire une réclamation auprès de l'autorité de contrôle compétente (CNIL en France ou autorité locale de votre État membre de l'UE).
                   </p>
                 </div>
               </div>
@@ -163,8 +163,8 @@ export default function LegalPagesModal({ isOpen, onClose, initialTab = 'cgv' })
               <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem' }}>
                 Mentions Légales
               </h3>
-              <p><strong>Éditeur du site :</strong> eshop-store.eu<br />
-              <strong>Contact client :</strong> support@eshop-store.eu (réponse 7j/7 sous 24h)<br />
+              <p><strong>Éditeur du site :</strong> eshopstore.shop<br />
+              <strong>Contact client :</strong> support@eshopstore.shop (réponse 7j/7 sous 24h)<br />
               <strong>Hébergement :</strong> Infrastructure Cloud Européenne conforme aux normes de sécurité et au RGPD.<br />
               <strong>Règlement des litiges :</strong> Plateforme de règlement en ligne des litiges de la Commission Européenne : <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noreferrer" style={{ color: '#2563eb', textDecoration: 'underline' }}>ec.europa.eu/consumers/odr</a>
               </p>

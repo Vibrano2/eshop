@@ -121,10 +121,10 @@ export default function Footer({ onOpenLegal, onOpenTracking, onSelectCategory, 
           <div className="footer-legal-copy">
             <div className="footer-brand-mini">
               <span className="footer-flag">★</span>
-              <span>eshop-store.eu</span>
+              <span>eshopstore.shop</span>
             </div>
             <p className="copyright-text">
-              © {new Date().getFullYear()} eshop-store.eu. Tous droits réservés. Vente en ligne conforme aux directives de l'Union Européenne (RGPD, droit de rétractation 14j, garantie légale 2 ans).
+              © {new Date().getFullYear()} eshopstore.shop. Tous droits réservés. Vente en ligne conforme aux directives de l'Union Européenne (RGPD, droit de rétractation 14j, garantie légale 2 ans).
             </p>
           </div>
 

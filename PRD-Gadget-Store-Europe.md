@@ -1,6 +1,6 @@
 # PRD — Boutique de Dropshipping Gadgets (Marché Européen)
 
-**Nom / domaine retenu :** eshop-store.eu
+**Nom / domaine retenu :** eshopstore.shop
 **Version :** 1.1
 **Marché cible :** Union Européenne (priorité France, Allemagne, Benelux)
 **Modèle :** Dropshipping, fournisseurs basés en UE en priorité
@@ -145,7 +145,7 @@ Catalogue complet, sans découpage par catégorie, avec détail d'usage pour cha
 
 ## 10. Risques identifiés
 
-- Nom de domaine (eshop-store.eu) très descriptif : difficile à protéger comme marque déposée, envisager un nom de marque distinctif séparé pour le branding (réseaux sociaux, packaging, logo)
+- Nom de domaine (eshopstore.shop) très descriptif : difficile à protéger comme marque déposée, envisager un nom de marque distinctif séparé pour le branding (réseaux sociaux, packaging, logo)
 - Catalogue large (39 produits) : risque de dilution de l'image de marque si la présentation n'est pas structurée par usage
 - Dépendance à la qualité des fournisseurs (retours élevés si produit décevant)
 - Concurrence forte sur certains segments (friteuse à air, organisateurs) déjà largement occupés par d'autres boutiques dropshipping
@@ -154,7 +154,7 @@ Catalogue complet, sans découpage par catégorie, avec détail d'usage pour cha
 
 ## 11. Prochaines étapes
 
-1. Réserver le domaine eshop-store.eu et l'immatriculation d'activité correspondante
+1. Réserver le domaine eshopstore.shop et l'immatriculation d'activité correspondante
 2. Décider si un nom de marque distinctif séparé est utilisé pour le branding (logo, réseaux sociaux)
 3. Sélectionner des fournisseurs UE pour l'ensemble des 39 produits (par lots)
 4. Commander des échantillons produits

@@ -67,7 +67,7 @@ export default function ReassuranceModal({ isOpen, onClose, onOpenLegal }) {
       details: [
         'Assistance 100% en français, allemand et anglais',
         'Réponse garantie en moins de 24h ouvrées',
-        'Contact direct par email : support@eshop-store.eu',
+        'Contact direct par email : support@eshopstore.shop',
         'Aide au suivi de commande, échanges et conseils personnalisés'
       ]
     }
@@ -108,7 +108,7 @@ export default function ReassuranceModal({ isOpen, onClose, onOpenLegal }) {
               Nos Garanties pour Acheter en Toute Sérénité
             </h2>
             <p style={{ fontSize: '0.875rem', color: '#64748b', maxWidth: '520px', margin: '0.35rem auto 0' }}>
-              Chez <strong>eshop-store.eu</strong>, nous sélectionnons des gadgets innovants avec une logistique et un cadre juridique 100% conformes aux normes de l'Union Européenne.
+              Chez <strong>eshopstore.shop</strong>, nous sélectionnons des gadgets innovants avec une logistique et un cadre juridique 100% conformes aux normes de l'Union Européenne.
             </p>
           </div>
 

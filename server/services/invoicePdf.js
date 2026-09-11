@@ -14,7 +14,7 @@ export function generateInvoicePdf(order, items, outputStream) {
     margin: 40,
     info: {
       Title: `Facture FAC-${order.order_number || order.orderNumber}`,
-      Author: 'eshop-store.eu',
+      Author: 'eshopstore.shop',
       Subject: 'Facture d\'achat acquittée',
       Keywords: 'facture, eshop, tva, europe'
     }
@@ -145,7 +145,7 @@ export function generateInvoicePdf(order, items, outputStream) {
     .text('15 Rue de Rivoli, 75001 Paris, France', 50, y + 36)
     .text('SIRET : 912 345 678 00019 • RCS Paris B 912 345 678', 50, y + 48)
     .text('N° TVA intracommunautaire : FR 82 912 345 678', 50, y + 60)
-    .text('Support : facturation@eshop-store.eu', 50, y + 72);
+    .text('Support : facturation@eshopstore.shop', 50, y + 72);
 
   // Customer Card
   doc
@@ -170,7 +170,7 @@ export function generateInvoicePdf(order, items, outputStream) {
     .fillColor('#475569')
     .text(shippingAddress || 'Adresse enregistrée', 315, y + 36)
     .text(`${postalCode} ${city} (${countryCode})`.trim(), 315, y + 48)
-    .text(`Email : ${customerEmail || 'client@eshop-store.eu'}`, 315, y + 60)
+    .text(`Email : ${customerEmail || 'client@eshopstore.shop'}`, 315, y + 60)
     .text(`Acheminement : ${carrier}`, 315, y + 72);
 
   y += 105;

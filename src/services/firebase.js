@@ -1,4 +1,4 @@
-// Firebase SDK integration for eshop-store.eu
+// Firebase SDK integration for eshopstore.shop
 // Authentification (Email + Google Sign-In), Cloud Firestore et Cloud Storage
 
 import { initializeApp, getApps, getApp } from 'firebase/app';

@@ -34,7 +34,7 @@ export default function LoyaltyModal({
 
   const t = TRANSLATIONS[lang]?.loyalty || TRANSLATIONS.fr.loyalty;
 
-  const referralLink = `https://eshop-store.eu?ref=${loyaltyState.referralCode}`;
+  const referralLink = `https://eshopstore.shop?ref=${loyaltyState.referralCode}`;
 
   const handleCopyCode = () => {
     navigator.clipboard.writeText(loyaltyState.referralCode);
@@ -56,14 +56,14 @@ export default function LoyaltyModal({
 
   // WhatsApp share
   const whatsappShareText = encodeURIComponent(
-    `Hello ! Découvre eshop-store.eu, la boutique de gadgets pratiques du quotidien. Profite de 10 € offerts avec mon code parrainage ${loyaltyState.referralCode} : ${referralLink}`
+    `Hello ! Découvre eshopstore.shop, la boutique de gadgets pratiques du quotidien. Profite de 10 € offerts avec mon code parrainage ${loyaltyState.referralCode} : ${referralLink}`
   );
   const whatsappUrl = `https://api.whatsapp.com/send?text=${whatsappShareText}`;
 
   // Email share
-  const emailSubject = encodeURIComponent('10 € offerts sur eshop-store.eu !');
+  const emailSubject = encodeURIComponent('10 € offerts sur eshopstore.shop !');
   const emailBody = encodeURIComponent(
-    `Bonjour,\n\nJe t'invite à découvrir la boutique eshop-store.eu spécialisée dans les gadgets utiles expédiés depuis l'Europe.\n\nUtilise mon code parrainage ${loyaltyState.referralCode} pour bénéficier de 10 € offerts sur ta première commande :\n${referralLink}\n\nÀ bientôt !`
+    `Bonjour,\n\nJe t'invite à découvrir la boutique eshopstore.shop spécialisée dans les gadgets utiles expédiés depuis l'Europe.\n\nUtilise mon code parrainage ${loyaltyState.referralCode} pour bénéficier de 10 € offerts sur ta première commande :\n${referralLink}\n\nÀ bientôt !`
   );
   const emailUrl = `mailto:?subject=${emailSubject}&body=${emailBody}`;
 
