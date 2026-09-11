@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, ShoppingBag, Heart } from 'lucide-react';
+import { Star, ShoppingBag, Heart, ArrowLeftRight } from 'lucide-react';
 
 const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=80';
 
@@ -8,7 +8,9 @@ export default function ProductCard({
   onOpenDetails,
   onAddToCart,
   isWishlisted,
-  onToggleWishlist
+  onToggleWishlist,
+  isCompared = false,
+  onToggleCompare
 }) {
   const discountPercent = product.compareAtPrice
     ? Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)
@@ -65,6 +67,21 @@ export default function ProductCard({
         >
           <Heart size={16} fill={isWishlisted ? '#ef4444' : 'none'} color={isWishlisted ? '#ef4444' : '#64748b'} />
         </button>
+
+        {/* Compare Button */}
+        {onToggleCompare && (
+          <button
+            className={`product-compare-btn ${isCompared ? 'active' : ''}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleCompare(product.id);
+            }}
+            title={isCompared ? 'Retirer du comparateur' : 'Comparer ce produit'}
+            aria-label={isCompared ? 'Retirer du comparateur' : 'Comparer ce produit'}
+          >
+            <ArrowLeftRight size={15} color={isCompared ? '#ffffff' : '#64748b'} />
+          </button>
+        )}
       </div>
 
       {/* Card Body */}

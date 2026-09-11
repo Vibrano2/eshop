@@ -28,6 +28,8 @@ import LoyaltyModal from './components/LoyaltyModal';
 import AuthModal from './components/AuthModal';
 import AdminDashboard from './components/AdminDashboard';
 import AccountPage from './components/AccountPage';
+import CompareFloatingBar from './components/CompareFloatingBar';
+import ProductCompareModal from './components/ProductCompareModal';
 
 // Services & API
 import { apiGetMe, apiLogout } from './services/api';
@@ -139,6 +141,59 @@ export default function App() {
   const [authModalMode, setAuthModalMode] = useState('login');
   const [legalTab, setLegalTab] = useState('cgv');
   const [accountInitialTab, setAccountInitialTab] = useState('orders');
+
+  // Product Comparison State (Max 4 items, persisted)
+  const [compareList, setCompareList] = useState(() => {
+    try {
+      const saved = localStorage.getItem('eshop_compare');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+  const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
+  const [compareToastMsg, setCompareToastMsg] = useState(null);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('eshop_compare', JSON.stringify(compareList));
+    } catch (e) {
+      console.warn('Failed to save compareList', e);
+    }
+  }, [compareList]);
+
+  const showCompareToast = (msg) => {
+    setCompareToastMsg(msg);
+    setTimeout(() => {
+      setCompareToastMsg((current) => (current === msg ? null : current));
+    }, 3200);
+  };
+
+  const handleToggleCompare = (productId) => {
+    setCompareList((prev) => {
+      if (prev.includes(productId)) {
+        const prod = PRODUCTS.find((p) => p.id === productId);
+        showCompareToast(`« ${prod?.name || 'Produit'} » retiré du comparateur`);
+        return prev.filter((id) => id !== productId);
+      }
+      if (prev.length >= 4) {
+        showCompareToast('Limite atteinte : vous pouvez comparer jusqu\'à 4 produits simultanément.');
+        return prev;
+      }
+      const prod = PRODUCTS.find((p) => p.id === productId);
+      showCompareToast(`« ${prod?.name || 'Produit'} » ajouté au comparateur (${prev.length + 1}/4)`);
+      return [...prev, productId];
+    });
+  };
+
+  const handleRemoveCompareItem = (productId) => {
+    setCompareList((prev) => prev.filter((id) => id !== productId));
+  };
+
+  const handleClearCompare = () => {
+    setCompareList([]);
+    showCompareToast('Le comparateur a été vidé');
+  };
 
   // Authenticated User State
   const [currentUser, setCurrentUser] = useState(null);
@@ -589,6 +644,19 @@ export default function App() {
     return list.length === 4 ? list : PRODUCTS.filter((p) => p.isNew).slice(0, 4);
   }, []);
 
+  const renderProductCard = (product) => (
+    <ProductCard
+      key={product.id}
+      product={product}
+      onOpenDetails={(p) => setSelectedProduct(p)}
+      onAddToCart={(p) => handleAddToCart(p, 1)}
+      isWishlisted={wishlist.includes(product.id)}
+      onToggleWishlist={handleToggleWishlist}
+      isCompared={compareList.includes(product.id)}
+      onToggleCompare={handleToggleCompare}
+    />
+  );
+
   return (
     <div className="app-layout">
       {/* Top EU Shipping & Free Delivery Announcement Bar */}
@@ -667,6 +735,8 @@ export default function App() {
             onToggleWishlist={handleToggleWishlist}
             onNavigateHome={handleNavigateHome}
             onSelectCategory={handleOpenShop}
+            compareList={compareList}
+            onToggleCompare={handleToggleCompare}
           />
         ) : (
           /* ========================================================
@@ -722,16 +792,7 @@ export default function App() {
                 />
 
                 <div className="products-grid-standardized">
-                  {incontournables.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      product={product}
-                      onOpenDetails={(p) => setSelectedProduct(p)}
-                      onAddToCart={(p) => handleAddToCart(p, 1)}
-                      isWishlisted={wishlist.includes(product.id)}
-                      onToggleWishlist={handleToggleWishlist}
-                    />
-                  ))}
+                  {incontournables.map(renderProductCard)}
                 </div>
               </div>
             </section>
@@ -747,16 +808,7 @@ export default function App() {
                 />
 
                 <div className="products-grid-standardized">
-                  {bestSellers.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      product={product}
-                      onOpenDetails={(p) => setSelectedProduct(p)}
-                      onAddToCart={(p) => handleAddToCart(p, 1)}
-                      isWishlisted={wishlist.includes(product.id)}
-                      onToggleWishlist={handleToggleWishlist}
-                    />
-                  ))}
+                  {bestSellers.map(renderProductCard)}
                 </div>
               </div>
             </section>
@@ -772,16 +824,7 @@ export default function App() {
                 />
 
                 <div className="products-grid-standardized">
-                  {fashionTrending.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      product={product}
-                      onOpenDetails={(p) => setSelectedProduct(p)}
-                      onAddToCart={(p) => handleAddToCart(p, 1)}
-                      isWishlisted={wishlist.includes(product.id)}
-                      onToggleWishlist={handleToggleWishlist}
-                    />
-                  ))}
+                  {fashionTrending.map(renderProductCard)}
                 </div>
               </div>
             </section>
@@ -797,16 +840,7 @@ export default function App() {
                 />
 
                 <div className="products-grid-standardized">
-                  {techAndGadgets.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      product={product}
-                      onOpenDetails={(p) => setSelectedProduct(p)}
-                      onAddToCart={(p) => handleAddToCart(p, 1)}
-                      isWishlisted={wishlist.includes(product.id)}
-                      onToggleWishlist={handleToggleWishlist}
-                    />
-                  ))}
+                  {techAndGadgets.map(renderProductCard)}
                 </div>
               </div>
             </section>
@@ -832,16 +866,7 @@ export default function App() {
                 />
 
                 <div className="products-grid-standardized">
-                  {homeAndKitchen.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      product={product}
-                      onOpenDetails={(p) => setSelectedProduct(p)}
-                      onAddToCart={(p) => handleAddToCart(p, 1)}
-                      isWishlisted={wishlist.includes(product.id)}
-                      onToggleWishlist={handleToggleWishlist}
-                    />
-                  ))}
+                  {homeAndKitchen.map(renderProductCard)}
                 </div>
               </div>
             </section>
@@ -857,16 +882,7 @@ export default function App() {
                 />
 
                 <div className="products-grid-standardized">
-                  {beautyAndWellness.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      product={product}
-                      onOpenDetails={(p) => setSelectedProduct(p)}
-                      onAddToCart={(p) => handleAddToCart(p, 1)}
-                      isWishlisted={wishlist.includes(product.id)}
-                      onToggleWishlist={handleToggleWishlist}
-                    />
-                  ))}
+                  {beautyAndWellness.map(renderProductCard)}
                 </div>
               </div>
             </section>
@@ -882,16 +898,7 @@ export default function App() {
                 />
 
                 <div className="products-grid-standardized">
-                  {petEssentials.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      product={product}
-                      onOpenDetails={(p) => setSelectedProduct(p)}
-                      onAddToCart={(p) => handleAddToCart(p, 1)}
-                      isWishlisted={wishlist.includes(product.id)}
-                      onToggleWishlist={handleToggleWishlist}
-                    />
-                  ))}
+                  {petEssentials.map(renderProductCard)}
                 </div>
               </div>
             </section>
@@ -907,16 +914,7 @@ export default function App() {
                 />
 
                 <div className="products-grid-standardized">
-                  {sportAndFitness.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      product={product}
-                      onOpenDetails={(p) => setSelectedProduct(p)}
-                      onAddToCart={(p) => handleAddToCart(p, 1)}
-                      isWishlisted={wishlist.includes(product.id)}
-                      onToggleWishlist={handleToggleWishlist}
-                    />
-                  ))}
+                  {sportAndFitness.map(renderProductCard)}
                 </div>
               </div>
             </section>
@@ -932,16 +930,7 @@ export default function App() {
                 />
 
                 <div className="products-grid-standardized">
-                  {smartHomeAndSecurity.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      product={product}
-                      onOpenDetails={(p) => setSelectedProduct(p)}
-                      onAddToCart={(p) => handleAddToCart(p, 1)}
-                      isWishlisted={wishlist.includes(product.id)}
-                      onToggleWishlist={handleToggleWishlist}
-                    />
-                  ))}
+                  {smartHomeAndSecurity.map(renderProductCard)}
                 </div>
               </div>
             </section>
@@ -957,16 +946,7 @@ export default function App() {
                 />
 
                 <div className="products-grid-standardized">
-                  {newArrivals.map((product) => (
-                    <ProductCard
-                      key={product.id}
-                      product={product}
-                      onOpenDetails={(p) => setSelectedProduct(p)}
-                      onAddToCart={(p) => handleAddToCart(p, 1)}
-                      isWishlisted={wishlist.includes(product.id)}
-                      onToggleWishlist={handleToggleWishlist}
-                    />
-                  ))}
+                  {newArrivals.map(renderProductCard)}
                 </div>
               </div>
             </section>
@@ -1027,6 +1007,12 @@ export default function App() {
         }}
         onDirectCheckout={handleDirectCheckout}
         onOpenReassurance={() => setIsReassuranceOpen(true)}
+        isCompared={selectedProduct ? compareList.includes(selectedProduct.id) : false}
+        onToggleCompare={handleToggleCompare}
+        onOpenCompare={() => {
+          setSelectedProduct(null);
+          setIsCompareModalOpen(true);
+        }}
       />
 
       {/* 3-Step Checkout Modal */}
@@ -1112,6 +1098,40 @@ export default function App() {
         onOpenShop={handleOpenShop}
         onOpenReassurance={() => setIsReassuranceOpen(true)}
       />
+
+      {/* Floating Product Comparison Bar */}
+      <CompareFloatingBar
+        compareList={compareList}
+        products={PRODUCTS}
+        onOpenCompare={() => setIsCompareModalOpen(true)}
+        onRemoveItem={handleRemoveCompareItem}
+        onClearAll={handleClearCompare}
+      />
+
+      {/* Full Side-by-Side Product Comparison Modal */}
+      <ProductCompareModal
+        isOpen={isCompareModalOpen}
+        onClose={() => setIsCompareModalOpen(false)}
+        compareList={compareList}
+        products={PRODUCTS}
+        onAddToCart={(prod) => {
+          handleAddToCart(prod, 1);
+          showCompareToast(`« ${prod.name} » ajouté au panier !`);
+        }}
+        onRemoveItem={handleRemoveCompareItem}
+        onClearAll={handleClearCompare}
+        onOpenDetails={(prod) => {
+          setIsCompareModalOpen(false);
+          setSelectedProduct(prod);
+        }}
+      />
+
+      {/* Floating Compare Action Toast */}
+      {compareToastMsg && (
+        <div className="compare-toast-notification animate-fade-in" role="status">
+          <span>{compareToastMsg}</span>
+        </div>
+      )}
 
       {/* Floating Trust Badge Button */}
       <button

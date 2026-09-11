@@ -16,7 +16,8 @@ import {
   MessageSquare,
   AlertCircle,
   Loader2,
-  Edit3
+  Edit3,
+  ArrowLeftRight
 } from 'lucide-react';
 import { PRODUCTS } from '../data/products';
 import { apiFetchProductReviews, apiSubmitProductReview, apiVoteReviewHelpful } from '../services/api';
@@ -28,7 +29,10 @@ export default function ProductDetailModal({
   onAddToCart,
   onDirectCheckout,
   onOpenAnotherProduct,
-  onOpenReassurance
+  onOpenReassurance,
+  isCompared = false,
+  onToggleCompare,
+  onOpenCompare
 }) {
   if (!product) return null;
 
@@ -398,6 +402,28 @@ export default function ProductDetailModal({
                     <span>Acheter maintenant</span>
                   </button>
                 </div>
+
+                {onToggleCompare && (
+                  <div className="pdp-compare-action-wrap">
+                    <button
+                      type="button"
+                      className={`pdp-compare-action-btn ${isCompared ? 'active' : ''}`}
+                      onClick={() => onToggleCompare(product.id)}
+                    >
+                      <ArrowLeftRight size={16} />
+                      <span>{isCompared ? 'Retirer du comparateur' : 'Ajouter au comparateur'}</span>
+                    </button>
+                    {isCompared && onOpenCompare && (
+                      <button
+                        type="button"
+                        className="pdp-compare-view-link"
+                        onClick={onOpenCompare}
+                      >
+                        Ouvrir le comparateur ➔
+                      </button>
+                    )}
+                  </div>
+                )}
               </div>
 
               {/* Micro-Reassurance Icons */}

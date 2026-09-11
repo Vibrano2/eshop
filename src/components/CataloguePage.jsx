@@ -27,7 +27,9 @@ export default function CataloguePage({
   wishlist,
   onToggleWishlist,
   onNavigateHome,
-  onSelectCategory
+  onSelectCategory,
+  compareList = [],
+  onToggleCompare
 }) {
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const [selectedSubcategory, setSelectedSubcategory] = useState(initialSubcategory);
@@ -783,6 +785,8 @@ export default function CataloguePage({
                     onAddToCart={onAddToCart}
                     isWishlisted={wishlist.includes(product.id)}
                     onToggleWishlist={onToggleWishlist}
+                    isCompared={compareList.includes(product.id)}
+                    onToggleCompare={onToggleCompare}
                   />
                 ))}
               </div>
