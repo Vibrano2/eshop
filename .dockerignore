@@ -1,0 +1,16 @@
+node_modules
+dist
+dist-ssr
+.git
+.github
+.agents
+temp_audit
+scripts/temp_candidates
+scripts/temp_images
+*.log
+.env
+.env.*
+Dockerfile*
+docker-compose*
+*.md
+!README.md
