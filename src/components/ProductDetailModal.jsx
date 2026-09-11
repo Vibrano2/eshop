@@ -27,6 +27,7 @@ import {
 } from 'lucide-react';
 import { PRODUCTS } from '../data/products';
 import { apiFetchProductReviews, apiSubmitProductReview, apiVoteReviewHelpful } from '../services/api';
+import { firebaseSubmitReview } from '../services/firebase';
 import { updatePageSEO, injectProductJsonLd, injectBreadcrumbJsonLd, resetSEO } from '../services/seo';
 
 /**
@@ -274,6 +275,24 @@ export default function ProductDetailModal({
       };
       const res = await apiSubmitProductReview(product.id, payload);
       if (res && res.success) {
+        // Synchronize review to Firestore
+        try {
+          firebaseSubmitReview({
+            product_id: product.id,
+            product_name: product.name,
+            rating: reviewForm.rating,
+            title: reviewForm.title,
+            comment: reviewForm.comment,
+            author_name: reviewForm.authorName,
+            author_email: reviewForm.authorEmail,
+            order_number: reviewForm.orderNumber || null,
+            photos: reviewPhotos,
+            created_at_iso: new Date().toISOString()
+          });
+        } catch (fbErr) {
+          console.warn('[Firestore] Sync review failed:', fbErr.message);
+        }
+
         setReviewSuccessMsg(res.message || 'Votre avis vérifié avec photos a été publié avec succès !');
         if (res.review) {
           setReviews((prev) => [res.review, ...prev]);

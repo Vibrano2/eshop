@@ -36,6 +36,7 @@ import CookieBanner from './components/CookieBanner';
 
 // Services & API
 import { apiGetMe, apiLogout } from './services/api';
+import { onFirebaseAuthStateChange, firebaseSignOutUser } from './services/firebase';
 
 // Data
 import { PRODUCTS } from './data/products';
@@ -267,12 +268,29 @@ export default function App() {
   // Authenticated User State
   const [currentUser, setCurrentUser] = useState(null);
 
-  // Restore authenticated session on app load
+  // Restore authenticated session on app load (Firebase + Local)
   useEffect(() => {
     let isMounted = true;
+
+    // 1. Listen to Firebase Auth (Email, Google, Apple)
+    const unsubscribeFirebase = onFirebaseAuthStateChange((fbUser) => {
+      if (!isMounted) return;
+      if (fbUser) {
+        setCurrentUser(fbUser);
+        if (fbUser.loyaltyPoints !== undefined) {
+          setLoyaltyState((prev) => ({
+            ...prev,
+            points: fbUser.loyaltyPoints,
+            referralCode: fbUser.loyaltyCode || prev.referralCode
+          }));
+        }
+      }
+    });
+
+    // 2. Also check local/demo session if Firebase hasn't hydrated a user
     apiGetMe()
       .then((user) => {
-        if (isMounted && user) {
+        if (isMounted && user && !currentUser) {
           setCurrentUser(user);
           if (user.loyaltyPoints !== undefined) {
             setLoyaltyState((prev) => ({
@@ -284,8 +302,12 @@ export default function App() {
         }
       })
       .catch((err) => console.warn('Could not restore session:', err));
+
     return () => {
       isMounted = false;
+      if (typeof unsubscribeFirebase === 'function') {
+        unsubscribeFirebase();
+      }
     };
   }, []);
 
@@ -306,6 +328,11 @@ export default function App() {
   };
 
   const handleLogout = async () => {
+    try {
+      await firebaseSignOutUser();
+    } catch (e) {
+      // non-blocking
+    }
     await apiLogout();
     setCurrentUser(null);
   };

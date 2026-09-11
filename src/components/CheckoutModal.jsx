@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 import { PROMO_CODES } from '../data/promoCodes';
 import { apiCreateOrder, apiCreatePaymentIntent, apiConfirmPaymentIntent } from '../services/api';
+import { firebaseCreateOrder } from '../services/firebase';
 import ThreeDSModal from './ThreeDSModal';
 
 const STRIPE_TEST_PRESETS = [
@@ -394,6 +395,24 @@ export default function CheckoutModal({
       localStorage.setItem('eshop_orders', JSON.stringify(existing));
     } catch (err) {
       console.error(err);
+    }
+
+    // Synchronize order with Cloud Firestore
+    try {
+      firebaseCreateOrder({
+        orderNumber: newOrder.orderNumber,
+        customer_email: formData.email,
+        customer_name: `${formData.firstName || ''} ${formData.lastName || ''}`.trim(),
+        items_count: items.length,
+        total_amount: totalAmount,
+        currency: 'EUR',
+        payment_method: formData.paymentMethod,
+        carrier: newOrder.carrier,
+        delivery_dates: deliveryDatesRange,
+        status: 'confirmed'
+      });
+    } catch (fbErr) {
+      console.warn('[Firestore] Sync order failed:', fbErr.message);
     }
 
     setCreatedOrder(newOrder);

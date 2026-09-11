@@ -6129,6 +6129,85 @@ a {
   border-radius: 999px;
 }
 
+/* Google & Apple Social Auth */
+.auth-social-section {
+  margin-bottom: 1.25rem;
+}
+
+.auth-social-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.auth-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+
+.auth-google-btn {
+  background: #ffffff;
+  color: #1e293b;
+  border: 1.5px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.auth-google-btn:hover:not(:disabled) {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.auth-apple-btn {
+  background: #000000;
+  color: #ffffff;
+  border: 1.5px solid #000000;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.auth-apple-btn:hover:not(:disabled) {
+  background: #18181b;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.auth-social-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  margin: 1rem 0 0.5rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.auth-divider span {
+  padding: 0 10px;
+}
+
 .auth-demo-banner {
   display: flex;
   align-items: center;
@@ -12993,6 +13072,36 @@ body,
 .dark-theme .compare-modal-header {
   background: #0f172a;
   border-bottom: 1px solid #1f293d;
+}
+
+.dark-theme .auth-google-btn {
+  background: #1e293b;
+  color: #f8fafc;
+  border-color: #334155;
+}
+
+.dark-theme .auth-google-btn:hover:not(:disabled) {
+  background: #283548;
+  border-color: #475569;
+}
+
+.dark-theme .auth-apple-btn {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+.dark-theme .auth-apple-btn:hover:not(:disabled) {
+  background: #f1f5f9;
+}
+
+.dark-theme .auth-divider::before,
+.dark-theme .auth-divider::after {
+  border-color: #334155;
+}
+
+.dark-theme .auth-divider {
+  color: #64748b;
 }
 
 .dark-theme .cart-drawer-header,
