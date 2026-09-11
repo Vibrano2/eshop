@@ -30,6 +30,14 @@ export const PROMO_CODES = [
     description: 'Livraison standard UE offerte',
     badge: 'Livraison Offerte'
   },
+  // Cart Abandonment & Recovery Codes
+  {
+    code: 'REVIENS10',
+    discountPercent: 10,
+    minAmount: 0,
+    description: 'Offre exclusive rétention : -10% immédiats sur votre panier',
+    badge: '-10%'
+  },
   // Loyalty & Referral Program Codes
   {
     code: 'FIDELITE5',

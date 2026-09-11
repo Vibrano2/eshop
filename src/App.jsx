@@ -30,6 +30,8 @@ import AdminDashboard from './components/AdminDashboard';
 import AccountPage from './components/AccountPage';
 import CompareFloatingBar from './components/CompareFloatingBar';
 import ProductCompareModal from './components/ProductCompareModal';
+import AbandonedCartModal from './components/AbandonedCartModal';
+import LivePurchaseToasts from './components/LivePurchaseToasts';
 
 // Services & API
 import { apiGetMe, apiLogout } from './services/api';
@@ -193,6 +195,52 @@ export default function App() {
   const handleClearCompare = () => {
     setCompareList([]);
     showCompareToast('Le comparateur a été vidé');
+  };
+
+  // Abandoned Cart Recovery (Exit-Intent)
+  const [isAbandonedCartOpen, setIsAbandonedCartOpen] = useState(false);
+
+  useEffect(() => {
+    let hasTriggered = false;
+    try {
+      hasTriggered = sessionStorage.getItem('eshop_exit_intent_dismissed') === 'true';
+    } catch {
+      hasTriggered = false;
+    }
+
+    const handleMouseLeave = (e) => {
+      // Trigger when cursor leaves through the top boundary of the window
+      if (
+        e.clientY <= 12 &&
+        !hasTriggered &&
+        cartItems.length > 0 &&
+        !isCheckoutOpen &&
+        !isAbandonedCartOpen
+      ) {
+        hasTriggered = true;
+        try {
+          sessionStorage.setItem('eshop_exit_intent_dismissed', 'true');
+        } catch (err) {
+          console.warn('Could not save exit intent state', err);
+        }
+        setIsAbandonedCartOpen(true);
+      }
+    };
+
+    document.addEventListener('mouseleave', handleMouseLeave);
+    return () => document.removeEventListener('mouseleave', handleMouseLeave);
+  }, [cartItems.length, isCheckoutOpen, isAbandonedCartOpen]);
+
+  const handleApplyDiscountAndCheckout = (code = 'REVIENS10') => {
+    handleApplyPromo(code);
+    setIsAbandonedCartOpen(false);
+    setIsCheckoutOpen(true);
+  };
+
+  const handleApplyDiscountAndStay = (code = 'REVIENS10') => {
+    handleApplyPromo(code);
+    setIsAbandonedCartOpen(false);
+    showCompareToast('Remise de -10% appliquée à votre panier !');
   };
 
   // Authenticated User State
@@ -1132,6 +1180,22 @@ export default function App() {
           <span>{compareToastMsg}</span>
         </div>
       )}
+
+      {/* Abandoned Cart Exit-Intent Modal */}
+      <AbandonedCartModal
+        isOpen={isAbandonedCartOpen}
+        onClose={() => setIsAbandonedCartOpen(false)}
+        items={cartItems}
+        subtotal={cartSubtotal}
+        onApplyDiscountAndCheckout={handleApplyDiscountAndCheckout}
+        onApplyDiscountAndStay={handleApplyDiscountAndStay}
+      />
+
+      {/* Social Proof Live Purchase Reassurance Toasts */}
+      <LivePurchaseToasts
+        products={PRODUCTS}
+        onOpenProduct={(prod) => setSelectedProduct(prod)}
+      />
 
       {/* Floating Trust Badge Button */}
       <button
