@@ -32,6 +32,7 @@ import CompareFloatingBar from './components/CompareFloatingBar';
 import ProductCompareModal from './components/ProductCompareModal';
 import AbandonedCartModal from './components/AbandonedCartModal';
 import LivePurchaseToasts from './components/LivePurchaseToasts';
+import CookieBanner from './components/CookieBanner';
 
 // Services & API
 import { apiGetMe, apiLogout } from './services/api';
@@ -1218,6 +1219,9 @@ export default function App() {
         products={PRODUCTS}
         onOpenProduct={(prod) => setSelectedProduct(prod)}
       />
+
+      {/* EU GDPR Cookie Consent Banner & Privacy Center */}
+      <CookieBanner onOpenPrivacyPolicy={() => handleOpenLegal('rgpd')} />
 
       {/* Floating Trust Badge Button */}
       <button

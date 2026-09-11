@@ -81,18 +81,79 @@ export default function LegalPagesModal({ isOpen, onClose, initialTab = 'cgv' })
             </div>
           )}
 
-          {/* TAB 3: RGPD */}
+          {/* TAB 3: RGPD & POLITIQUE DE CONFIDENTIALITÉ */}
           {activeTab === 'rgpd' && (
             <div style={{ fontSize: '0.875rem', color: '#334155', lineHeight: 1.6 }}>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem' }}>
-                Protection des Données Personnelles (RGPD)
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.5rem' }}>
+                Politique de Confidentialité & Protection des Données (RGPD)
               </h3>
-              <p>Conformément au Règlement Général sur la Protection des Données (RGPD 2016/679), vos données ne sont collectées que pour le strict traitement et le suivi de votre commande.</p>
-              <ul style={{ paddingLeft: '1.25rem', marginTop: '0.75rem' }}>
-                <li>Aucune donnée bancaire n'est stockée sur nos serveurs (cryptage direct via prestataire agréé PCI-DSS).</li>
-                <li>Droit d'accès, de rectification et d'effacement de vos données sur simple demande par email.</li>
-                <li>Zéro revente de vos informations à des tiers annonceurs.</li>
-              </ul>
+              <p style={{ color: '#64748b', fontSize: '0.8125rem', marginBottom: '1.25rem' }}>
+                Dernière mise à jour : Conforme au Règlement Européen (UE) 2016/679 (RGPD) et à la directive ePrivacy.
+              </p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div>
+                  <h4 style={{ fontSize: '0.9375rem', fontWeight: 700, color: '#1e293b', marginBottom: '0.35rem' }}>
+                    1. Responsable du Traitement des Données
+                  </h4>
+                  <p>
+                    Le traitement de vos données personnelles est effectué sous la responsabilité de <strong>eshop-store.eu</strong>. Vos données sont hébergées au sein de l'Union Européenne et ne font l'objet d'aucun transfert non sécurisé hors de l'UE.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 style={{ fontSize: '0.9375rem', fontWeight: 700, color: '#1e293b', marginBottom: '0.35rem' }}>
+                    2. Données Collectées & Finalités du Traitement
+                  </h4>
+                  <p>Nous ne collectons que les informations strictement indispensables à votre expérience d'achat :</p>
+                  <ul style={{ paddingLeft: '1.25rem', marginTop: '0.35rem' }}>
+                    <li><strong>Traitement et expédition des commandes :</strong> Nom, prénom, adresse postale de livraison et de facturation, email et numéro de téléphone pour le suivi de colis (Colissimo / DHL).</li>
+                    <li><strong>Facturation et comptabilité :</strong> Édition de factures conformes à la directive TVA européenne (conservation légale obligatoire).</li>
+                    <li><strong>Service client et SAV :</strong> Historique de commande, demandes de retour (RMA) et échanges sécurisés.</li>
+                    <li><strong>Avis vérifiés :</strong> Prénom ou pseudonyme et photos réelles fournies volontairement pour l'évaluation des produits.</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 style={{ fontSize: '0.9375rem', fontWeight: 700, color: '#1e293b', marginBottom: '0.35rem' }}>
+                    3. Sécurité des Paiements & Norme PCI-DSS
+                  </h4>
+                  <p>
+                    <strong>Aucune donnée de carte bancaire n'est jamais enregistrée ni consultée par nos serveurs.</strong> Les transactions sont déléguées directement à des prestataires de paiement certifiés <strong>PCI-DSS Niveau 1</strong> via un canal chiffré de bout en bout (protocole TLS 1.3 avec authentification forte 3-D Secure).
+                  </p>
+                </div>
+
+                <div>
+                  <h4 style={{ fontSize: '0.9375rem', fontWeight: 700, color: '#1e293b', marginBottom: '0.35rem' }}>
+                    4. Vos Droits d'Accès, de Rectification et d'Effacement
+                  </h4>
+                  <p>Conformément aux articles 15 à 22 du RGPD, vous disposez des droits suivants :</p>
+                  <ul style={{ paddingLeft: '1.25rem', marginTop: '0.35rem' }}>
+                    <li><strong>Droit d'accès et de portabilité :</strong> Téléchargement de vos données et factures depuis votre Espace Client.</li>
+                    <li><strong>Droit de rectification :</strong> Modification immédiate de vos adresses et coordonnées.</li>
+                    <li><strong>Droit à l'effacement (« droit à l'oubli ») :</strong> Suppression de votre compte et anonymisation de vos données sur simple demande à <em>privacy@eshop-store.eu</em> (sous réserve des délais légaux de conservation comptable).</li>
+                    <li><strong>Droit d'opposition et de retrait du consentement :</strong> Gestion de vos préférences cookies à tout moment via le lien « Gestion des cookies » en pied de page.</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 style={{ fontSize: '0.9375rem', fontWeight: 700, color: '#1e293b', marginBottom: '0.35rem' }}>
+                    5. Durée de Conservation des Données
+                  </h4>
+                  <p>
+                    Vos données de compte actif sont conservées tant que votre compte reste ouvert. En cas d'inactivité prolongée de plus de 3 ans, votre compte est archivé puis supprimé. Les pièces comptables et factures sont conservées 10 ans en conformité avec le code de commerce européen.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 style={{ fontSize: '0.9375rem', fontWeight: 700, color: '#1e293b', marginBottom: '0.35rem' }}>
+                    6. Réclamation auprès de l'Autorité de Contrôle
+                  </h4>
+                  <p>
+                    Pour toute question relative à vos données, contactez notre Délégué à la Protection des Données à <strong>dpo@eshop-store.eu</strong>. Vous disposez également du droit d'introduire une réclamation auprès de l'autorité de contrôle compétente (CNIL en France ou autorité locale de votre État membre de l'UE).
+                  </p>
+                </div>
+              </div>
             </div>
           )}
 

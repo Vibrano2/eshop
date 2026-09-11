@@ -60,7 +60,14 @@ export default function Footer({ onOpenLegal, onOpenTracking, onSelectCategory, 
                 <button onClick={() => onOpenLegal('rgpd')}>Politique de confidentialité</button>
               </li>
               <li>
-                <button onClick={() => onOpenLegal('rgpd')}>Gestion des cookies</button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    window.dispatchEvent(new CustomEvent('eshop:open-cookie-preferences'));
+                  }}
+                >
+                  Gestion des cookies
+                </button>
               </li>
               <li>
                 <button onClick={() => onOpenLegal('mentions')}>Mentions légales</button>
