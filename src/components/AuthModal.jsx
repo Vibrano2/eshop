@@ -6,13 +6,11 @@ import {
   User,
   Eye,
   EyeOff,
-  Sparkles,
   CheckCircle2,
   AlertCircle,
   Loader2,
   ArrowRight,
   ShieldCheck,
-  Gift
 } from 'lucide-react';
 import { apiLogin, apiRegister } from '../services/api';
 
@@ -29,24 +27,21 @@ export default function AuthModal({
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
-  // Login form state
+  // Form states
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
 
-  // Register form state
   const [regFirstName, setRegFirstName] = useState('');
   const [regLastName, setRegLastName] = useState('');
   const [regEmail, setRegEmail] = useState('');
   const [regPassword, setRegPassword] = useState('');
-  const [regCity, setRegCity] = useState('');
+  const [regPhone, setRegPhone] = useState('');
 
-  // Reset messages when switching modes or reopening
+  // Reset errors when mode changes or modal opens
   useEffect(() => {
-    if (isOpen) {
-      setMode(initialMode);
-      setErrorMessage('');
-      setSuccessMessage('');
-    }
+    setErrorMessage('');
+    setSuccessMessage('');
+    if (initialMode) setMode(initialMode);
   }, [isOpen, initialMode]);
 
   // Escape key listener
@@ -59,14 +54,6 @@ export default function AuthModal({
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
-
-  // 1-click test fill for demo account
-  const handleFillDemoAccount = () => {
-    setMode('login');
-    setLoginEmail('demo@eshop-store.eu');
-    setLoginPassword('Eshop2026!');
-    setErrorMessage('');
-  };
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
@@ -217,21 +204,6 @@ export default function AuthModal({
         {/* LOGIN FORM */}
         {mode === 'login' && (
           <form onSubmit={handleLoginSubmit} className="auth-form">
-            {/* Demo Quick Button */}
-            <div className="auth-demo-banner">
-              <div className="auth-demo-text">
-                <Sparkles size={15} color="#eab308" />
-                <span>Compte de test prêt à l'emploi :</span>
-              </div>
-              <button
-                type="button"
-                onClick={handleFillDemoAccount}
-                className="auth-demo-btn"
-              >
-                Remplir avec le compte démo
-              </button>
-            </div>
-
             <div className="auth-form-group">
               <label htmlFor="login-email">Adresse e-mail</label>
               <div className="auth-input-wrapper">
@@ -251,7 +223,6 @@ export default function AuthModal({
             <div className="auth-form-group">
               <div className="auth-label-row">
                 <label htmlFor="login-password">Mot de passe</label>
-                <span className="auth-forgot-hint">Démo: Eshop2026!</span>
               </div>
               <div className="auth-input-wrapper">
                 <Lock size={18} className="auth-input-icon" />
