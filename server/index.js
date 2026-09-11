@@ -19,6 +19,18 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const distPath = path.resolve(__dirname, '../dist');
 
+// Load environment variables from .env if present
+try {
+  if (typeof process.loadEnvFile === 'function') {
+    const envPath = path.resolve(process.cwd(), '.env');
+    if (fs.existsSync(envPath)) {
+      process.loadEnvFile(envPath);
+    }
+  }
+} catch (envErr) {
+  // Silent catch if .env is missing or already defined in environment
+}
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 const NODE_ENV = process.env.NODE_ENV || 'development';

@@ -9,14 +9,20 @@ let cachedTransporter = null;
 async function getTransporter() {
   if (cachedTransporter) return cachedTransporter;
 
-  if (process.env.SMTP_HOST && process.env.SMTP_USER) {
+  const host = process.env.SMTP_HOST || process.env.EMAIL_HOST;
+  const user = process.env.SMTP_USER || process.env.EMAIL_USER;
+  const pass = process.env.SMTP_PASS || process.env.EMAIL_PASS;
+  const port = Number(process.env.SMTP_PORT || process.env.EMAIL_PORT || 587);
+  const secure = process.env.SMTP_SECURE === 'true' || port === 465;
+
+  if (host && user) {
     cachedTransporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT || 587),
-      secure: process.env.SMTP_SECURE === 'true',
+      host,
+      port,
+      secure,
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
+        user,
+        pass: pass || ''
       }
     });
     return cachedTransporter;
@@ -250,9 +256,10 @@ export async function sendOrderConfirmationEmail(order) {
     }
 
     const htmlContent = generateOrderEmailHtml(order);
+    const fromAddress = process.env.SMTP_FROM || process.env.EMAIL_FROM || '"eshopstore.shop" <commandes@eshopstore.shop>';
 
     const mailOptions = {
-      from: '"eshopstore.shop" <commandes@eshopstore.shop>',
+      from: fromAddress,
       to: customerEmail,
       subject: `Confirmation de votre commande #${order.orderNumber} • eshopstore.shop`,
       html: htmlContent

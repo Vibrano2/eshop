@@ -6,7 +6,15 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const DB_PATH = path.join(__dirname, 'eshop.db');
+const DB_PATH = process.env.DATABASE_FILE
+  ? path.resolve(process.cwd(), process.env.DATABASE_FILE)
+  : path.join(__dirname, 'eshop.db');
+
+// Ensure directory for database exists
+const dbDir = path.dirname(DB_PATH);
+if (!fs.existsSync(dbDir)) {
+  fs.mkdirSync(dbDir, { recursive: true });
+}
 
 export const db = new DatabaseSync(DB_PATH);
 
