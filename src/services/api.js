@@ -773,3 +773,176 @@ export function exportToCsv(filename, rows, headers) {
   link.click();
   document.body.removeChild(link);
 }
+
+/**
+ * Submit a customer return request (RMA)
+ */
+export async function apiCreateReturnRequest(orderNumber, payload) {
+  try {
+    const res = await fetch(`${API_BASE}/orders/${orderNumber}/returns`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || `HTTP ${res.status}`);
+    }
+    return await res.json();
+  } catch (err) {
+    console.warn('[API fallback] Create return fallback:', err.message);
+    const rmaId = `RMA-${Math.floor(100000 + Math.random() * 900000)}`;
+    const barcode = `8R${Math.floor(1000000000 + Math.random() * 9000000000)}FR`;
+    let refundAmount = (payload.items || []).reduce(
+      (sum, it) => sum + (Number(it.quantity) || 1) * (Number(it.unitPrice || it.price || it.unit_price) || 0),
+      0
+    );
+    if (payload.refundMode === 'store_credit_bonus') {
+      refundAmount = Number((refundAmount * 1.05).toFixed(2));
+    } else {
+      refundAmount = Number(refundAmount.toFixed(2));
+    }
+
+    const fallbackReturn = {
+      id: rmaId,
+      orderNumber,
+      customerEmail: payload.customerEmail || 'client@eshop-store.eu',
+      customerName: payload.customerName || 'Client Eshop',
+      reason: payload.reason,
+      details: payload.details,
+      items: payload.items || [],
+      refundMode: payload.refundMode || 'original_payment',
+      returnLabelBarcode: barcode,
+      status: 'En attente de dépôt',
+      refundAmount,
+      carrier: 'Colissimo Retour UE',
+      warehouse: {
+        name: 'ESHOP RETOURS LOGISTIQUE UE',
+        address: '45 Rue de la Logistique, Quai 12',
+        postalCode: '93290',
+        city: 'Tremblay-en-France',
+        country: 'France'
+      },
+      createdAt: new Date().toISOString()
+    };
+
+    try {
+      const existing = JSON.parse(localStorage.getItem('eshop_returns') || '[]');
+      existing.unshift(fallbackReturn);
+      localStorage.setItem('eshop_returns', JSON.stringify(existing));
+    } catch {}
+
+    return {
+      success: true,
+      returnRequest: fallbackReturn,
+      message: 'Demande de retour enregistrée.'
+    };
+  }
+}
+
+/**
+ * Fetch all return requests for an order
+ */
+export async function apiGetOrderReturns(orderNumber) {
+  try {
+    const res = await fetch(`${API_BASE}/orders/${orderNumber}/returns`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    return data.returns || [];
+  } catch (err) {
+    console.warn('[API fallback] Order returns fallback:', err.message);
+    try {
+      const all = JSON.parse(localStorage.getItem('eshop_returns') || '[]');
+      return all.filter((r) => r.orderNumber === orderNumber);
+    } catch {
+      return [];
+    }
+  }
+}
+
+/**
+ * Fetch all return requests for authenticated user
+ */
+export async function apiGetUserReturns() {
+  const token = getAuthToken();
+  if (!token) {
+    try {
+      return JSON.parse(localStorage.getItem('eshop_returns') || '[]');
+    } catch {
+      return [];
+    }
+  }
+
+  try {
+    const res = await fetch(`${API_BASE}/auth/returns`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    return data.returns || [];
+  } catch (err) {
+    console.warn('[API fallback] User returns fallback:', err.message);
+    try {
+      return JSON.parse(localStorage.getItem('eshop_returns') || '[]');
+    } catch {
+      return [];
+    }
+  }
+}
+
+/**
+ * Admin: Fetch all return requests
+ */
+export async function apiGetAdminReturns(params = {}) {
+  const token = getAuthToken();
+  const query = new URLSearchParams();
+  if (params.status && params.status !== 'all') query.set('status', params.status);
+  if (params.q) query.set('q', params.q);
+
+  try {
+    const res = await fetch(`${API_BASE}/admin/returns?${query.toString()}`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    return data.returns || [];
+  } catch (err) {
+    console.warn('[API fallback] Admin returns fallback:', err.message);
+    try {
+      return JSON.parse(localStorage.getItem('eshop_returns') || '[]');
+    } catch {
+      return [];
+    }
+  }
+}
+
+/**
+ * Admin: Update return request status
+ */
+export async function apiUpdateReturnStatus(rmaId, status) {
+  const token = getAuthToken();
+  try {
+    const res = await fetch(`${API_BASE}/admin/returns/${rmaId}/status`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ status })
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || `HTTP ${res.status}`);
+    }
+    return await res.json();
+  } catch (err) {
+    console.warn('[API fallback] Admin update return status fallback:', err.message);
+    try {
+      const all = JSON.parse(localStorage.getItem('eshop_returns') || '[]');
+      const updated = all.map((r) => (r.id === rmaId ? { ...r, status, updatedAt: new Date().toISOString() } : r));
+      localStorage.setItem('eshop_returns', JSON.stringify(updated));
+    } catch {}
+    return { success: true, rmaId, status, message: `Statut mis à jour : ${status}` };
+  }
+}
+

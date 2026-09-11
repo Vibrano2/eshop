@@ -25,10 +25,12 @@ import {
   AlertCircle,
   ChevronRight,
   Sparkles,
-  Share2
+  Share2,
+  RotateCcw
 } from 'lucide-react';
-import { apiGetUserOrders, apiUpdateProfile, apiChangePassword, apiResendOrderEmail } from '../services/api';
+import { apiGetUserOrders, apiUpdateProfile, apiChangePassword, apiResendOrderEmail, apiGetUserReturns } from '../services/api';
 import InvoiceModal from './InvoiceModal';
+import ReturnRequestModal from './ReturnRequestModal';
 
 export default function AccountPage({
   currentUser,
@@ -53,6 +55,12 @@ export default function AccountPage({
 
   // Selected Order for Invoice
   const [selectedInvoiceOrder, setSelectedInvoiceOrder] = useState(null);
+
+  // Returns & RMA State
+  const [returnsList, setReturnsList] = useState([]);
+  const [isLoadingReturns, setIsLoadingReturns] = useState(false);
+  const [returnOrderModal, setReturnOrderModal] = useState(null);
+  const [viewingReturnLabelRma, setViewingReturnLabelRma] = useState(null);
 
   // Profile Form State
   const [profileForm, setProfileForm] = useState({
@@ -125,6 +133,21 @@ export default function AccountPage({
       isMounted = false;
     };
   }, []);
+
+  // Load returns on mount or update
+  const loadUserReturns = () => {
+    setIsLoadingReturns(true);
+    apiGetUserReturns()
+      .then((data) => setReturnsList(data || []))
+      .catch((err) => console.warn('Returns fetch error:', err))
+      .finally(() => setIsLoadingReturns(false));
+  };
+
+  useEffect(() => {
+    if (currentUser) {
+      loadUserReturns();
+    }
+  }, [currentUser]);
 
   // Handle Profile Save
   const handleSaveProfile = async (e) => {
@@ -453,6 +476,19 @@ export default function AccountPage({
 
             <button
               role="tab"
+              aria-selected={activeTab === 'returns'}
+              className={`account-tab-btn ${activeTab === 'returns' ? 'active' : ''}`}
+              onClick={() => setActiveTab('returns')}
+            >
+              <RotateCcw size={18} />
+              <span>Retours & SAV</span>
+              {returnsList.length > 0 && (
+                <span className="tab-counter-badge returns-badge">{returnsList.length}</span>
+              )}
+            </button>
+
+            <button
+              role="tab"
               aria-selected={activeTab === 'security'}
               className={`account-tab-btn ${activeTab === 'security' ? 'active' : ''}`}
               onClick={() => setActiveTab('security')}
@@ -686,6 +722,15 @@ export default function AccountPage({
                         >
                           <RefreshCw size={14} />
                           <span>Commander à nouveau</span>
+                        </button>
+
+                        <button
+                          className="account-btn-action outline return-trigger-btn"
+                          onClick={() => setReturnOrderModal(order)}
+                          title="Faire une demande de retour ou SAV (garantie 30 jours UE)"
+                        >
+                          <RotateCcw size={14} />
+                          <span>Retour / SAV</span>
                         </button>
                       </footer>
                     </article>
@@ -953,6 +998,177 @@ export default function AccountPage({
           </div>
         )}
 
+        {/* TAB: RETOURS & SAV */}
+        {activeTab === 'returns' && (
+          <div className="account-tab-content">
+            <div className="account-section-header">
+              <div>
+                <h2>Mes Retours & SAV Client</h2>
+                <p>
+                  Gérez vos demandes de rétractation et SAV sous garantie 30 jours UE. Téléchargez vos étiquettes Colissimo prépayées et suivez l'acheminement jusqu'au remboursement.
+                </p>
+              </div>
+            </div>
+
+            {isLoadingReturns ? (
+              <div className="account-loading-state">
+                <RefreshCw size={28} className="spin-icon" />
+                <p>Chargement de vos dossiers de retour...</p>
+              </div>
+            ) : returnsList.length === 0 ? (
+              <div className="account-empty-orders">
+                <div className="empty-icon-circle">
+                  <RotateCcw size={36} color="#0284c7" />
+                </div>
+                <h3>Vous n'avez aucun retour en cours</h3>
+                <p>
+                  Tous vos achats sur Eshop bénéficient de la <strong>garantie 30 jours satisfait ou remboursé</strong>. Si un article ne vous convient pas, vous pouvez demander un retour prépayé directement depuis votre commande.
+                </p>
+                <button
+                  className="account-btn-cta"
+                  onClick={() => setActiveTab('orders')}
+                >
+                  <Package size={16} />
+                  <span>Consulter mes commandes</span>
+                </button>
+              </div>
+            ) : (
+              <div className="account-returns-list">
+                {returnsList.map((ret) => {
+                  const retDate = ret.createdAt
+                    ? new Date(ret.createdAt).toLocaleDateString('fr-FR', {
+                        day: 'numeric',
+                        month: 'short',
+                        year: 'numeric'
+                      })
+                    : 'Date récente';
+
+                  const isBonus = ret.refundMode === 'store_credit_bonus';
+
+                  // Calculate timeline step (1 to 4)
+                  let currentStepIdx = 1;
+                  if (ret.status === 'En attente de dépôt') currentStepIdx = 2;
+                  if (ret.status === 'Colis retour en transit') currentStepIdx = 3;
+                  if (ret.status === 'Réceptionné & inspecté' || ret.status === 'Remboursé') currentStepIdx = 4;
+
+                  return (
+                    <article key={ret.id} className="account-return-card">
+                      <header className="return-card-header">
+                        <div className="return-card-title-group">
+                          <span className="return-rma-id font-mono font-bold">
+                            {ret.id}
+                          </span>
+                          <span className="return-order-ref">
+                            Commande #{ret.orderNumber}
+                          </span>
+                          <span className="return-date-text">
+                            Initié le {retDate}
+                          </span>
+                        </div>
+
+                        <div className="return-card-status-badge">
+                          <span className={`rma-status-pill ${ret.status === 'Remboursé' ? 'success' : 'pending'}`}>
+                            {ret.status}
+                          </span>
+                          <span className="return-amount-pill font-mono">
+                            {ret.refundAmount} €
+                          </span>
+                        </div>
+                      </header>
+
+                      {/* 4-Step Progress Tracker */}
+                      <div className="return-progress-tracker">
+                        <div className={`return-progress-step ${currentStepIdx >= 1 ? 'completed' : ''}`}>
+                          <div className="step-circle">1</div>
+                          <span className="step-label">Demande créée</span>
+                        </div>
+                        <div className={`return-progress-line ${currentStepIdx >= 2 ? 'active' : ''}`} />
+                        <div className={`return-progress-step ${currentStepIdx >= 2 ? 'completed' : ''}`}>
+                          <div className="step-circle">2</div>
+                          <span className="step-label">Étiquette prête</span>
+                        </div>
+                        <div className={`return-progress-line ${currentStepIdx >= 3 ? 'active' : ''}`} />
+                        <div className={`return-progress-step ${currentStepIdx >= 3 ? 'completed' : ''}`}>
+                          <div className="step-circle">3</div>
+                          <span className="step-label">Colis en transit</span>
+                        </div>
+                        <div className={`return-progress-line ${currentStepIdx >= 4 ? 'active' : ''}`} />
+                        <div className={`return-progress-step ${currentStepIdx >= 4 ? 'completed' : ''}`}>
+                          <div className="step-circle">4</div>
+                          <span className="step-label">Remboursement validé</span>
+                        </div>
+                      </div>
+
+                      {/* Returned Items Preview */}
+                      <div className="return-card-body">
+                        <div className="return-items-preview">
+                          <span className="section-small-title">Articles renvoyés :</span>
+                          <div className="return-items-grid">
+                            {(ret.items || []).map((it, idx) => (
+                              <div key={idx} className="return-item-mini">
+                                <img
+                                  src={it.image || 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=120&auto=format&fit=crop&q=80'}
+                                  alt={it.productName || it.name}
+                                  className="mini-thumb"
+                                />
+                                <div className="mini-info">
+                                  <span className="mini-title">{it.productName || it.name}</span>
+                                  <span className="mini-meta">
+                                    Qté : <strong>{it.quantity}</strong> × {Number(it.unitPrice || it.price || 0).toFixed(2)} €
+                                  </span>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Motif & Mode */}
+                        <div className="return-meta-details-box">
+                          <div className="meta-detail-row">
+                            <span className="meta-label">Motif déclaré :</span>
+                            <span className="meta-value">{ret.reason}</span>
+                          </div>
+                          <div className="meta-detail-row">
+                            <span className="meta-label">Mode de compensation :</span>
+                            <span className="meta-value">
+                              {isBonus ? (
+                                <span className="compensation-badge bonus">
+                                  <Gift size={13} /> Avoir boutique (+5% offert inclus)
+                                </span>
+                              ) : (
+                                <span className="compensation-badge standard">
+                                  <CreditCard size={13} /> Recrédit bancaire direct
+                                </span>
+                              )}
+                            </span>
+                          </div>
+                          <div className="meta-detail-row">
+                            <span className="meta-label">N° Suivi Colissimo Retour :</span>
+                            <span className="meta-value font-mono font-bold text-slate-800">
+                              {ret.returnLabelBarcode || '8R9283748293FR'}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Card Footer Actions */}
+                      <footer className="return-card-footer">
+                        <button
+                          className="account-btn-action primary"
+                          onClick={() => setViewingReturnLabelRma(ret)}
+                        >
+                          <Printer size={15} />
+                          <span>Voir / Imprimer l'étiquette Colissimo</span>
+                        </button>
+                      </footer>
+                    </article>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
+
         {/* TAB 4: SECURITY & PASSWORD */}
         {activeTab === 'security' && (
           <div className="account-tab-content">
@@ -1098,6 +1314,29 @@ export default function AccountPage({
           order={selectedInvoiceOrder}
           isOpen={Boolean(selectedInvoiceOrder)}
           onClose={() => setSelectedInvoiceOrder(null)}
+        />
+      )}
+
+      {/* Customer Return & RMA Modal (Creation) */}
+      {returnOrderModal && (
+        <ReturnRequestModal
+          order={returnOrderModal}
+          currentUser={currentUser}
+          onClose={() => setReturnOrderModal(null)}
+          onReturnCreated={(newRma) => {
+            loadUserReturns();
+            setActiveTab('returns');
+          }}
+        />
+      )}
+
+      {/* Customer Return & RMA Modal (View/Print Existing Label) */}
+      {viewingReturnLabelRma && (
+        <ReturnRequestModal
+          order={{ orderNumber: viewingReturnLabelRma.orderNumber, order_number: viewingReturnLabelRma.orderNumber }}
+          currentUser={currentUser}
+          existingReturn={viewingReturnLabelRma}
+          onClose={() => setViewingReturnLabelRma(null)}
         />
       )}
     </div>

@@ -341,4 +341,91 @@ router.get('/subscribers', (req, res) => {
   }
 });
 
+// GET /api/admin/returns
+router.get('/returns', (req, res) => {
+  try {
+    const { status, q } = req.query;
+    let sql = 'SELECT * FROM order_returns WHERE 1=1';
+    const params = [];
+
+    if (status && status !== 'all') {
+      sql += ' AND status = ?';
+      params.push(status);
+    }
+
+    if (q) {
+      sql += ' AND (id LIKE ? OR order_number LIKE ? OR customer_email LIKE ? OR customer_name LIKE ?)';
+      const search = `%${q.trim()}%`;
+      params.push(search, search, search, search);
+    }
+
+    sql += ' ORDER BY created_at DESC';
+
+    const returns = db.prepare(sql).all(...params);
+
+    const parsedReturns = returns.map((ret) => {
+      let items = [];
+      try {
+        items = JSON.parse(ret.items_json || '[]');
+      } catch {}
+
+      return {
+        id: ret.id,
+        orderNumber: ret.order_number,
+        customerEmail: ret.customer_email,
+        customerName: ret.customer_name,
+        reason: ret.reason,
+        details: ret.details,
+        items,
+        refundMode: ret.refund_mode,
+        returnLabelBarcode: ret.return_label_barcode,
+        status: ret.status,
+        refundAmount: ret.refund_amount,
+        createdAt: ret.created_at,
+        updatedAt: ret.updated_at
+      };
+    });
+
+    res.json({
+      success: true,
+      returns: parsedReturns,
+      total: parsedReturns.length
+    });
+  } catch (err) {
+    console.error('Admin returns fetch error:', err);
+    res.status(500).json({ success: false, error: 'Erreur lors de la récupération des retours.' });
+  }
+});
+
+// PATCH /api/admin/returns/:rmaId/status
+router.patch('/returns/:rmaId/status', (req, res) => {
+  try {
+    const { rmaId } = req.params;
+    const { status } = req.body;
+
+    if (!status) {
+      return res.status(400).json({ success: false, error: 'Nouveau statut manquant.' });
+    }
+
+    const ret = db.prepare('SELECT * FROM order_returns WHERE id = ?').get(rmaId);
+    if (!ret) {
+      return res.status(404).json({ success: false, error: 'Dossier de retour introuvable.' });
+    }
+
+    const nowIso = new Date().toISOString();
+    db.prepare('UPDATE order_returns SET status = ?, updated_at = ? WHERE id = ?').run(status, nowIso, rmaId);
+
+    res.json({
+      success: true,
+      rmaId,
+      status,
+      updatedAt: nowIso,
+      message: `Le dossier ${rmaId} est passé au statut "${status}".`
+    });
+  } catch (err) {
+    console.error('Admin update return status error:', err);
+    res.status(500).json({ success: false, error: 'Erreur lors de la mise à jour du statut du retour.' });
+  }
+});
+
 export default router;

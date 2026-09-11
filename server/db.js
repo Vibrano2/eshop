@@ -141,5 +141,22 @@ export function initDatabase() {
       created_at TEXT NOT NULL,
       FOREIGN KEY (product_id) REFERENCES products (id)
     );
+
+    CREATE TABLE IF NOT EXISTS order_returns (
+      id TEXT PRIMARY KEY,
+      order_number TEXT NOT NULL,
+      customer_email TEXT NOT NULL,
+      customer_name TEXT NOT NULL,
+      reason TEXT NOT NULL,
+      details TEXT,
+      items_json TEXT NOT NULL,
+      refund_mode TEXT NOT NULL,
+      return_label_barcode TEXT NOT NULL,
+      status TEXT NOT NULL DEFAULT 'En attente de dépôt',
+      refund_amount REAL NOT NULL,
+      created_at TEXT NOT NULL,
+      updated_at TEXT NOT NULL,
+      FOREIGN KEY (order_number) REFERENCES orders (order_number)
+    );
   `);
 }

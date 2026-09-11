@@ -353,6 +353,50 @@ router.get('/orders', authenticateToken, (req, res) => {
   }
 });
 
+// GET /api/auth/returns
+router.get('/returns', authenticateToken, (req, res) => {
+  try {
+    const user = req.user;
+
+    const returns = db.prepare(`
+      SELECT * FROM order_returns
+      WHERE customer_email = ?
+      ORDER BY created_at DESC
+    `).all(user.email);
+
+    const parsedReturns = returns.map((ret) => {
+      let items = [];
+      try {
+        items = JSON.parse(ret.items_json || '[]');
+      } catch {}
+
+      return {
+        id: ret.id,
+        orderNumber: ret.order_number,
+        customerEmail: ret.customer_email,
+        customerName: ret.customer_name,
+        reason: ret.reason,
+        details: ret.details,
+        items,
+        refundMode: ret.refund_mode,
+        returnLabelBarcode: ret.return_label_barcode,
+        status: ret.status,
+        refundAmount: ret.refund_amount,
+        createdAt: ret.created_at,
+        updatedAt: ret.updated_at
+      };
+    });
+
+    res.json({
+      success: true,
+      returns: parsedReturns
+    });
+  } catch (err) {
+    console.error('Fetch user returns error:', err);
+    res.status(500).json({ success: false, error: 'Erreur lors de la récupération des retours.' });
+  }
+});
+
 // PUT /api/auth/profile
 router.put('/profile', authenticateToken, (req, res) => {
   try {

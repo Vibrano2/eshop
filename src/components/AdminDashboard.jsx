@@ -24,7 +24,8 @@ import {
   Loader2,
   X,
   ChevronRight,
-  Mail
+  Mail,
+  RotateCcw
 } from 'lucide-react';
 import {
   apiGetAdminStats,
@@ -35,6 +36,8 @@ import {
   apiGetAdminSubscribers,
   apiResendOrderEmail,
   apiDownloadInvoicePdf,
+  apiGetAdminReturns,
+  apiUpdateReturnStatus,
   exportToCsv
 } from '../services/api';
 
@@ -72,6 +75,12 @@ export default function AdminDashboard({ onNavigateHome, currentUser, onOpenTrac
   // Subscribers state
   const [subscribers, setSubscribers] = useState([]);
 
+  // Returns state
+  const [returns, setReturns] = useState([]);
+  const [returnStatusFilter, setReturnStatusFilter] = useState('all');
+  const [returnSearch, setReturnSearch] = useState('');
+  const [updatingReturnId, setUpdatingReturnId] = useState(null);
+
   const showToast = (msg) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(''), 3500);
@@ -81,17 +90,19 @@ export default function AdminDashboard({ onNavigateHome, currentUser, onOpenTrac
   const loadData = async () => {
     setLoading(true);
     try {
-      const [statsData, ordersData, productsData, subscribersData] = await Promise.all([
+      const [statsData, ordersData, productsData, subscribersData, returnsData] = await Promise.all([
         apiGetAdminStats(),
         apiGetAdminOrders(),
         apiGetAdminProducts(),
-        apiGetAdminSubscribers()
+        apiGetAdminSubscribers(),
+        apiGetAdminReturns()
       ]);
 
       if (statsData) setStats(statsData);
       if (ordersData) setOrders(ordersData);
       if (productsData) setProducts(productsData);
       if (subscribersData) setSubscribers(subscribersData);
+      if (returnsData) setReturns(returnsData);
     } catch (err) {
       console.error('Error loading admin dashboard data:', err);
     } finally {
@@ -242,6 +253,58 @@ export default function AdminDashboard({ onNavigateHome, currentUser, onOpenTrac
     showToast('Export CSV des abonnés téléchargé !');
   };
 
+  // Update return status handler
+  const handleUpdateReturnStatus = async (rmaId, newStatus) => {
+    setUpdatingReturnId(rmaId);
+    try {
+      const res = await apiUpdateReturnStatus(rmaId, newStatus);
+      if (res && res.success) {
+        setReturns((prev) => prev.map((r) => (r.id === rmaId ? { ...r, status: newStatus } : r)));
+        showToast(`Dossier ${rmaId} : ${newStatus}`);
+      }
+    } catch (err) {
+      showToast('Erreur lors de la mise à jour du statut du retour.');
+    } finally {
+      setUpdatingReturnId(null);
+    }
+  };
+
+  // Filtered Returns
+  const filteredReturns = useMemo(() => {
+    return returns.filter((r) => {
+      const matchesStatus = returnStatusFilter === 'all' || r.status === returnStatusFilter;
+      const q = returnSearch.toLowerCase().trim();
+      const matchesQuery =
+        !q ||
+        r.id.toLowerCase().includes(q) ||
+        r.orderNumber.toLowerCase().includes(q) ||
+        (r.customerEmail && r.customerEmail.toLowerCase().includes(q)) ||
+        (r.customerName && r.customerName.toLowerCase().includes(q));
+      return matchesStatus && matchesQuery;
+    });
+  }, [returns, returnStatusFilter, returnSearch]);
+
+  // Export returns to CSV
+  const handleExportReturns = () => {
+    exportToCsv(
+      `retours-rma-${new Date().toISOString().slice(0, 10)}`,
+      returns,
+      [
+        { label: 'N° Dossier RMA', key: 'id' },
+        { label: 'N° Commande', key: 'orderNumber' },
+        { label: 'Date', key: 'createdAt' },
+        { label: 'Client', key: 'customerName' },
+        { label: 'Email', key: 'customerEmail' },
+        { label: 'Motif', key: 'reason' },
+        { label: 'Montant Remboursable (€)', key: 'refundAmount' },
+        { label: 'Mode Remboursement', key: 'refundMode' },
+        { label: 'Code-barres Colissimo', key: 'returnLabelBarcode' },
+        { label: 'Statut', key: 'status' }
+      ]
+    );
+    showToast('Export CSV des retours téléchargé !');
+  };
+
   return (
     <div className="admin-layout">
       {/* Toast Notification */}
@@ -327,6 +390,15 @@ export default function AdminDashboard({ onNavigateHome, currentUser, onOpenTrac
             <Users size={18} />
             <span>Clients & Newsletter</span>
             <span className="admin-count-pill">{subscribers.length}</span>
+          </button>
+
+          <button
+            className={`admin-tab-item ${activeTab === 'returns' ? 'active' : ''}`}
+            onClick={() => setActiveTab('returns')}
+          >
+            <RotateCcw size={18} />
+            <span>Retours & SAV (RMA)</span>
+            <span className="admin-count-pill">{returns.length}</span>
           </button>
         </nav>
 
@@ -796,6 +868,172 @@ export default function AdminDashboard({ onNavigateHome, currentUser, onOpenTrac
                         </td>
                       </tr>
                     ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* ------------------------------------------------------------------
+            TAB 5: GESTION DES RETOURS (RMA)
+            ------------------------------------------------------------------ */}
+        {activeTab === 'returns' && (
+          <div className="admin-tab-content">
+            <div className="admin-toolbar-row">
+              <div>
+                <h3 className="admin-card-title">Gestion des Retours & SAV (RMA)</h3>
+                <p className="admin-card-subtitle">
+                  Inspectez les demandes de rétractation et SAV, suivez l'acheminement Colissimo et validez les remboursements.
+                </p>
+              </div>
+
+              <div className="admin-toolbar-actions">
+                <button onClick={handleExportReturns} className="btn btn-secondary admin-export-btn">
+                  <Download size={15} />
+                  <span>Exporter les Retours (CSV)</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Filters Bar */}
+            <div className="admin-filters-bar">
+              <div className="admin-search-box">
+                <Search size={16} />
+                <input
+                  type="text"
+                  placeholder="Rechercher par N° RMA, commande, client, email..."
+                  value={returnSearch}
+                  onChange={(e) => setReturnSearch(e.target.value)}
+                />
+                {returnSearch && (
+                  <button className="clear-search-btn" onClick={() => setReturnSearch('')}>
+                    <X size={14} />
+                  </button>
+                )}
+              </div>
+
+              <div className="admin-filter-group">
+                <Filter size={15} />
+                <select
+                  value={returnStatusFilter}
+                  onChange={(e) => setReturnStatusFilter(e.target.value)}
+                  className="admin-select-filter"
+                >
+                  <option value="all">Tous les statuts ({returns.length})</option>
+                  <option value="En attente de dépôt">En attente de dépôt</option>
+                  <option value="Colis retour en transit">Colis retour en transit</option>
+                  <option value="Réceptionné & inspecté">Réceptionné & inspecté</option>
+                  <option value="Remboursé">Remboursé</option>
+                  <option value="Refusé">Refusé</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Table */}
+            <div className="admin-table-container">
+              <table className="admin-data-table">
+                <thead>
+                  <tr>
+                    <th>N° Dossier RMA</th>
+                    <th>Commande</th>
+                    <th>Client</th>
+                    <th>Articles & Motif</th>
+                    <th>Montant Remboursable</th>
+                    <th>Code Colissimo</th>
+                    <th>Statut Actuel</th>
+                    <th>Action SAV</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredReturns.length === 0 ? (
+                    <tr>
+                      <td colSpan="8" className="admin-table-empty">
+                        Aucun dossier de retour trouvé avec ces critères.
+                      </td>
+                    </tr>
+                  ) : (
+                    filteredReturns.map((ret) => {
+                      const isBonus = ret.refundMode === 'store_credit_bonus';
+                      const isUpdating = updatingReturnId === ret.id;
+
+                      return (
+                        <tr key={ret.id}>
+                          <td>
+                            <strong className="font-mono text-indigo-600">{ret.id}</strong>
+                            <div className="text-xs text-slate-400">
+                              {ret.createdAt ? new Date(ret.createdAt).toLocaleDateString('fr-FR') : 'Récent'}
+                            </div>
+                          </td>
+                          <td>
+                            <span className="font-mono font-medium">#{ret.orderNumber}</span>
+                          </td>
+                          <td>
+                            <div className="admin-customer-cell">
+                              <strong>{ret.customerName || 'Client'}</strong>
+                              <span className="text-xs text-slate-500">{ret.customerEmail}</span>
+                            </div>
+                          </td>
+                          <td>
+                            <div className="admin-return-items-cell">
+                              <span className="text-xs font-semibold text-slate-700">
+                                {(ret.items || []).map((it) => `${it.quantity}× ${it.productName || it.name}`).join(', ')}
+                              </span>
+                              <span className="text-xs text-slate-500 block italic">
+                                Motif : {ret.reason}
+                              </span>
+                            </div>
+                          </td>
+                          <td>
+                            <div className="admin-refund-cell">
+                              <strong className="text-emerald-700 font-mono text-base">
+                                {ret.refundAmount} €
+                              </strong>
+                              <span className={`text-xs block ${isBonus ? 'text-purple-600 font-semibold' : 'text-slate-500'}`}>
+                                {isBonus ? '🎁 Avoir +5%' : '💳 Carte bancaire'}
+                              </span>
+                            </div>
+                          </td>
+                          <td>
+                            <span className="font-mono text-xs bg-slate-100 px-2 py-1 rounded border border-slate-200">
+                              {ret.returnLabelBarcode || '8R9283748293FR'}
+                            </span>
+                          </td>
+                          <td>
+                            <span
+                              className={`status-badge ${
+                                ret.status === 'Remboursé'
+                                  ? 'delivered'
+                                  : ret.status === 'Refusé'
+                                  ? 'cancelled'
+                                  : 'pending'
+                              }`}
+                            >
+                              {ret.status}
+                            </span>
+                          </td>
+                          <td>
+                            <div className="admin-action-select-wrapper">
+                              {isUpdating ? (
+                                <Loader2 size={16} className="spin-icon" />
+                              ) : (
+                                <select
+                                  value={ret.status}
+                                  onChange={(e) => handleUpdateReturnStatus(ret.id, e.target.value)}
+                                  className="admin-status-select-sm"
+                                >
+                                  <option value="En attente de dépôt">En attente de dépôt</option>
+                                  <option value="Colis retour en transit">Colis retour en transit</option>
+                                  <option value="Réceptionné & inspecté">Réceptionné & inspecté</option>
+                                  <option value="Remboursé">✓ Valider Remboursement</option>
+                                  <option value="Refusé">✕ Refuser le retour</option>
+                                </select>
+                              )}
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })
                   )}
                 </tbody>
               </table>

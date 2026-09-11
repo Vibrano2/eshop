@@ -306,4 +306,147 @@ router.get('/:orderNumber/invoice.pdf', (req, res) => {
   }
 });
 
+// POST /api/orders/:orderNumber/returns
+router.post('/:orderNumber/returns', (req, res) => {
+  try {
+    const { orderNumber } = req.params;
+    const { items = [], reason, details = '', refundMode = 'original_payment' } = req.body;
+
+    const order = db.prepare('SELECT * FROM orders WHERE order_number = ?').get(orderNumber);
+    if (!order) {
+      return res.status(404).json({ success: false, error: 'Commande introuvable.' });
+    }
+
+    if (!items.length) {
+      return res.status(400).json({ success: false, error: 'Veuillez sélectionner au moins un article à retourner.' });
+    }
+
+    if (!reason) {
+      return res.status(400).json({ success: false, error: 'Veuillez spécifier le motif du retour.' });
+    }
+
+    // Calculate refund amount
+    let refundAmount = 0;
+    for (const item of items) {
+      const qty = Number(item.quantity) || 1;
+      const price = Number(item.unitPrice || item.price || item.unit_price) || 0;
+      refundAmount += qty * price;
+    }
+
+    // Apply store credit bonus +5% if chosen
+    if (refundMode === 'store_credit_bonus') {
+      refundAmount = Number((refundAmount * 1.05).toFixed(2));
+    } else {
+      refundAmount = Number(refundAmount.toFixed(2));
+    }
+
+    const rmaId = `RMA-${Math.floor(100000 + Math.random() * 900000)}`;
+    const barcode = `8R${Math.floor(1000000000 + Math.random() * 9000000000)}FR`;
+    const nowIso = new Date().toISOString();
+    const customerName = `${order.customer_first_name || ''} ${order.customer_last_name || ''}`.trim() || 'Client';
+
+    const insertReturnStmt = db.prepare(`
+      INSERT INTO order_returns (
+        id, order_number, customer_email, customer_name,
+        reason, details, items_json, refund_mode, return_label_barcode,
+        status, refund_amount, created_at, updated_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    insertReturnStmt.run(
+      rmaId,
+      orderNumber,
+      order.customer_email,
+      customerName,
+      reason,
+      details,
+      JSON.stringify(items),
+      refundMode,
+      barcode,
+      'En attente de dépôt',
+      refundAmount,
+      nowIso,
+      nowIso
+    );
+
+    const warehouseInfo = {
+      name: 'ESHOP RETOURS LOGISTIQUE UE',
+      address: '45 Rue de la Logistique, Quai 12',
+      postalCode: '93290',
+      city: 'Tremblay-en-France',
+      country: 'France'
+    };
+
+    res.status(201).json({
+      success: true,
+      returnRequest: {
+        id: rmaId,
+        orderNumber,
+        customerEmail: order.customer_email,
+        customerName,
+        senderAddress: {
+          address: order.shipping_address,
+          postalCode: order.postal_code,
+          city: order.city,
+          countryCode: order.country_code
+        },
+        warehouse: warehouseInfo,
+        reason,
+        details,
+        items,
+        refundMode,
+        returnLabelBarcode: barcode,
+        status: 'En attente de dépôt',
+        refundAmount,
+        carrier: 'Colissimo Retour UE',
+        createdAt: nowIso
+      },
+      message: 'Demande de retour validée avec succès. Votre étiquette de retour Colissimo prépayée est prête.'
+    });
+  } catch (err) {
+    console.error('Error creating return request:', err);
+    res.status(500).json({ success: false, error: 'Erreur lors de la création de la demande de retour.' });
+  }
+});
+
+// GET /api/orders/:orderNumber/returns
+router.get('/:orderNumber/returns', (req, res) => {
+  try {
+    const { orderNumber } = req.params;
+    const returns = db.prepare('SELECT * FROM order_returns WHERE order_number = ? ORDER BY created_at DESC').all(orderNumber);
+
+    const parsedReturns = returns.map((ret) => {
+      let items = [];
+      try {
+        items = JSON.parse(ret.items_json || '[]');
+      } catch {}
+
+      return {
+        id: ret.id,
+        orderNumber: ret.order_number,
+        customerEmail: ret.customer_email,
+        customerName: ret.customer_name,
+        reason: ret.reason,
+        details: ret.details,
+        items,
+        refundMode: ret.refund_mode,
+        returnLabelBarcode: ret.return_label_barcode,
+        status: ret.status,
+        refundAmount: ret.refund_amount,
+        createdAt: ret.created_at,
+        updatedAt: ret.updated_at
+      };
+    });
+
+    res.json({
+      success: true,
+      returns: parsedReturns
+    });
+  } catch (err) {
+    console.error('Error fetching order returns:', err);
+    res.status(500).json({ success: false, error: 'Erreur lors de la récupération des retours.' });
+  }
+});
+
 export default router;
+
