@@ -6,7 +6,37 @@ const router = Router({ mergeParams: true });
 // Seed initial realistic reviews if the table is empty
 export function seedInitialReviews() {
   const countRow = db.prepare('SELECT COUNT(*) as count FROM product_reviews').get();
-  if (countRow && countRow.count > 0) return;
+
+  const samplePhotos = [
+    'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80'
+  ];
+
+  if (countRow && countRow.count > 0) {
+    // If table already has reviews but no photos seeded, enrich the first reviews
+    try {
+      const existingReviewsWithPhotos = db.prepare("SELECT COUNT(*) as count FROM product_reviews WHERE photos_json IS NOT NULL AND photos_json != '[]'").get();
+      if (!existingReviewsWithPhotos || existingReviewsWithPhotos.count === 0) {
+        const firstReviews = db.prepare('SELECT id FROM product_reviews ORDER BY id ASC LIMIT 2').all();
+        if (firstReviews.length > 0) {
+          db.prepare('UPDATE product_reviews SET photos_json = ? WHERE id = ?').run(
+            JSON.stringify([samplePhotos[0], samplePhotos[1]]),
+            firstReviews[0].id
+          );
+        }
+        if (firstReviews.length > 1) {
+          db.prepare('UPDATE product_reviews SET photos_json = ? WHERE id = ?').run(
+            JSON.stringify([samplePhotos[2]]),
+            firstReviews[1].id
+          );
+        }
+      }
+    } catch (e) {
+      console.warn('Seed photos update check:', e.message);
+    }
+    return;
+  }
 
   const existingProducts = db.prepare('SELECT id, name FROM products LIMIT 5').all();
   if (!existingProducts || existingProducts.length === 0) return;
@@ -27,6 +57,7 @@ export function seedInitialReviews() {
       order_number: null,
       helpful_count: 14,
       country_code: 'FR',
+      photos_json: JSON.stringify([samplePhotos[0], samplePhotos[1]]),
       created_at: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString()
     },
     {
@@ -40,6 +71,7 @@ export function seedInitialReviews() {
       order_number: null,
       helpful_count: 8,
       country_code: 'FR',
+      photos_json: JSON.stringify([samplePhotos[2]]),
       created_at: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
     },
     {
@@ -53,6 +85,7 @@ export function seedInitialReviews() {
       order_number: null,
       helpful_count: 3,
       country_code: 'BE',
+      photos_json: '[]',
       created_at: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000).toISOString()
     },
     {
@@ -66,6 +99,7 @@ export function seedInitialReviews() {
       order_number: null,
       helpful_count: 19,
       country_code: 'FR',
+      photos_json: '[]',
       created_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString()
     },
     {
@@ -79,6 +113,7 @@ export function seedInitialReviews() {
       order_number: null,
       helpful_count: 11,
       country_code: 'FR',
+      photos_json: '[]',
       created_at: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString()
     }
   ];
@@ -86,8 +121,8 @@ export function seedInitialReviews() {
   const insertStmt = db.prepare(`
     INSERT INTO product_reviews (
       product_id, author_name, author_email, rating, title, comment,
-      is_verified_buyer, order_number, helpful_count, country_code, created_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      is_verified_buyer, order_number, helpful_count, country_code, photos_json, created_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `);
 
   for (const r of sampleReviews) {
@@ -102,6 +137,7 @@ export function seedInitialReviews() {
       r.order_number,
       r.helpful_count,
       r.country_code,
+      r.photos_json || '[]',
       r.created_at
     );
   }
@@ -117,19 +153,28 @@ function getProductReviewStats(productId) {
       averageRating: 4.8,
       totalReviews: 0,
       distribution: { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 },
-      recommendationRate: 100
+      recommendationRate: 100,
+      photosCount: 0
     };
   }
 
   const distribution = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
   let sum = 0;
   let positiveCount = 0;
+  let totalPhotos = 0;
 
   for (const r of reviews) {
     const rate = Math.min(5, Math.max(1, Math.round(r.rating)));
     distribution[rate] = (distribution[rate] || 0) + 1;
     sum += r.rating;
     if (r.rating >= 4) positiveCount++;
+
+    try {
+      const photos = JSON.parse(r.photos_json || '[]');
+      if (Array.isArray(photos)) totalPhotos += photos.length;
+    } catch {
+      // ignore parse error
+    }
   }
 
   const avg = Math.round((sum / total) * 10) / 10;
@@ -139,7 +184,23 @@ function getProductReviewStats(productId) {
     averageRating: avg,
     totalReviews: total,
     distribution,
-    recommendationRate: recRate
+    recommendationRate: recRate,
+    photosCount: totalPhotos
+  };
+}
+
+// Helper to format review object with parsed photos
+function formatReview(row) {
+  let photos = [];
+  try {
+    photos = JSON.parse(row.photos_json || '[]');
+    if (!Array.isArray(photos)) photos = [];
+  } catch {
+    photos = [];
+  }
+  return {
+    ...row,
+    photos
   };
 }
 
@@ -147,7 +208,8 @@ function getProductReviewStats(productId) {
 router.get('/:productId/reviews', (req, res) => {
   try {
     const { productId } = req.params;
-    const reviews = db.prepare('SELECT * FROM product_reviews WHERE product_id = ? ORDER BY created_at DESC').all(productId);
+    const rawReviews = db.prepare('SELECT * FROM product_reviews WHERE product_id = ? ORDER BY created_at DESC').all(productId);
+    const reviews = rawReviews.map(formatReview);
     const stats = getProductReviewStats(productId);
 
     res.json({
@@ -173,7 +235,8 @@ router.post('/:productId/reviews', (req, res) => {
       title = '',
       comment,
       orderNumber = '',
-      countryCode = 'FR'
+      countryCode = 'FR',
+      photos = []
     } = req.body;
 
     if (!authorName || !comment || !rating || rating < 1 || rating > 5) {
@@ -182,6 +245,11 @@ router.post('/:productId/reviews', (req, res) => {
         error: 'Veuillez renseigner votre nom, un commentaire et une note entre 1 et 5 étoiles.'
       });
     }
+
+    // Sanitize photos array: limit to 3 photos, strings only
+    const validPhotos = Array.isArray(photos)
+      ? photos.filter(p => typeof p === 'string' && p.trim().length > 0).slice(0, 3)
+      : [];
 
     // Check if order number exists and contains this product
     let isVerifiedBuyer = 1;
@@ -200,8 +268,8 @@ router.post('/:productId/reviews', (req, res) => {
     const insertStmt = db.prepare(`
       INSERT INTO product_reviews (
         product_id, author_name, author_email, rating, title, comment,
-        is_verified_buyer, order_number, helpful_count, country_code, created_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?, ?)
+        is_verified_buyer, order_number, helpful_count, country_code, photos_json, created_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, ?, ?, ?)
     `);
 
     const result = insertStmt.run(
@@ -214,6 +282,7 @@ router.post('/:productId/reviews', (req, res) => {
       isVerifiedBuyer,
       orderNumber ? orderNumber.trim() : null,
       countryCode,
+      JSON.stringify(validPhotos),
       createdAt
     );
 
@@ -229,13 +298,14 @@ router.post('/:productId/reviews', (req, res) => {
       console.warn('Could not update products table rating:', updateErr.message);
     }
 
-    const newReview = db.prepare('SELECT * FROM product_reviews WHERE id = ?').get(result.lastInsertRowid);
+    const newReviewRow = db.prepare('SELECT * FROM product_reviews WHERE id = ?').get(result.lastInsertRowid);
+    const newReview = formatReview(newReviewRow);
 
     res.status(201).json({
       success: true,
       review: newReview,
       stats,
-      message: 'Votre avis vérifié a été publié avec succès. Merci pour votre retour !'
+      message: 'Votre avis vérifié avec photos a été publié avec succès. Merci pour votre retour !'
     });
   } catch (err) {
     console.error('Error submitting review:', err);
@@ -261,3 +331,4 @@ router.post('/reviews/:reviewId/helpful', (req, res) => {
 });
 
 export default router;
+

@@ -138,6 +138,7 @@ export function initDatabase() {
       order_number TEXT,
       helpful_count INTEGER DEFAULT 0,
       country_code TEXT DEFAULT 'FR',
+      photos_json TEXT DEFAULT '[]',
       created_at TEXT NOT NULL,
       FOREIGN KEY (product_id) REFERENCES products (id)
     );
@@ -159,4 +160,14 @@ export function initDatabase() {
       FOREIGN KEY (order_number) REFERENCES orders (order_number)
     );
   `);
+
+  // Migration for existing tables: add photos_json if missing
+  try {
+    const prCols = db.prepare("PRAGMA table_info(product_reviews)").all();
+    if (!prCols.some(col => col.name === 'photos_json')) {
+      db.prepare("ALTER TABLE product_reviews ADD COLUMN photos_json TEXT DEFAULT '[]'").run();
+    }
+  } catch (migErr) {
+    console.warn('Migration product_reviews.photos_json check:', migErr.message);
+  }
 }
