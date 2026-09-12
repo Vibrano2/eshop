@@ -482,8 +482,7 @@ export default function CheckoutModal({
 
         {/* STEP 1: SHIPPING DETAILS */}
         {step === 1 && (
-          <div className="checkout-body-layout">
-            <form onSubmit={handleNextToPayment} className="checkout-form" noValidate>
+          <form onSubmit={handleNextToPayment} className="checkout-form" noValidate>
               <div className="checkout-section-header">
                 <div>
                   <h3 className="checkout-section-title">Adresse de livraison</h3>
@@ -763,7 +762,6 @@ export default function CheckoutModal({
                 <ArrowRight size={18} />
               </button>
             </form>
-          </div>
         )}
 
         {/* STEP 2: PAYMENT METHOD & REVIEW */}
