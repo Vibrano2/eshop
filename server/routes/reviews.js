@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { db } from '../db.js';
+import { reviewsRateLimiter } from '../middleware/rateLimiter.js';
 
 const router = Router({ mergeParams: true });
 
@@ -189,8 +190,9 @@ function getProductReviewStats(productId) {
   };
 }
 
-// Helper to format review object with parsed photos
+// Helper to format review object with parsed photos (Omit author_email for PII privacy)
 function formatReview(row) {
+  if (!row) return null;
   let photos = [];
   try {
     photos = JSON.parse(row.photos_json || '[]');
@@ -198,8 +200,10 @@ function formatReview(row) {
   } catch {
     photos = [];
   }
+
+  const { author_email, ...safeReview } = row;
   return {
-    ...row,
+    ...safeReview,
     photos
   };
 }
@@ -225,7 +229,7 @@ router.get('/:productId/reviews', (req, res) => {
 });
 
 // POST /api/products/:productId/reviews
-router.post('/:productId/reviews', (req, res) => {
+router.post('/:productId/reviews', reviewsRateLimiter, (req, res) => {
   try {
     const { productId } = req.params;
     const {
@@ -239,16 +243,24 @@ router.post('/:productId/reviews', (req, res) => {
       photos = []
     } = req.body;
 
-    if (!authorName || !comment || !rating || rating < 1 || rating > 5) {
+    const parsedRating = parseInt(rating, 10);
+    if (!authorName || !comment || isNaN(parsedRating) || parsedRating < 1 || parsedRating > 5) {
       return res.status(400).json({
         success: false,
         error: 'Veuillez renseigner votre nom, un commentaire et une note entre 1 et 5 étoiles.'
       });
     }
 
-    // Sanitize photos array: limit to 3 photos, strings only
+    const safeAuthorName = String(authorName).trim().slice(0, 60);
+    const safeTitle = String(title || '').trim().slice(0, 100);
+    const safeComment = String(comment).trim().slice(0, 1000);
+    const safeCountryCode = String(countryCode || 'FR').trim().toUpperCase().slice(0, 2);
+
+    // Sanitize photos array: limit to 3 photos, string URLs only
     const validPhotos = Array.isArray(photos)
-      ? photos.filter(p => typeof p === 'string' && p.trim().length > 0).slice(0, 3)
+      ? photos
+          .filter(p => typeof p === 'string' && (p.startsWith('http://') || p.startsWith('https://')))
+          .slice(0, 3)
       : [];
 
     // Check if order number exists and contains this product
@@ -274,14 +286,14 @@ router.post('/:productId/reviews', (req, res) => {
 
     const result = insertStmt.run(
       productId,
-      authorName.trim(),
-      authorEmail.trim(),
-      Number(rating),
-      title.trim(),
-      comment.trim(),
+      safeAuthorName,
+      authorEmail ? String(authorEmail).trim().slice(0, 100) : null,
+      parsedRating,
+      safeTitle,
+      safeComment,
       isVerifiedBuyer,
-      orderNumber ? orderNumber.trim() : null,
-      countryCode,
+      orderNumber ? orderNumber.trim().slice(0, 40) : null,
+      safeCountryCode,
       JSON.stringify(validPhotos),
       createdAt
     );

@@ -3,11 +3,27 @@ import { db } from '../db.js';
 
 const router = Router();
 
+// Helper to mask email for PII safety
+function maskEmail(email) {
+  if (!email || !email.includes('@')) return null;
+  const [local, domain] = email.split('@');
+  if (local.length <= 2) {
+    return `${local[0]}***@${domain}`;
+  }
+  return `${local[0]}***${local[local.length - 1]}@${domain}`;
+}
+
 // GET /api/loyalty/:codeOrEmail
+// Safely returns loyalty information with masked email
 router.get('/:codeOrEmail', (req, res) => {
   try {
-    const { codeOrEmail } = req.params;
-    let account = db.prepare('SELECT * FROM loyalty_accounts WHERE referral_code = ? OR email = ?').get(codeOrEmail, codeOrEmail);
+    const rawParam = String(req.params.codeOrEmail || '').trim();
+    if (!rawParam) {
+      return res.status(400).json({ success: false, error: 'Identifiant fidélité manquant.' });
+    }
+
+    const codeOrEmail = rawParam.toLowerCase();
+    let account = db.prepare('SELECT * FROM loyalty_accounts WHERE LOWER(referral_code) = ? OR LOWER(email) = ?').get(codeOrEmail, codeOrEmail);
 
     if (!account) {
       // Auto-create account if requested
@@ -25,13 +41,13 @@ router.get('/:codeOrEmail', (req, res) => {
       account = db.prepare('SELECT * FROM loyalty_accounts WHERE referral_code = ?').get(newCode);
     }
 
-    const history = db.prepare('SELECT * FROM loyalty_history WHERE referral_code = ? ORDER BY rowid DESC').all(account.referral_code);
+    const history = db.prepare('SELECT * FROM loyalty_history WHERE referral_code = ? ORDER BY rowid DESC LIMIT 50').all(account.referral_code);
 
     res.json({
       success: true,
       account: {
         referralCode: account.referral_code,
-        email: account.email,
+        email: maskEmail(account.email),
         points: account.points,
         referralsCount: account.referrals_count,
         claimedCoupons: JSON.parse(account.claimed_coupons_json || '[]'),
@@ -49,36 +65,41 @@ router.post('/claim', (req, res) => {
   try {
     const { referralCode, pointsRequired, code, label = 'Échange de récompense' } = req.body;
 
-    if (!referralCode || !pointsRequired || !code) {
-      return res.status(400).json({ success: false, error: 'Paramètres manquants.' });
+    const parsedPoints = parseInt(pointsRequired, 10);
+    if (!referralCode || isNaN(parsedPoints) || parsedPoints <= 0 || !code) {
+      return res.status(400).json({ success: false, error: 'Paramètres manquants ou invalides.' });
     }
 
-    const account = db.prepare('SELECT * FROM loyalty_accounts WHERE referral_code = ?').get(referralCode);
+    const safeReferralCode = String(referralCode).trim().slice(0, 30);
+    const safeCode = String(code).trim().toUpperCase().slice(0, 30);
+    const safeLabel = String(label || 'Échange de récompense').trim().slice(0, 100);
+
+    const account = db.prepare('SELECT * FROM loyalty_accounts WHERE referral_code = ?').get(safeReferralCode);
 
     if (!account) {
       return res.status(404).json({ success: false, error: 'Compte fidélité introuvable.' });
     }
 
-    if (account.points < pointsRequired) {
+    if (account.points < parsedPoints) {
       return res.status(400).json({ success: false, error: 'Solde de points insuffisant.' });
     }
 
     const claimed = JSON.parse(account.claimed_coupons_json || '[]');
-    if (!claimed.includes(code)) {
-      claimed.push(code);
+    if (!claimed.includes(safeCode)) {
+      claimed.push(safeCode);
     }
 
-    const newPoints = account.points - pointsRequired;
+    const newPoints = account.points - parsedPoints;
 
     db.exec('BEGIN TRANSACTION;');
     try {
       db.prepare('UPDATE loyalty_accounts SET points = ?, claimed_coupons_json = ? WHERE referral_code = ?')
-        .run(newPoints, JSON.stringify(claimed), referralCode);
+        .run(newPoints, JSON.stringify(claimed), safeReferralCode);
 
       db.prepare(`
         INSERT INTO loyalty_history (id, referral_code, label, points, type, date)
         VALUES (?, ?, ?, ?, 'debit', date('now'))
-      `).run(`claim-${Date.now()}`, referralCode, label, pointsRequired);
+      `).run(`claim-${Date.now()}`, safeReferralCode, safeLabel, parsedPoints);
 
       db.exec('COMMIT;');
 
@@ -86,7 +107,7 @@ router.post('/claim', (req, res) => {
         success: true,
         points: newPoints,
         claimedCoupons: claimed,
-        code
+        code: safeCode
       });
     } catch (txError) {
       db.exec('ROLLBACK;');

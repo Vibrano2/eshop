@@ -31,7 +31,8 @@ export default function InvoiceModal({ order, isOpen, onClose }) {
   const handleDownloadPdf = async () => {
     setIsDownloadingPdf(true);
     try {
-      await apiDownloadInvoicePdf(order.orderNumber);
+      const email = order.customerEmail || order.customer_email || order.customer?.email || '';
+      await apiDownloadInvoicePdf(order.orderNumber, email);
     } catch (err) {
       console.warn('PDF download error:', err);
     } finally {

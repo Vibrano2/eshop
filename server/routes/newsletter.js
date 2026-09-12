@@ -1,18 +1,21 @@
 import { Router } from 'express';
 import { db } from '../db.js';
+import { newsletterRateLimiter } from '../middleware/rateLimiter.js';
 
 const router = Router();
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 // POST /api/newsletter
-router.post('/', (req, res) => {
+router.post('/', newsletterRateLimiter, (req, res) => {
   try {
     const { email } = req.body;
 
-    if (!email || !email.includes('@')) {
+    if (!email || typeof email !== 'string' || !EMAIL_REGEX.test(email.trim())) {
       return res.status(400).json({ success: false, error: 'Adresse email invalide.' });
     }
 
-    const normalized = email.trim().toLowerCase();
+    const normalized = email.trim().toLowerCase().slice(0, 100);
 
     // Check if already subscribed
     const existing = db.prepare('SELECT * FROM newsletter WHERE email = ?').get(normalized);

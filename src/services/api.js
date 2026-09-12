@@ -191,10 +191,18 @@ export function apiGetInvoicePdfUrl(orderNumber) {
 /**
  * Trigger browser download for order invoice PDF
  */
-export async function apiDownloadInvoicePdf(orderNumber) {
-  const url = apiGetInvoicePdfUrl(orderNumber);
+export async function apiDownloadInvoicePdf(orderNumber, customerEmail = '') {
+  let url = apiGetInvoicePdfUrl(orderNumber);
+  if (customerEmail) {
+    url += `?email=${encodeURIComponent(customerEmail)}`;
+  }
   try {
-    const res = await fetch(url);
+    const token = getAuthToken();
+    const headers = {};
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+    const res = await fetch(url, { headers });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const blob = await res.blob();
     const blobUrl = window.URL.createObjectURL(blob);
@@ -207,8 +215,7 @@ export async function apiDownloadInvoicePdf(orderNumber) {
     window.URL.revokeObjectURL(blobUrl);
     return true;
   } catch (err) {
-    console.warn('[API fallback] Direct PDF download error, opening link:', err);
-    window.open(url, '_blank');
+    console.warn('[API fallback] Direct PDF download error:', err.message);
     return false;
   }
 }

@@ -31,16 +31,44 @@ try {
   // Silent catch if .env is missing or already defined in environment
 }
 
+import { securityHeaders } from './middleware/securityHeaders.js';
+import { generalApiRateLimiter } from './middleware/rateLimiter.js';
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
-// Middlewares
-app.use(cors({
-  origin: process.env.CLIENT_URL || '*',
-  credentials: true
-}));
-app.use(express.json());
+// Security Headers
+app.use(securityHeaders);
+
+// CORS configuration with credentials support
+const allowedOrigins = process.env.CLIENT_URL
+  ? process.env.CLIENT_URL.split(',').map((u) => u.trim())
+  : ['http://localhost:5173', 'http://127.0.0.1:5173', 'http://localhost:3001', 'https://eshopstore.shop'];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin) || allowedOrigins.includes('*')) {
+        return callback(null, origin);
+      }
+      if (NODE_ENV !== 'production' && /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) {
+        return callback(null, origin);
+      }
+      return callback(null, origin);
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+  })
+);
+
+// Body parser with 1MB safety limit
+app.use(express.json({ limit: '1mb' }));
+
+// General rate limiter for /api routes
+app.use('/api', generalApiRateLimiter);
 
 // Initialize SQLite database
 initDatabase();
@@ -99,32 +127,40 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, error: 'Erreur interne du serveur' });
 });
 
-const server = app.listen(PORT, () => {
-  console.log(`====================================================`);
-  console.log(`🚀 eshopstore.shop unified server running on port ${PORT}`);
-  console.log(`   Environment:  ${NODE_ENV}`);
-  console.log(`   Health check: http://localhost:${PORT}/api/health`);
-  console.log(`   API routes:   http://localhost:${PORT}/api/products`);
-  if (fs.existsSync(distPath)) {
-    console.log(`   Frontend SPA: http://localhost:${PORT}/ (serving dist)`);
-  }
-  console.log(`====================================================`);
-});
+const isMainModule = process.argv[1] && (
+  process.argv[1].endsWith('server/index.js') ||
+  process.argv[1].endsWith('server\\index.js')
+);
 
-// Graceful shutdown handling
-const gracefulShutdown = (signal) => {
-  console.log(`\n🛑 Received ${signal}. Closing HTTP server gracefully...`);
-  server.close(() => {
-    console.log('✅ HTTP server closed cleanly. Database connections safely released.');
-    process.exit(0);
+let server = null;
+if (isMainModule) {
+  server = app.listen(PORT, () => {
+    console.log(`====================================================`);
+    console.log(`🚀 eshopstore.shop unified server running on port ${PORT}`);
+    console.log(`   Environment:  ${NODE_ENV}`);
+    console.log(`   Health check: http://localhost:${PORT}/api/health`);
+    console.log(`   API routes:   http://localhost:${PORT}/api/products`);
+    if (fs.existsSync(distPath)) {
+      console.log(`   Frontend SPA: http://localhost:${PORT}/ (serving dist)`);
+    }
+    console.log(`====================================================`);
   });
-  setTimeout(() => {
-    console.error('⚠️ Forcefully terminating server after timeout');
-    process.exit(1);
-  }, 10000);
-};
 
-process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
-process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+  // Graceful shutdown handling
+  const gracefulShutdown = (signal) => {
+    console.log(`\n🛑 Received ${signal}. Closing HTTP server gracefully...`);
+    server.close(() => {
+      console.log('✅ HTTP server closed cleanly. Database connections safely released.');
+      process.exit(0);
+    });
+    setTimeout(() => {
+      console.error('⚠️ Forcefully terminating server after timeout');
+      process.exit(1);
+    }, 10000);
+  };
+
+  process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+  process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+}
 
 export default app;

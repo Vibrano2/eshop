@@ -1,8 +1,11 @@
 import { Router } from 'express';
 import crypto from 'node:crypto';
 import { db } from '../db.js';
+import { authRateLimiter } from '../middleware/rateLimiter.js';
 
 const router = Router();
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Password hashing helper
 function hashPassword(password, salt = null) {
@@ -58,7 +61,7 @@ export function authenticateToken(req, res, next) {
 }
 
 // POST /api/auth/register
-router.post('/register', (req, res) => {
+router.post('/register', authRateLimiter, (req, res) => {
   try {
     const {
       email,
@@ -72,19 +75,27 @@ router.post('/register', (req, res) => {
       countryCode = 'FR'
     } = req.body;
 
-    if (!email || !email.includes('@')) {
+    if (!email || typeof email !== 'string' || !EMAIL_REGEX.test(email.trim())) {
       return res.status(400).json({ success: false, error: 'Adresse e-mail invalide.' });
     }
 
-    if (!password || password.length < 6) {
-      return res.status(400).json({ success: false, error: 'Le mot de passe doit contenir au moins 6 caractères.' });
+    if (!password || typeof password !== 'string' || password.length < 8) {
+      return res.status(400).json({ success: false, error: 'Le mot de passe doit contenir au moins 8 caractères.' });
     }
 
-    if (!firstName || !lastName) {
+    if (!firstName || typeof firstName !== 'string' || !lastName || typeof lastName !== 'string') {
       return res.status(400).json({ success: false, error: 'Le prénom et le nom sont requis.' });
     }
 
-    const normalizedEmail = email.trim().toLowerCase();
+    const safeFirstName = firstName.trim().slice(0, 60);
+    const safeLastName = lastName.trim().slice(0, 60);
+    const safePhone = String(phone || '').trim().slice(0, 30);
+    const safeAddress = String(address || '').trim().slice(0, 120);
+    const safePostalCode = String(postalCode || '').trim().slice(0, 20);
+    const safeCity = String(city || '').trim().slice(0, 60);
+    const safeCountryCode = String(countryCode || 'FR').trim().toUpperCase().slice(0, 2);
+
+    const normalizedEmail = email.trim().toLowerCase().slice(0, 100);
 
     // Check if email already registered
     const existing = db.prepare('SELECT id FROM users WHERE email = ?').get(normalizedEmail);
@@ -129,13 +140,13 @@ router.post('/register', (req, res) => {
       normalizedEmail,
       hash,
       salt,
-      firstName.trim(),
-      lastName.trim(),
-      phone.trim(),
-      address.trim(),
-      postalCode.trim(),
-      city.trim(),
-      countryCode.toUpperCase(),
+      safeFirstName,
+      safeLastName,
+      safePhone,
+      safeAddress,
+      safePostalCode,
+      safeCity,
+      safeCountryCode,
       activeLoyaltyCode
     );
 
@@ -153,13 +164,13 @@ router.post('/register', (req, res) => {
     const userProfile = {
       id: userId,
       email: normalizedEmail,
-      firstName: firstName.trim(),
-      lastName: lastName.trim(),
-      phone: phone.trim(),
-      address: address.trim(),
-      postalCode: postalCode.trim(),
-      city: city.trim(),
-      countryCode: countryCode.toUpperCase(),
+      firstName: safeFirstName,
+      lastName: safeLastName,
+      phone: safePhone,
+      address: safeAddress,
+      postalCode: safePostalCode,
+      city: safeCity,
+      countryCode: safeCountryCode,
       role: 'customer',
       loyaltyCode: activeLoyaltyCode,
       loyaltyPoints: points
@@ -178,7 +189,7 @@ router.post('/register', (req, res) => {
 });
 
 // POST /api/auth/login
-router.post('/login', (req, res) => {
+router.post('/login', authRateLimiter, (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -441,7 +452,7 @@ router.put('/profile', authenticateToken, (req, res) => {
 });
 
 // PUT /api/auth/password
-router.put('/password', authenticateToken, (req, res) => {
+router.put('/password', authenticateToken, authRateLimiter, (req, res) => {
   try {
     const user = req.user;
     const { currentPassword, newPassword } = req.body;
@@ -450,8 +461,8 @@ router.put('/password', authenticateToken, (req, res) => {
       return res.status(400).json({ success: false, error: 'Veuillez renseigner le mot de passe actuel et le nouveau mot de passe.' });
     }
 
-    if (newPassword.length < 6) {
-      return res.status(400).json({ success: false, error: 'Le nouveau mot de passe doit comporter au moins 6 caractères.' });
+    if (typeof newPassword !== 'string' || newPassword.length < 8) {
+      return res.status(400).json({ success: false, error: 'Le nouveau mot de passe doit comporter au moins 8 caractères.' });
     }
 
     // Retrieve current stored credentials

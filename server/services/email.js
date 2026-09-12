@@ -9,9 +9,32 @@ let cachedTransporter = null;
 async function getTransporter() {
   if (cachedTransporter) return cachedTransporter;
 
+  // Use JSON transport in automated tests to prevent outbound SMTP calls
+  if (process.env.NODE_ENV === 'test') {
+    cachedTransporter = nodemailer.createTransport({ jsonTransport: true });
+    return cachedTransporter;
+  }
+
+  // 1. Resend API service (if configured)
+  const resendApiKey = (process.env.RESEND_API || process.env.RESEND_API_KEY || '').trim();
+  if (resendApiKey) {
+    cachedTransporter = nodemailer.createTransport({
+      host: 'smtp.resend.com',
+      port: 465,
+      secure: true,
+      auth: {
+        user: 'resend',
+        pass: resendApiKey
+      }
+    });
+    return cachedTransporter;
+  }
+
+  // 2. Standard SMTP / Gmail
   const host = process.env.SMTP_HOST || process.env.EMAIL_HOST;
   const user = process.env.SMTP_USER || process.env.EMAIL_USER;
-  const pass = process.env.SMTP_PASS || process.env.EMAIL_PASS;
+  const rawPass = (process.env.SMTP_PASS || process.env.EMAIL_PASS || '').trim();
+  const pass = (host && host.includes('gmail.com')) ? rawPass.replace(/\s+/g, '') : rawPass;
   const port = Number(process.env.SMTP_PORT || process.env.EMAIL_PORT || 587);
   const secure = process.env.SMTP_SECURE === 'true' || port === 465;
 
@@ -256,7 +279,20 @@ export async function sendOrderConfirmationEmail(order) {
     }
 
     const htmlContent = generateOrderEmailHtml(order);
-    const fromAddress = process.env.SMTP_FROM || process.env.EMAIL_FROM || '"eshopstore.shop" <commandes@eshopstore.shop>';
+    
+    const resendApiKey = (process.env.RESEND_API || process.env.RESEND_API_KEY || '').trim();
+    let fromAddress;
+    if (resendApiKey) {
+      if (process.env.RESEND_FROM) {
+        fromAddress = process.env.RESEND_FROM;
+      } else if (process.env.SMTP_FROM && !process.env.SMTP_FROM.includes('@gmail.com')) {
+        fromAddress = process.env.SMTP_FROM;
+      } else {
+        fromAddress = '"eshopstore.shop" <onboarding@resend.dev>';
+      }
+    } else {
+      fromAddress = process.env.SMTP_FROM || process.env.EMAIL_FROM || '"eshopstore.shop" <commandes@eshopstore.shop>';
+    }
 
     const mailOptions = {
       from: fromAddress,

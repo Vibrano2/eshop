@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import crypto from 'node:crypto';
+import { paymentRateLimiter } from '../middleware/rateLimiter.js';
 
 const router = Router();
 
@@ -39,7 +40,7 @@ const KNOWN_TEST_CARDS = {
  * POST /api/payment/create-intent
  * Initialize a Payment Intent (Stripe Sandbox or Live if STRIPE_SECRET_KEY provided)
  */
-router.post('/create-intent', async (req, res) => {
+router.post('/create-intent', paymentRateLimiter, async (req, res) => {
   try {
     const { amount, currency = 'eur', customer = {}, cardNumber = '' } = req.body;
 
@@ -91,7 +92,7 @@ router.post('/create-intent', async (req, res) => {
  * POST /api/payment/confirm-intent
  * Confirm payment with 3DS challenge token or OTP
  */
-router.post('/confirm-intent', (req, res) => {
+router.post('/confirm-intent', paymentRateLimiter, (req, res) => {
   try {
     const { paymentIntentId, otpCode, simulatedAppApproval } = req.body;
 

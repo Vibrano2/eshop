@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, lazy, Suspense } from 'react';
 import AnnouncementBar from './components/AnnouncementBar';
 import Header from './components/Header';
 import HeroBanner from './components/HeroBanner';
@@ -12,25 +12,25 @@ import ReviewsSection from './components/ReviewsSection';
 import NewsletterSection from './components/NewsletterSection';
 import Footer from './components/Footer';
 
-// Dedicated Catalogue View
-import CataloguePage from './components/CataloguePage';
+// Code-split Dedicated Views & Heavy Modals
+const CataloguePage = lazy(() => import('./components/CataloguePage'));
+const AdminDashboard = lazy(() => import('./components/AdminDashboard'));
+const AccountPage = lazy(() => import('./components/AccountPage'));
+const OrderTracking = lazy(() => import('./components/OrderTracking'));
+const LegalPagesModal = lazy(() => import('./components/LegalPagesModal'));
+const ReassuranceModal = lazy(() => import('./components/ReassuranceModal'));
+const AboutModal = lazy(() => import('./components/AboutModal'));
+const LoyaltyModal = lazy(() => import('./components/LoyaltyModal'));
+const ProductCompareModal = lazy(() => import('./components/ProductCompareModal'));
+const AbandonedCartModal = lazy(() => import('./components/AbandonedCartModal'));
 
-// Modals & Drawers
+// Eager Modals & Core Widgets
 import ProductDetailModal from './components/ProductDetailModal';
 import CartDrawer from './components/CartDrawer';
 import CheckoutModal from './components/CheckoutModal';
-import OrderTracking from './components/OrderTracking';
-import LegalPagesModal from './components/LegalPagesModal';
-import ReassuranceModal from './components/ReassuranceModal';
-import AboutModal from './components/AboutModal';
 import ChatWidget from './components/ChatWidget';
-import LoyaltyModal from './components/LoyaltyModal';
 import AuthModal from './components/AuthModal';
-import AdminDashboard from './components/AdminDashboard';
-import AccountPage from './components/AccountPage';
 import CompareFloatingBar from './components/CompareFloatingBar';
-import ProductCompareModal from './components/ProductCompareModal';
-import AbandonedCartModal from './components/AbandonedCartModal';
 import LivePurchaseToasts from './components/LivePurchaseToasts';
 import CookieBanner from './components/CookieBanner';
 
@@ -62,6 +62,9 @@ export default function App() {
   // Navigation / View state initialized from URL pathname if present
   const [activeView, setActiveView] = useState(() => {
     const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+    if (!path || path === 'home') {
+      return 'home';
+    }
     if (path === 'admin') {
       return 'admin';
     }
@@ -71,7 +74,7 @@ export default function App() {
     if (VALID_CATEGORY_SLUGS.includes(path) || path === 'shop') {
       return 'shop';
     }
-    return 'home';
+    return '404';
   });
 
   const [selectedCategory, setSelectedCategory] = useState(() => {
@@ -121,10 +124,12 @@ export default function App() {
         setActiveView('shop');
         setSelectedCategory('all');
         setSelectedSubcategory(null);
-      } else {
+      } else if (path === '' || path === 'home') {
         setActiveView('home');
         setSelectedCategory('all');
         setSelectedSubcategory(null);
+      } else {
+        setActiveView('404');
       }
     };
 
@@ -797,45 +802,86 @@ export default function App() {
           /* ========================================================
              EXECUTIVE ADMIN BACK-OFFICE VIEW (/admin)
              ======================================================== */
-          <AdminDashboard
-            onNavigateHome={handleNavigateHome}
-            currentUser={currentUser}
-            onOpenTrackingWithOrder={handleOpenTrackingWithOrder}
-          />
+          <Suspense fallback={<div className="container" style={{ padding: '6rem 1rem', textAlign: 'center', color: '#64748b' }}>Chargement du panneau d'administration...</div>}>
+            <AdminDashboard
+              onNavigateHome={handleNavigateHome}
+              currentUser={currentUser}
+              onAuthSuccess={handleAuthSuccess}
+              onLogout={handleLogout}
+              onOpenTrackingWithOrder={handleOpenTrackingWithOrder}
+            />
+          </Suspense>
         ) : activeView === 'account' ? (
           /* ========================================================
              CUSTOMER MY ACCOUNT VIEW (/account, /mon-compte)
              ======================================================== */
-          <AccountPage
-            currentUser={currentUser}
-            onUpdateUser={(updated) => setCurrentUser(updated)}
-            onLogout={handleLogout}
-            onNavigateHome={handleNavigateHome}
-            onOpenShop={handleOpenShop}
-            onOpenTrackingWithOrder={handleOpenTrackingWithOrder}
-            onOpenLoyalty={() => setIsLoyaltyOpen(true)}
-            onAddToCart={handleAddToCart}
-            onOpenAuth={handleOpenAuth}
-            initialTab={accountInitialTab}
-          />
+          <Suspense fallback={<div className="container" style={{ padding: '6rem 1rem', textAlign: 'center', color: '#64748b' }}>Chargement de votre compte...</div>}>
+            <AccountPage
+              currentUser={currentUser}
+              onUpdateUser={(updated) => setCurrentUser(updated)}
+              onLogout={handleLogout}
+              onNavigateHome={handleNavigateHome}
+              onOpenShop={handleOpenShop}
+              onOpenTrackingWithOrder={handleOpenTrackingWithOrder}
+              onOpenLoyalty={() => setIsLoyaltyOpen(true)}
+              onAddToCart={handleAddToCart}
+              onOpenAuth={handleOpenAuth}
+              initialTab={accountInitialTab}
+            />
+          </Suspense>
         ) : activeView === 'shop' ? (
           /* ========================================================
              DEDICATED CATALOGUE / CATEGORY VIEW (/shop, /mode, ...)
              ======================================================== */
-          <CataloguePage
-            products={PRODUCTS}
-            initialCategory={selectedCategory}
-            initialSubcategory={selectedSubcategory}
-            initialSearch={searchQuery}
-            onOpenDetails={(p) => setSelectedProduct(p)}
-            onAddToCart={(p, qty, variant) => handleAddToCart(p, qty, variant)}
-            wishlist={wishlist}
-            onToggleWishlist={handleToggleWishlist}
-            onNavigateHome={handleNavigateHome}
-            onSelectCategory={handleOpenShop}
-            compareList={compareList}
-            onToggleCompare={handleToggleCompare}
-          />
+          <Suspense fallback={<div className="container" style={{ padding: '6rem 1rem', textAlign: 'center', color: '#64748b' }}>Chargement du catalogue...</div>}>
+            <CataloguePage
+              products={PRODUCTS}
+              initialCategory={selectedCategory}
+              initialSubcategory={selectedSubcategory}
+              initialSearch={searchQuery}
+              onOpenDetails={(p) => setSelectedProduct(p)}
+              onAddToCart={(p, qty, variant) => handleAddToCart(p, qty, variant)}
+              wishlist={wishlist}
+              onToggleWishlist={handleToggleWishlist}
+              onNavigateHome={handleNavigateHome}
+              onSelectCategory={handleOpenShop}
+              compareList={compareList}
+              onToggleCompare={handleToggleCompare}
+            />
+          </Suspense>
+        ) : activeView === '404' ? (
+          /* ========================================================
+             CUSTOM 404 NOT FOUND VIEW
+             ======================================================== */
+          <div className="container" style={{ minHeight: '65vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '4rem 1rem' }}>
+            <div style={{ fontSize: '4.5rem', fontWeight: '900', color: '#2563eb', lineHeight: 1, marginBottom: '1rem' }}>
+              404
+            </div>
+            <h1 style={{ fontSize: '1.8rem', fontWeight: '800', color: 'var(--text-primary, #0f172a)', marginBottom: '0.75rem' }}>
+              Page introuvable
+            </h1>
+            <p style={{ maxWidth: '480px', color: 'var(--text-secondary, #64748b)', fontSize: '1rem', marginBottom: '2rem', lineHeight: 1.6 }}>
+              Désolé, la page que vous recherchez n'existe pas ou a été déplacée. Retrouvez tous nos gadgets pratiques sur notre catalogue officiel.
+            </p>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+              <button
+                type="button"
+                onClick={handleNavigateHome}
+                className="btn btn-primary"
+                style={{ padding: '0.85rem 1.75rem', fontSize: '0.95rem' }}
+              >
+                Retour à l'accueil
+              </button>
+              <button
+                type="button"
+                onClick={() => handleOpenShop('all')}
+                className="btn btn-outline"
+                style={{ padding: '0.85rem 1.75rem', fontSize: '0.95rem' }}
+              >
+                Explorer le catalogue
+              </button>
+            </div>
+          </div>
         ) : (
           /* ========================================================
              EXACT HOMEPAGE HIERARCHY (Sections 14, 15, 16, 17)
@@ -1132,50 +1178,70 @@ export default function App() {
       />
 
       {/* Order Tracking Modal */}
-      <OrderTracking
-        isOpen={isTrackingOpen}
-        initialOrderNumber={trackingOrderNumber}
-        onClose={() => {
-          setIsTrackingOpen(false);
-          setTrackingOrderNumber(null);
-        }}
-      />
+      {isTrackingOpen && (
+        <Suspense fallback={null}>
+          <OrderTracking
+            isOpen={isTrackingOpen}
+            initialOrderNumber={trackingOrderNumber}
+            onClose={() => {
+              setIsTrackingOpen(false);
+              setTrackingOrderNumber(null);
+            }}
+          />
+        </Suspense>
+      )}
 
       {/* Legal & Compliance Modal */}
-      <LegalPagesModal
-        isOpen={isLegalOpen}
-        initialTab={legalTab}
-        onClose={() => setIsLegalOpen(false)}
-      />
+      {isLegalOpen && (
+        <Suspense fallback={null}>
+          <LegalPagesModal
+            isOpen={isLegalOpen}
+            initialTab={legalTab}
+            onClose={() => setIsLegalOpen(false)}
+          />
+        </Suspense>
+      )}
 
       {/* Engagements & Garanties UE Popup Modal */}
-      <ReassuranceModal
-        isOpen={isReassuranceOpen}
-        onClose={() => setIsReassuranceOpen(false)}
-        onOpenLegal={(tab) => {
-          setLegalTab(tab);
-          setIsLegalOpen(true);
-        }}
-      />
+      {isReassuranceOpen && (
+        <Suspense fallback={null}>
+          <ReassuranceModal
+            isOpen={isReassuranceOpen}
+            onClose={() => setIsReassuranceOpen(false)}
+            onOpenLegal={(tab) => {
+              setLegalTab(tab);
+              setIsLegalOpen(true);
+            }}
+          />
+        </Suspense>
+      )}
 
       {/* About & Brand Story Modal */}
-      <AboutModal
-        isOpen={isAboutOpen}
-        onClose={() => setIsAboutOpen(false)}
-        lang={currentLang}
-        onOpenShop={handleOpenShop}
-        onOpenReassurance={() => setIsReassuranceOpen(true)}
-      />
+      {isAboutOpen && (
+        <Suspense fallback={null}>
+          <AboutModal
+            isOpen={isAboutOpen}
+            onClose={() => setIsAboutOpen(false)}
+            lang={currentLang}
+            onOpenShop={handleOpenShop}
+            onOpenReassurance={() => setIsReassuranceOpen(true)}
+          />
+        </Suspense>
+      )}
 
       {/* Loyalty & Referral Modal */}
-      <LoyaltyModal
-        isOpen={isLoyaltyOpen}
-        onClose={() => setIsLoyaltyOpen(false)}
-        loyaltyState={loyaltyState}
-        onClaimReward={handleClaimReward}
-        onApplyPromoCode={(c) => handleApplyPromo(c)}
-        lang={currentLang}
-      />
+      {isLoyaltyOpen && (
+        <Suspense fallback={null}>
+          <LoyaltyModal
+            isOpen={isLoyaltyOpen}
+            onClose={() => setIsLoyaltyOpen(false)}
+            loyaltyState={loyaltyState}
+            onClaimReward={handleClaimReward}
+            onApplyPromoCode={(c) => handleApplyPromo(c)}
+            lang={currentLang}
+          />
+        </Suspense>
+      )}
 
       {/* Authentication & Customer Account Modal */}
       <AuthModal
@@ -1207,22 +1273,26 @@ export default function App() {
       />
 
       {/* Full Side-by-Side Product Comparison Modal */}
-      <ProductCompareModal
-        isOpen={isCompareModalOpen}
-        onClose={() => setIsCompareModalOpen(false)}
-        compareList={compareList}
-        products={PRODUCTS}
-        onAddToCart={(prod) => {
-          handleAddToCart(prod, 1);
-          showCompareToast(`« ${prod.name} » ajouté au panier !`);
-        }}
-        onRemoveItem={handleRemoveCompareItem}
-        onClearAll={handleClearCompare}
-        onOpenDetails={(prod) => {
-          setIsCompareModalOpen(false);
-          setSelectedProduct(prod);
-        }}
-      />
+      {isCompareModalOpen && (
+        <Suspense fallback={null}>
+          <ProductCompareModal
+            isOpen={isCompareModalOpen}
+            onClose={() => setIsCompareModalOpen(false)}
+            compareList={compareList}
+            products={PRODUCTS}
+            onAddToCart={(prod) => {
+              handleAddToCart(prod, 1);
+              showCompareToast(`« ${prod.name} » ajouté au panier !`);
+            }}
+            onRemoveItem={handleRemoveCompareItem}
+            onClearAll={handleClearCompare}
+            onOpenDetails={(prod) => {
+              setIsCompareModalOpen(false);
+              setSelectedProduct(prod);
+            }}
+          />
+        </Suspense>
+      )}
 
       {/* Floating Compare Action Toast */}
       {compareToastMsg && (
@@ -1232,14 +1302,18 @@ export default function App() {
       )}
 
       {/* Abandoned Cart Exit-Intent Modal */}
-      <AbandonedCartModal
-        isOpen={isAbandonedCartOpen}
-        onClose={() => setIsAbandonedCartOpen(false)}
-        items={cartItems}
-        subtotal={cartSubtotal}
-        onApplyDiscountAndCheckout={handleApplyDiscountAndCheckout}
-        onApplyDiscountAndStay={handleApplyDiscountAndStay}
-      />
+      {isAbandonedCartOpen && (
+        <Suspense fallback={null}>
+          <AbandonedCartModal
+            isOpen={isAbandonedCartOpen}
+            onClose={() => setIsAbandonedCartOpen(false)}
+            items={cartItems}
+            subtotal={cartSubtotal}
+            onApplyDiscountAndCheckout={handleApplyDiscountAndCheckout}
+            onApplyDiscountAndStay={handleApplyDiscountAndStay}
+          />
+        </Suspense>
+      )}
 
       {/* Social Proof Live Purchase Reassurance Toasts */}
       <LivePurchaseToasts

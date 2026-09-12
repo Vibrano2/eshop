@@ -25,9 +25,11 @@ import {
   X,
   ChevronRight,
   Mail,
-  RotateCcw
+  RotateCcw,
+  Lock
 } from 'lucide-react';
 import {
+  apiLogin,
   apiGetAdminStats,
   apiGetAdminOrders,
   apiUpdateOrderStatus,
@@ -49,10 +51,16 @@ const STATUS_CONFIG = {
   'Annulée': { label: 'Annulée', color: '#ef4444', bg: '#fef2f2', icon: AlertTriangle }
 };
 
-export default function AdminDashboard({ onNavigateHome, currentUser, onOpenTrackingWithOrder }) {
+export default function AdminDashboard({ onNavigateHome, currentUser, onAuthSuccess, onLogout, onOpenTrackingWithOrder }) {
   const [activeTab, setActiveTab] = useState('overview'); // 'overview' | 'orders' | 'stocks' | 'subscribers'
   const [loading, setLoading] = useState(true);
   const [toastMessage, setToastMessage] = useState('');
+
+  // Admin Login gate state
+  const [adminEmail, setAdminEmail] = useState('');
+  const [adminPassword, setAdminPassword] = useState('');
+  const [adminLoginLoading, setAdminLoginLoading] = useState(false);
+  const [adminLoginError, setAdminLoginError] = useState('');
 
   // Stats state
   const [stats, setStats] = useState(null);
@@ -86,7 +94,7 @@ export default function AdminDashboard({ onNavigateHome, currentUser, onOpenTrac
     setTimeout(() => setToastMessage(''), 3500);
   };
 
-  // Load dashboard data
+  // Load dashboard data only for authorized admins
   const loadData = async () => {
     setLoading(true);
     try {
@@ -111,8 +119,35 @@ export default function AdminDashboard({ onNavigateHome, currentUser, onOpenTrac
   };
 
   useEffect(() => {
-    loadData();
-  }, []);
+    if (currentUser?.role === 'admin') {
+      loadData();
+    }
+  }, [currentUser?.role]);
+
+  const handleAdminLogin = async (e) => {
+    e.preventDefault();
+    setAdminLoginLoading(true);
+    setAdminLoginError('');
+    try {
+      const res = await apiLogin(adminEmail, adminPassword);
+      if (res && res.success && res.user) {
+        if (res.user.role !== 'admin') {
+          setAdminLoginError('Ce compte ne possède pas les privilèges administrateur.');
+        } else {
+          if (typeof onAuthSuccess === 'function') {
+            onAuthSuccess(res.user);
+          }
+          showToast('Connexion administrateur réussie.');
+        }
+      } else {
+        setAdminLoginError(res?.error || 'Identifiants administrateur incorrects.');
+      }
+    } catch (err) {
+      setAdminLoginError('Erreur de connexion au serveur.');
+    } finally {
+      setAdminLoginLoading(false);
+    }
+  };
 
   // Update order status handler
   const handleStatusChange = async (orderNumber, newStatus) => {
@@ -304,6 +339,99 @@ export default function AdminDashboard({ onNavigateHome, currentUser, onOpenTrac
     );
     showToast('Export CSV des retours téléchargé !');
   };
+
+  if (currentUser?.role !== 'admin') {
+    return (
+      <div className="admin-layout" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+        <div style={{ maxWidth: '440px', width: '100%', background: 'var(--bg-surface, #ffffff)', border: '1px solid var(--border-color, #e2e8f0)', borderRadius: '16px', padding: '2.5rem', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)' }}>
+          <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+            <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: '#eff6ff', color: '#2563eb', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1rem auto' }}>
+              <Lock size={28} />
+            </div>
+            <h2 style={{ fontSize: '1.4rem', fontWeight: '800', color: 'var(--text-primary, #0f172a)', margin: '0 0 0.5rem 0' }}>
+              Back-Office Administrateur
+            </h2>
+            <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary, #64748b)', margin: 0 }}>
+              Accès strictement réservé aux gestionnaires de la boutique eshopstore.shop.
+            </p>
+          </div>
+
+          {currentUser && currentUser.role !== 'admin' && (
+            <div style={{ background: '#fef2f2', border: '1px solid #fee2e2', borderRadius: '10px', padding: '1rem', marginBottom: '1.5rem', color: '#991b1b', fontSize: '0.85rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: '700', marginBottom: '0.25rem' }}>
+                <ShieldAlert size={16} />
+                Accès non autorisé
+              </div>
+              Connecté en tant que client ({currentUser.email}). Ce rôle ne permet pas d'accéder aux fonctions d'administration.
+              <button
+                onClick={onLogout}
+                style={{ display: 'block', marginTop: '0.75rem', fontSize: '0.8rem', color: '#b91c1c', fontWeight: '700', textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+              >
+                Se déconnecter de ce compte
+              </button>
+            </div>
+          )}
+
+          {(!currentUser || currentUser.role !== 'admin') && (
+            <form onSubmit={handleAdminLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              {adminLoginError && (
+                <div style={{ background: '#fef2f2', color: '#b91c1c', padding: '0.75rem', borderRadius: '8px', fontSize: '0.85rem' }}>
+                  {adminLoginError}
+                </div>
+              )}
+
+              <div>
+                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: '600', marginBottom: '0.4rem', color: 'var(--text-primary, #0f172a)' }}>
+                  Email Administrateur
+                </label>
+                <input
+                  type="email"
+                  required
+                  placeholder="admin@eshopstore.shop"
+                  value={adminEmail}
+                  onChange={(e) => setAdminEmail(e.target.value)}
+                  style={{ width: '100%', padding: '0.75rem 1rem', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '0.95rem', boxSizing: 'border-box' }}
+                />
+              </div>
+
+              <div>
+                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: '600', marginBottom: '0.4rem', color: 'var(--text-primary, #0f172a)' }}>
+                  Mot de passe
+                </label>
+                <input
+                  type="password"
+                  required
+                  placeholder="••••••••"
+                  value={adminPassword}
+                  onChange={(e) => setAdminPassword(e.target.value)}
+                  style={{ width: '100%', padding: '0.75rem 1rem', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '0.95rem', boxSizing: 'border-box' }}
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={adminLoginLoading}
+                style={{ width: '100%', padding: '0.85rem', background: '#2563eb', color: '#ffffff', border: 'none', borderRadius: '8px', fontWeight: '700', fontSize: '0.95rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginTop: '0.5rem' }}
+              >
+                {adminLoginLoading ? <Loader2 size={18} className="spin" /> : <Lock size={16} />}
+                <span>Connexion Back-Office</span>
+              </button>
+            </form>
+          )}
+
+          <div style={{ marginTop: '1.5rem', textAlign: 'center' }}>
+            <button
+              onClick={onNavigateHome}
+              style={{ background: 'none', border: 'none', color: '#64748b', fontSize: '0.875rem', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}
+            >
+              <ArrowLeft size={15} />
+              <span>Retourner à la boutique</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="admin-layout">

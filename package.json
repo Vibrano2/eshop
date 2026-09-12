@@ -11,7 +11,8 @@
     "server": "node server/index.js",
     "dev:server": "node --watch server/index.js",
     "build:all": "npm run build",
-    "seed": "node server/seed.js"
+    "seed": "node server/seed.js",
+    "test": "node --test server/test/api.test.js"
   },
   "dependencies": {
     "cors": "^2.8.6",
