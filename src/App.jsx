@@ -35,7 +35,7 @@ import LivePurchaseToasts from './components/LivePurchaseToasts';
 import CookieBanner from './components/CookieBanner';
 
 // Services & API
-import { apiGetMe, apiLogout } from './services/api';
+import { apiGetMe, apiLogout, apiVerifyCheckoutSession } from './services/api';
 import { onFirebaseAuthStateChange, firebaseSignOutUser } from './services/firebase';
 
 // Data
@@ -135,6 +135,38 @@ export default function App() {
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // Handle return redirect from Stripe Checkout
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const paymentStatus = params.get('payment_status');
+    const sessionId = params.get('session_id');
+    const orderNumber = params.get('order_number') || localStorage.getItem('eshop_pending_order');
+
+    if (paymentStatus === 'success' && sessionId) {
+      apiVerifyCheckoutSession(sessionId).then((res) => {
+        if (res && res.success && res.paid) {
+          // Empty cart upon successful Stripe payment
+          setCartItems([]);
+          localStorage.removeItem('eshop_cart');
+          localStorage.removeItem('eshop_pending_order');
+          
+          // Open tracking modal with confirmed order
+          const confirmedOrder = res.order?.order_number || orderNumber;
+          if (confirmedOrder) {
+            setTrackingOrderNumber(confirmedOrder);
+            setIsTrackingOpen(true);
+          }
+        }
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }).catch((err) => {
+        console.warn('Verify session error:', err);
+        window.history.replaceState({}, document.title, window.location.pathname);
+      });
+    } else if (paymentStatus === 'cancelled') {
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
   }, []);
 
   // Cart state persisted in localStorage

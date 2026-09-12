@@ -23,7 +23,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import { PROMO_CODES } from '../data/promoCodes';
-import { apiCreateOrder, apiCreatePaymentIntent, apiConfirmPaymentIntent } from '../services/api';
+import { apiCreateOrder, apiCreatePaymentIntent, apiConfirmPaymentIntent, apiCreateCheckoutSession } from '../services/api';
 import { firebaseCreateOrder } from '../services/firebase';
 import ThreeDSModal from './ThreeDSModal';
 
@@ -279,6 +279,28 @@ export default function CheckoutModal({
       countryCode: selectedCountry.code
     };
 
+    // Check if test preset card was selected
+    const cleanCard = (formData.cardNumber || '').replace(/\s+/g, '');
+    const isTestPreset = formData.paymentMethod === 'card' && STRIPE_TEST_PRESETS.some(p => p.number.replace(/\s+/g, '') === cleanCard);
+
+    // If real payment (not a sandbox preset card), initiate real Stripe Checkout session
+    if (!isTestPreset) {
+      try {
+        const sessionRes = await apiCreateCheckoutSession(orderPayload);
+        if (sessionRes && sessionRes.success && sessionRes.url) {
+          localStorage.setItem('eshop_pending_order', sessionRes.orderNumber);
+          window.location.href = sessionRes.url;
+          return;
+        } else if (sessionRes && sessionRes.error) {
+          setPaymentError(sessionRes.error);
+          setIsProcessingPayment(false);
+          return;
+        }
+      } catch (sessionErr) {
+        console.warn('Real Stripe Checkout creation failed, continuing fallback:', sessionErr);
+      }
+    }
+
     if (formData.paymentMethod === 'card') {
       try {
         const intentRes = await apiCreatePaymentIntent({
@@ -310,7 +332,7 @@ export default function CheckoutModal({
         await finalizeOrder(orderPayload, { method: 'sandbox_fallback' });
       }
     } else {
-      // Apple Pay / PayPal
+      // Apple Pay / PayPal fallback
       await finalizeOrder(orderPayload, { method: formData.paymentMethod });
     }
   };

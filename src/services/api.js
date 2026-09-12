@@ -221,6 +221,38 @@ export async function apiDownloadInvoicePdf(orderNumber, customerEmail = '') {
 }
 
 /**
+ * Create Real Stripe Hosted Checkout Session
+ */
+export async function apiCreateCheckoutSession(payload) {
+  try {
+    const res = await fetch(`${API_BASE}/payment/create-checkout-session`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error('[API] Failed to create checkout session:', err);
+    return { success: false, error: err.message };
+  }
+}
+
+/**
+ * Verify Stripe Checkout Session
+ */
+export async function apiVerifyCheckoutSession(sessionId) {
+  try {
+    const res = await fetch(`${API_BASE}/payment/verify-session?sessionId=${encodeURIComponent(sessionId)}`);
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error('[API] Failed to verify checkout session:', err);
+    return { success: false, error: err.message };
+  }
+}
+
+/**
  * Initialize Payment Intent (Stripe Sandbox / Live)
  */
 export async function apiCreatePaymentIntent(payload) {
