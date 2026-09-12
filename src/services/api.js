@@ -460,6 +460,11 @@ export async function apiLogin(email, password) {
     const data = await res.json();
     if (data.success && data.token) {
       setAuthToken(data.token);
+      if (data.user) {
+        try {
+          localStorage.setItem('eshop_user', JSON.stringify(data.user));
+        } catch {}
+      }
     }
     return data;
   } catch (err) {
@@ -500,6 +505,11 @@ export async function apiRegister(userData) {
     const data = await res.json();
     if (data.success && data.token) {
       setAuthToken(data.token);
+      if (data.user) {
+        try {
+          localStorage.setItem('eshop_user', JSON.stringify(data.user));
+        } catch {}
+      }
     }
     return data;
   } catch (err) {
@@ -530,11 +540,22 @@ export async function apiGetMe() {
       headers: { 'Authorization': `Bearer ${token}` }
     });
     if (!res.ok) {
-      if (res.status === 401) removeAuthToken();
+      if (res.status === 401) {
+        removeAuthToken();
+        try {
+          localStorage.removeItem('eshop_user');
+        } catch {}
+      }
       return null;
     }
     const data = await res.json();
-    return data.success ? data.user : null;
+    if (data.success && data.user) {
+      try {
+        localStorage.setItem('eshop_user', JSON.stringify(data.user));
+      } catch {}
+      return data.user;
+    }
+    return null;
   } catch (err) {
     console.warn('[API fallback] GetMe fallback:', err.message);
     // If mock token was used
@@ -573,6 +594,9 @@ export async function apiLogout() {
     console.warn('Logout notification failed:', err);
   } finally {
     removeAuthToken();
+    try {
+      localStorage.removeItem('eshop_user');
+    } catch {}
   }
   return { success: true };
 }

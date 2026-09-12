@@ -302,10 +302,30 @@ export default function App() {
     showCompareToast('Remise de -10% appliquée à votre panier !');
   };
 
-  // Authenticated User State
-  const [currentUser, setCurrentUser] = useState(null);
+  // Authenticated User State persisted across page refresh
+  const [currentUser, setCurrentUser] = useState(() => {
+    try {
+      const saved = localStorage.getItem('eshop_user');
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
 
-  // Restore authenticated session on app load (Firebase + Local)
+  // Keep localStorage synchronized whenever currentUser changes
+  useEffect(() => {
+    try {
+      if (currentUser) {
+        localStorage.setItem('eshop_user', JSON.stringify(currentUser));
+      } else {
+        localStorage.removeItem('eshop_user');
+      }
+    } catch (err) {
+      console.warn('Failed to sync user storage:', err);
+    }
+  }, [currentUser]);
+
+  // Restore & verify authenticated session on app load (Firebase + Local)
   useEffect(() => {
     let isMounted = true;
 
@@ -314,6 +334,9 @@ export default function App() {
       if (!isMounted) return;
       if (fbUser) {
         setCurrentUser(fbUser);
+        try {
+          localStorage.setItem('eshop_user', JSON.stringify(fbUser));
+        } catch {}
         if (fbUser.loyaltyPoints !== undefined) {
           setLoyaltyState((prev) => ({
             ...prev,
@@ -324,11 +347,14 @@ export default function App() {
       }
     });
 
-    // 2. Also check local/demo session if Firebase hasn't hydrated a user
+    // 2. Also verify and refresh session from server if token exists
     apiGetMe()
       .then((user) => {
-        if (isMounted && user && !currentUser) {
+        if (isMounted && user) {
           setCurrentUser(user);
+          try {
+            localStorage.setItem('eshop_user', JSON.stringify(user));
+          } catch {}
           if (user.loyaltyPoints !== undefined) {
             setLoyaltyState((prev) => ({
               ...prev,
@@ -355,6 +381,9 @@ export default function App() {
 
   const handleAuthSuccess = (user) => {
     setCurrentUser(user);
+    try {
+      localStorage.setItem('eshop_user', JSON.stringify(user));
+    } catch {}
     if (user.loyaltyPoints !== undefined) {
       setLoyaltyState((prev) => ({
         ...prev,
@@ -372,6 +401,9 @@ export default function App() {
     }
     await apiLogout();
     setCurrentUser(null);
+    try {
+      localStorage.removeItem('eshop_user');
+    } catch {}
   };
 
   // Loyalty & Referral Program State persisted in localStorage
