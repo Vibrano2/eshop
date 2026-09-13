@@ -1,179 +1,60 @@
 export const MAIN_CATEGORIES = [
   {
-    id: 'mode',
-    name: 'Mode',
-    slug: 'mode',
-    itemCount: '19 articles',
-    image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80',
-    description: 'Essentiels tendance pour femme et homme : vêtements, chaussures et accessoires.',
+    id: 'tech',
+    name: 'Tech & Gadgets',
+    slug: 'tech',
+    aliases: ['technologie', 'gadgets'],
+    itemCount: '5 essentiels',
+    image: '/products/batterie-externe-compacte-10000-hero-v2.jpg',
+    description: 'Batteries magnétiques, imprimantes nomades, chargeurs GaN et accessoires connectés pour votre quotidien digital.',
     subcategories: [
-      { id: 'femme', name: 'Femme' },
-      { id: 'homme', name: 'Homme' },
-      { id: 'chaussures', name: 'Chaussures' },
-      { id: 'sacs', name: 'Sacs' },
-      { id: 'bijoux-montres', name: 'Bijoux & Montres' },
-      { id: 'accessoires-mode', name: 'Accessoires de mode' }
-    ],
-    megaMenuGroups: [
-      {
-        title: 'MODE FEMME',
-        subcategoryId: 'femme',
-        items: ['Robes', 'T-shirts oversize', 'Jeans confort', 'Ensembles', 'Vestes légères']
-      },
-      {
-        title: 'MODE HOMME',
-        subcategoryId: 'homme',
-        items: ['T-shirts coton bio', 'Polos casual', 'Chemises en lin', 'Chinos & Pantalons', 'Sweats']
-      },
-      {
-        title: 'CHAUSSURES',
-        subcategoryId: 'chaussures',
-        items: ['Baskets respirantes', 'Sandales cuir', 'Mocassins casual', 'Chaussures sport']
-      },
-      {
-        title: 'ACCESSOIRES DE MODE',
-        subcategoryId: 'accessoires-mode',
-        items: ['Sacs bandoulière', 'Montres minimalistes', 'Bijoux acier inoxydable', 'Ceintures']
-      }
-    ]
-  },
-  {
-    id: 'beaute',
-    name: 'Beauté',
-    slug: 'beaute',
-    itemCount: '13 articles',
-    image: '/products/rouleau-boucles-sans-chaleur.jpg',
-    description: 'Soins visage & cheveux, accessoires coiffure et essentiels bien-être à la maison.',
-    subcategories: [
-      { id: 'soins-visage', name: 'Soins du visage' },
-      { id: 'soins-cheveux', name: 'Soins des cheveux' },
-      { id: 'accessoires-beaute', name: 'Accessoires beauté' },
-      { id: 'bien-etre', name: 'Bien-être' },
-      { id: 'maquillage', name: 'Maquillage' },
-      { id: 'hygiene', name: 'Hygiène personnelle' }
-    ]
-  },
-  {
-    id: 'technologie',
-    name: 'Technologie',
-    slug: 'technologie',
-    itemCount: '14 articles',
-    image: '/products/support-ordinateur-portable.jpg',
-    description: 'Supports ergonomiques, chargeurs rapides GaN, hubs et accessoires informatiques indispensables.',
-    subcategories: [
-      { id: 'gadgets', name: 'Gadgets' },
-      { id: 'telephones-accessoires', name: 'Téléphones & Accessoires' },
-      { id: 'informatique', name: 'Informatique' },
-      { id: 'audio', name: 'Audio' },
-      { id: 'objets-connectes', name: 'Objets connectés' },
-      { id: 'accessoires-electroniques', name: 'Accessoires électroniques' }
+      { id: 'charge-energie', name: 'Charge & Énergie' },
+      { id: 'impression-nomade', name: 'Impression nomade' },
+      { id: 'accessoires-pc-mobile', name: 'Accessoires PC & Mobile' },
+      { id: 'gadgets-intelligents', name: 'Gadgets intelligents' }
     ]
   },
   {
     id: 'maison',
-    name: 'Maison',
+    name: 'Maison & Cuisine',
     slug: 'maison',
-    itemCount: '11 articles',
-    image: '/products/doublures-silicone-airfryer.jpg',
-    description: 'Accessoires cuisine, moules air fryer, brosses électriques et organisation sous-évier.',
+    aliases: ['cuisine', 'maison-cuisine'],
+    itemCount: '5 essentiels',
+    image: '/products/brosse-nettoyage-electrique-hero.jpg',
+    description: 'Blenders nomades, brosses rotatives, boîtes repas chauffantes et éclairages automatiques pour faciliter votre foyer.',
     subcategories: [
-      { id: 'cuisine', name: 'Cuisine' },
-      { id: 'rangement', name: 'Rangement' },
-      { id: 'nettoyage', name: 'Nettoyage' },
-      { id: 'decoration', name: 'Décoration' },
-      { id: 'organisation', name: 'Organisation' },
-      { id: 'petit-electromenager', name: 'Petit électroménager' }
+      { id: 'cuisine-nomade', name: 'Cuisine nomade' },
+      { id: 'conservation', name: 'Conservation & Repas' },
+      { id: 'nettoyage-intelligent', name: 'Nettoyage intelligent' },
+      { id: 'eclairage-led', name: 'Éclairage LED & Confort' }
     ]
   },
   {
-    id: 'animaux',
-    name: 'Animaux',
-    slug: 'animaux',
-    itemCount: '12 articles',
-    image: '/products/brosse-anti-poils.jpg',
-    description: 'Brosses autonettoyantes, gourdes nomades, jouets interactifs et harnais pour chiens et chats.',
+    id: 'beaute',
+    name: 'Beauté & Lifestyle',
+    slug: 'beaute',
+    aliases: ['lifestyle', 'beaute-lifestyle'],
+    itemCount: '5 essentiels',
+    image: '/products/rouleau-glace-visage.jpg',
+    description: 'Soins visage rafraîchissants, boucles sans chaleur, masseurs capillaires et défroisseurs portables pour sublimer votre allure.',
     subcategories: [
-      { id: 'chiens', name: 'Chiens' },
-      { id: 'chats', name: 'Chats' },
-      { id: 'toilettage', name: 'Toilettage' },
-      { id: 'voyage', name: 'Voyage' },
-      { id: 'accessoires', name: 'Accessoires' }
+      { id: 'soins-visage', name: 'Soins visage & cryo' },
+      { id: 'coiffure-soin', name: 'Coiffure & Cuir chevelu' },
+      { id: 'textile-soin', name: 'Entretien textile & Vêtements' }
     ]
   },
   {
-    id: 'sport',
-    name: 'Sport & Fitness',
-    slug: 'sport',
-    itemCount: '10 articles',
-    image: '/products/ceinture-course.jpg',
-    description: 'Tapis de yoga, rouleaux de massage, ceintures running et matériel d\'entraînement.',
-    subcategories: [
-      { id: 'fitness', name: 'Fitness' },
-      { id: 'running', name: 'Running' },
-      { id: 'yoga', name: 'Yoga' },
-      { id: 'cyclisme', name: 'Cyclisme' },
-      { id: 'accessoires-sport', name: 'Accessoires sport' }
-    ]
-  },
-  {
-    id: 'auto',
-    name: 'Auto',
-    slug: 'auto',
-    itemCount: '9 articles',
-    image: '/products/organisateur-entre-sieges.jpg',
-    description: 'Supports téléphone 360°, organisateurs interstice, chargeurs 60W et mini poubelles étanches.',
-    subcategories: [
-      { id: 'accessoires-voiture', name: 'Accessoires voiture' },
-      { id: 'organisation', name: 'Organisation' },
-      { id: 'nettoyage', name: 'Nettoyage' },
-      { id: 'telephone-charge', name: 'Téléphone & charge' },
-      { id: 'confort', name: 'Confort' }
-    ]
-  },
-  {
-    id: 'securite',
-    name: 'Sécurité',
-    slug: 'securite',
-    itemCount: '7 articles',
-    image: '/products/camera-surveillance-wifi.jpg',
-    description: 'Caméras WiFi 360°, sonnettes vidéo HD, ampoules connectées et capteurs d\'ouverture.',
-    subcategories: [
-      { id: 'cameras', name: 'Caméras' },
-      { id: 'maison-intelligente', name: 'Maison intelligente' },
-      { id: 'surveillance', name: 'Surveillance' },
-      { id: 'detection', name: 'Détection' }
-    ]
-  },
-  {
-    id: 'voyage',
-    name: 'Voyage',
-    slug: 'voyage',
-    itemCount: '7 articles',
+    id: 'voyage-auto',
+    name: 'Voyage, Auto & Outdoor',
+    slug: 'voyage-auto',
+    aliases: ['voyage', 'auto', 'outdoor'],
+    itemCount: '5 essentiels',
     image: '/products/cubes-rangement-valise.jpg',
-    description: 'Cubes de compression, pèse-bagages, trousses de toilette et masques de sommeil 3D.',
+    description: 'Aspirateurs auto sans fil, sacs compressibles, pèse-bagages et ventilateurs de cou pour voyager sereinement.',
     subcategories: [
-      { id: 'bagagerie', name: 'Bagagerie' },
-      { id: 'organisation', name: 'Organisation' },
-      { id: 'accessoires', name: 'Accessoires' },
-      { id: 'confort', name: 'Confort' }
-    ]
-  },
-  {
-    id: 'accessoires',
-    name: 'Accessoires',
-    slug: 'accessoires',
-    itemCount: '8 articles',
-    image: '/products/porte-cartes-aluminium-anti-rfid.jpg',
-    description: 'Porte-cartes anti-RFID, montres minimalistes, lunettes polarisées et ceintures automatiques.',
-    subcategories: [
-      { id: 'sacs', name: 'Sacs' },
-      { id: 'montres', name: 'Montres' },
-      { id: 'bijoux', name: 'Bijoux' },
-      { id: 'lunettes', name: 'Lunettes' },
-      { id: 'portefeuilles', name: 'Portefeuilles' },
-      { id: 'accessoires-telephone', name: 'Accessoires téléphone' },
-      { id: 'accessoires-bureau', name: 'Accessoires bureau' },
-      { id: 'accessoires-lifestyle', name: 'Accessoires lifestyle' }
+      { id: 'entretien-auto', name: 'Entretien & Confort Auto' },
+      { id: 'organisation-valise', name: 'Organisation & Bagagerie' },
+      { id: 'outdoor-confort', name: 'Confort Outdoor & Nomade' }
     ]
   }
 ];
@@ -181,5 +62,10 @@ export const MAIN_CATEGORIES = [
 export const ALL_CATEGORY_IDS = MAIN_CATEGORIES.map((c) => c.id);
 
 export function getCategoryById(id) {
-  return MAIN_CATEGORIES.find((c) => c.id === id) || null;
+  if (!id) return null;
+  return (
+    MAIN_CATEGORIES.find((c) => c.id === id || (c.aliases && c.aliases.includes(id))) ||
+    null
+  );
 }
+

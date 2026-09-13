@@ -14,11 +14,11 @@ export default function HeroBanner({ onExploreProducts, onExploreNewArrivals, on
             </div>
 
             <h1 className="hero-title-modern">
-              Des gadgets pratiques qui transforment votre quotidien.
+              Des produits pratiques, intelligents et tendance pour simplifier votre quotidien.
             </h1>
 
             <p className="hero-description-modern">
-              Découvrez une sélection de produits utiles, tendance et abordables pour la maison, la beauté, les animaux, la technologie et bien plus.
+              Une sélection soignée d'objets astucieux pour la maison, la tech, la beauté et les déplacements. Moins de superflu, plus d'utilité au meilleur prix.
             </p>
 
             <div className="hero-actions-modern">
@@ -26,7 +26,7 @@ export default function HeroBanner({ onExploreProducts, onExploreNewArrivals, on
                 className="btn btn-primary hero-btn-main"
                 onClick={onExploreProducts}
               >
-                <span>Découvrir les produits</span>
+                <span>Découvrir la sélection</span>
                 <ArrowRight size={18} />
               </button>
 
@@ -40,13 +40,13 @@ export default function HeroBanner({ onExploreProducts, onExploreNewArrivals, on
 
             <div className="hero-trust-indicators">
               <div className="hero-trust-item">
-                <span className="hero-trust-rating">★ 4.8 / 5</span>
+                <span className="hero-trust-rating">★ 4.9 / 5</span>
                 <span className="hero-trust-label">+1 400 avis vérifiés</span>
               </div>
               <div className="hero-trust-divider" />
               <div className="hero-trust-item">
                 <ShieldCheck size={16} color="#10b981" />
-                <span className="hero-trust-label">Livraison 2-5j & Retours 14j</span>
+                <span className="hero-trust-label">Livraison 2-4j & Retours 14j</span>
               </div>
             </div>
           </div>
@@ -56,15 +56,15 @@ export default function HeroBanner({ onExploreProducts, onExploreNewArrivals, on
             <div className="hero-featured-card">
               <div className="hero-image-wrap">
                 <img
-                  src="/products/doublures-silicone-airfryer.jpg"
-                  alt="Moule et accessoires en silicone pour Air Fryer"
+                  src="/products/batterie-externe-compacte-10000-hero-v2.jpg"
+                  alt="Batterie externe magnétique sans fil 10000mAh"
                   className="hero-main-img"
                   loading="eager"
                   onError={(e) => {
-                    e.currentTarget.src = 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80';
+                    e.currentTarget.src = '/products/batterie-externe-compacte-10000-hero-v2.jpg';
                   }}
                 />
-                <span className="hero-featured-badge">Top Ventes Maison</span>
+                <span className="hero-featured-badge">Bestseller Tech</span>
               </div>
 
               <div className="hero-card-floating-bar">
@@ -75,14 +75,14 @@ export default function HeroBanner({ onExploreProducts, onExploreNewArrivals, on
                     ))}
                     <span className="floating-score">4.9</span>
                   </div>
-                  <span className="floating-title">Moule en silicone Air Fryer</span>
-                  <span className="floating-price">17,90 € • En stock UE</span>
+                  <span className="floating-title">Batterie externe magnétique sans fil</span>
+                  <span className="floating-price">29,90 € • En stock UE</span>
                 </div>
 
                 <button
                   className="btn btn-sm btn-primary floating-cta"
-                  onClick={() => onSelectProduct('doublures-silicone-airfryer')}
-                  aria-label="Voir le moule Air Fryer"
+                  onClick={() => onSelectProduct('batterie-externe-compacte-10000')}
+                  aria-label="Voir la batterie externe magnétique"
                 >
                   Voir
                 </button>

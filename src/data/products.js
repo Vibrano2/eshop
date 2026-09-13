@@ -371,9 +371,9 @@ export const PRODUCTS = [
     "imageDisplayMode": "contain",
     "shippingEU": "Stock UE disponible",
     "stock": 50,
-    "image": "/products/blender-portable.jpg",
+    "image": "/products/blender-portable-rechargeable-hero.jpg",
     "gallery": [
-      "/products/blender-portable.jpg",
+      "/products/blender-portable-rechargeable-hero.jpg",
       "/products/blender-portable-rechargeable-features.jpg",
       "/products/blender-portable-rechargeable-details.jpg"
     ],
@@ -481,9 +481,9 @@ export const PRODUCTS = [
     "imageDisplayMode": "contain",
     "shippingEU": "Stock UE disponible",
     "stock": 35,
-    "image": "/products/brosse-nettoyage-electrique.jpg",
+    "image": "/products/brosse-nettoyage-electrique-hero.jpg",
     "gallery": [
-      "/products/brosse-nettoyage-electrique.jpg",
+      "/products/brosse-nettoyage-electrique-hero.jpg",
       "/products/brosse-nettoyage-electrique-features.jpg",
       "/products/brosse-nettoyage-electrique-details.jpg"
     ],
