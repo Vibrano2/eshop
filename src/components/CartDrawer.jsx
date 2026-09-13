@@ -29,6 +29,7 @@ export default function CartDrawer({
   onRemovePromo,
   onProceedToCheckout,
   onOpenLoyalty,
+  onOpenShop,
   lang = 'fr'
 }) {
   if (!isOpen) return null;
@@ -168,13 +169,23 @@ export default function CartDrawer({
                 <ShoppingBag size={42} color="#94a3b8" />
               </div>
               <p style={{ fontWeight: 700, fontSize: '1.125rem', color: '#0f172a', marginBottom: '0.5rem' }}>
-                Votre panier est vide
+                {lang === 'en' ? 'Your cart is empty' : 'Votre panier est vide'}
               </p>
               <p style={{ fontSize: '0.875rem', color: '#64748b', marginBottom: '1.5rem', maxWidth: '280px', margin: '0 auto 1.5rem' }}>
-                Découvrez nos 110 articles rigoureusement sélectionnés expédiés sous 24h.
+                {lang === 'en'
+                  ? `Discover our ${PRODUCTS.length} carefully selected items shipped within 24h.`
+                  : `Découvrez nos ${PRODUCTS.length} articles rigoureusement sélectionnés expédiés sous 24h.`}
               </p>
-              <button className="btn btn-primary btn-sm" onClick={onClose}>
-                Découvrir le catalogue
+              <button
+                className="btn btn-primary btn-sm"
+                onClick={() => {
+                  onClose();
+                  if (typeof onOpenShop === 'function') {
+                    onOpenShop('all');
+                  }
+                }}
+              >
+                {lang === 'en' ? 'Explore catalog' : 'Découvrir le catalogue'}
               </button>
             </div>
           ) : (

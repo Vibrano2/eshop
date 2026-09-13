@@ -46,15 +46,17 @@ import { validatePromoCode } from './data/promoCodes';
 import { INITIAL_LOYALTY_STATE, calculatePointsForAmount } from './data/loyalty';
 
 const VALID_CATEGORY_SLUGS = [
-  'mode',
-  'beaute',
+  'tech',
   'technologie',
   'maison',
+  'beaute',
+  'voyage-auto',
+  'voyage',
+  'auto',
+  'mode',
   'animaux',
   'sport',
-  'auto',
   'securite',
-  'voyage',
   'accessoires'
 ];
 
@@ -675,138 +677,41 @@ export default function App() {
 
   // =========================================================================
   // Homepage Curated Product Slices (Section 13 & 19 Order: 4–8 products max)
-  // Balanced across departments to avoid repetitive clustering
   // =========================================================================
-  const incontournables = useMemo(() => {
-    const priorityIds = [
-      'support-ordinateur-portable',      // Technologie (Aluminium stand dedicated packshot)
-      'support-telephone-voiture',        // Auto (Dedicated packshot)
-      'aspirateur-voiture-sans-fil',      // Auto (Dedicated packshot)
-      'ecouteurs-bluetooth-pro',          // Technologie (Sharp earbuds packshot)
-      'pulverisateur-huile',              // Maison (Glass oil sprayer packshot)
-      'rouleau-boucles-sans-chaleur',     // Beauté (Dedicated packshot)
-      'organisateur-maquillage',          // Beauté (360 acrylic organizer packshot)
-      'ceinture-course'                   // Sport (Running belt packshot)
-    ];
-    const map = new Map(PRODUCTS.map((p) => [p.id, p]));
-    const list = priorityIds.map((id) => map.get(id)).filter(Boolean);
-    return list.length === 8 ? list : PRODUCTS.slice(0, 8);
-  }, []);
-
+  // Curated Homepage Slices: Maximum 4 products each (1 per collection)
+  // Tech & Gadgets, Maison & Cuisine, Beauté & Lifestyle, Voyage & Auto
+  // =========================================================================
   const bestSellers = useMemo(() => {
-    const curatedIds = [
-      'robe-fluide-ete',                  // Mode (Terracotta wrap dress)
-      'doublures-silicone-airfryer',      // Maison (Silicone liners packshot)
-      'repose-pieds-ergonomique',         // Technologie (Ergonomic footrest packshot)
-      'rouleau-glace-visage',             // Beauté (Ice/jade roller tool)
-      'brosse-anti-poils',                // Animaux (Pet brush packshot)
-      'porte-cartes-aluminium-anti-rfid', // Accessoires (Metal RFID card holder)
-      'camera-surveillance-wifi',         // Sécurité (360 wifi camera packshot)
-      'cubes-rangement-valise'            // Voyage (Compression cubes packshot)
+    const ids = [
+      'batterie-externe-compacte-10000', // Tech & Gadgets
+      'blender-portable-rechargeable',    // Maison & Cuisine
+      'rouleau-boucles-sans-chaleur',     // Beauté & Lifestyle
+      'aspirateur-voiture-sans-fil'       // Voyage, Auto & Outdoor
     ];
     const map = new Map(PRODUCTS.map((p) => [p.id, p]));
-    const list = curatedIds.map((id) => map.get(id)).filter(Boolean);
-    return list.length === 8 ? list : PRODUCTS.filter((p) => p.isBestSeller).slice(0, 8);
+    return ids.map((id) => map.get(id)).filter(Boolean);
   }, []);
 
-  const fashionTrending = useMemo(() => {
-    const curatedModeIds = [
-      'robe-fluide-ete',                  // Femme
-      't-shirt-oversize-coton',           // Femme (Packshot)
-      'jean-slim-confort',                // Femme (Packshot)
-      'ensemble-lounge-confort',          // Femme (Packshot)
-      'chemise-lin-homme',                // Homme (Packshot)
-      'polo-coton-homme',                 // Homme (Packshot)
-      'pantalon-chino-stretch',           // Homme (Chinos model)
-      'baskets-casual-respirantes'        // Chaussures (Sneakers)
+  const trendingProducts = useMemo(() => {
+    const ids = [
+      'support-telephone-voiture',        // Tech & Gadgets
+      'brosse-nettoyage-electrique',      // Maison & Cuisine
+      'rouleau-glace-visage',             // Beauté & Lifestyle
+      'cubes-rangement-valise'            // Voyage, Auto & Outdoor
     ];
     const map = new Map(PRODUCTS.map((p) => [p.id, p]));
-    const list = curatedModeIds.map((id) => map.get(id)).filter(Boolean);
-    return list.length === 8 ? list : PRODUCTS.filter((p) => p.category === 'mode').slice(0, 8);
-  }, []);
-
-  const techAndGadgets = useMemo(() => {
-    const curatedTechIds = [
-      'support-ordinateur-portable',      // Support PC aluminium
-      'hub-usb-c-7en1',                   // Hub USB-C
-      'ecouteurs-bluetooth-pro',          // Écouteurs sans fil
-      'souris-sans-fil-ergonomique'       // Souris ergonomique
-    ];
-    const map = new Map(PRODUCTS.map((p) => [p.id, p]));
-    const list = curatedTechIds.map((id) => map.get(id)).filter(Boolean);
-    return list.length === 4 ? list : PRODUCTS.filter((p) => p.category === 'technologie').slice(0, 4);
-  }, []);
-
-  const homeAndKitchen = useMemo(() => {
-    const curatedHomeIds = [
-      'doublures-silicone-airfryer',
-      'pulverisateur-huile',
-      'accessoires-airfryer',
-      'organisateur-sous-evier'
-    ];
-    const map = new Map(PRODUCTS.map((p) => [p.id, p]));
-    const list = curatedHomeIds.map((id) => map.get(id)).filter(Boolean);
-    return list.length === 4 ? list : PRODUCTS.filter((p) => p.category === 'maison').slice(0, 4);
-  }, []);
-
-  const beautyAndWellness = useMemo(() => {
-    const curatedBeautyIds = [
-      'rouleau-glace-visage',
-      'rouleau-boucles-sans-chaleur',
-      'brosse-nettoyante-visage',
-      'organisateur-maquillage'
-    ];
-    const map = new Map(PRODUCTS.map((p) => [p.id, p]));
-    const list = curatedBeautyIds.map((id) => map.get(id)).filter(Boolean);
-    return list.length === 4 ? list : PRODUCTS.filter((p) => p.category === 'beaute').slice(0, 4);
-  }, []);
-
-  const petEssentials = useMemo(() => {
-    const curatedPetIds = [
-      'brosse-anti-poils',
-      'rouleau-anti-peluches',
-      'nettoyeur-pattes-chiens',
-      'gourde-portable-chiens'
-    ];
-    const map = new Map(PRODUCTS.map((p) => [p.id, p]));
-    const list = curatedPetIds.map((id) => map.get(id)).filter(Boolean);
-    return list.length === 4 ? list : PRODUCTS.filter((p) => p.category === 'animaux').slice(0, 4);
-  }, []);
-
-  const sportAndFitness = useMemo(() => {
-    const curatedSportIds = [
-      'ceinture-course',                  // Ceinture running
-      'sacoche-velo',                     // Sacoche cadre vélo
-      'tapis-yoga-antiderapant-tpe',      // Tapis yoga
-      'bandeaux-fitness'                  // Bandes de résistance
-    ];
-    const map = new Map(PRODUCTS.map((p) => [p.id, p]));
-    const list = curatedSportIds.map((id) => map.get(id)).filter(Boolean);
-    return list.length === 4 ? list : PRODUCTS.filter((p) => p.category === 'sport').slice(0, 4);
-  }, []);
-
-  const smartHomeAndSecurity = useMemo(() => {
-    const curatedSecurityIds = [
-      'camera-surveillance-wifi',
-      'sonnette-video-connectee',
-      'prise-connectee-wifi',
-      'detecteur-mouvement-connecte'
-    ];
-    const map = new Map(PRODUCTS.map((p) => [p.id, p]));
-    const list = curatedSecurityIds.map((id) => map.get(id)).filter(Boolean);
-    return list.length === 4 ? list : PRODUCTS.filter((p) => p.category === 'securite').slice(0, 4);
+    return ids.map((id) => map.get(id)).filter(Boolean);
   }, []);
 
   const newArrivals = useMemo(() => {
-    const curatedNewIds = [
-      'chargeur-voiture-usb-c-60w',       // Auto (New car lighter charger packshot)
-      'ceinture-cuir-automatique',        // Accessoires (New leather belt packshot)
-      'oreiller-voyage-memoire',          // Voyage (New travel memory foam pillow packshot)
-      'trousse-toilette-suspendue'        // Voyage (New hanging toiletry packshot)
+    const ids = [
+      'mini-imprimante-thermique-bluetooth', // Tech & Gadgets
+      'lunch-box-electrique-chauffante',     // Maison & Cuisine
+      'defroisseur-vapeur-portable',          // Beauté & Lifestyle
+      'ventilateur-cou-rechargeable'          // Voyage, Auto & Outdoor
     ];
     const map = new Map(PRODUCTS.map((p) => [p.id, p]));
-    const list = curatedNewIds.map((id) => map.get(id)).filter(Boolean);
-    return list.length === 4 ? list : PRODUCTS.filter((p) => p.isNew).slice(0, 4);
+    return ids.map((id) => map.get(id)).filter(Boolean);
   }, []);
 
   const renderProductCard = (product) => (
@@ -961,23 +866,17 @@ export default function App() {
               }}
             />
 
-            {/* 2. Trust Bar (4 key pillars) */}
-            <TrustBar
-              onOpenReassurance={() => setIsReassuranceOpen(true)}
-              lang={currentLang}
-            />
-
-            {/* 3. Shoppez par catégorie (10 Main Categories Grid) */}
+            {/* 2. Shop by Collection (4 Primary Collections Grid) */}
             <section className="homepage-section category-discovery-section">
               <div className="container">
                 <SectionHeader
-                  title="Shoppez par catégorie"
-                  subtitle="Explorez nos 10 départements soigneusement sélectionnés."
-                  actionText="Voir tout le catalogue"
+                  title="Nos 4 Collections"
+                  subtitle="Une sélection rigoureuse d'objets astucieux pour simplifier et moderniser votre quotidien."
+                  actionText="Explorer la boutique"
                   onAction={() => handleOpenShop('all')}
                 />
 
-                <div className="category-grid-modern">
+                <div className="category-grid-modern four-collections-grid">
                   {MAIN_CATEGORIES.map((cat) => (
                     <CategoryCard
                       key={cat.id}
@@ -989,29 +888,13 @@ export default function App() {
               </div>
             </section>
 
-            {/* 4. Les incontournables (Section 13 & 19: 4–8 fast-selling priority products) */}
-            <section className="homepage-section">
-              <div className="container">
-                <SectionHeader
-                  title="Les incontournables"
-                  subtitle="Notre sélection des produits tendance les plus plébiscités pour leur utilité au quotidien."
-                  actionText="Découvrir la sélection →"
-                  onAction={() => handleOpenShop('all')}
-                />
-
-                <div className="products-grid-standardized">
-                  {incontournables.map(renderProductCard)}
-                </div>
-              </div>
-            </section>
-
-            {/* 5. Nos meilleures ventes (4–8 produits maximum) */}
+            {/* 3. Nos meilleures ventes (Maximum 4 products) */}
             <section className="homepage-section">
               <div className="container">
                 <SectionHeader
                   title="Nos meilleures ventes"
-                  subtitle="Les produits plébiscités par nos clients à travers l'Europe."
-                  actionText="Voir toutes les meilleures ventes"
+                  subtitle="Les essentiels les plus plébiscités par nos clients à travers l'Europe."
+                  actionText="Voir toute la boutique"
                   onAction={() => handleOpenShop('all')}
                 />
 
@@ -1021,135 +904,29 @@ export default function App() {
               </div>
             </section>
 
-            {/* 5. Mode tendance (Section 16: 4–8 products maximum) */}
+            {/* 4. Produits tendance (Maximum 4 products) */}
             <section className="homepage-section">
               <div className="container">
                 <SectionHeader
-                  title="Mode tendance"
-                  subtitle="Découvrez les essentiels du moment pour femme et homme."
-                  actionText="Voir toute la mode →"
-                  onAction={() => handleOpenShop('mode')}
+                  title="Produits tendance"
+                  subtitle="Des innovations pratiques et ingénieuses qui facilitent la vie de tous les jours."
+                  actionText="Découvrir les tendances"
+                  onAction={() => handleOpenShop('all')}
                 />
 
                 <div className="products-grid-standardized">
-                  {fashionTrending.map(renderProductCard)}
+                  {trendingProducts.map(renderProductCard)}
                 </div>
               </div>
             </section>
 
-            {/* 6. Gadgets & Technologie (Section 17: 4–8 products maximum) */}
-            <section className="homepage-section">
-              <div className="container">
-                <SectionHeader
-                  title="Gadgets & Technologie"
-                  subtitle="Des accessoires haute performance pour simplifier votre quotidien."
-                  actionText="Voir toute la technologie →"
-                  onAction={() => handleOpenShop('technologie')}
-                />
-
-                <div className="products-grid-standardized">
-                  {techAndGadgets.map(renderProductCard)}
-                </div>
-              </div>
-            </section>
-
-            {/* Promotional Banner #1 */}
-            <PromoBanner
-              badge="Innovation & Quotidien"
-              title="Des gadgets utiles et fiables au quotidien"
-              description="Connectivité USB-C, charge rapide et accessoires intelligents conçus pour simplifier votre journée au bureau comme en déplacement."
-              ctaText="Découvrir la sélection Technologie"
-              image="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=1000&q=80"
-              onAction={() => handleOpenShop('technologie')}
-            />
-
-            {/* 7. Maison & Cuisine */}
-            <section className="homepage-section">
-              <div className="container">
-                <SectionHeader
-                  title="Maison & Cuisine"
-                  subtitle="Air fryer, rangements et ustensiles ingénieux pour une maison organisée."
-                  actionText="Voir toute la collection Maison →"
-                  onAction={() => handleOpenShop('maison')}
-                />
-
-                <div className="products-grid-standardized">
-                  {homeAndKitchen.map(renderProductCard)}
-                </div>
-              </div>
-            </section>
-
-            {/* 8. Beauté & Bien-être */}
-            <section className="homepage-section">
-              <div className="container">
-                <SectionHeader
-                  title="Beauté & Bien-être"
-                  subtitle="Des soins simples, doux et innovants pour votre rituel à la maison."
-                  actionText="Voir les produits Beauté →"
-                  onAction={() => handleOpenShop('beaute')}
-                />
-
-                <div className="products-grid-standardized">
-                  {beautyAndWellness.map(renderProductCard)}
-                </div>
-              </div>
-            </section>
-
-            {/* 9. Animaux */}
-            <section className="homepage-section">
-              <div className="container">
-                <SectionHeader
-                  title="Nos amis les animaux"
-                  subtitle="Brosses de toilettage autonettoyantes, gourdes et accessoires pour chiens et chats."
-                  actionText="Voir tous les accessoires Animaux →"
-                  onAction={() => handleOpenShop('animaux')}
-                />
-
-                <div className="products-grid-standardized">
-                  {petEssentials.map(renderProductCard)}
-                </div>
-              </div>
-            </section>
-
-            {/* 10. Sport & Fitness */}
-            <section className="homepage-section">
-              <div className="container">
-                <SectionHeader
-                  title="Sport & Fitness"
-                  subtitle="Accessoires running, tapis de yoga et équipements sportifs pour rester actif."
-                  actionText="Voir les équipements Sport →"
-                  onAction={() => handleOpenShop('sport')}
-                />
-
-                <div className="products-grid-standardized">
-                  {sportAndFitness.map(renderProductCard)}
-                </div>
-              </div>
-            </section>
-
-            {/* 11. Sécurité & Maison intelligente */}
-            <section className="homepage-section">
-              <div className="container">
-                <SectionHeader
-                  title="Sécurité & Maison intelligente"
-                  subtitle="Caméras haute définition 360°, sonnettes vidéo et prises connectées."
-                  actionText="Voir les solutions Sécurité →"
-                  onAction={() => handleOpenShop('securite')}
-                />
-
-                <div className="products-grid-standardized">
-                  {smartHomeAndSecurity.map(renderProductCard)}
-                </div>
-              </div>
-            </section>
-
-            {/* 12. Nouveautés */}
+            {/* 5. Nouveautés (Maximum 4 products) */}
             <section className="homepage-section">
               <div className="container">
                 <SectionHeader
                   title="Nouveautés"
-                  subtitle="Les dernières innovations pratiques ajoutées à notre boutique européenne."
-                  actionText="Voir toutes les nouveautés →"
+                  subtitle="Les dernières trouvailles utiles ajoutées à notre catalogue sélectionné."
+                  actionText="Voir toutes les nouveautés"
                   onAction={() => handleOpenShop('all')}
                 />
 
@@ -1159,13 +936,15 @@ export default function App() {
               </div>
             </section>
 
-            {/* 13. Why Choose Us (4 pillars) */}
+            {/* 6. Value proposition / trust section */}
+            <TrustBar
+              onOpenReassurance={() => setIsReassuranceOpen(true)}
+              lang={currentLang}
+            />
             <WhyChooseUs onOpenReassurance={() => setIsReassuranceOpen(true)} />
-
-            {/* 14. Customer Reviews Section */}
             <ReviewsSection />
 
-            {/* 15. Newsletter Section */}
+            {/* 7. Newsletter or CTA */}
             <NewsletterSection />
           </>
         )}
@@ -1198,6 +977,7 @@ export default function App() {
         onApplyPromo={handleApplyPromo}
         onRemovePromo={handleRemovePromo}
         onOpenLoyalty={() => setIsLoyaltyOpen(true)}
+        onOpenShop={(catId) => handleOpenShop(catId || 'all')}
         lang={currentLang}
         onProceedToCheckout={() => {
           setIsCartOpen(false);
