@@ -1,4 +1,3 @@
-// 10 Primary Categories for Filter Bars & Navigation
 export const CATEGORIES = [
   { id: 'all', label: 'Tous les produits', icon: 'Sparkles' },
   { id: 'mode', label: 'Mode', icon: 'Shirt' },
@@ -13,4407 +12,7098 @@ export const CATEGORIES = [
   { id: 'accessoires', label: 'Accessoires', icon: 'Watch' }
 ];
 
+// Catégories disponibles : tech, maison, beaute, voyage-auto, mode, animaux, sport, securite, accessoires
 export const PRODUCTS = [
-  // ==========================================================================
-  // 1. MODE (Femme, Homme, Chaussures, Sacs, Bijoux & Montres, Accessoires)
-  // ==========================================================================
   {
-    id: 'robe-fluide-ete',
-    name: 'Robe portefeuille fluide',
-    category: 'mode',
-    subcategory: 'femme',
-    categoryLabel: 'Mode',
-    gender: 'femme',
-    price: 39.90,
-    compareAtPrice: 59.90,
-    rating: 4.9,
-    reviewCount: 312,
-    badge: 'Bestseller',
-    isBestSeller: true,
-    isNew: false,
-    isFashion: true,
-    imageDisplayMode: 'cover',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 28,
-    image: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=800&q=80',
-    gallery: [
-      'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=800&q=80'
+    "id": "batterie-externe-compacte-10000",
+    "sku": "TECH-PWR-10K",
+    "slug": "batterie-externe-magnetique-sans-fil",
+    "name": "Batterie externe magnétique sans fil",
+    "shortName": "Batterie magnétique 10000mAh",
+    "category": "tech",
+    "subcategory": "charge-energie",
+    "categoryLabel": "Tech & Gadgets",
+    "price": 29.9,
+    "compareAtPrice": 44.9,
+    "rating": 4.9,
+    "reviewCount": 312,
+    "badge": "Bestseller",
+    "isBestSeller": true,
+    "isNew": false,
+    "isCurated": true,
+    "curatedOrder": 1,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 65,
+    "image": "/products/batterie-externe-compacte-10000-hero-v2.jpg",
+    "gallery": [
+      "/products/batterie-externe-compacte-10000-hero-v2.jpg",
+      "/products/batterie-externe-compacte.jpg",
+      "/products/batterie-externe-compacte-10000-details.jpg"
     ],
-    altText: 'Robe portefeuille fluide midi pour femme en terracotta',
-    shortDescription: 'Coupe flatteuse cache-cœur en viscose fluide et respirante. Parfaite pour le quotidien et les soirées estivales.',
-    benefits: [
-      'Ceinture ajustable pour marquer la taille sans comprimer',
-      'Tissu fluide infroissable qui ne colle pas',
-      'Longueur midi élégante avec tombé impeccable'
+    "altText": "Batterie externe magnétique sans fil 10000mAh charge rapide USB-C",
+    "shortDescription": "Format compact magnétique compatible MagSafe et Qi. Double recharge sans fil 15W et port USB-C 20W Power Delivery.",
+    "benefits": [
+      "Fixation magnétique ultra-puissante compatible avec toutes les coques fines",
+      "Double charge rapide : sans fil 15W Qi + port USB-C 20W Power Delivery",
+      "Affichage LED numérique précis du pourcentage restant de batterie"
     ],
-    specs: {
-      Matière: '100% Viscose douce certifiée Oeko-Tex',
-      Coupe: 'Portefeuille midi avec col en V',
-      Entretien: 'Lavage délicat à 30°C'
+    "specs": {
+      "Capacité": "10 000 mAh / 37Wh",
+      "Puissance sans fil": "15W / 10W / 7.5W Qi",
+      "Sortie USB-C": "20W PD Fast Charge",
+      "Poids": "185 g format poche"
     },
-    hasVariants: true,
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
-    colors: [
-      { name: 'Terracotta', hex: '#b45309' },
-      { name: 'Noir Ébène', hex: '#1e293b' },
-      { name: 'Vert Sauge', hex: '#4d7c0f' },
-      { name: 'Beige Lin', hex: '#d4b996' }
-    ],
-    defaultSize: 'M',
-    defaultColor: 'Terracotta',
-    faq: [
-      { q: 'Quelle taille choisir si j\'hésite entre deux ?', a: 'Prenez votre taille habituelle, la ceinture cache-cœur permet d\'ajuster parfaitement le buste.' }
-    ],
-    keywords: ['robe', 'femme', 'robe fluide', 'robe ete', 'mode femme', 'robe midi', 'robe cache-coeur']
-  },
-  {
-    id: 't-shirt-oversize-coton',
-    name: 'T-shirt oversize en coton lourd',
-    category: 'mode',
-    subcategory: 'femme',
-    categoryLabel: 'Mode',
-    gender: 'femme',
-    price: 24.90,
-    compareAtPrice: 34.90,
-    rating: 4.8,
-    reviewCount: 245,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    isFashion: true,
-    imageDisplayMode: 'cover',
-    shippingEU: 'Stock UE disponible',
-    stock: 50,
-    image: '/products/tshirt-oversize-coton.jpg',
-    gallery: [
-      '/products/tshirt-oversize-coton.jpg'
-    ],
-    altText: 'T-shirt oversize blanc en coton épais pour femme',
-    shortDescription: 'Coton peigné 240g/m² au tombé lourd et structuré. Coupe boxy moderne pour un look décontracté chic.',
-    benefits: [
-      'Col renforcé qui ne se déforme pas au lavage',
-      'Coton biologique ultra-doux au toucher velouté',
-      'Silhouette streetwear polyvalente'
-    ],
-    specs: {
-      Grammage: '240 g/m² coton peigné bio',
-      Coupe: 'Oversize drop-shoulder',
-      Entretien: 'Lavage en machine à 30°C'
-    },
-    hasVariants: true,
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
-    colors: [
-      { name: 'Blanc Pur', hex: '#f8fafc' },
-      { name: 'Noir Minimal', hex: '#0f172a' },
-      { name: 'Gris Chiné', hex: '#94a3b8' }
-    ],
-    defaultSize: 'M',
-    defaultColor: 'Blanc Pur',
-    faq: [
-      { q: 'Taille-t-il vraiment large ?', a: 'Oui, la coupe est volontairement ample. Pour un rendu plus ajusté, prenez une taille en-dessous.' }
-    ],
-    keywords: ['t-shirt', 'tee shirt', 'oversize', 'coton bio', 'mode femme', 'haut femme', 'tshirt']
-  },
-  {
-    id: 'jean-slim-confort',
-    name: 'Jean confort stretch taille haute',
-    category: 'mode',
-    subcategory: 'femme',
-    categoryLabel: 'Mode',
-    gender: 'femme',
-    price: 49.90,
-    compareAtPrice: 69.90,
-    rating: 4.8,
-    reviewCount: 188,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: true,
-    imageDisplayMode: 'cover',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 22,
-    image: '/products/jean-taille-haute-femme.jpg',
-    gallery: [
-      '/products/jean-taille-haute-femme.jpg'
-    ],
-    altText: 'Jean denim bleu stretch taille haute pour femme',
-    shortDescription: 'Denim innovant à mémoire de forme qui galbe la silhouette tout en garantissant un confort maximal toute la journée.',
-    benefits: [
-      'Taille haute gainante sans serrer',
-      'Technologie 4-way stretch sans pochage aux genoux',
-      'Poches arrières positionnées pour un effet galbant'
-    ],
-    specs: {
-      Composition: '92% Coton, 6% Élastomultiester, 2% Élasthanne',
-      Fermeture: 'Zip YKK & bouton métal gravé'
-    },
-    hasVariants: true,
-    sizes: ['36', '38', '40', '42', '44'],
-    colors: [
-      { name: 'Bleu Brut', hex: '#1e3a8a' },
-      { name: 'Bleu Délavé', hex: '#38bdf8' },
-      { name: 'Noir Foncé', hex: '#0f172a' }
-    ],
-    defaultSize: '38',
-    defaultColor: 'Bleu Brut',
-    faq: [
-      { q: 'Rétrécit-il au lavage ?', a: 'Non, le tissu est prélavé en usine et conserve sa forme lavage après lavage.' }
-    ],
-    keywords: ['jean', 'pantalon', 'slim', 'denim', 'jeans femme', 'mode femme']
-  },
-  {
-    id: 'chemise-lin-homme',
-    name: 'Chemise casual en lin col mao',
-    category: 'mode',
-    subcategory: 'homme',
-    categoryLabel: 'Mode',
-    gender: 'homme',
-    price: 44.90,
-    compareAtPrice: 64.90,
-    rating: 4.9,
-    reviewCount: 280,
-    badge: 'Bestseller',
-    isBestSeller: true,
-    isNew: false,
-    isFashion: true,
-    imageDisplayMode: 'cover',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 35,
-    image: '/products/chemise-lin-homme.jpg',
-    gallery: [
-      '/products/chemise-lin-homme.jpg'
-    ],
-    altText: 'Chemise d\'homme casual en lin lavé avec col mao',
-    shortDescription: 'Lin normand respirant et thermorégulateur. Col officier épuré pour une allure chic sans effort.',
-    benefits: [
-      'Thermorégulation naturelle : frais en été, tempéré à la mi-saison',
-      'Boutons nacre résistants cousus en croix',
-      'Coupe droite moderne adaptée portée dehors ou rentrée'
-    ],
-    specs: {
-      Matière: '100% Lin lavé européen',
-      Col: 'Officier / Col Mao',
-      Entretien: 'Lavage délicat 30°C, séchage sur cintre'
-    },
-    hasVariants: true,
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    colors: [
-      { name: 'Blanc Craie', hex: '#f8fafc' },
-      { name: 'Bleu Ciel', hex: '#93c5fd' },
-      { name: 'Beige Sable', hex: '#e2d3c1' },
-      { name: 'Kaki Olive', hex: '#3f6212' }
-    ],
-    defaultSize: 'L',
-    defaultColor: 'Bleu Ciel',
-    faq: [
-      { q: 'Faut-il repasser la chemise ?', a: 'Le lin lavé a un froissé naturel élégant qui ne nécessite pas obligatoirement de repassage.' }
-    ],
-    keywords: ['chemise', 'chemise lin', 'homme', 'chemise homme', 'col mao', 'mode homme']
-  },
-  {
-    id: 'polo-coton-homme',
-    name: 'Polo classique en coton piqué',
-    category: 'mode',
-    subcategory: 'homme',
-    categoryLabel: 'Mode',
-    gender: 'homme',
-    price: 32.90,
-    compareAtPrice: 45.00,
-    rating: 4.8,
-    reviewCount: 165,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: true,
-    imageDisplayMode: 'cover',
-    shippingEU: 'Stock UE',
-    stock: 40,
-    image: '/products/polo-classique-homme.jpg',
-    gallery: [
-      '/products/polo-classique-homme.jpg'
-    ],
-    altText: 'Polo homme bleu marine en maille piquée',
-    shortDescription: 'Maille piquée respirante haute densité avec patte 2 boutons nacrés et fentes latérales d\'aisance.',
-    benefits: [
-      'Maille piquée respirante anti-boulochage',
-      'Col tricoté qui garde sa tenue sans s\'affaisser',
-      'Bord-côtes élastiques confortables aux bras'
-    ],
-    specs: {
-      Matière: '100% Coton peigné 220g/m²',
-      Coupe: 'Regular fit'
-    },
-    hasVariants: true,
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    colors: [
-      { name: 'Bleu Marine', hex: '#1e3a8a' },
-      { name: 'Noir Onyx', hex: '#0f172a' },
-      { name: 'Blanc Neige', hex: '#f8fafc' },
-      { name: 'Bordeaux', hex: '#881337' }
-    ],
-    defaultSize: 'M',
-    defaultColor: 'Bleu Marine',
-    faq: [
-      { q: 'Le col rebique-t-il après lavage ?', a: 'Non, le col est renforcé par une bande de propreté intérieure robuste.' }
-    ],
-    keywords: ['polo', 'polo homme', 'coton', 'mode homme', 't-shirt polo']
-  },
-  {
-    id: 'baskets-casual-respirantes',
-    name: 'Baskets casual respirantes',
-    category: 'mode',
-    subcategory: 'chaussures',
-    categoryLabel: 'Mode',
-    gender: 'unisexe',
-    price: 54.90,
-    compareAtPrice: 79.90,
-    rating: 4.9,
-    reviewCount: 395,
-    badge: 'Bestseller',
-    isBestSeller: true,
-    isNew: false,
-    isFashion: true,
-    imageDisplayMode: 'cover',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 30,
-    image: '/products/baskets-casual-respirantes.jpg',
-    gallery: [
-      '/products/baskets-casual-respirantes.jpg'
-    ],
-    altText: 'Baskets légères respirantes blanches et grises unisexe',
-    shortDescription: 'Semelle à mémoire de forme et mesh respirant. Légèreté absolue (210g) pour arpenter la ville en tout confort.',
-    benefits: [
-      'Semelle intérieure amortissante anti-choc',
-      'Tige en maille tricotée aérée anti-odeur',
-      'Semelle extérieure crantée en caoutchouc antiglisse'
-    ],
-    specs: {
-      Poids: '210 g par chaussure',
-      Semelle: 'EVA injecté + patins caoutchouc',
-      Fermeture: 'Lacets plats renforcés'
-    },
-    hasVariants: true,
-    sizes: ['39', '40', '41', '42', '43', '44', '45'],
-    colors: [
-      { name: 'Blanc & Gris', hex: '#e2e8f0' },
-      { name: 'Noir Total', hex: '#0f172a' },
-      { name: 'Bleu Nuit', hex: '#1e3a8a' }
-    ],
-    defaultSize: '42',
-    defaultColor: 'Blanc & Gris',
-    faq: [
-      { q: 'Conviennent-elles aux pieds larges ?', a: 'Oui, la tige élastique en maille épouse la morphologie du pied sans comprimer.' }
-    ],
-    keywords: ['baskets', 'chaussures', 'sneakers', 'chaussures homme', 'chaussures femme', 'running casual', 'basket']
-  },
-  {
-    id: 'sac-bandouliere-demi-lune',
-    name: 'Sac bandoulière demi-lune',
-    category: 'mode',
-    subcategory: 'sacs',
-    categoryLabel: 'Mode',
-    gender: 'femme',
-    price: 34.90,
-    compareAtPrice: 49.90,
-    rating: 4.8,
-    reviewCount: 210,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    isFashion: true,
-    imageDisplayMode: 'cover',
-    shippingEU: 'Stock UE',
-    stock: 32,
-    image: '/products/sac-bandouliere.jpg',
-    gallery: [
-      '/products/sac-bandouliere.jpg'
-    ],
-    altText: 'Sac bandoulière demi-lune femme en cuir végétal camel',
-    shortDescription: 'Cuir vegan premium texturé grainé. Format demi-lune compact mais spacieux pour smartphone, clés et portefeuille.',
-    benefits: [
-      'Bandoulière ajustable pour porté épaule ou cross-body',
-      'Poche zippée sécurisée intérieure + mousqueton clés',
-      'Finition déperlante résistante à la pluie'
-    ],
-    specs: {
-      Dimensions: '28 x 16 x 8 cm',
-      Matière: 'Cuir végétal PU écoresponsable'
-    },
-    hasVariants: true,
-    sizes: ['Format Unique'],
-    colors: [
-      { name: 'Noir Mat', hex: '#0f172a' },
-      { name: 'Camel Fauve', hex: '#b45309' },
-      { name: 'Crème Vanille', hex: '#fef3c7' }
-    ],
-    defaultSize: 'Format Unique',
-    defaultColor: 'Camel Fauve',
-    faq: [
-      { q: 'Un grand smartphone rentre-t-il facilement ?', a: 'Oui, les modèles jusqu\'à 6,8 pouces entrent très aisément avec de la place restante.' }
-    ],
-    keywords: ['sac', 'sac a main', 'sac bandouliere', 'sacs', 'sac femme', 'mode']
-  },
-  {
-    id: 'ensemble-lounge-confort',
-    name: 'Ensemble détente en coton côtelé',
-    category: 'mode',
-    subcategory: 'femme',
-    categoryLabel: 'Mode',
-    gender: 'femme',
-    price: 49.90,
-    compareAtPrice: 69.90,
-    rating: 4.9,
-    reviewCount: 156,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    isFashion: true,
-    imageDisplayMode: 'cover',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 25,
-    image: '/products/ensemble-lounge-cotele.jpg',
-    gallery: [
-      '/products/ensemble-lounge-cotele.jpg'
-    ],
-    altText: 'Ensemble lounge détente deux pièces sweat et pantalon côtelé pour femme',
-    shortDescription: 'Comprend un sweat col rond décontracté et un pantalon palazzo fluide à taille élastiquée.',
-    benefits: [
-      'Coton côtelé extensible ultra-doux',
-      'Parfait pour le télétravail ou le cocooning du week-end',
-      'Poches latérales profondes et pratiques'
-    ],
-    specs: {
-      Composition: '95% Coton peigné, 5% Élasthanne',
-      Coupe: 'Relaxed fit'
-    },
-    hasVariants: true,
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
-    colors: [
-      { name: 'Gris Chiné', hex: '#94a3b8' },
-      { name: 'Beige Avoine', hex: '#d4b996' },
-      { name: 'Noir Cosmique', hex: '#0f172a' }
-    ],
-    defaultSize: 'M',
-    defaultColor: 'Beige Avoine',
-    faq: [
-      { q: 'Les deux pièces sont-elles vendues ensemble ?', a: 'Oui, le pack contient le haut et le pantalon coordonnés.' }
-    ],
-    keywords: ['ensemble', 'ensemble lounge', 'pyjama', 'sweat', 'jogging', 'mode femme']
-  },
-
-  // ==========================================================================
-  // 2. BEAUTÉ (Soins visage, cheveux, accessoires, bien-être, maquillage)
-  // ==========================================================================
-  {
-    id: 'rouleau-glace-visage',
-    name: 'Rouleau de glace visage',
-    category: 'beaute',
-    subcategory: 'soins-visage',
-    categoryLabel: 'Beauté',
-    price: 14.90,
-    compareAtPrice: 22.90,
-    rating: 4.8,
-    reviewCount: 290,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 50,
-    image: '/products/rouleau-glace-visage.jpg',
-    gallery: ['/products/rouleau-glace-visage.jpg'],
-    altText: 'Rouleau de glace rafraîchissant pour massage facial et soins visage',
-    shortDescription: 'Dégonfle les traits au réveil, réduit les poches sous les yeux et resserre les pores par cryo-massage.',
-    benefits: [
-      'Tête en gel conservant le froid pendant 30 minutes',
-      'Effet éclat instantané le matin en 2 minutes de massage',
-      'Soulage les tensions au niveau des tempes et de la mâchoire'
-    ],
-    specs: { Usage: '15 min au congélateur avant application' },
-    faq: [{ q: 'Douloureux sur peau sensible ?', a: 'Non, le froid est progressif et procure une sensation très apaisante.' }],
-    keywords: ['rouleau de glace', 'visage', 'cryotherapie', 'soin visage', 'anti poches', 'beaute']
-  },
-  {
-    id: 'rouleau-boucles-sans-chaleur',
-    name: 'Rouleau boucles sans chaleur',
-    category: 'beaute',
-    subcategory: 'soins-cheveux',
-    categoryLabel: 'Beauté',
-    price: 18.90,
-    compareAtPrice: 28.90,
-    rating: 4.9,
-    reviewCount: 520,
-    badge: 'Bestseller',
-    isBestSeller: true,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 45,
-    image: '/products/rouleau-boucles-sans-chaleur.jpg',
-    gallery: ['/products/rouleau-boucles-sans-chaleur.jpg'],
-    altText: 'Kit de rouleau en satin pour boucles et ondulations sans chaleur',
-    shortDescription: 'Ondulations soyeuses wavy pendant la nuit sans fer chauffant pour préserver l\'intégrité de la fibre capillaire.',
-    benefits: [
-      'Mousse à mémoire souple pour dormir confortablement',
-      'Satin de mûrier anti-frisottis et anti-casse',
-      'Kit complet avec 2 chouchous en soie et 1 pince crocodile'
-    ],
-    specs: { Longueur: '90 cm', Matière: 'Satin de mûrier 100%' },
-    faq: [{ q: 'Sur cheveux humides ou secs ?', a: 'Idéalement sur cheveux à 80% secs avant de dormir.' }],
-    bundleWith: 'masseur-cuir-chevelu',
-    keywords: ['boucles', 'boucles sans chaleur', 'cheveux', 'coiffure', 'satin', 'beaute']
-  },
-  {
-    id: 'masseur-cuir-chevelu',
-    name: 'Brosse de massage cuir chevelu',
-    category: 'beaute',
-    subcategory: 'soins-cheveux',
-    categoryLabel: 'Beauté',
-    price: 11.90,
-    compareAtPrice: 17.90,
-    rating: 4.9,
-    reviewCount: 380,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 70,
-    image: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=800&q=80'],
-    altText: 'Brosse en silicone pour massage du cuir chevelu et application de shampoing',
-    shortDescription: 'Stimule la microcirculation sanguine sous la douche pour fortifier la racine et éliminer les impuretés.',
-    benefits: [
-      'Picots en silicone souple et arrondis',
-      'Poignée ergonomique anti-glisse sous l\'eau',
-      'Conception monobloc étanche sans infiltration d\'eau'
-    ],
-    specs: { Matière: 'Silicone antibactérien monobloc' },
-    faq: [{ q: 'L\'eau stagne-t-elle à l\'intérieur ?', a: 'Non, fabrication monobloc scellée sans cavité.' }],
-    keywords: ['brosse cuir chevelu', 'masseur', 'cheveux', 'shampoing', 'silicone', 'soin cheveux']
-  },
-  {
-    id: 'organisateur-maquillage',
-    name: 'Organisateur maquillage rotatif 360°',
-    category: 'beaute',
-    subcategory: 'accessoires-beaute',
-    categoryLabel: 'Beauté',
-    price: 26.90,
-    compareAtPrice: 39.90,
-    rating: 4.8,
-    reviewCount: 315,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 32,
-    image: '/products/organisateur-maquillage.jpg',
-    gallery: ['/products/organisateur-maquillage.jpg'],
-    altText: 'Tour de rangement maquillage rotative 360 degrés en acrylique',
-    shortDescription: 'Regroupe flacons, sérums, pinceaux et crèmes sur plateaux réglables en hauteur d\'un simple tour de main.',
-    benefits: [
-      'Rotation 360° fluide et silencieuse sur roulements en acier',
-      'Étages ajustables selon la hauteur de vos cosmétiques',
-      'Acrylique transparent lavable haute résistance'
-    ],
-    specs: { Hauteur: '34 cm', Diamètre: '23 cm' },
-    faq: [{ q: 'Convient-il pour les grands flacons de parfum ?', a: 'Oui, les étagères se règlent pour accueillir des flacons jusqu\'à 28 cm.' }],
-    keywords: ['organisateur maquillage', 'rangement maquillage', 'cosmetique', 'beaute', 'tour maquillage']
-  },
-  {
-    id: 'brosse-nettoyante-visage',
-    name: 'Brosse nettoyante visage sonique',
-    category: 'beaute',
-    subcategory: 'soins-visage',
-    categoryLabel: 'Beauté',
-    price: 29.90,
-    compareAtPrice: 42.00,
-    rating: 4.8,
-    reviewCount: 172,
-    badge: 'Nouveau',
-    isBestSeller: false,
-    isNew: true,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 35,
-    image: '/products/brosse-nettoyante-visage.jpg',
-    gallery: ['/products/brosse-nettoyante-visage.jpg'],
-    altText: 'Brosse sonique nettoyante pour le visage en silicone étanche',
-    shortDescription: 'Pulsations soniques douces pour désincruster les pores et exfolier la peau sans agression.',
-    benefits: [
-      'Silicone chirurgical ultra-hygiénique et antibactérien',
-      '5 intensités de vibrations réglables',
-      '100% étanche IPX7 pour une utilisation sous la douche'
-    ],
-    specs: { Étanchéité: 'IPX7', Batterie: 'USB rechargeable (60 jours d\'autonomie)' },
-    faq: [{ q: 'Convient-il aux peaux à tendance acnéique ?', a: 'Oui, les picots en silicone n\'hébergent pas de bactéries et nettoient sans frotter agressivement.' }],
-    keywords: ['brosse nettoyante', 'brosse sonique', 'soin visage', 'nettoyant visage', 'beaute']
-  },
-
-  // ==========================================================================
-  // 3. TECHNOLOGIE (Gadgets, Téléphones, Informatique, Audio, Objets connectés)
-  // ==========================================================================
-  {
-    id: 'support-ordinateur-portable',
-    name: 'Support PC aluminium réglable',
-    category: 'technologie',
-    subcategory: 'informatique',
-    categoryLabel: 'Technologie',
-    price: 26.90,
-    compareAtPrice: 39.90,
-    rating: 4.9,
-    reviewCount: 430,
-    badge: 'Bestseller',
-    isBestSeller: true,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 38,
-    image: '/products/support-ordinateur-portable.jpg',
-    gallery: ['/products/support-ordinateur-portable.jpg'],
-    altText: 'Support ventilé pliable en aluminium pour ordinateur portable',
-    shortDescription: 'Surélève votre écran au niveau des yeux pour prévenir les douleurs cervicales et optimiser le refroidissement.',
-    benefits: [
-      '6 crans d\'inclinaison de 5,5 à 15,5 cm',
-      'Alliage d\'aluminium aérospatial robuste et léger',
-      'Entièrement pliable avec housse velours nomade incluse'
-    ],
-    specs: { Compatibilité: 'PC et Mac de 10 à 17 pouces', Poids: '260 g' },
-    faq: [{ q: 'Est-il stable sous la frappe ?', a: 'Oui, les patins en silicone épais évitent tout glissement ou vacillement.' }],
-    keywords: ['support pc', 'support ordinateur', 'rehausseur pc', 'teletravail', 'informatique', 'technologie']
-  },
-  {
-    id: 'hub-usb-c-7en1',
-    name: 'Hub USB-C 7-en-1 multifonction',
-    category: 'technologie',
-    subcategory: 'gadgets',
-    categoryLabel: 'Technologie',
-    price: 34.90,
-    compareAtPrice: 49.90,
-    rating: 4.9,
-    reviewCount: 310,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 45,
-    image: '/products/hub-usb-c-7en1.jpg',
-    gallery: ['/products/hub-usb-c-7en1.jpg'],
-    altText: 'Adaptateur Hub USB-C 7 ports en aluminium avec sortie HDMI 4K',
-    shortDescription: 'Ajoutez 1 port HDMI 4K, 3 ports USB 3.0, 1 chargeur rapide PD 100W et lecteurs cartes SD/MicroSD à votre PC ou Mac.',
-    benefits: [
-      'Sortie vidéo HDMI 4K@60Hz ultra-fluide',
-      'Charge continue Power Delivery 100W',
-      'Boîtier en aluminium dissipateur de chaleur'
-    ],
-    specs: { Connectique: 'USB-C vers HDMI, 3x USB 3.0, SD, MicroSD, PD 100W' },
-    faq: [{ q: 'Compatible MacBook Pro M1/M2/M3 ?', a: 'Oui, plug-and-play immédiat sans pilote.' }],
-    keywords: ['hub usb c', 'adaptateur', 'hdmi', 'gadgets', 'informatique', 'technologie', 'dock']
-  },
-  {
-    id: 'ecouteurs-bluetooth-pro',
-    name: 'Écouteurs sans fil réduction de bruit',
-    category: 'technologie',
-    subcategory: 'audio',
-    categoryLabel: 'Technologie',
-    price: 39.90,
-    compareAtPrice: 59.90,
-    rating: 4.8,
-    reviewCount: 260,
-    badge: 'Nouveau',
-    isBestSeller: false,
-    isNew: true,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 30,
-    image: '/products/ecouteurs-bluetooth-pro.jpg',
-    gallery: ['/products/ecouteurs-bluetooth-pro.jpg'],
-    altText: 'Écouteurs sans fil Bluetooth avec boîtier de charge compact',
-    shortDescription: 'Audio haute fidélité avec basses profondes, réduction de bruit passive et autonomie de 28h avec le boîtier.',
-    benefits: [
-      'Appairage instantané Bluetooth 5.3 sans latence',
-      'Microphones intégrés avec clarté d\'appel HD',
-      'Boîtier compact à affichage digital du niveau de batterie'
-    ],
-    specs: { Autonomie: '7h en écoute continue + 21h boîtier', Étanchéité: 'IPX5' },
-    faq: [{ q: 'Sont-ils compatibles iPhone et Android ?', a: 'Oui, compatibles avec 100% des smartphones Bluetooth.' }],
-    keywords: ['ecouteurs', 'ecouteurs bluetooth', 'sans fil', 'audio', 'musique', 'technologie']
-  },
-  {
-    id: 'organisateur-cables',
-    name: 'Organisateur de câbles magnétique',
-    category: 'technologie',
-    subcategory: 'accessoires-electroniques',
-    categoryLabel: 'Technologie',
-    price: 12.90,
-    compareAtPrice: 19.90,
-    rating: 4.8,
-    reviewCount: 215,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 60,
-    image: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80'],
-    altText: 'Clips et base magnétique pour organisation des câbles de bureau',
-    shortDescription: 'Maintient vos cordons de chargeurs USB-C et Lightning bien rangés sur le bureau sans jamais glisser derrière.',
-    benefits: [
-      'Adhésif 3M puissant repositionnable sans résidu',
-      'Clips magnétiques universels adaptés aux cordons ronds et tressés',
-      'Finition discrète en silicone souple'
-    ],
-    specs: { Contenu: '1 Base aimantée + 5 Clips' },
-    faq: [{ q: 'Laisse-t-il des traces sur le bois ?', a: 'L\'adhésif 3M se retire proprement sans abîmer les meubles.' }],
-    keywords: ['organisateur de cables', 'cable', 'chargeur', 'bureau', 'accessoires bureau', 'technologie']
-  },
-  {
-    id: 'repose-pieds-ergonomique',
-    name: 'Repose-pieds ergonomique bureau',
-    category: 'technologie',
-    subcategory: 'informatique',
-    categoryLabel: 'Technologie',
-    price: 34.90,
-    compareAtPrice: 49.90,
-    rating: 4.9,
-    reviewCount: 312,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 18,
-    image: '/products/repose-pieds-ergonomique.jpg',
-    gallery: ['/products/repose-pieds-ergonomique.jpg'],
-    altText: 'Repose-pieds ergonomique sous bureau en mousse à mémoire de forme',
-    shortDescription: 'Stimule le retour veineux et soulage le bas du dos pendant les longues sessions de travail assis.',
-    benefits: [
-      'Mousse haute résilience qui ne s\'affaisse pas',
-      'Housse velours aérée, déhoussable et lavable en machine',
-      'Design en dôme massant utilisable dans les deux sens'
-    ],
-    specs: { Dimensions: '44 x 30 x 12 cm' },
-    faq: [{ q: 'La housse passe-t-elle au lave-linge ?', a: 'Oui, lavage en machine à 30°C.' }],
-    keywords: ['repose pieds', 'ergonomie', 'teletravail', 'posture', 'informatique', 'technologie']
-  },
-
-  // ==========================================================================
-  // 4. MAISON (Cuisine, Rangement, Nettoyage, Organisation)
-  // ==========================================================================
-  {
-    id: 'doublures-silicone-airfryer',
-    name: 'Moules silicone pour Air Fryer (x2)',
-    category: 'maison',
-    subcategory: 'cuisine',
-    categoryLabel: 'Maison',
-    price: 17.90,
-    compareAtPrice: 27.90,
-    rating: 4.9,
-    reviewCount: 620,
-    badge: 'Bestseller',
-    isBestSeller: true,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 65,
-    image: '/products/doublures-silicone-airfryer.jpg',
-    gallery: ['/products/doublures-silicone-airfryer.jpg'],
-    altText: 'Paire de moules en silicone antiadhésifs pour panier friteuse Air Fryer',
-    shortDescription: 'Gardez le tiroir de votre friteuse à air comme neuf. Rainures de surélévation pour des cuissons croustillantes.',
-    benefits: [
-      'Résiste aux hautes températures jusqu\'à 240°C',
-      'Rainures rainurées drainant l\'excédent d\'huile',
-      'Nettoyage en 10 secondes au lave-vaisselle'
-    ],
-    specs: { Diamètre: '20,5 cm universel (Ninja, Philips, Cosori, Moulinex)' },
-    faq: [{ q: 'Compatible lave-vaisselle ?', a: 'Oui, silicone platine alimentaire sans BPA lavable au lave-vaisselle.' }],
-    bundleWith: 'pulverisateur-huile',
-    keywords: ['moule silicone', 'air fryer', 'friteuse sans huile', 'doublure silicone', 'cuisine', 'maison']
-  },
-  {
-    id: 'pulverisateur-huile',
-    name: 'Pulvérisateur d\'huile en verre',
-    category: 'maison',
-    subcategory: 'cuisine',
-    categoryLabel: 'Maison',
-    price: 15.90,
-    compareAtPrice: 24.90,
-    rating: 4.8,
-    reviewCount: 440,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 48,
-    image: '/products/pulverisateur-huile.jpg',
-    gallery: ['/products/pulverisateur-huile.jpg'],
-    altText: 'Bouteille brumisateur d\'huile en verre avec buse de pulvérisation',
-    shortDescription: 'Diffuse une brume d\'huile ultra-fine et régulière pour réduire la matière grasse de 75% sur vos plats et salades.',
-    benefits: [
-      'Buse brumisateur haute pression sans gaz propulseur',
-      'Flacon en verre neutre hygiénique sans BPA',
-      'Évite le gaspillage et permet un dosage précis'
-    ],
-    specs: { Contenance: '200 ml' },
-    faq: [{ q: 'Fonctionne-t-il avec l\'huile d\'olive épaisse ?', a: 'Oui, buse conçue spécialement pour l\'huile d\'olive, de colza ou le vinaigre.' }],
-    keywords: ['pulverisateur huile', 'spray huile', 'vinaigre', 'cuisine', 'airfryer', 'maison']
-  },
-  {
-    id: 'accessoires-airfryer',
-    name: 'Kit d\'accessoires Air Fryer (8 pièces)',
-    category: 'maison',
-    subcategory: 'cuisine',
-    categoryLabel: 'Maison',
-    price: 34.90,
-    compareAtPrice: 52.00,
-    rating: 4.8,
-    reviewCount: 310,
-    badge: '-33%',
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 20,
-    image: '/products/accessoires-airfryer.jpg',
-    gallery: ['/products/accessoires-airfryer.jpg'],
-    altText: 'Kit complet de 8 accessoires inox et moules pour friteuse à air',
-    shortDescription: 'Multipliez les recettes de votre friteuse : gâteaux, brochettes, pizzas et cuissons étagées sur 2 niveaux.',
-    benefits: [
-      'Grille inox double niveau + moule à gâteau antiadhésif + plaque pizza',
-      'Pince isolante anti-brûlure incluse',
-      'Inox 304 de qualité alimentaire certifiée'
-    ],
-    specs: { Compatibilité: 'Paniers de 4,5L à 7L' },
-    faq: [{ q: 'Convient pour Ninja Dual Zone ?', a: 'Oui, compatible avec les bacs simples et compartiments doubles standards.' }],
-    keywords: ['accessoires airfryer', 'kit air fryer', 'cuisine', 'grille inox', 'maison']
-  },
-  {
-    id: 'organisateur-sous-evier',
-    name: 'Rangement sous-évier coulissant',
-    category: 'maison',
-    subcategory: 'rangement',
-    categoryLabel: 'Maison',
-    price: 32.90,
-    compareAtPrice: 47.90,
-    rating: 4.9,
-    reviewCount: 380,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 27,
-    image: '/products/organisateur-sous-evier.jpg',
-    gallery: ['/products/organisateur-sous-evier.jpg'],
-    altText: 'Étagère de rangement coulissante à tiroirs sous évier',
-    shortDescription: 'Optimise l\'espace perdu autour des tuyaux sous l\'évier grâce à son tiroir coulissant fluide à 2 étages.',
-    benefits: [
-      'Glissière sur roulement pour attraper vos produits sans se baisser',
-      'Crochets latéraux amovibles pour brosses et éponges',
-      'Structure métallique traitée anti-rouille'
-    ],
-    specs: { Dimensions: '40 x 22 x 34 cm' },
-    faq: [{ q: 'Passe-t-il sous les siphons encombrants ?', a: 'Oui, sa forme ergonomique en L est étudiée pour contourner les tuyaux.' }],
-    keywords: ['rangement sous evier', 'organisateur sous evier', 'rangement cuisine', 'maison']
-  },
-
-  // ==========================================================================
-  // 5. ANIMAUX (Chiens, Chats, Toilettage, Voyage, Accessoires)
-  // ==========================================================================
-  {
-    id: 'brosse-anti-poils',
-    name: 'Brosse anti-poils autonettoyante',
-    category: 'animaux',
-    subcategory: 'toilettage',
-    categoryLabel: 'Animaux',
-    price: 19.90,
-    compareAtPrice: 29.90,
-    rating: 4.9,
-    reviewCount: 342,
-    badge: 'Bestseller',
-    isBestSeller: true,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 24,
-    image: '/products/brosse-anti-poils.jpg',
-    gallery: ['/products/brosse-anti-poils.jpg'],
-    altText: 'Brosse autonettoyante ramasse-poils animaux pour tissus et vêtements',
-    shortDescription: 'Retire instantanément les poils incrustés sur canapés, tapis, vêtements et sièges auto grâce à sa base autonettoyante.',
-    benefits: [
-      'Double face électrostatique pour une capture maximale',
-      'Base autonettoyante : plongez la brosse, elle ressort propre',
-      'Économique et réutilisable : zéro adhésif jetable'
-    ],
-    specs: {
-      Dimensions: '33 x 7.5 x 5 cm',
-      Matière: 'ABS renforcé + Microfibres électrostatiques'
-    },
-    faq: [{ q: 'Fonctionne-t-elle sur les poils courts de chien ?', a: 'Oui, le velours microfibre capture efficacement les poils courts et longs.' }],
-    bundleWith: 'rouleau-anti-peluches',
-    keywords: ['brosse anti poils', 'poils de chien', 'poils de chat', 'animaux', 'toilettage']
-  },
-  {
-    id: 'rouleau-anti-peluches',
-    name: 'Rouleau anti-poils lavable en gel',
-    category: 'animaux',
-    subcategory: 'toilettage',
-    categoryLabel: 'Animaux',
-    price: 14.90,
-    compareAtPrice: 22.00,
-    rating: 4.8,
-    reviewCount: 198,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 42,
-    image: '/products/rouleau-anti-peluches.jpg',
-    gallery: ['/products/rouleau-anti-peluches.jpg'],
-    altText: 'Rouleau anti-peluches réutilisable lavable à l\'eau',
-    shortDescription: 'Alternative lavable aux rouleaux collants en papier. Rincez sous l\'eau tiède pour réactiver l\'adhérence à l\'infini.',
-    benefits: [
-      'Gel silicone TPR haute adhérence lavable',
-      'Zéro déchet papier à jeter',
-      'Format de poche facile à transporter'
-    ],
-    specs: { Matière: 'Silicone TPR lavable' },
-    faq: [{ q: 'Combien de temps met-il à sécher ?', a: 'Environ 5 à 10 minutes à l\'air libre.' }],
-    keywords: ['rouleau anti peluches', 'gel lavable', 'poils animaux', 'animaux']
-  },
-  {
-    id: 'nettoyeur-pattes-chiens',
-    name: 'Nettoyeur de pattes en silicone',
-    category: 'animaux',
-    subcategory: 'toilettage',
-    categoryLabel: 'Animaux',
-    price: 18.90,
-    compareAtPrice: 26.90,
-    rating: 4.9,
-    reviewCount: 265,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 19,
-    image: '/products/nettoyeur-pattes-chiens.jpg',
-    gallery: ['/products/nettoyeur-pattes-chiens.jpg'],
-    altText: 'Gobelet nettoyeur de pattes boueuses pour chien avec picots silicone',
-    shortDescription: 'Élimine la boue et le sable des pattes de votre animal après la balade sans salir le sol de la maison.',
-    benefits: [
-      'Picots intérieurs en silicone souple et massant',
-      'Ajoutez de l\'eau, insérez la patte et tournez délicatement',
-      'Entièrement démontable pour un rinçage rapide'
-    ],
-    specs: { Matière: 'Silicone alimentaire sans BPA' },
-    faq: [{ q: 'Est-ce doux pour les coussinets ?', a: 'Oui, les picots sont très souples et ne causent aucune gêne.' }],
-    keywords: ['nettoyeur pattes', 'pattes de chien', 'promenade chien', 'animaux', 'toilettage']
-  },
-  {
-    id: 'gourde-portable-chiens',
-    name: 'Gourde portable pour chien étanche',
-    category: 'animaux',
-    subcategory: 'voyage',
-    categoryLabel: 'Animaux',
-    price: 19.90,
-    compareAtPrice: 29.00,
-    rating: 4.9,
-    reviewCount: 310,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 35,
-    image: '/products/gourde-portable-chiens.jpg',
-    gallery: ['/products/gourde-portable-chiens.jpg'],
-    altText: 'Bouteille d\'eau portable antifuite pour chien avec distributeur',
-    shortDescription: 'Auget ergonomique incurvé. Une simple pression sur le bouton verse l\'eau et récupère le surplus non bu.',
-    benefits: [
-      'Zéro gaspillage : l\'eau non bue retourne dans le réservoir',
-      'Verrou étanche à double joint silicone antifuite',
-      'Format idéal pour la randonnée et les trajets en voiture'
-    ],
-    specs: { Contenance: '550 ml', Matériau: 'Tritan certifié sans BPA' },
-    faq: [{ q: 'Peut-on récupérer l\'eau non consommée ?', a: 'Oui, en maintenant le bouton enfoncé bouteille inclinée.' }],
-    keywords: ['gourde pour chien', 'gourde portable', 'balade chien', 'voyage animaux', 'animaux']
-  },
-  {
-    id: 'gamelle-pliable',
-    name: 'Gamelle pliable en silicone avec mousqueton',
-    category: 'animaux',
-    subcategory: 'voyage',
-    categoryLabel: 'Animaux',
-    price: 9.90,
-    compareAtPrice: 14.90,
-    rating: 4.7,
-    reviewCount: 145,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 80,
-    image: '/products/gamelle-pliable.jpg',
-    gallery: ['/products/gamelle-pliable.jpg'],
-    altText: 'Gamelle nomade pliable en silicone pour chien et chat',
-    shortDescription: 'Se replie à plat (1 cm d\'épaisseur) pour s\'accrocher à votre sac ou à la laisse avec son mousqueton alu.',
-    benefits: [
-      'Ultra compacte une fois repliée',
-      'Convient à l\'eau fraîche et aux croquettes',
-      'Passe au lave-vaisselle'
-    ],
-    specs: { Diamètre: '13 cm', Capacité: '450 ml' },
-    faq: [{ q: 'Résiste-t-elle au chaud ?', a: 'Oui jusqu\'à 70°C sans déformation.' }],
-    keywords: ['gamelle pliable', 'gamelle chien', 'voyage animaux', 'animaux']
-  },
-  {
-    id: 'housse-siege-animaux',
-    name: 'Housse de protection banquette auto',
-    category: 'animaux',
-    subcategory: 'voyage',
-    categoryLabel: 'Animaux',
-    price: 39.90,
-    compareAtPrice: 59.90,
-    rating: 4.9,
-    reviewCount: 412,
-    badge: '-33%',
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 15,
-    image: '/products/housse-siege-animaux.jpg',
-    gallery: ['/products/housse-siege-animaux.jpg'],
-    altText: 'Housse imperméable de protection de banquette arrière pour chien',
-    shortDescription: 'Protège la banquette arrière des griffures, poils et boue. Format hamac sécurisé avec fenêtre en filet aérée.',
-    benefits: [
-      'Tissu Oxford 600D imperméable et résistant aux griffes',
-      'Fenêtre en filet pour rassurer votre animal et laisser passer la clim',
-      'Poches pour ranger la laisse et les friandises'
-    ],
-    specs: { Dimensions: '147 x 137 cm (universel)' },
-    faq: [{ q: 'S\'adapte-t-elle à toutes les voitures ?', a: 'Oui, sangles d\'appui-tête réglables compatibles avec 99% des véhicules.' }],
-    keywords: ['housse siege auto', 'housse chien voiture', 'protection banquette', 'animaux', 'auto']
-  },
-
-  // ==========================================================================
-  // 6. SPORT & FITNESS (Fitness, Running, Yoga, Cyclisme, Accessoires)
-  // ==========================================================================
-  {
-    id: 'bandeaux-fitness',
-    name: 'Bandes de résistance en tissu (Lot de 3)',
-    category: 'sport',
-    subcategory: 'fitness',
-    categoryLabel: 'Sport & Fitness',
-    price: 19.90,
-    compareAtPrice: 29.90,
-    rating: 4.9,
-    reviewCount: 460,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 48,
-    image: '/products/bandes-resistance.jpg',
-    gallery: ['/products/bandes-resistance.jpg'],
-    altText: 'Lot de 3 bandes élastiques de résistance en tissu pour fitness et musculation',
-    shortDescription: 'Ne roulent pas et ne pincent pas la peau grâce à leur tissage coton/latex épais avec bandes antiglisse intérieures.',
-    benefits: [
-      '3 niveaux de résistance progressifs (Light, Medium, Heavy)',
-      'Grip antidérapant en silicone intérieur',
-      'Pochette en filet aéré incluse'
-    ],
-    specs: { Matière: 'Coton tressé & latex', Largeur: '8 cm' },
-    faq: [{ q: 'Roulent-elles pendant les squats ?', a: 'Non, le tissu épais et le grip interne restent fermement en place.' }],
-    keywords: ['bandes de resistance', 'elastiques fitness', 'fitness', 'fessiers', 'musculation', 'sport']
-  },
-  {
-    id: 'ceinture-course',
-    name: 'Ceinture running sans rebond',
-    category: 'sport',
-    subcategory: 'running',
-    categoryLabel: 'Sport & Fitness',
-    price: 16.90,
-    compareAtPrice: 24.90,
-    rating: 4.8,
-    reviewCount: 310,
-    badge: 'Nouveau',
-    isBestSeller: false,
-    isNew: true,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 55,
-    image: '/products/ceinture-course.jpg',
-    gallery: ['/products/ceinture-course.jpg'],
-    altText: 'Ceinture fine et élastique pour smartphone et clés spécial course à pied',
-    shortDescription: 'Emportez smartphone, clés et gels énergétiques sans aucun rebond gênant pendant la course à pied.',
-    benefits: [
-      'Lycra extensible déperlant protégeant de la sueur',
-      'Bandes réfléchissantes 360° pour la visibilité nocturne',
-      'Passage discret pour câble d\'écouteurs'
-    ],
-    specs: { 'Tour de taille': '65 à 120 cm réglable' },
-    faq: [{ q: 'Un grand téléphone rentre-t-il ?', a: 'Oui, extensible pour accueillir des smartphones jusqu\'à 6,9 pouces.' }],
-    keywords: ['ceinture running', 'course a pied', 'marathon', 'running', 'sport']
-  },
-  {
-    id: 'sac-sport-compact',
-    name: 'Sac de sport compartiment chaussures',
-    category: 'sport',
-    subcategory: 'accessoires-sport',
-    categoryLabel: 'Sport & Fitness',
-    price: 29.90,
-    compareAtPrice: 44.90,
-    rating: 4.8,
-    reviewCount: 275,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 30,
-    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80'],
-    altText: 'Sac de sport imperméable avec compartiment séparé pour chaussures',
-    shortDescription: 'Poche spéciale étanche pour serviette mouillée et compartiment ventilé séparé pour vos baskets.',
-    benefits: [
-      'Compartiment chaussures indépendant avec œillets d\'aération',
-      'Poche intérieure étanche pour affaires humides',
-      'Format accepté en bagage cabine d\'avion'
-    ],
-    specs: { Dimensions: '45 x 25 x 26 cm', Volume: '32 Litres' },
-    faq: [{ q: 'Peut-il servir de sac de week-end ?', a: 'Oui, son volume de 32L permet d\'emporter le nécessaire pour 2 à 3 jours.' }],
-    keywords: ['sac de sport', 'sac fitness', 'compartiment chaussures', 'sport']
-  },
-  {
-    id: 'bouteille-eau-pliable',
-    name: 'Gourde pliable en silicone 600 ml',
-    category: 'sport',
-    subcategory: 'accessoires-sport',
-    categoryLabel: 'Sport & Fitness',
-    price: 14.90,
-    compareAtPrice: 21.90,
-    rating: 4.7,
-    reviewCount: 180,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 55,
-    image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=800&q=80'],
-    altText: 'Gourde souple compactable en silicone platine pour sport et randonnée',
-    shortDescription: 'Se replie à 25% de son volume une fois bue pour un encombrement minimal dans votre sac de sport ou sac à dos.',
-    benefits: [
-      'Silicone platine sans BPA certifié sans transfert de goût',
-      'Bouchon étanche à clapet verrouillable antifuite',
-      'Résiste aux boissons chaudes et glacées'
-    ],
-    specs: { Pliée: '7 cm', Dépliée: '22 cm', Capacité: '600 ml' },
-    faq: [{ q: 'Goût de plastique ?', a: 'Non, le silicone platine de haute pureté est totalement inodore.' }],
-    keywords: ['gourde pliable', 'bouteille eau', 'sport', 'randonnee', 'hydratation']
-  },
-  {
-    id: 'sacoche-velo',
-    name: 'Sacoche de cadre vélo tactile étanche',
-    category: 'sport',
-    subcategory: 'cyclisme',
-    categoryLabel: 'Sport & Fitness',
-    price: 21.90,
-    compareAtPrice: 32.90,
-    rating: 4.8,
-    reviewCount: 195,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 36,
-    image: '/products/sacoche-velo.jpg',
-    gallery: ['/products/sacoche-velo.jpg'],
-    altText: 'Sacoche imperméable de cadre de vélo avec support écran tactile GPS',
-    shortDescription: 'Consultez votre GPS en pédalant grâce à la fenêtre tactile haute réactivité avec visière pare-soleil intégrée.',
-    benefits: [
-      'Fenêtre TPU transparente tactile même sous la pluie',
-      'Visière rigide pare-soleil pour un écran lisible',
-      'Rangement sous le téléphone pour powerbank et clés'
-    ],
-    specs: { Compatibilité: 'Smartphones jusqu\'à 6,8 pouces' },
-    faq: [{ q: 'Le tactile fonctionne-t-il sous l\'averse ?', a: 'Oui, le film TPU reste réactif.' }],
-    keywords: ['sacoche velo', 'velo', 'cyclisme', 'support telephone velo', 'sport']
-  },
-
-  // ==========================================================================
-  // 7. AUTO (Accessoires voiture, Organisation, Nettoyage, Téléphone & charge)
-  // ==========================================================================
-  {
-    id: 'support-telephone-voiture',
-    name: 'Support téléphone magnétique 360° pour voiture',
-    category: 'auto',
-    subcategory: 'telephone-charge',
-    categoryLabel: 'Auto',
-    price: 17.90,
-    compareAtPrice: 25.00,
-    rating: 4.9,
-    reviewCount: 388,
-    badge: 'Bestseller',
-    isBestSeller: true,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 52,
-    image: '/products/support-telephone-voiture.jpg',
-    gallery: ['/products/support-telephone-voiture.jpg'],
-    altText: 'Support smartphone magnétique universel 360 degrés sur grille d\'aération',
-    shortDescription: '6 aimants néodyme N52 surpuissants. Fixation universelle à pince anti-vibration sur grille d\'aération.',
-    benefits: [
-      'Maintien stable garanti même sur dos-d\'âne et routes pavées',
-      'Orientation rotative 360° manipulable à une main',
-      'Compatible MagSafe natif et plaques adhésives fournies'
-    ],
-    specs: { Rotation: '360 degrés', Puissance: '6 aimants N52' },
-    faq: [{ q: 'Compatible coque épaisse ?', a: 'Oui avec les plaques métalliques adhésives fournies.' }],
-    keywords: ['support telephone voiture', 'support magnetique', 'gps voiture', 'accessoires auto', 'auto']
-  },
-  {
-    id: 'organisateur-coffre',
-    name: 'Organisateur de coffre pliable renforcé',
-    category: 'auto',
-    subcategory: 'organisation',
-    categoryLabel: 'Auto',
-    price: 29.90,
-    compareAtPrice: 44.90,
-    rating: 4.8,
-    reviewCount: 278,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 31,
-    image: '/products/organisateur-coffre.jpg',
-    gallery: ['/products/organisateur-coffre.jpg'],
-    altText: 'Organisateur pliable compartimenté pour coffre de voiture avec poignées alu',
-    shortDescription: 'Empêche vos courses, outillages et équipements de rouler dans le coffre grâce à ses cloisons rigides modulables.',
-    benefits: [
-      'Panneaux renforcés avec bandes velcro antiglisse sous la base',
-      'Pliable en accordéon si non utilisé',
-      'Poignées solides en aluminium pour le transport'
-    ],
-    specs: { Dimensions: '58 x 35 x 30 cm', Volume: '60 Litres' },
-    faq: [{ q: 'Glisse-t-il dans les virages ?', a: 'Non, les bandes agrippantes velcro sous la base le fixent au tapis de coffre.' }],
-    keywords: ['organisateur de coffre', 'rangement coffre', 'voiture', 'accessoires voiture', 'auto']
-  },
-  {
-    id: 'organisateur-entre-sieges',
-    name: 'Organisateurs interstice sièges auto (Paire)',
-    category: 'auto',
-    subcategory: 'organisation',
-    categoryLabel: 'Auto',
-    price: 19.90,
-    compareAtPrice: 28.90,
-    rating: 4.7,
-    reviewCount: 164,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 45,
-    image: '/products/organisateur-entre-sieges.jpg',
-    gallery: ['/products/organisateur-entre-sieges.jpg'],
-    altText: 'Paire de bacs de rangement pour fente entre siège avant et console de voiture',
-    shortDescription: 'Comble l\'interstice entre le siège et la console pour éviter la chute des clés ou du téléphone tout en créant du rangement.',
-    benefits: [
-      'Insertion directe en 2 secondes sans outil',
-      'Finitions premium en simili cuir noir surpiqué',
-      'Passage intégré pour brancher le câble de charge'
-    ],
-    specs: { Lot: 'Paire conducteur + passager' },
-    faq: [{ q: 'Gêne-t-il le réglage des sièges ?', a: 'Non, il glisse naturellement avec les mouvements du siège.' }],
-    keywords: ['organisateur siege auto', 'accessoires auto', 'rangement voiture', 'auto']
-  },
-  {
-    id: 'aspirateur-voiture-sans-fil',
-    name: 'Mini aspirateur de voiture sans fil',
-    category: 'auto',
-    subcategory: 'nettoyage',
-    categoryLabel: 'Auto',
-    price: 34.90,
-    compareAtPrice: 49.90,
-    rating: 4.8,
-    reviewCount: 220,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 25,
-    image: '/products/aspirateur-voiture-sans-fil.jpg',
-    gallery: ['/products/aspirateur-voiture-sans-fil.jpg'],
-    altText: 'Mini aspirateur à main portable sans fil avec filtre HEPA pour intérieur automobile',
-    shortDescription: 'Puissance d\'aspiration de 8000 Pa pour éliminer miettes, poussières et poils dans les recoins les plus étroits.',
-    benefits: [
-      'Moteur cyclonique sans balai compact et silencieux',
-      'Filtre HEPA lavable et réutilisable',
-      'Recharge rapide par câble USB-C'
-    ],
-    specs: { Puissance: '8000 Pa', Autonomie: '25 min' },
-    faq: [{ q: 'Le filtre se remplace-t-il ?', a: 'Il se rince à l\'eau claire et sèche à l\'air libre.' }],
-    keywords: ['aspirateur voiture', 'nettoyage auto', 'aspirateur sans fil', 'auto']
-  },
-
-  // ==========================================================================
-  // 8. SÉCURITÉ (Caméras, Maison intelligente, Surveillance, Détection)
-  // ==========================================================================
-  {
-    id: 'camera-surveillance-wifi',
-    name: 'Caméra WiFi motorisée 360° intérieure/extérieure',
-    category: 'securite',
-    subcategory: 'cameras',
-    categoryLabel: 'Sécurité',
-    price: 39.90,
-    compareAtPrice: 59.90,
-    rating: 4.9,
-    reviewCount: 380,
-    badge: 'Bestseller',
-    isBestSeller: true,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 30,
-    image: '/products/camera-surveillance-wifi.jpg',
-    gallery: ['/products/camera-surveillance-wifi.jpg'],
-    altText: 'Caméra de surveillance WiFi 360 degrés 2K avec vision nocturne',
-    shortDescription: 'Vision nocturne infrarouge haute définition 2K, suivi automatique des mouvements par IA et audio bidirectionnel.',
-    benefits: [
-      'Résolution 2K 1296p nette avec rotation panoramique 360°',
-      'Notifications instantanées sur smartphone iOS & Android',
-      'Microphone et haut-parleur pour entendre et parler à distance'
-    ],
-    specs: { Résolution: '2K 1296p HD', Connectivité: 'WiFi 2.4 GHz' },
-    faq: [{ q: 'Faut-il un abonnement payant ?', a: 'Non, enregistrement local sur carte MicroSD ou stockage cloud optionnel.' }],
-    keywords: ['camera wifi', 'camera surveillance', 'camera 360', 'securite maison', 'securite']
-  },
-  {
-    id: 'sonnette-video-connectee',
-    name: 'Sonnette vidéo connectée HD sans fil',
-    category: 'securite',
-    subcategory: 'maison-intelligente',
-    categoryLabel: 'Sécurité',
-    price: 49.90,
-    compareAtPrice: 69.90,
-    rating: 4.8,
-    reviewCount: 245,
-    badge: 'Nouveau',
-    isBestSeller: false,
-    isNew: true,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 22,
-    image: '/products/sonnette-video-connectee.jpg',
-    gallery: ['/products/sonnette-video-connectee.jpg'],
-    altText: 'Sonnette connectée sans fil étanche avec caméra vidéo grand angle',
-    shortDescription: 'Visualisez et répondez aux livreurs et visiteurs directement depuis votre smartphone où que vous soyez.',
-    benefits: [
-      'Angle de vision panoramique 166° avec vision nocturne nette',
-      'Batterie rechargeable longue autonomie (jusqu\'à 6 mois)',
-      'Carillon intérieur sans fil inclus dans le pack'
-    ],
-    specs: { Étanchéité: 'IP65 tout temps', Batterie: 'Li-ion 5200 mAh' },
-    faq: [{ q: 'Peut-on l\'installer sans percer ?', a: 'Oui, adhésif 3M ultra-puissant ou chevilles/vis fournis au choix.' }],
-    keywords: ['sonnette video', 'interphone sans fil', 'sonnette connectee', 'securite maison', 'securite']
-  },
-  {
-    id: 'prise-connectee-wifi',
-    name: 'Prise connectée WiFi avec mesure d\'énergie',
-    category: 'securite',
-    subcategory: 'maison-intelligente',
-    categoryLabel: 'Sécurité',
-    price: 16.90,
-    compareAtPrice: 24.90,
-    rating: 4.8,
-    reviewCount: 310,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 55,
-    image: '/products/prise-connectee-wifi.jpg',
-    gallery: ['/products/prise-connectee-wifi.jpg'],
-    altText: 'Prise électrique connectée WiFi avec suivi de consommation en temps réel',
-    shortDescription: 'Allumez et éteignez vos appareils à distance et surveillez votre consommation électrique en direct.',
-    benefits: [
-      'Compatible Alexa, Google Assistant et application Tuya/SmartLife',
-      'Programmation horaire et simulation de présence anti-cambriolage',
-      'Mesure des Watts consommés en temps réel'
-    ],
-    specs: { 'Puissance max': '16A / 3680W' },
-    faq: [{ q: 'Nécessite-t-elle un pont domotique ?', a: 'Non, se connecte directement à votre box WiFi domestique en 2.4 GHz.' }],
-    keywords: ['prise connectee', 'domotique', 'economie energie', 'wifi', 'securite']
-  },
-  {
-    id: 'detecteur-mouvement-connecte',
-    name: 'Détecteur de mouvement sans fil WiFi',
-    category: 'securite',
-    subcategory: 'detection',
-    categoryLabel: 'Sécurité',
-    price: 19.90,
-    compareAtPrice: 29.90,
-    rating: 4.8,
-    reviewCount: 185,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 40,
-    image: '/products/detecteur-mouvement-connecte.jpg',
-    gallery: ['/products/detecteur-mouvement-connecte.jpg'],
-    altText: 'Capteur de présence et détecteur de mouvement connecté WiFi pour sécurité maison',
-    shortDescription: 'Détection infrarouge grand angle 110° jusqu\'à 8 mètres. Envoie une alerte instantanée sur smartphone lors de toute intrusion.',
-    benefits: [
-      'Alerte push instantanée sur smartphone en moins d\'1 seconde',
-      'Angle de détection 110° couvrant toute la pièce',
-      'Fixation magnétique rotative ou adhésif 3M inclus'
-    ],
-    specs: { Portée: '7 à 9 mètres', Connectivité: 'WiFi 2.4 GHz' },
-    faq: [{ q: 'Détecte-t-il les animaux de compagnie ?', a: 'Immunité intelligente pour les animaux de moins de 15 kg.' }],
-    keywords: ['detecteur mouvement', 'capteur intrusion', 'alarme sans fil', 'securite maison', 'securite']
-  },
-
-  // ==========================================================================
-  // 9. VOYAGE (Bagagerie, Organisation, Accessoires, Confort)
-  // ==========================================================================
-  {
-    id: 'cubes-rangement-valise',
-    name: 'Cubes de compression valise (Lot de 6)',
-    category: 'voyage',
-    subcategory: 'organisation',
-    categoryLabel: 'Voyage',
-    price: 24.90,
-    compareAtPrice: 39.90,
-    rating: 4.9,
-    reviewCount: 512,
-    badge: 'Bestseller',
-    isBestSeller: true,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 40,
-    image: '/products/cubes-rangement-valise.jpg',
-    gallery: ['/products/cubes-rangement-valise.jpg'],
-    altText: 'Ensemble de 6 housses et cubes de compression zippés pour valise',
-    shortDescription: 'Gagnez jusqu\'à 50% de place dans vos bagages grâce au zip de compression périmétrique renforcé.',
-    benefits: [
-      'Système double zip réduisant l\'épaisseur des vêtements',
-      'Maille filet aérée pour repérer ses affaires sans ouvrir',
-      'Tissu nylon indéchirable et déperlant'
-    ],
-    specs: { Set: '6 formats assortis pour cabine et soute' },
-    faq: [{ q: 'S\'adaptent-ils aux valises cabine ?', a: 'Parfaitement optimisés pour les formats cabine 55x40x20 cm.' }],
-    bundleWith: 'trousse-toilette-suspendue',
-    keywords: ['cubes de compression', 'organisateur valise', 'voyage', 'bagagerie', 'valise']
-  },
-  {
-    id: 'trousse-toilette-suspendue',
-    name: 'Trousse de toilette suspendue dépliable',
-    category: 'voyage',
-    subcategory: 'organisation',
-    categoryLabel: 'Voyage',
-    price: 22.90,
-    compareAtPrice: 34.90,
-    rating: 4.9,
-    reviewCount: 375,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 29,
-    image: '/products/trousse-toilette-suspendue.jpg',
-    gallery: ['/products/trousse-toilette-suspendue.jpg'],
-    altText: 'Trousse de toilette suspendue à crochet avec compartiments transparents',
-    shortDescription: 'Dépliez-la et suspendez-la au porte-serviettes d\'hôtel. 4 compartiments transparents imperméables anti-fuites.',
-    benefits: [
-      'Crochet pivotant 360° en acier robuste',
-      'Poches étanches transparentes faciles à nettoyer',
-      'Tissu déperlant résistant aux éclaboussures'
-    ],
-    specs: { 'Dimensions dépliée': '85 x 28 cm' },
-    faq: [{ q: 'Accueille-t-elle de grands flacons de shampoing ?', a: 'Oui, le compartiment principal accepte des flacons verticaux de 22 cm.' }],
-    keywords: ['trousse de toilette', 'trousse suspendue', 'voyage', 'accessoires voyage']
-  },
-  {
-    id: 'oreiller-voyage-memoire',
-    name: 'Oreiller de voyage ergonomique à mémoire de forme',
-    category: 'voyage',
-    subcategory: 'confort',
-    categoryLabel: 'Voyage',
-    price: 21.90,
-    compareAtPrice: 32.00,
-    rating: 4.8,
-    reviewCount: 190,
-    badge: 'Nouveau',
-    isBestSeller: false,
-    isNew: true,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 35,
-    image: '/products/oreiller-voyage-memoire.jpg',
-    gallery: ['/products/oreiller-voyage-memoire.jpg'],
-    altText: 'Coussin de voyage ergonomique pour la nuque en mousse viscoélastique',
-    shortDescription: 'Mousse viscoélastique maintenant la nuque à 360° en avion, train ou voiture. Se comprime dans sa pochette.',
-    benefits: [
-      'Mousse à mémoire de forme haute densité qui soutient le menton',
-      'Housse velours magnétique douce et respirante',
-      'Se roule à 50% de sa taille dans son étui de transport'
-    ],
-    specs: { Matière: 'Mousse viscoélastique 100%' },
-    faq: [{ q: 'La housse se lave-t-elle ?', a: 'Oui, la housse est dézippable et lavable à 30°C.' }],
-    keywords: ['oreiller de voyage', 'coussin voyage avion', 'confort voyage', 'voyage']
-  },
-
-  // ==========================================================================
-  // 10. ACCESSOIRES (Montres, Sacs, Bijoux, Bureau, Lifestyle)
-  // ==========================================================================
-  {
-    id: 'organisateur-bureau',
-    name: 'Organisateur de bureau rotatif 360°',
-    category: 'accessoires',
-    subcategory: 'accessoires-bureau',
-    categoryLabel: 'Accessoires',
-    price: 18.90,
-    compareAtPrice: 27.90,
-    rating: 4.7,
-    reviewCount: 154,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 25,
-    image: '/products/organisateur-bureau.jpg',
-    gallery: ['/products/organisateur-bureau.jpg'],
-    altText: 'Pot à crayons et organisateur de bureau rotatif à 5 compartiments',
-    shortDescription: 'Accédez à vos stylos, ciseaux et fournitures d\'un simple tour de main silencieux.',
-    benefits: [
-      '5 compartiments étagés spacieux',
-      'Rotation silencieuse à 360° sur roulement à billes',
-      'Pieds antidérapants en caoutchouc'
-    ],
-    specs: { Diamètre: '14 cm', Hauteur: '13 cm' },
-    faq: [{ q: 'Est-il stable lorsqu\'on le fait tourner ?', a: 'Oui, la base lestée avec patins assure une stabilité parfaite.' }],
-    keywords: ['organisateur bureau', 'pot a crayon', 'bureau', 'accessoires bureau', 'accessoires']
-  },
-  {
-    id: 'montre-quartz-minimaliste',
-    name: 'Montre quartz minimaliste unisexe',
-    category: 'accessoires',
-    subcategory: 'montres',
-    categoryLabel: 'Accessoires',
-    price: 39.90,
-    compareAtPrice: 59.90,
-    rating: 4.9,
-    reviewCount: 220,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 28,
-    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80'],
-    altText: 'Montre quartz minimaliste unisexe avec cadran blanc et boîtier épuré',
-    shortDescription: 'Boîtier extra-plat en acier inoxydable brossé avec cadran épuré et bracelet en cuir véritable interchangeable.',
-    benefits: [
-      'Mouvement à quartz japonais précis et fiable',
-      'Verre minéral trempé anti-rayures',
-      'Étanche 3 ATM (résiste aux éclaboussures et lavage des mains)'
-    ],
-    specs: { Diamètre: '40 mm', Épaisseur: '7.5 mm', Matière: 'Acier 316L' },
-    faq: [{ q: 'Le bracelet est-il remplaçable ?', a: 'Oui, grâce au système de pompe flash sans outil standard 20 mm.' }],
-    keywords: ['montre', 'montre minimaliste', 'montre homme', 'montre femme', 'accessoires']
-  },
-  {
-    id: 'parapluie-compact',
-    name: 'Parapluie pliant ultra-compact coupe-vent',
-    category: 'accessoires',
-    subcategory: 'accessoires-lifestyle',
-    categoryLabel: 'Accessoires',
-    price: 19.90,
-    compareAtPrice: 29.90,
-    rating: 4.8,
-    reviewCount: 205,
-    badge: null,
-    isBestSeller: false,
-    isNew: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 44,
-    image: 'https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?auto=format&fit=crop&w=800&q=80"],
-    altText: 'Parapluie de poche pliant ultra résistant aux rafales avec étui rigide',
-    shortDescription: 'Seulement 18 cm une fois replié. 8 baleines en fibre de verre résistantes aux fortes rafales sans se retourner.',
-    benefits: [
-      'Armature anti-retournement en fibre de verre',
-      'Tissu déperlant nanotechnologique à séchage instantané',
-      'Étui rigide zippé anti-goutte inclus'
-    ],
-    specs: { 'Longueur replié': '18 cm', 'Diamètre ouvert': '96 cm' },
-    faq: [{ q: 'Rentre-t-il dans un sac à main ?', a: 'Oui, aussi compact qu\'un étui à lunettes standard.' }],
-    keywords: ['parapluie compact', 'parapluie pliable', 'pluie', 'accessoires']
-  },
-
-  // ==========================================================================
-  // EXPANDED HIGH-VELOCITY MERCHANDISING CATALOGUE
-  // ==========================================================================
-  {
-    id: 'chargeur-rapide-65w-gan',
-    sku: 'TECH-CHG-65W',
-    slug: 'chargeur-rapide-65w-gan',
-    name: "Chargeur USB-C rapide 65W GaN",
-    shortName: "Chargeur rapide 65W GaN",
-    category: 'technologie',
-    subcategory: 'telephones-accessoires',
-    categoryLabel: 'Technologie',
-    price: 29.90,
-    compareAtPrice: 39.90,
-    rating: 4.9,
-    reviewCount: 278,
-    badge: "Incontournable",
-    isBestSeller: true,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 45,
-    image: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80"],
-    altText: "Chargeur mural compact GaN 65W double port USB-C et USB-A blanc",
-    shortDescription: "Technologie GaN III ultra-compacte. Recharge votre ordinateur portable, tablette et smartphone à pleine vitesse.",
-    benefits: [
-      "Puissance 65W Power Delivery (charge un MacBook ou PC en 1h30)",
-      "3 ports de charge simultanée (2x USB-C + 1x USB-A)",
-      "50% plus petit qu'un chargeur standard avec protection thermique active"
-],
-    specs: {
-      "Puissance": "65W Max GaN",
-      "Ports": "2x USB-C + 1x USB-A",
-      "Compatibilité": "MacBook, iPhone, Samsung, PC USB-C"
-},
-    faq: [
+    "faq": [
       {
-            "q": "Peut-il charger un ordinateur portable ?",
-            "a": "Oui, jusqu'à 65W via le port USB-C principal."
+        "q": "Est-elle compatible avec les iPhone et Android ?",
+        "a": "Oui, elle fonctionne avec tous les smartphones compatibles charge sans fil Qi ou recharge via câble USB-C."
       }
-],
-    keywords: ["chargeur","chargeur usb c","chargeur rapide","gan","65w","ordinateur","smartphone","technologie"]
+    ],
+    "keywords": [
+      "batterie externe magnetique",
+      "power bank",
+      "magsafe",
+      "chargeur sans fil",
+      "tech",
+      "gadgets"
+    ]
   },
   {
-    id: 'chargeur-sans-fil-induction',
-    sku: 'TECH-WIR-15W',
-    slug: 'chargeur-sans-fil-induction',
-    name: "Chargeur sans fil rapide induction 15W",
-    shortName: "Chargeur induction 15W",
-    category: 'technologie',
-    subcategory: 'telephones-accessoires',
-    categoryLabel: 'Technologie',
-    price: 19.90,
-    compareAtPrice: 27.90,
-    rating: 4.8,
-    reviewCount: 194,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 52,
-    image: '/products/chargeur-sans-fil-induction.jpg',
-    gallery: ["/products/chargeur-sans-fil-induction.jpg"],
-    altText: "Pad de charge rapide sans fil Qi 15W extra-plat en aluminium et tissu",
-    shortDescription: "Déposez votre smartphone pour lancer la charge instantanément. Finition en alliage d'aluminium brossé et textile premium.",
-    benefits: [
+    "id": "mini-imprimante-thermique-bluetooth",
+    "sku": "TECH-PRN-THM",
+    "slug": "mini-imprimante-thermique-bluetooth",
+    "name": "Mini imprimante thermique Bluetooth",
+    "shortName": "Mini imprimante thermique",
+    "category": "tech",
+    "subcategory": "impression-nomade",
+    "categoryLabel": "Tech & Gadgets",
+    "price": 34.9,
+    "compareAtPrice": 49.9,
+    "rating": 4.8,
+    "reviewCount": 142,
+    "badge": "Nouveau",
+    "isBestSeller": false,
+    "isNew": true,
+    "isCurated": true,
+    "curatedOrder": 2,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 45,
+    "image": "/products/mini-imprimante-thermique.jpg",
+    "gallery": [
+      "/products/mini-imprimante-thermique.jpg",
+      "/products/mini-imprimante-thermique-bluetooth-features.jpg",
+      "/products/mini-imprimante-thermique-bluetooth-details.jpg"
+    ],
+    "altText": "Mini imprimante thermique portable Bluetooth sans encre de poche",
+    "shortDescription": "Imprimez instantanément mémos, listes de courses, étiquettes et photos sans aucune cartouche d’encre depuis votre smartphone.",
+    "benefits": [
+      "Zéro encre nécessaire : tête thermique haute résolution 203 DPI",
+      "Connexion Bluetooth rapide compatible application iOS et Android",
+      "Batterie rechargeable 1200 mAh ultra-légère (160 g)"
+    ],
+    "specs": {
+      "Technologie": "Impression thermique directe sans encre",
+      "Résolution": "203 DPI",
+      "Connectivité": "Bluetooth 5.0 + USB-C",
+      "Autonomie": "Jusqu'à 8 rouleaux par charge"
+    },
+    "faq": [
+      {
+        "q": "Faut-il acheter de l’encre ?",
+        "a": "Non, aucun toner ni cartouche. Seul le papier thermique standard 57mm est nécessaire."
+      }
+    ],
+    "keywords": [
+      "mini imprimante",
+      "imprimante thermique",
+      "bluetooth",
+      "sans encre",
+      "gadget photo",
+      "tech"
+    ]
+  },
+  {
+    "id": "souffleur-air-electrique-rechargeable",
+    "sku": "TECH-AIR-BLW",
+    "slug": "souffleur-air-electrique-rechargeable",
+    "name": "Souffleur d’air électrique rechargeable",
+    "shortName": "Souffleur d’air électrique",
+    "category": "tech",
+    "subcategory": "gadgets-intelligents",
+    "categoryLabel": "Tech & Gadgets",
+    "price": 39.9,
+    "compareAtPrice": 59.9,
+    "rating": 4.9,
+    "reviewCount": 188,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isCurated": true,
+    "curatedOrder": 3,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 38,
+    "image": "/products/souffleur-air-electrique-rechargeable-hero.jpg",
+    "gallery": [
+      "/products/souffleur-air-electrique-rechargeable-hero.jpg",
+      "/products/souffleur-air-electrique-rechargeable-features.jpg",
+      "/products/souffleur-air-electrique-rechargeable-details.jpg"
+    ],
+    "altText": "Souffleur d’air comprimé électrique rechargeable pour PC et électronique",
+    "shortDescription": "Alternative écologique et économique aux bombes d’air jetables. Moteur puissant haute performance réglable pour dépoussiérer claviers et appareils.",
+    "benefits": [
+      "Souffle d'air puissant et concentré avec 3 vitesses réglables",
+      "Réutilisable et durable avec batterie USB-C 6000 mAh longue durée",
+      "Comprend 4 buses interchangeables et brosses de précision pour recoins étroits"
+    ],
+    "specs": {
+      "Batterie": "6 000 mAh Li-ion rechargeable USB-C",
+      "Autonomie": "35 à 50 minutes en continu",
+      "Moteur": "Turbine haute vitesse réglable (3 modes)"
+    },
+    "faq": [
+      {
+        "q": "Est-il sans danger pour les composants électroniques ?",
+        "a": "Oui, il souffle un air sec pur sans aucune projection de liquide ni gaz réfrigérant."
+      }
+    ],
+    "keywords": [
+      "souffleur air electrique",
+      "nettoyage pc",
+      "dépoussiéreur",
+      "bombe air comprime",
+      "gadget tech"
+    ]
+  },
+  {
+    "id": "support-telephone-voiture",
+    "sku": "AUT-MNT-MAG",
+    "slug": "support-telephone-magnetique-voiture",
+    "name": "Support téléphone magnétique pour voiture",
+    "shortName": "Support magnétique voiture",
+    "category": "tech",
+    "subcategory": "accessoires-pc-mobile",
+    "categoryLabel": "Tech & Gadgets",
+    "price": 19.9,
+    "compareAtPrice": 29.9,
+    "rating": 4.9,
+    "reviewCount": 420,
+    "badge": "Tendance",
+    "isBestSeller": false,
+    "isNew": false,
+    "isCurated": true,
+    "curatedOrder": 4,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 80,
+    "image": "/products/support-telephone-voiture.jpg",
+    "gallery": [
+      "/products/support-telephone-voiture.jpg",
+      "/products/support-telephone-voiture-features.jpg",
+      "/products/support-telephone-voiture-details.jpg"
+    ],
+    "altText": "Support téléphone magnétique rotatif 360° pour grille d'aération",
+    "shortDescription": "Fixation magnétique instantanée sur grille d’aération. Maintien ferme et stable grâce aux aimants N52 et rotule 360° orientable.",
+    "benefits": [
+      "6 aimants néodyme N52 maintenant le smartphone fermement même sur dos-d’âne",
+      "Rotation intégrale 360° pour passer facilement du mode portrait au mode GPS",
+      "Pince universelle avec protection silicone anti-rayures pour les ailettes"
+    ],
+    "specs": {
+      "Fixation": "Pince silicone renforcée pour grille d'aération",
+      "Aimants": "6 x Néodyme N52 haute puissance",
+      "Compatibilité": "Tous smartphones avec anneau ou coque MagSafe"
+    },
+    "faq": [
+      {
+        "q": "Peut-on l’utiliser avec une coque non MagSafe ?",
+        "a": "Oui, deux anneaux métalliques adhésifs ultra-fins sont fournis dans la boîte."
+      }
+    ],
+    "keywords": [
+      "support telephone voiture",
+      "support magnetique",
+      "gps voiture",
+      "magsafe auto",
+      "accessoires voiture"
+    ]
+  },
+  {
+    "id": "chargeur-rapide-65w-gan",
+    "sku": "TECH-CHG-65W",
+    "slug": "chargeur-rapide-multiport-usb-c",
+    "name": "Chargeur rapide multiport USB-C",
+    "shortName": "Chargeur GaN 65W multiport",
+    "category": "tech",
+    "subcategory": "charge-energie",
+    "categoryLabel": "Tech & Gadgets",
+    "price": 29.9,
+    "compareAtPrice": 42.9,
+    "rating": 4.9,
+    "reviewCount": 298,
+    "badge": "Offre",
+    "isBestSeller": false,
+    "isNew": false,
+    "isCurated": true,
+    "curatedOrder": 5,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 55,
+    "image": "/products/chargeur-65w-gan.jpg",
+    "gallery": [
+      "/products/chargeur-65w-gan.jpg",
+      "/products/chargeur-rapide-65w-gan-features.jpg",
+      "/products/chargeur-rapide-65w-gan-details.jpg"
+    ],
+    "altText": "Chargeur rapide multiport 65W GaN USB-C et USB-A compact",
+    "shortDescription": "Technologie GaN III 65W ultra-compacte. 3 ports de charge rapide pour alimenter simultanément ordinateur portable, tablette et smartphone.",
+    "benefits": [
+      "Composants GaN III générant moins de chaleur dans un format 50% plus compact",
+      "3 sorties simultanées : 2x USB-C Power Delivery 65W + 1x USB-A Quick Charge 3.0",
+      "Recharge un MacBook Pro ou PC portable à 50% en 30 minutes"
+    ],
+    "specs": {
+      "Puissance max": "65W Power Delivery 3.0 / PPS",
+      "Ports": "2x USB-C + 1x USB-A",
+      "Protections": "Anti-surtension, anti-surchauffe et court-circuit"
+    },
+    "faq": [
+      {
+        "q": "Peut-il recharger un PC portable ?",
+        "a": "Oui, il délivre jusqu'à 65W sur le port USB-C principal, suffisant pour MacBook Air, Pro 13/14 et ultrabooks PC."
+      }
+    ],
+    "keywords": [
+      "chargeur rapide",
+      "chargeur gan",
+      "usb c 65w",
+      "chargeur multiport",
+      "tech"
+    ]
+  },
+  {
+    "id": "mini-machine-sceller-sachets",
+    "sku": "HOM-BAG-SLR",
+    "slug": "mini-machine-sceller-sachets",
+    "name": "Mini machine à sceller les sachets",
+    "shortName": "Scelleur de sachets 2-en-1",
+    "category": "maison",
+    "subcategory": "conservation",
+    "categoryLabel": "Maison & Cuisine",
+    "price": 14.9,
+    "compareAtPrice": 22.9,
+    "rating": 4.7,
+    "reviewCount": 164,
+    "badge": "Offre",
+    "isBestSeller": false,
+    "isNew": false,
+    "isCurated": true,
+    "curatedOrder": 6,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 60,
+    "image": "/products/mini-machine-sceller.jpg",
+    "gallery": [
+      "/products/mini-machine-sceller.jpg",
+      "/products/mini-machine-sceller-sachets-features.jpg",
+      "/products/mini-machine-sceller-sachets-details.jpg"
+    ],
+    "altText": "Mini machine à sceller les sachets plastique hermétique 2-en-1 rechargeable",
+    "shortDescription": "Scelleur thermique hermétique avec lame rétractable intégrée. Conservez vos biscuits, chips et aliments à l’abri de l’humidité.",
+    "benefits": [
+      "Scellage étanche à chaud instantané en 3 secondes sans préchauffage",
+      "Double fonction : scelleur thermique d'un côté et cutter de l'autre",
+      "Aimant intégré au dos pour le fixer directement sur votre réfrigérateur"
+    ],
+    "specs": {
+      "Type": "Thermique à impulsion instantanée",
+      "Alimentation": "Batterie rechargeable USB-C",
+      "Matériaux": "ABS résistant à la chaleur"
+    },
+    "faq": [
+      {
+        "q": "Quels sachets peut-on sceller ?",
+        "a": "Convient pour les sachets de chips, céréales, biscuits, légumes congelés et sacs sous vide en plastique / aluminium."
+      }
+    ],
+    "keywords": [
+      "scelleur sachet",
+      "machine a sceller",
+      "conservation aliments",
+      "cuisine pratique",
+      "gadget cuisine"
+    ]
+  },
+  {
+    "id": "blender-portable-rechargeable",
+    "sku": "HOM-BLD-PRT",
+    "slug": "blender-portable-rechargeable",
+    "name": "Blender portable rechargeable",
+    "shortName": "Blender portable USB-C",
+    "category": "maison",
+    "subcategory": "cuisine-nomade",
+    "categoryLabel": "Maison & Cuisine",
+    "price": 32.9,
+    "compareAtPrice": 48.9,
+    "rating": 4.9,
+    "reviewCount": 356,
+    "badge": "Bestseller",
+    "isBestSeller": true,
+    "isNew": false,
+    "isCurated": true,
+    "curatedOrder": 7,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 50,
+    "image": "/products/blender-portable.jpg",
+    "gallery": [
+      "/products/blender-portable.jpg",
+      "/products/blender-portable-rechargeable-features.jpg",
+      "/products/blender-portable-rechargeable-details.jpg"
+    ],
+    "altText": "Blender portable smoothie maker rechargeable USB-C 6 lames",
+    "shortDescription": "Préparez smoothies frais, shakers et purées n’importe où. 6 lames en inox 304, bocal nomade sans BPA et recharge USB-C rapide.",
+    "benefits": [
+      "Moteur puissant 22 000 tr/min capable de mixer fruits congelés et petits glaçons",
+      "Bouteille nomade 450 ml étanche avec bouchon verseur et dragonne",
+      "Nettoyage éclair en 30 secondes en mixant une goutte d'eau savonneuse"
+    ],
+    "specs": {
+      "Capacité": "450 ml sans BPA",
+      "Lames": "6 lames crantées acier inoxydable 304",
+      "Batterie": "4 000 mAh (15 à 20 mixages par charge)"
+    },
+    "faq": [
+      {
+        "q": "Peut-il écraser des glaçons ?",
+        "a": "Oui, avec des glaçons de petite taille ou fruits congelés avec un fond de liquide."
+      }
+    ],
+    "keywords": [
+      "blender portable",
+      "mixeur smoothie",
+      "shaker proteine",
+      "blender rechargeable",
+      "cuisine nomade"
+    ]
+  },
+  {
+    "id": "lunch-box-electrique-chauffante",
+    "sku": "HOM-LNB-ECH",
+    "slug": "lunch-box-electrique-chauffante",
+    "name": "Lunch box électrique chauffante",
+    "shortName": "Lunch box chauffante 2-en-1",
+    "category": "maison",
+    "subcategory": "conservation",
+    "categoryLabel": "Maison & Cuisine",
+    "price": 36.9,
+    "compareAtPrice": 54.9,
+    "rating": 4.8,
+    "reviewCount": 215,
+    "badge": "Nouveau",
+    "isBestSeller": false,
+    "isNew": true,
+    "isCurated": true,
+    "curatedOrder": 8,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 40,
+    "image": "/products/lunch-box-electrique-chauffante-hero-v2.jpg",
+    "gallery": [
+      "/products/lunch-box-electrique-chauffante-hero-v2.jpg",
+      "/products/lunch-box-electrique-chauffante-features.jpg",
+      "/products/lunch-box-electrique-chauffante-details.jpg"
+    ],
+    "altText": "Lunch box électrique chauffante 220V et 12V avec bol inox",
+    "shortDescription": "Réchauffez vos plats maison en 20 à 30 minutes sans micro-ondes. Double prise 220V bureau et 12V voiture avec cuve inox amovible 1.5 L.",
+    "benefits": [
+      "Double alimentation incluse : secteur maison 220V + prise allume-cigare 12V auto",
+      "Bac en acier inoxydable 304 amovible lavable au lave-vaisselle",
+      "Joint d'étanchéité anti-fuites et compartiment supérieur avec couverts fournis"
+    ],
+    "specs": {
+      "Puissance": "60W chauffe rapide",
+      "Contenance": "1.5 Litre bol inox",
+      "Câbles": "2 câbles inclus (220V UE + 12V voiture)"
+    },
+    "faq": [
+      {
+        "q": "Combien de temps faut-il pour chauffer le repas ?",
+        "a": "Environ 20 à 30 minutes selon la consistance des aliments et la température initiale."
+      }
+    ],
+    "keywords": [
+      "lunch box electrique",
+      "boite repas chauffante",
+      "gamelle electrique",
+      "repas bureau",
+      "maison"
+    ]
+  },
+  {
+    "id": "brosse-nettoyage-electrique",
+    "sku": "HOM-SCR-ELC",
+    "slug": "brosse-nettoyage-electrique-rotative",
+    "name": "Brosse de nettoyage électrique rotative",
+    "shortName": "Brosse rotative sans fil",
+    "category": "maison",
+    "subcategory": "nettoyage-intelligent",
+    "categoryLabel": "Maison & Cuisine",
+    "price": 39.9,
+    "compareAtPrice": 59.9,
+    "rating": 4.8,
+    "reviewCount": 230,
+    "badge": "Tendance",
+    "isBestSeller": false,
+    "isNew": false,
+    "isCurated": true,
+    "curatedOrder": 9,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 35,
+    "image": "/products/brosse-nettoyage-electrique.jpg",
+    "gallery": [
+      "/products/brosse-nettoyage-electrique.jpg",
+      "/products/brosse-nettoyage-electrique-features.jpg",
+      "/products/brosse-nettoyage-electrique-details.jpg"
+    ],
+    "altText": "Brosse de nettoyage électrique rotative sans fil multi-surfaces avec manche télescopique",
+    "shortDescription": "Nettoyez carrelages, joints, douches et éviers sans forcer. Moteur 300 tr/min, manche télescopique et têtes interchangeables.",
+    "benefits": [
+      "Manche télescopique réglable pour nettoyer du sol au plafond sans mal de dos",
+      "4 embouts inclus : brosse ronde, plate, pour coins et tampon de polissage",
+      "Batterie étanche IPX7 offrant jusqu’à 90 minutes de nettoyage continu"
+    ],
+    "specs": {
+      "Vitesse": "300 à 400 tr/min",
+      "Étanchéité": "IPX7 tête étanche",
+      "Autonomie": "90 minutes rechargeable USB-C"
+    },
+    "faq": [
+      {
+        "q": "Peut-on l’utiliser sous l’eau dans la douche ?",
+        "a": "Oui, la tête motorisée est certifiée étanche IPX7 pour une utilisation directe sous l’eau."
+      }
+    ],
+    "keywords": [
+      "brosse electrique rotative",
+      "nettoyeur carrelage",
+      "brosse menage",
+      "nettoyage salle de bain",
+      "maison"
+    ]
+  },
+  {
+    "id": "reglette-led-detecteur-mouvement",
+    "sku": "HOM-LED-SEN",
+    "slug": "lampe-led-detecteur-mouvement",
+    "name": "Lampe LED avec détecteur de mouvement",
+    "shortName": "Lampe LED détecteur de mouvement",
+    "category": "maison",
+    "subcategory": "eclairage-led",
+    "categoryLabel": "Maison & Cuisine",
+    "price": 18.9,
+    "compareAtPrice": 28,
+    "rating": 4.8,
+    "reviewCount": 165,
+    "badge": "Offre",
+    "isBestSeller": false,
+    "isNew": false,
+    "isCurated": true,
+    "curatedOrder": 10,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 75,
+    "image": "/products/reglette-led-detecteur-mouvement.jpg",
+    "gallery": [
+      "/products/reglette-led-detecteur-mouvement.jpg",
+      "/products/reglette-led-detecteur-mouvement-features.jpg",
+      "/products/reglette-led-detecteur-mouvement-details.jpg"
+    ],
+    "altText": "Lampe réglette LED magnétique sans fil avec détecteur de mouvement crépusculaire",
+    "shortDescription": "Éclairage d’appoint magnétique à allumage automatique au passage. Idéal pour dressings, placards, couloirs et dessous de meubles.",
+    "benefits": [
+      "Bande magnétique adhésive : pose immédiate sans outil ni fil électrique",
+      "Détecteur infrarouge crépusculaire grand angle 120° (portée 3 mètres)",
+      "Rechargeable en USB-C avec jusqu'à 60 jours d’autonomie en mode capteur"
+    ],
+    "specs": {
+      "Longueur": "30 cm ultra-fine en aluminium",
+      "Teinte": "3 modes d'éclairage (Chaud, Neutre, Froid)",
+      "Fixation": "Plaquettes magnétiques adhésives 3M"
+    },
+    "faq": [
+      {
+        "q": "Reste-t-elle allumée le jour ?",
+        "a": "Non, le capteur crépusculaire intelligent ne l’active que dans l’obscurité pour préserver la batterie."
+      }
+    ],
+    "keywords": [
+      "lampe led detecteur",
+      "reglette led sans fil",
+      "eclairage placard",
+      "lumiere automatique",
+      "maison"
+    ]
+  },
+  {
+    "id": "rouleau-anti-peluches",
+    "sku": "BEA-LNT-SHV",
+    "slug": "rasoir-anti-bouloches-rechargeable",
+    "name": "Rasoir anti-bouloches rechargeable",
+    "shortName": "Rasoir anti-bouloches",
+    "category": "beaute",
+    "subcategory": "textile-soin",
+    "categoryLabel": "Beauté & Lifestyle",
+    "price": 19.9,
+    "compareAtPrice": 29.9,
+    "rating": 4.9,
+    "reviewCount": 284,
+    "badge": "Offre",
+    "isBestSeller": false,
+    "isNew": false,
+    "isCurated": true,
+    "curatedOrder": 11,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 55,
+    "image": "/products/rouleau-anti-peluches.jpg",
+    "gallery": [
+      "/products/rouleau-anti-peluches.jpg",
+      "/products/rouleau-anti-peluches-features.jpg",
+      "/products/rouleau-anti-peluches-details.jpg"
+    ],
+    "altText": "Rasoir anti-bouloches électrique rechargeable pour vêtements et pulls en laine",
+    "shortDescription": "Rénovez vos pulls en laine, manteaux, écharpes et canapés. Grille alvéolée protectrice en acier inox et 6 lames rotatives affûtées.",
+    "benefits": [
+      "6 lames rotatives éliminant bouloches, fils et peluches sans risque pour le tissu",
+      "Grille alvéolée à 3 diamètres de perforation pour capturer toutes les tailles de peluches",
+      "Bac collecteur transparent amovible et arrêt automatique de sécurité à l’ouverture"
+    ],
+    "specs": {
+      "Lames": "6 lames inox affûtées haute précision",
+      "Alimentation": "Batterie rechargeable USB-C",
+      "Sécurité": "Arrêt instantané si la grille est desserrée"
+    },
+    "faq": [
+      {
+        "q": "Abîme-t-il les tissus délicats comme le cachemire ?",
+        "a": "Non, la grille d’espacement en acier protège les fibres tout en coupant net les bouloches."
+      }
+    ],
+    "keywords": [
+      "rasoir anti bouloches",
+      "anti peluches",
+      "entretien vetements",
+      "soin textile",
+      "lifestyle"
+    ]
+  },
+  {
+    "id": "rouleau-glace-visage",
+    "sku": "BEA-ICE-ROL",
+    "slug": "rouleau-glace-visage",
+    "name": "Rouleau de glace pour le visage",
+    "shortName": "Rouleau de glace visage",
+    "category": "beaute",
+    "subcategory": "soins-visage",
+    "categoryLabel": "Beauté & Lifestyle",
+    "price": 14.9,
+    "compareAtPrice": 22,
+    "rating": 4.9,
+    "reviewCount": 380,
+    "badge": "Tendance",
+    "isBestSeller": false,
+    "isNew": false,
+    "isCurated": true,
+    "curatedOrder": 12,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 70,
+    "image": "/products/rouleau-glace-visage.jpg",
+    "gallery": [
+      "/products/rouleau-glace-visage.jpg",
+      "/products/rouleau-glace-visage-features.jpg",
+      "/products/rouleau-glace-visage-details.jpg"
+    ],
+    "altText": "Rouleau de glace pour massage cryothérapie du visage anti-gonflement",
+    "shortDescription": "Rituel cryo matinal pour décongestionner le regard, tonifier la peau et estomper les poches et rougeurs en 5 minutes.",
+    "benefits": [
+      "Effet décongestionnant immédiat réduisant cernes et poches dès le réveil",
+      "Ressert les pores et prépare la peau à recevoir sérums et crèmes",
+      "Tête en acier et gel réfrigérant conservant la fraîcheur jusqu’à 30 minutes"
+    ],
+    "specs": {
+      "Tête": "Acier inoxydable rempli de gel cryo longue tenue",
+      "Manche": "Ergonomique antidérapant soft-touch",
+      "Entretien": "Lavable à l'eau claire et savon doux"
+    },
+    "faq": [
+      {
+        "q": "Combien de temps faut-il le laisser au congélateur ?",
+        "a": "15 à 30 minutes suffisent avant utilisation pour une fraîcheur optimale."
+      }
+    ],
+    "keywords": [
+      "rouleau de glace",
+      "ice roller",
+      "cryotherapie visage",
+      "soins du visage",
+      "beaute"
+    ]
+  },
+  {
+    "id": "masseur-cuir-chevelu",
+    "sku": "BEA-SCP-MSS",
+    "slug": "masseur-cuir-chevelu",
+    "name": "Masseur de cuir chevelu",
+    "shortName": "Brosse masseur cuir chevelu",
+    "category": "beaute",
+    "subcategory": "coiffure-soin",
+    "categoryLabel": "Beauté & Lifestyle",
+    "price": 12.9,
+    "compareAtPrice": 18,
+    "rating": 4.8,
+    "reviewCount": 275,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "isCurated": true,
+    "curatedOrder": 13,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 85,
+    "image": "/products/masseur-cuir-chevelu.jpg",
+    "gallery": [
+      "/products/masseur-cuir-chevelu.jpg",
+      "/products/masseur-cuir-chevelu-features.jpg",
+      "/products/masseur-cuir-chevelu-details.jpg"
+    ],
+    "altText": "Brosse masseur cuir chevelu en silicone doux sous la douche",
+    "shortDescription": "Picots en silicone souple qui stimulent la microcirculation des racines, favorisent la pousse et éliminent peaux mortes et résidus.",
+    "benefits": [
+      "Stimule la circulation sanguine capillaire pour renforcer les cheveux",
+      "Mousse abondante et nettoyage en profondeur du cuir chevelu",
+      "Poignée ergonomique assurant une excellente prise en main même mouillée"
+    ],
+    "specs": {
+      "Matière": "Silicone souple de qualité alimentaire sans BPA",
+      "Entretien": "Rinçage facile, sèche rapidement sans moisissure"
+    },
+    "faq": [
+      {
+        "q": "Convient-il aux cheveux bouclés ou crépus ?",
+        "a": "Oui, les picots doux espacés évitent les nœuds et n’emmêlent pas les boucles."
+      }
+    ],
+    "keywords": [
+      "masseur cuir chevelu",
+      "brosse shampooing",
+      "soin cheveux",
+      "pousse cheveux",
+      "beaute"
+    ]
+  },
+  {
+    "id": "rouleau-boucles-sans-chaleur",
+    "sku": "BEA-CRL-SLK",
+    "slug": "kit-de-boucles-sans-chaleur",
+    "name": "Kit de boucles sans chaleur",
+    "shortName": "Kit boucles sans chaleur",
+    "category": "beaute",
+    "subcategory": "coiffure-soin",
+    "categoryLabel": "Beauté & Lifestyle",
+    "price": 16.9,
+    "compareAtPrice": 24.9,
+    "rating": 4.9,
+    "reviewCount": 410,
+    "badge": "Bestseller",
+    "isBestSeller": true,
+    "isNew": false,
+    "isCurated": true,
+    "curatedOrder": 14,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 90,
+    "image": "/products/rouleau-boucles-sans-chaleur.jpg",
+    "gallery": [
+      "/products/rouleau-boucles-sans-chaleur.jpg",
+      "/products/rouleau-boucles-sans-chaleur-features.jpg",
+      "/products/rouleau-boucles-sans-chaleur-details.jpg"
+    ],
+    "altText": "Kit de boucles sans chaleur en satin avec chouchous et pince crocodile",
+    "shortDescription": "Ondulations soyeuses sans aucun dommage thermique. Enroulez vos mèches avant de dormir et réveillez-vous avec des boucles sublimes.",
+    "benefits": [
+      "Préserve la santé du cheveu : zéro chaleur, zéro fourche, zéro casse",
+      "Revêtement satin de soie réduisant les frottements et frisottis nocturnes",
+      "Kit complet fourni avec boudin souple, 2 chouchous satin et pince de maintien"
+    ],
+    "specs": {
+      "Tissu": "Satin de soie doux haute densité",
+      "Rembourrage": "Mousse souple à mémoire de forme ultra-confortable pour dormir"
+    },
+    "faq": [
+      {
+        "q": "Faut-il avoir les cheveux mouillés ?",
+        "a": "Pour un résultat durable, appliquez sur cheveux légèrement humides à 80% avant le coucher."
+      }
+    ],
+    "keywords": [
+      "boucles sans chaleur",
+      "heatless curls",
+      "rouleau satin",
+      "ondulations",
+      "beaute"
+    ]
+  },
+  {
+    "id": "defroisseur-vapeur-portable",
+    "sku": "BEA-STM-PRT",
+    "slug": "defroisseur-vapeur-portable",
+    "name": "Défroisseur vapeur portable",
+    "shortName": "Défroisseur vapeur pliable",
+    "category": "beaute",
+    "subcategory": "textile-soin",
+    "categoryLabel": "Beauté & Lifestyle",
+    "price": 34.9,
+    "compareAtPrice": 52,
+    "rating": 4.8,
+    "reviewCount": 195,
+    "badge": "Nouveau",
+    "isBestSeller": false,
+    "isNew": true,
+    "isCurated": true,
+    "curatedOrder": 15,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 35,
+    "image": "/products/defroisseur-vapeur-portable-hero-v2.jpg",
+    "gallery": [
+      "/products/defroisseur-vapeur-portable-hero-v2.jpg",
+      "/products/defroisseur-vapeur.jpg",
+      "/products/defroisseur-vapeur-portable-details.jpg"
+    ],
+    "altText": "Défroisseur vapeur à main compact pliable pour voyage et maison",
+    "shortDescription": "Défroissez, désodorisez et rafraîchissez vos tenues en 25 secondes. Tête pliable compacte idéale à la maison comme dans votre valise.",
+    "benefits": [
+      "Chauffe éclair en seulement 25 secondes avec puissance vapeur 1200W",
+      "Manche pliable à 90° occupant moitié moins de place dans un sac ou tiroir",
+      "Vapeur continue haute température éliminant 99,9% des odeurs et bactéries"
+    ],
+    "specs": {
+      "Puissance": "1 200W chauffe instantanée",
+      "Réservoir": "150 ml amovible antifuite",
+      "Poids": "680 g format pliable compact"
+    },
+    "faq": [
+      {
+        "q": "Peut-on l’utiliser sur de la soie ou du lin ?",
+        "a": "Oui, la semelle en acier inox diffuse une vapeur douce convenant à tous les textiles délicats."
+      }
+    ],
+    "keywords": [
+      "defroisseur vapeur",
+      "fer voyage",
+      "vapeur portable",
+      "soin du linge",
+      "lifestyle"
+    ]
+  },
+  {
+    "id": "aspirateur-voiture-sans-fil",
+    "sku": "AUT-VAC-WIR",
+    "slug": "aspirateur-voiture-sans-fil-4-en-1",
+    "name": "Aspirateur voiture sans fil 4-en-1",
+    "shortName": "Aspirateur voiture 4-en-1",
+    "category": "voyage-auto",
+    "subcategory": "entretien-auto",
+    "categoryLabel": "Voyage, Auto & Outdoor",
+    "price": 38.9,
+    "compareAtPrice": 56.9,
+    "rating": 4.9,
+    "reviewCount": 340,
+    "badge": "Bestseller",
+    "isBestSeller": true,
+    "isNew": false,
+    "isCurated": true,
+    "curatedOrder": 16,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 45,
+    "image": "/products/aspirateur-voiture-sans-fil.jpg",
+    "gallery": [
+      "/products/aspirateur-voiture-sans-fil.jpg",
+      "/products/aspirateur-voiture-sans-fil-features.jpg",
+      "/products/aspirateur-voiture-sans-fil-details.jpg"
+    ],
+    "altText": "Aspirateur de voiture sans fil rechargeable 4-en-1 avec souffleur",
+    "shortDescription": "Aspiration cyclonique 9 000 Pa, soufflerie et pompe à vide. Nettoyez sièges, tapis et fentes de votre véhicule sans fil encombrant.",
+    "benefits": [
+      "Aspiration puissante 9 000 Pa capturant miettes, sable et poils d’animaux",
+      "Polyvalence 4-en-1 : aspiration, soufflage d’air, gonflage et mise sous vide",
+      "Filtre HEPA lavable à l'eau réutilisable avec bac collecteur rapide"
+    ],
+    "specs": {
+      "Puissance d'aspiration": "9 000 Pa",
+      "Filtre": "HEPA lavable réutilisable",
+      "Batterie": "4 000 mAh rechargeable USB-C"
+    },
+    "faq": [
+      {
+        "q": "Combien de temps dure la batterie ?",
+        "a": "Environ 30 minutes d'utilisation continue, suffisant pour nettoyer l’intégralité d’un habitacle."
+      }
+    ],
+    "keywords": [
+      "aspirateur voiture",
+      "aspirateur sans fil",
+      "nettoyage auto",
+      "aspirateur portable",
+      "auto"
+    ]
+  },
+  {
+    "id": "sac-voyage-pliable-extensible",
+    "sku": "TRV-BAG-EXT",
+    "slug": "sac-voyage-pliable-extensible",
+    "name": "Sac de voyage pliable extensible",
+    "shortName": "Sac voyage pliable extensible",
+    "category": "voyage-auto",
+    "subcategory": "organisation-valise",
+    "categoryLabel": "Voyage, Auto & Outdoor",
+    "price": 26.9,
+    "compareAtPrice": 39.9,
+    "rating": 4.8,
+    "reviewCount": 220,
+    "badge": "Offre",
+    "isBestSeller": false,
+    "isNew": false,
+    "isCurated": true,
+    "curatedOrder": 17,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 60,
+    "image": "/products/sac-voyage-pliable-extensible-hero.jpg",
+    "gallery": [
+      "/products/sac-voyage-pliable-extensible-hero.jpg",
+      "/products/sac-voyage-pliable.jpg",
+      "/products/sac-voyage-pliable-extensible-details.jpg"
+    ],
+    "altText": "Sac de voyage week-end pliable imperméable avec compartiment séparé linge humide",
+    "shortDescription": "Sac de voyage déperlant avec soufflet inférieur zippé modulable. Compartiment étanche pour affaires humides et manchon trolley pour valise.",
+    "benefits": [
+      "Hauteur extensible modulable (+10 cm) pour ajuster le volume selon vos besoins",
+      "Poche intérieure étanche séparée pour maillot de bain ou affaires de toilette",
+      "Bandeau arrière intégré pour le glisser sur la poignée télescopique de votre valise"
+    ],
+    "specs": {
+      "Volume": "35 L standard extensible à 50 L",
+      "Tissu": "Tissu Oxford haute densité déperlant et anti-déchirure",
+      "Poids": "420 g ultra-léger"
+    },
+    "faq": [
+      {
+        "q": "Passe-t-il comme bagage à main en cabine ?",
+        "a": "Oui, ses dimensions répondent aux critères de bagage cabine des compagnies aériennes européennes."
+      }
+    ],
+    "keywords": [
+      "sac de voyage",
+      "sac pliable",
+      "sac week end",
+      "bagage cabine",
+      "voyage"
+    ]
+  },
+  {
+    "id": "cubes-rangement-valise",
+    "sku": "TRV-CUB-SET6",
+    "slug": "organisateurs-de-voyage-compressibles",
+    "name": "Organisateurs de voyage compressibles",
+    "shortName": "Cubes compression valise (x6)",
+    "category": "voyage-auto",
+    "subcategory": "organisation-valise",
+    "categoryLabel": "Voyage, Auto & Outdoor",
+    "price": 22.9,
+    "compareAtPrice": 34.9,
+    "rating": 4.9,
+    "reviewCount": 390,
+    "badge": "Tendance",
+    "isBestSeller": false,
+    "isNew": false,
+    "isCurated": true,
+    "curatedOrder": 18,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 75,
+    "image": "/products/cubes-rangement-valise.jpg",
+    "gallery": [
+      "/products/cubes-rangement-valise.jpg",
+      "/products/cubes-rangement-valise-features.jpg",
+      "/products/cubes-rangement-valise-details.jpg"
+    ],
+    "altText": "Organisateurs cubes de rangement compressibles pour valise lot de 6 pièces",
+    "shortDescription": "Gagnez jusqu’à 60% d’espace dans vos bagages grâce à la double fermeture éclair de compression. Lot de 6 housses ultralégères déperlantes.",
+    "benefits": [
+      "Fermeture éclair de compression à double curseur compactant le volume des vêtements",
+      "Tissu nylon indéchirable ultra-résistant protégeant des froissements et de l’humidité",
+      "6 tailles complémentaires pour compartimenter linge, chaussures et accessoires"
+    ],
+    "specs": {
+      "Contenu": "Lot de 6 organisateurs (XL, L, M, S, sac chaussures, pochette)",
+      "Fermetures": "Zips renforcés bidirectionnels anti-coincement"
+    },
+    "faq": [
+      {
+        "q": "Faut-il un aspirateur pour compresser ?",
+        "a": "Non, la compression est 100% mécanique grâce à la deuxième fermeture éclair renforcée."
+      }
+    ],
+    "keywords": [
+      "cubes rangement valise",
+      "organisateur voyage",
+      "compression valise",
+      "bagage",
+      "voyage"
+    ]
+  },
+  {
+    "id": "pese-bagages-electronique",
+    "sku": "TRV-SCL-DIG",
+    "slug": "pese-bagage-numerique",
+    "name": "Pèse-bagage numérique",
+    "shortName": "Pèse-bagage numérique 50kg",
+    "category": "voyage-auto",
+    "subcategory": "organisation-valise",
+    "categoryLabel": "Voyage, Auto & Outdoor",
+    "price": 13.9,
+    "compareAtPrice": 19.9,
+    "rating": 4.8,
+    "reviewCount": 235,
+    "badge": "Offre",
+    "isBestSeller": false,
+    "isNew": false,
+    "isCurated": true,
+    "curatedOrder": 19,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 90,
+    "image": "/products/pese-bagages-electronique.jpg",
+    "gallery": [
+      "/products/pese-bagages-electronique.jpg",
+      "/products/pese-bagages-electronique-features.jpg",
+      "/products/pese-bagages-electronique-details.jpg"
+    ],
+    "altText": "Pèse-bagage électronique numérique suspendu précis jusqu'à 50 kg",
+    "shortDescription": "Évitez les mauvaises surprises et frais d’excédent de bagages à l’aéroport. Mesure ultra-précise jusqu’à 50 kg avec écran LCD rétroéclairé.",
+    "benefits": [
+      "Graduation ultra-précise à 10 grammes près jusqu'à une charge de 50 kg",
+      "Écran LCD rétroéclairé lisible même dans la pénombre avec fonction tare",
+      "Sangle robuste en nylon renforcé avec crochet métallique sécurisé"
+    ],
+    "specs": {
+      "Capacité": "Jusqu'à 50 kg (graduation 10 g)",
+      "Unités": "kg, lb, g, oz",
+      "Poids de l'appareil": "85 g format poche"
+    },
+    "faq": [
+      {
+        "q": "La pile est-elle incluse ?",
+        "a": "Oui, une pile bouton longue durée CR2032 est incluse et déjà installée."
+      }
+    ],
+    "keywords": [
+      "pese bagage",
+      "balance valise",
+      "pese bagage numerique",
+      "aeroport",
+      "voyage"
+    ]
+  },
+  {
+    "id": "ventilateur-cou-rechargeable",
+    "sku": "OUT-NCK-FAN",
+    "slug": "ventilateur-cou-rechargeable",
+    "name": "Ventilateur de cou rechargeable",
+    "shortName": "Ventilateur de cou nomade",
+    "category": "voyage-auto",
+    "subcategory": "outdoor-confort",
+    "categoryLabel": "Voyage, Auto & Outdoor",
+    "price": 24.9,
+    "compareAtPrice": 38,
+    "rating": 4.8,
+    "reviewCount": 172,
+    "badge": "Nouveau",
+    "isBestSeller": false,
+    "isNew": true,
+    "isCurated": true,
+    "curatedOrder": 20,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 50,
+    "image": "/products/ventilateur-cou-rechargeable-hero-v2.jpg",
+    "gallery": [
+      "/products/ventilateur-cou-rechargeable-hero-v2.jpg",
+      "/products/ventilateur-cou-rechargeable-hero.jpg",
+      "/products/ventilateur-cou-rechargeable-details.jpg"
+    ],
+    "altText": "Ventilateur de cou sans pales mains libres rechargeable USB-C",
+    "shortDescription": "Rafraîchissement mains libres à 360° sans pale apparente. 3 vitesses de brise silencieuse et batterie 4000 mAh pour voyages et journées chaudes.",
+    "benefits": [
+      "Conception sécurisée sans pale rotative : aucun risque d'emmêlement pour cheveux longs",
+      "Diffusion surround 360° grâce à 60 micro-ouvertures d’aération le long du cou",
+      "Batterie rechargeable USB-C assurant entre 4 et 12 heures d’autonomie selon la vitesse"
+    ],
+    "specs": {
+      "Vitesses": "3 niveaux (Douce, Moyenne, Turbo)",
+      "Batterie": "4 000 mAh rechargeable USB-C",
+      "Niveau sonore": "Moins de 32 dB silencieux"
+    },
+    "faq": [
+      {
+        "q": "Est-il lourd autour du cou ?",
+        "a": "Non, sa structure en silicone souple et ABS ne pèse que 220 g et repose confortablement sur les trapèzes."
+      }
+    ],
+    "keywords": [
+      "ventilateur de cou",
+      "ventilateur portable",
+      "fraicheur ete",
+      "gadget voyage",
+      "outdoor"
+    ]
+  },
+  {
+    "id": "robe-fluide-ete",
+    "name": "Robe portefeuille fluide",
+    "category": "mode",
+    "subcategory": "femme",
+    "categoryLabel": "Mode",
+    "gender": "femme",
+    "price": 39.9,
+    "compareAtPrice": 59.9,
+    "rating": 4.9,
+    "reviewCount": 312,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": false,
+    "isFashion": true,
+    "imageDisplayMode": "cover",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 28,
+    "image": "/products/robe-fluide-ete.jpg",
+    "gallery": [
+      "/products/robe-fluide-ete.jpg",
+      "/products/robe-fluide-ete-features.jpg",
+      "/products/robe-fluide-ete-details.jpg"
+    ],
+    "altText": "Robe portefeuille fluide midi pour femme en terracotta",
+    "shortDescription": "Coupe flatteuse cache-cœur en viscose fluide et respirante. Parfaite pour le quotidien et les soirées estivales.",
+    "benefits": [
+      "Ceinture ajustable pour marquer la taille sans comprimer",
+      "Tissu fluide infroissable qui ne colle pas",
+      "Longueur midi élégante avec tombé impeccable"
+    ],
+    "specs": {
+      "Matière": "100% Viscose douce certifiée Oeko-Tex",
+      "Coupe": "Portefeuille midi avec col en V",
+      "Entretien": "Lavage délicat à 30°C"
+    },
+    "hasVariants": true,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      {
+        "name": "Terracotta",
+        "hex": "#b45309"
+      },
+      {
+        "name": "Noir Ébène",
+        "hex": "#1e293b"
+      },
+      {
+        "name": "Vert Sauge",
+        "hex": "#4d7c0f"
+      },
+      {
+        "name": "Beige Lin",
+        "hex": "#d4b996"
+      }
+    ],
+    "defaultSize": "M",
+    "defaultColor": "Terracotta",
+    "faq": [
+      {
+        "q": "Quelle taille choisir si j'hésite entre deux ?",
+        "a": "Prenez votre taille habituelle, la ceinture cache-cœur permet d'ajuster parfaitement le buste."
+      }
+    ],
+    "keywords": [
+      "robe",
+      "femme",
+      "robe fluide",
+      "robe ete",
+      "mode femme",
+      "robe midi",
+      "robe cache-coeur"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "t-shirt-oversize-coton",
+    "name": "T-shirt oversize en coton lourd",
+    "category": "mode",
+    "subcategory": "femme",
+    "categoryLabel": "Mode",
+    "gender": "femme",
+    "price": 24.9,
+    "compareAtPrice": 34.9,
+    "rating": 4.8,
+    "reviewCount": 245,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "isFashion": true,
+    "imageDisplayMode": "cover",
+    "shippingEU": "Stock UE disponible",
+    "stock": 50,
+    "image": "/products/tshirt-oversize-coton.jpg",
+    "gallery": [
+      "/products/tshirt-oversize-coton.jpg",
+      "/products/t-shirt-oversize-coton-features.jpg",
+      "/products/t-shirt-oversize-coton-details.jpg"
+    ],
+    "altText": "T-shirt oversize blanc en coton épais pour femme",
+    "shortDescription": "Coton peigné 240g/m² au tombé lourd et structuré. Coupe boxy moderne pour un look décontracté chic.",
+    "benefits": [
+      "Col renforcé qui ne se déforme pas au lavage",
+      "Coton biologique ultra-doux au toucher velouté",
+      "Silhouette streetwear polyvalente"
+    ],
+    "specs": {
+      "Grammage": "240 g/m² coton peigné bio",
+      "Coupe": "Oversize drop-shoulder",
+      "Entretien": "Lavage en machine à 30°C"
+    },
+    "hasVariants": true,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      {
+        "name": "Blanc Pur",
+        "hex": "#f8fafc"
+      },
+      {
+        "name": "Noir Minimal",
+        "hex": "#0f172a"
+      },
+      {
+        "name": "Gris Chiné",
+        "hex": "#94a3b8"
+      }
+    ],
+    "defaultSize": "M",
+    "defaultColor": "Blanc Pur",
+    "faq": [
+      {
+        "q": "Taille-t-il vraiment large ?",
+        "a": "Oui, la coupe est volontairement ample. Pour un rendu plus ajusté, prenez une taille en-dessous."
+      }
+    ],
+    "keywords": [
+      "t-shirt",
+      "tee shirt",
+      "oversize",
+      "coton bio",
+      "mode femme",
+      "haut femme",
+      "tshirt"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "jean-slim-confort",
+    "name": "Jean confort stretch taille haute",
+    "category": "mode",
+    "subcategory": "femme",
+    "categoryLabel": "Mode",
+    "gender": "femme",
+    "price": 49.9,
+    "compareAtPrice": 69.9,
+    "rating": 4.8,
+    "reviewCount": 188,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": true,
+    "imageDisplayMode": "cover",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 22,
+    "image": "/products/jean-taille-haute-femme.jpg",
+    "gallery": [
+      "/products/jean-taille-haute-femme.jpg",
+      "/products/jean-slim-confort-features.jpg",
+      "/products/jean-slim-confort-details.jpg"
+    ],
+    "altText": "Jean denim bleu stretch taille haute pour femme",
+    "shortDescription": "Denim innovant à mémoire de forme qui galbe la silhouette tout en offrant un grand confort toute la journée.",
+    "benefits": [
+      "Taille haute gainante sans serrer",
+      "Technologie 4-way stretch sans pochage aux genoux",
+      "Poches arrières positionnées pour un effet galbant"
+    ],
+    "specs": {
+      "Composition": "92% Coton, 6% Élastomultiester, 2% Élasthanne",
+      "Fermeture": "Zip YKK & bouton métal gravé"
+    },
+    "hasVariants": true,
+    "sizes": [
+      "36",
+      "38",
+      "40",
+      "42",
+      "44"
+    ],
+    "colors": [
+      {
+        "name": "Bleu Brut",
+        "hex": "#1e3a8a"
+      },
+      {
+        "name": "Bleu Délavé",
+        "hex": "#38bdf8"
+      },
+      {
+        "name": "Noir Foncé",
+        "hex": "#0f172a"
+      }
+    ],
+    "defaultSize": "38",
+    "defaultColor": "Bleu Brut",
+    "faq": [
+      {
+        "q": "Rétrécit-il au lavage ?",
+        "a": "Non, le tissu est prélavé en usine et conserve sa forme lavage après lavage."
+      }
+    ],
+    "keywords": [
+      "jean",
+      "pantalon",
+      "slim",
+      "denim",
+      "jeans femme",
+      "mode femme"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "chemise-lin-homme",
+    "name": "Chemise casual en lin col mao",
+    "category": "mode",
+    "subcategory": "homme",
+    "categoryLabel": "Mode",
+    "gender": "homme",
+    "price": 44.9,
+    "compareAtPrice": 64.9,
+    "rating": 4.9,
+    "reviewCount": 280,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": false,
+    "isFashion": true,
+    "imageDisplayMode": "cover",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 35,
+    "image": "/products/chemise-lin-homme.jpg",
+    "gallery": [
+      "/products/chemise-lin-homme.jpg",
+      "/products/chemise-lin-homme-features.jpg",
+      "/products/chemise-lin-homme-details.jpg"
+    ],
+    "altText": "Chemise d'homme casual en lin lavé avec col mao",
+    "shortDescription": "Lin normand respirant et thermorégulateur. Col officier épuré pour une allure chic sans effort.",
+    "benefits": [
+      "Thermorégulation naturelle : frais en été, tempéré à la mi-saison",
+      "Boutons nacre résistants cousus en croix",
+      "Coupe droite moderne adaptée portée dehors ou rentrée"
+    ],
+    "specs": {
+      "Matière": "100% Lin lavé européen",
+      "Col": "Officier / Col Mao",
+      "Entretien": "Lavage délicat 30°C, séchage sur cintre"
+    },
+    "hasVariants": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      {
+        "name": "Blanc Craie",
+        "hex": "#f8fafc"
+      },
+      {
+        "name": "Bleu Ciel",
+        "hex": "#93c5fd"
+      },
+      {
+        "name": "Beige Sable",
+        "hex": "#e2d3c1"
+      },
+      {
+        "name": "Kaki Olive",
+        "hex": "#3f6212"
+      }
+    ],
+    "defaultSize": "L",
+    "defaultColor": "Bleu Ciel",
+    "faq": [
+      {
+        "q": "Faut-il repasser la chemise ?",
+        "a": "Le lin lavé a un froissé naturel élégant qui ne nécessite pas obligatoirement de repassage."
+      }
+    ],
+    "keywords": [
+      "chemise",
+      "chemise lin",
+      "homme",
+      "chemise homme",
+      "col mao",
+      "mode homme"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "polo-coton-homme",
+    "name": "Polo classique en coton piqué",
+    "category": "mode",
+    "subcategory": "homme",
+    "categoryLabel": "Mode",
+    "gender": "homme",
+    "price": 32.9,
+    "compareAtPrice": 45,
+    "rating": 4.8,
+    "reviewCount": 165,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": true,
+    "imageDisplayMode": "cover",
+    "shippingEU": "Stock UE",
+    "stock": 40,
+    "image": "/products/polo-classique-homme.jpg",
+    "gallery": [
+      "/products/polo-classique-homme.jpg",
+      "/products/polo-coton-homme-features.jpg",
+      "/products/polo-coton-homme-details.jpg"
+    ],
+    "altText": "Polo homme bleu marine en maille piquée",
+    "shortDescription": "Maille piquée respirante haute densité avec patte 2 boutons nacrés et fentes latérales d'aisance.",
+    "benefits": [
+      "Maille piquée respirante anti-boulochage",
+      "Col tricoté qui garde sa tenue sans s'affaisser",
+      "Bord-côtes élastiques confortables aux bras"
+    ],
+    "specs": {
+      "Matière": "100% Coton peigné 220g/m²",
+      "Coupe": "Regular fit"
+    },
+    "hasVariants": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      {
+        "name": "Bleu Marine",
+        "hex": "#1e3a8a"
+      },
+      {
+        "name": "Noir Onyx",
+        "hex": "#0f172a"
+      },
+      {
+        "name": "Blanc Neige",
+        "hex": "#f8fafc"
+      },
+      {
+        "name": "Bordeaux",
+        "hex": "#881337"
+      }
+    ],
+    "defaultSize": "M",
+    "defaultColor": "Bleu Marine",
+    "faq": [
+      {
+        "q": "Le col rebique-t-il après lavage ?",
+        "a": "Non, le col est renforcé par une bande de propreté intérieure robuste."
+      }
+    ],
+    "keywords": [
+      "polo",
+      "polo homme",
+      "coton",
+      "mode homme",
+      "t-shirt polo"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "baskets-casual-respirantes",
+    "name": "Baskets casual respirantes",
+    "category": "mode",
+    "subcategory": "chaussures",
+    "categoryLabel": "Mode",
+    "gender": "unisexe",
+    "price": 54.9,
+    "compareAtPrice": 79.9,
+    "rating": 4.9,
+    "reviewCount": 395,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": false,
+    "isFashion": true,
+    "imageDisplayMode": "cover",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 30,
+    "image": "/products/baskets-casual-respirantes.jpg",
+    "gallery": [
+      "/products/baskets-casual-respirantes.jpg",
+      "/products/baskets-casual-respirantes-features.jpg",
+      "/products/baskets-casual-respirantes-details.jpg"
+    ],
+    "altText": "Baskets légères respirantes blanches et grises unisexe",
+    "shortDescription": "Semelle à mémoire de forme et mesh respirant. Légèreté absolue (210g) pour arpenter la ville en tout confort.",
+    "benefits": [
+      "Semelle intérieure amortissante anti-choc",
+      "Tige en maille tricotée aérée anti-odeur",
+      "Semelle extérieure crantée en caoutchouc antiglisse"
+    ],
+    "specs": {
+      "Poids": "210 g par chaussure",
+      "Semelle": "EVA injecté + patins caoutchouc",
+      "Fermeture": "Lacets plats renforcés"
+    },
+    "hasVariants": true,
+    "sizes": [
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44",
+      "45"
+    ],
+    "colors": [
+      {
+        "name": "Blanc & Gris",
+        "hex": "#e2e8f0"
+      },
+      {
+        "name": "Noir Total",
+        "hex": "#0f172a"
+      },
+      {
+        "name": "Bleu Nuit",
+        "hex": "#1e3a8a"
+      }
+    ],
+    "defaultSize": "42",
+    "defaultColor": "Blanc & Gris",
+    "faq": [
+      {
+        "q": "Conviennent-elles aux pieds larges ?",
+        "a": "Oui, la tige élastique en maille épouse la morphologie du pied sans comprimer."
+      }
+    ],
+    "keywords": [
+      "baskets",
+      "chaussures",
+      "sneakers",
+      "chaussures homme",
+      "chaussures femme",
+      "running casual",
+      "basket"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "sac-bandouliere-demi-lune",
+    "name": "Sac bandoulière demi-lune",
+    "category": "mode",
+    "subcategory": "sacs",
+    "categoryLabel": "Mode",
+    "gender": "femme",
+    "price": 34.9,
+    "compareAtPrice": 49.9,
+    "rating": 4.8,
+    "reviewCount": 210,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "isFashion": true,
+    "imageDisplayMode": "cover",
+    "shippingEU": "Stock UE",
+    "stock": 32,
+    "image": "/products/sac-bandouliere.jpg",
+    "gallery": [
+      "/products/sac-bandouliere.jpg",
+      "/products/sac-bandouliere-demi-lune-features.jpg",
+      "/products/sac-bandouliere-demi-lune-details.jpg"
+    ],
+    "altText": "Sac bandoulière demi-lune femme en cuir végétal camel",
+    "shortDescription": "Cuir vegan premium texturé grainé. Format demi-lune compact mais spacieux pour smartphone, clés et portefeuille.",
+    "benefits": [
+      "Bandoulière ajustable pour porté épaule ou cross-body",
+      "Poche zippée sécurisée intérieure + mousqueton clés",
+      "Finition déperlante résistante à la pluie"
+    ],
+    "specs": {
+      "Dimensions": "28 x 16 x 8 cm",
+      "Matière": "Cuir végétal PU écoresponsable"
+    },
+    "hasVariants": true,
+    "sizes": [
+      "Format Unique"
+    ],
+    "colors": [
+      {
+        "name": "Noir Mat",
+        "hex": "#0f172a"
+      },
+      {
+        "name": "Camel Fauve",
+        "hex": "#b45309"
+      },
+      {
+        "name": "Crème Vanille",
+        "hex": "#fef3c7"
+      }
+    ],
+    "defaultSize": "Format Unique",
+    "defaultColor": "Camel Fauve",
+    "faq": [
+      {
+        "q": "Un grand smartphone rentre-t-il facilement ?",
+        "a": "Oui, les modèles jusqu'à 6,8 pouces entrent très aisément avec de la place restante."
+      }
+    ],
+    "keywords": [
+      "sac",
+      "sac a main",
+      "sac bandouliere",
+      "sacs",
+      "sac femme",
+      "mode"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "ensemble-lounge-confort",
+    "name": "Ensemble détente en coton côtelé",
+    "category": "mode",
+    "subcategory": "femme",
+    "categoryLabel": "Mode",
+    "gender": "femme",
+    "price": 49.9,
+    "compareAtPrice": 69.9,
+    "rating": 4.9,
+    "reviewCount": 156,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "isFashion": true,
+    "imageDisplayMode": "cover",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 25,
+    "image": "/products/ensemble-lounge-cotele.jpg",
+    "gallery": [
+      "/products/ensemble-lounge-cotele.jpg",
+      "/products/ensemble-lounge-confort-features.jpg",
+      "/products/ensemble-lounge-confort-details.jpg"
+    ],
+    "altText": "Ensemble lounge détente deux pièces sweat et pantalon côtelé pour femme",
+    "shortDescription": "Comprend un sweat col rond décontracté et un pantalon palazzo fluide à taille élastiquée.",
+    "benefits": [
+      "Coton côtelé extensible ultra-doux",
+      "Parfait pour le télétravail ou le cocooning du week-end",
+      "Poches latérales profondes et pratiques"
+    ],
+    "specs": {
+      "Composition": "95% Coton peigné, 5% Élasthanne",
+      "Coupe": "Relaxed fit"
+    },
+    "hasVariants": true,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      {
+        "name": "Gris Chiné",
+        "hex": "#94a3b8"
+      },
+      {
+        "name": "Beige Avoine",
+        "hex": "#d4b996"
+      },
+      {
+        "name": "Noir Cosmique",
+        "hex": "#0f172a"
+      }
+    ],
+    "defaultSize": "M",
+    "defaultColor": "Beige Avoine",
+    "faq": [
+      {
+        "q": "Les deux pièces sont-elles vendues ensemble ?",
+        "a": "Oui, le pack contient le haut et le pantalon coordonnés."
+      }
+    ],
+    "keywords": [
+      "ensemble",
+      "ensemble lounge",
+      "pyjama",
+      "sweat",
+      "jogging",
+      "mode femme"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "organisateur-maquillage",
+    "name": "Organisateur maquillage rotatif 360°",
+    "category": "beaute",
+    "subcategory": "accessoires-beaute",
+    "categoryLabel": "Beauté",
+    "price": 26.9,
+    "compareAtPrice": 39.9,
+    "rating": 4.8,
+    "reviewCount": 315,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 32,
+    "image": "/products/organisateur-maquillage.jpg",
+    "gallery": [
+      "/products/organisateur-maquillage.jpg",
+      "/products/organisateur-maquillage-features.jpg",
+      "/products/organisateur-maquillage-details.jpg"
+    ],
+    "altText": "Tour de rangement maquillage rotative 360 degrés en acrylique",
+    "shortDescription": "Regroupe flacons, sérums, pinceaux et crèmes sur plateaux réglables en hauteur d'un simple tour de main.",
+    "benefits": [
+      "Rotation 360° fluide et silencieuse sur roulements en acier",
+      "Étages ajustables selon la hauteur de vos cosmétiques",
+      "Acrylique transparent lavable haute résistance"
+    ],
+    "specs": {
+      "Hauteur": "34 cm",
+      "Diamètre": "23 cm"
+    },
+    "faq": [
+      {
+        "q": "Convient-il pour les grands flacons de parfum ?",
+        "a": "Oui, les étagères se règlent pour accueillir des flacons jusqu'à 28 cm."
+      }
+    ],
+    "keywords": [
+      "organisateur maquillage",
+      "rangement maquillage",
+      "cosmetique",
+      "beaute",
+      "tour maquillage"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "brosse-nettoyante-visage",
+    "name": "Brosse nettoyante visage sonique",
+    "category": "beaute",
+    "subcategory": "soins-visage",
+    "categoryLabel": "Beauté",
+    "price": 29.9,
+    "compareAtPrice": 42,
+    "rating": 4.8,
+    "reviewCount": 172,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 35,
+    "image": "/products/brosse-nettoyante-visage.jpg",
+    "gallery": [
+      "/products/brosse-nettoyante-visage.jpg",
+      "/products/brosse-nettoyante-visage-features.jpg",
+      "/products/brosse-nettoyante-visage-details.jpg"
+    ],
+    "altText": "Brosse sonique nettoyante pour le visage en silicone étanche",
+    "shortDescription": "Pulsations soniques douces pour désincruster les pores et exfolier la peau sans agression.",
+    "benefits": [
+      "Silicone chirurgical ultra-hygiénique et antibactérien",
+      "5 intensités de vibrations réglables",
+      "100% étanche IPX7 pour une utilisation sous la douche"
+    ],
+    "specs": {
+      "Étanchéité": "IPX7",
+      "Batterie": "USB rechargeable (60 jours d'autonomie)"
+    },
+    "faq": [
+      {
+        "q": "Convient-il aux peaux à tendance acnéique ?",
+        "a": "Oui, les picots en silicone n'hébergent pas de bactéries et nettoient sans frotter agressivement."
+      }
+    ],
+    "keywords": [
+      "brosse nettoyante",
+      "brosse sonique",
+      "soin visage",
+      "nettoyant visage",
+      "beaute"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "support-ordinateur-portable",
+    "name": "Support PC aluminium réglable",
+    "category": "technologie",
+    "subcategory": "informatique",
+    "categoryLabel": "Technologie",
+    "price": 26.9,
+    "compareAtPrice": 39.9,
+    "rating": 4.9,
+    "reviewCount": 430,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 38,
+    "image": "/products/support-ordinateur-portable.jpg",
+    "gallery": [
+      "/products/support-ordinateur-portable.jpg",
+      "/products/support-ordinateur-portable-features.jpg",
+      "/products/support-ordinateur-portable-details.jpg"
+    ],
+    "altText": "Support ventilé pliable en aluminium pour ordinateur portable",
+    "shortDescription": "Surélève votre écran au niveau des yeux pour prévenir les douleurs cervicales et optimiser le refroidissement.",
+    "benefits": [
+      "6 crans d'inclinaison de 5,5 à 15,5 cm",
+      "Alliage d'aluminium aérospatial robuste et léger",
+      "Entièrement pliable avec housse velours nomade incluse"
+    ],
+    "specs": {
+      "Compatibilité": "PC et Mac de 10 à 17 pouces",
+      "Poids": "260 g"
+    },
+    "faq": [
+      {
+        "q": "Est-il stable sous la frappe ?",
+        "a": "Oui, les patins en silicone épais évitent tout glissement ou vacillement."
+      }
+    ],
+    "keywords": [
+      "support pc",
+      "support ordinateur",
+      "rehausseur pc",
+      "teletravail",
+      "informatique",
+      "technologie"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "hub-usb-c-7en1",
+    "name": "Hub USB-C 7-en-1 multifonction",
+    "category": "technologie",
+    "subcategory": "gadgets",
+    "categoryLabel": "Technologie",
+    "price": 34.9,
+    "compareAtPrice": 49.9,
+    "rating": 4.9,
+    "reviewCount": 310,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 45,
+    "image": "/products/hub-usb-c-7en1.jpg",
+    "gallery": [
+      "/products/hub-usb-c-7en1.jpg",
+      "/products/hub-usb-c-7en1-features.jpg",
+      "/products/hub-usb-c-7en1-details.jpg"
+    ],
+    "altText": "Adaptateur Hub USB-C 7 ports en aluminium avec sortie HDMI 4K",
+    "shortDescription": "Ajoutez 1 port HDMI 4K, 3 ports USB 3.0, 1 chargeur rapide PD 100W et lecteurs cartes SD/MicroSD à votre PC ou Mac.",
+    "benefits": [
+      "Sortie vidéo HDMI 4K@60Hz ultra-fluide",
+      "Charge continue Power Delivery 100W",
+      "Boîtier en aluminium dissipateur de chaleur"
+    ],
+    "specs": {
+      "Connectique": "USB-C vers HDMI, 3x USB 3.0, SD, MicroSD, PD 100W"
+    },
+    "faq": [
+      {
+        "q": "Compatible MacBook Pro M1/M2/M3 ?",
+        "a": "Oui, plug-and-play immédiat sans pilote."
+      }
+    ],
+    "keywords": [
+      "hub usb c",
+      "adaptateur",
+      "hdmi",
+      "gadgets",
+      "informatique",
+      "technologie",
+      "dock"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "ecouteurs-bluetooth-pro",
+    "name": "Écouteurs sans fil réduction de bruit",
+    "category": "technologie",
+    "subcategory": "audio",
+    "categoryLabel": "Technologie",
+    "price": 39.9,
+    "compareAtPrice": 59.9,
+    "rating": 4.8,
+    "reviewCount": 260,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 30,
+    "image": "/products/ecouteurs-bluetooth-pro.jpg",
+    "gallery": [
+      "/products/ecouteurs-bluetooth-pro.jpg",
+      "/products/ecouteurs-bluetooth-pro-features.jpg",
+      "/products/ecouteurs-bluetooth-pro-details.jpg"
+    ],
+    "altText": "Écouteurs sans fil Bluetooth avec boîtier de charge compact",
+    "shortDescription": "Audio haute fidélité avec basses profondes, réduction de bruit passive et autonomie de 28h avec le boîtier.",
+    "benefits": [
+      "Appairage instantané Bluetooth 5.3 sans latence",
+      "Microphones intégrés avec clarté d'appel HD",
+      "Boîtier compact à affichage digital du niveau de batterie"
+    ],
+    "specs": {
+      "Autonomie": "7h en écoute continue + 21h boîtier",
+      "Étanchéité": "IPX5"
+    },
+    "faq": [
+      {
+        "q": "Sont-ils compatibles iPhone et Android ?",
+        "a": "Oui, compatibles avec 100% des smartphones Bluetooth."
+      }
+    ],
+    "keywords": [
+      "ecouteurs",
+      "ecouteurs bluetooth",
+      "sans fil",
+      "audio",
+      "musique",
+      "technologie"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "organisateur-cables",
+    "name": "Organisateur de câbles magnétique",
+    "category": "technologie",
+    "subcategory": "accessoires-electroniques",
+    "categoryLabel": "Technologie",
+    "price": 12.9,
+    "compareAtPrice": 19.9,
+    "rating": 4.8,
+    "reviewCount": 215,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 60,
+    "image": "/products/organisateur-cables.jpg",
+    "gallery": [
+      "/products/organisateur-cables.jpg",
+      "/products/organisateur-cables-features.jpg",
+      "/products/organisateur-cables-details.jpg"
+    ],
+    "altText": "Clips et base magnétique pour organisation des câbles de bureau",
+    "shortDescription": "Maintient vos cordons de chargeurs USB-C et Lightning bien rangés sur le bureau sans jamais glisser derrière.",
+    "benefits": [
+      "Adhésif 3M puissant repositionnable sans résidu",
+      "Clips magnétiques universels adaptés aux cordons ronds et tressés",
+      "Finition discrète en silicone souple"
+    ],
+    "specs": {
+      "Contenu": "1 Base aimantée + 5 Clips"
+    },
+    "faq": [
+      {
+        "q": "Laisse-t-il des traces sur le bois ?",
+        "a": "L'adhésif 3M se retire proprement sans abîmer les meubles."
+      }
+    ],
+    "keywords": [
+      "organisateur de cables",
+      "cable",
+      "chargeur",
+      "bureau",
+      "accessoires bureau",
+      "technologie"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "repose-pieds-ergonomique",
+    "name": "Repose-pieds ergonomique bureau",
+    "category": "technologie",
+    "subcategory": "informatique",
+    "categoryLabel": "Technologie",
+    "price": 34.9,
+    "compareAtPrice": 49.9,
+    "rating": 4.9,
+    "reviewCount": 312,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 18,
+    "image": "/products/repose-pieds-ergonomique.jpg",
+    "gallery": [
+      "/products/repose-pieds-ergonomique.jpg",
+      "/products/repose-pieds-ergonomique-features.jpg",
+      "/products/repose-pieds-ergonomique-details.jpg"
+    ],
+    "altText": "Repose-pieds ergonomique sous bureau en mousse à mémoire de forme",
+    "shortDescription": "Stimule le retour veineux et soulage le bas du dos pendant les longues sessions de travail assis.",
+    "benefits": [
+      "Mousse haute résilience qui ne s'affaisse pas",
+      "Housse velours aérée, déhoussable et lavable en machine",
+      "Design en dôme massant utilisable dans les deux sens"
+    ],
+    "specs": {
+      "Dimensions": "44 x 30 x 12 cm"
+    },
+    "faq": [
+      {
+        "q": "La housse passe-t-elle au lave-linge ?",
+        "a": "Oui, lavage en machine à 30°C."
+      }
+    ],
+    "keywords": [
+      "repose pieds",
+      "ergonomie",
+      "teletravail",
+      "posture",
+      "informatique",
+      "technologie"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "doublures-silicone-airfryer",
+    "name": "Moules silicone pour Air Fryer (x2)",
+    "category": "maison",
+    "subcategory": "cuisine",
+    "categoryLabel": "Maison",
+    "price": 17.9,
+    "compareAtPrice": 27.9,
+    "rating": 4.9,
+    "reviewCount": 620,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 65,
+    "image": "/products/doublures-silicone-airfryer.jpg",
+    "gallery": [
+      "/products/doublures-silicone-airfryer.jpg",
+      "/products/doublures-silicone-airfryer-features.jpg",
+      "/products/doublures-silicone-airfryer-details.jpg"
+    ],
+    "altText": "Paire de moules en silicone antiadhésifs pour panier friteuse Air Fryer",
+    "shortDescription": "Gardez le tiroir de votre friteuse à air comme neuf. Rainures de surélévation pour des cuissons croustillantes.",
+    "benefits": [
+      "Résiste aux hautes températures jusqu'à 240°C",
+      "Rainures rainurées drainant l'excédent d'huile",
+      "Nettoyage en 10 secondes au lave-vaisselle"
+    ],
+    "specs": {
+      "Diamètre": "20,5 cm universel (Ninja, Philips, Cosori, Moulinex)"
+    },
+    "faq": [
+      {
+        "q": "Compatible lave-vaisselle ?",
+        "a": "Oui, silicone platine alimentaire sans BPA lavable au lave-vaisselle."
+      }
+    ],
+    "bundleWith": "pulverisateur-huile",
+    "keywords": [
+      "moule silicone",
+      "air fryer",
+      "friteuse sans huile",
+      "doublure silicone",
+      "cuisine",
+      "maison"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "pulverisateur-huile",
+    "name": "Pulvérisateur d'huile en verre",
+    "category": "maison",
+    "subcategory": "cuisine",
+    "categoryLabel": "Maison",
+    "price": 15.9,
+    "compareAtPrice": 24.9,
+    "rating": 4.8,
+    "reviewCount": 440,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 48,
+    "image": "/products/pulverisateur-huile.jpg",
+    "gallery": [
+      "/products/pulverisateur-huile.jpg",
+      "/products/pulverisateur-huile-features.jpg",
+      "/products/pulverisateur-huile-details.jpg"
+    ],
+    "altText": "Bouteille brumisateur d'huile en verre avec buse de pulvérisation",
+    "shortDescription": "Diffuse une brume d'huile ultra-fine et régulière pour réduire la matière grasse de 75% sur vos plats et salades.",
+    "benefits": [
+      "Buse brumisateur haute pression sans gaz propulseur",
+      "Flacon en verre neutre hygiénique sans BPA",
+      "Évite le gaspillage et permet un dosage précis"
+    ],
+    "specs": {
+      "Contenance": "200 ml"
+    },
+    "faq": [
+      {
+        "q": "Fonctionne-t-il avec l'huile d'olive épaisse ?",
+        "a": "Oui, buse conçue spécialement pour l'huile d'olive, de colza ou le vinaigre."
+      }
+    ],
+    "keywords": [
+      "pulverisateur huile",
+      "spray huile",
+      "vinaigre",
+      "cuisine",
+      "airfryer",
+      "maison"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "accessoires-airfryer",
+    "name": "Kit d'accessoires Air Fryer (8 pièces)",
+    "category": "maison",
+    "subcategory": "cuisine",
+    "categoryLabel": "Maison",
+    "price": 34.9,
+    "compareAtPrice": 52,
+    "rating": 4.8,
+    "reviewCount": 310,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 20,
+    "image": "/products/accessoires-airfryer.jpg",
+    "gallery": [
+      "/products/accessoires-airfryer.jpg",
+      "/products/accessoires-airfryer-features.jpg",
+      "/products/accessoires-airfryer-details.jpg"
+    ],
+    "altText": "Kit complet de 8 accessoires inox et moules pour friteuse à air",
+    "shortDescription": "Multipliez les recettes de votre friteuse : gâteaux, brochettes, pizzas et cuissons étagées sur 2 niveaux.",
+    "benefits": [
+      "Grille inox double niveau + moule à gâteau antiadhésif + plaque pizza",
+      "Pince isolante anti-brûlure incluse",
+      "Inox 304 de qualité alimentaire certifiée"
+    ],
+    "specs": {
+      "Compatibilité": "Paniers de 4,5L à 7L"
+    },
+    "faq": [
+      {
+        "q": "Convient pour Ninja Dual Zone ?",
+        "a": "Oui, compatible avec les bacs simples et compartiments doubles standards."
+      }
+    ],
+    "keywords": [
+      "accessoires airfryer",
+      "kit air fryer",
+      "cuisine",
+      "grille inox",
+      "maison"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "organisateur-sous-evier",
+    "name": "Rangement sous-évier coulissant",
+    "category": "maison",
+    "subcategory": "rangement",
+    "categoryLabel": "Maison",
+    "price": 32.9,
+    "compareAtPrice": 47.9,
+    "rating": 4.9,
+    "reviewCount": 380,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 27,
+    "image": "/products/organisateur-sous-evier.jpg",
+    "gallery": [
+      "/products/organisateur-sous-evier.jpg",
+      "/products/organisateur-sous-evier-features.jpg",
+      "/products/organisateur-sous-evier-details.jpg"
+    ],
+    "altText": "Étagère de rangement coulissante à tiroirs sous évier",
+    "shortDescription": "Optimise l'espace perdu autour des tuyaux sous l'évier grâce à son tiroir coulissant fluide à 2 étages.",
+    "benefits": [
+      "Glissière sur roulement pour attraper vos produits sans se baisser",
+      "Crochets latéraux amovibles pour brosses et éponges",
+      "Structure métallique traitée anti-rouille"
+    ],
+    "specs": {
+      "Dimensions": "40 x 22 x 34 cm"
+    },
+    "faq": [
+      {
+        "q": "Passe-t-il sous les siphons encombrants ?",
+        "a": "Oui, sa forme ergonomique en L est étudiée pour contourner les tuyaux."
+      }
+    ],
+    "keywords": [
+      "rangement sous evier",
+      "organisateur sous evier",
+      "rangement cuisine",
+      "maison"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "brosse-anti-poils",
+    "name": "Brosse anti-poils autonettoyante",
+    "category": "animaux",
+    "subcategory": "toilettage",
+    "categoryLabel": "Animaux",
+    "price": 19.9,
+    "compareAtPrice": 29.9,
+    "rating": 4.9,
+    "reviewCount": 342,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 24,
+    "image": "/products/brosse-anti-poils.jpg",
+    "gallery": [
+      "/products/brosse-anti-poils.jpg",
+      "/products/brosse-anti-poils-features.jpg",
+      "/products/brosse-anti-poils-details.jpg"
+    ],
+    "altText": "Brosse autonettoyante ramasse-poils animaux pour tissus et vêtements",
+    "shortDescription": "Retire instantanément les poils incrustés sur canapés, tapis, vêtements et sièges auto grâce à sa base autonettoyante.",
+    "benefits": [
+      "Double face électrostatique pour une capture maximale",
+      "Base autonettoyante : plongez la brosse, elle ressort propre",
+      "Économique et réutilisable : zéro adhésif jetable"
+    ],
+    "specs": {
+      "Dimensions": "33 x 7.5 x 5 cm",
+      "Matière": "ABS renforcé + Microfibres électrostatiques"
+    },
+    "faq": [
+      {
+        "q": "Fonctionne-t-elle sur les poils courts de chien ?",
+        "a": "Oui, le velours microfibre capture efficacement les poils courts et longs."
+      }
+    ],
+    "bundleWith": "rouleau-anti-peluches",
+    "keywords": [
+      "brosse anti poils",
+      "poils de chien",
+      "poils de chat",
+      "animaux",
+      "toilettage"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "nettoyeur-pattes-chiens",
+    "name": "Nettoyeur de pattes en silicone",
+    "category": "animaux",
+    "subcategory": "toilettage",
+    "categoryLabel": "Animaux",
+    "price": 18.9,
+    "compareAtPrice": 26.9,
+    "rating": 4.9,
+    "reviewCount": 265,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 19,
+    "image": "/products/nettoyeur-pattes-chiens.jpg",
+    "gallery": [
+      "/products/nettoyeur-pattes-chiens.jpg",
+      "/products/nettoyeur-pattes-chiens-features.jpg",
+      "/products/nettoyeur-pattes-chiens-details.jpg"
+    ],
+    "altText": "Gobelet nettoyeur de pattes boueuses pour chien avec picots silicone",
+    "shortDescription": "Élimine la boue et le sable des pattes de votre animal après la balade sans salir le sol de la maison.",
+    "benefits": [
+      "Picots intérieurs en silicone souple et massant",
+      "Ajoutez de l'eau, insérez la patte et tournez délicatement",
+      "Entièrement démontable pour un rinçage rapide"
+    ],
+    "specs": {
+      "Matière": "Silicone alimentaire sans BPA"
+    },
+    "faq": [
+      {
+        "q": "Est-ce doux pour les coussinets ?",
+        "a": "Oui, les picots sont très souples et ne causent aucune gêne."
+      }
+    ],
+    "keywords": [
+      "nettoyeur pattes",
+      "pattes de chien",
+      "promenade chien",
+      "animaux",
+      "toilettage"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "gourde-portable-chiens",
+    "name": "Gourde portable pour chien étanche",
+    "category": "animaux",
+    "subcategory": "voyage",
+    "categoryLabel": "Animaux",
+    "price": 19.9,
+    "compareAtPrice": 29,
+    "rating": 4.9,
+    "reviewCount": 310,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 35,
+    "image": "/products/gourde-portable-chiens.jpg",
+    "gallery": [
+      "/products/gourde-portable-chiens.jpg",
+      "/products/gourde-portable-chiens-features.jpg",
+      "/products/gourde-portable-chiens-details.jpg"
+    ],
+    "altText": "Bouteille d'eau portable antifuite pour chien avec distributeur",
+    "shortDescription": "Auget ergonomique incurvé. Une simple pression sur le bouton verse l'eau et récupère le surplus non bu.",
+    "benefits": [
+      "Zéro gaspillage : l'eau non bue retourne dans le réservoir",
+      "Verrou étanche à double joint silicone antifuite",
+      "Format idéal pour la randonnée et les trajets en voiture"
+    ],
+    "specs": {
+      "Contenance": "550 ml",
+      "Matériau": "Tritan certifié sans BPA"
+    },
+    "faq": [
+      {
+        "q": "Peut-on récupérer l'eau non consommée ?",
+        "a": "Oui, en maintenant le bouton enfoncé bouteille inclinée."
+      }
+    ],
+    "keywords": [
+      "gourde pour chien",
+      "gourde portable",
+      "balade chien",
+      "voyage animaux",
+      "animaux"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "gamelle-pliable",
+    "name": "Gamelle pliable en silicone avec mousqueton",
+    "category": "animaux",
+    "subcategory": "voyage",
+    "categoryLabel": "Animaux",
+    "price": 9.9,
+    "compareAtPrice": 14.9,
+    "rating": 4.7,
+    "reviewCount": 145,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 80,
+    "image": "/products/gamelle-pliable.jpg",
+    "gallery": [
+      "/products/gamelle-pliable.jpg",
+      "/products/gamelle-pliable-features.jpg",
+      "/products/gamelle-pliable-details.jpg"
+    ],
+    "altText": "Gamelle nomade pliable en silicone pour chien et chat",
+    "shortDescription": "Se replie à plat (1 cm d'épaisseur) pour s'accrocher à votre sac ou à la laisse avec son mousqueton alu.",
+    "benefits": [
+      "Ultra compacte une fois repliée",
+      "Convient à l'eau fraîche et aux croquettes",
+      "Passe au lave-vaisselle"
+    ],
+    "specs": {
+      "Diamètre": "13 cm",
+      "Capacité": "450 ml"
+    },
+    "faq": [
+      {
+        "q": "Résiste-t-elle au chaud ?",
+        "a": "Oui jusqu'à 70°C sans déformation."
+      }
+    ],
+    "keywords": [
+      "gamelle pliable",
+      "gamelle chien",
+      "voyage animaux",
+      "animaux"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "housse-siege-animaux",
+    "name": "Housse de protection banquette auto",
+    "category": "animaux",
+    "subcategory": "voyage",
+    "categoryLabel": "Animaux",
+    "price": 39.9,
+    "compareAtPrice": 59.9,
+    "rating": 4.9,
+    "reviewCount": 412,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 15,
+    "image": "/products/housse-siege-animaux.jpg",
+    "gallery": [
+      "/products/housse-siege-animaux.jpg",
+      "/products/housse-siege-animaux-features.jpg",
+      "/products/housse-siege-animaux-details.jpg"
+    ],
+    "altText": "Housse imperméable de protection de banquette arrière pour chien",
+    "shortDescription": "Protège la banquette arrière des griffures, poils et boue. Format hamac sécurisé avec fenêtre en filet aérée.",
+    "benefits": [
+      "Tissu Oxford 600D imperméable et résistant aux griffes",
+      "Fenêtre en filet pour rassurer votre animal et laisser passer la clim",
+      "Poches pour ranger la laisse et les friandises"
+    ],
+    "specs": {
+      "Dimensions": "147 x 137 cm (universel)"
+    },
+    "faq": [
+      {
+        "q": "S'adapte-t-elle à toutes les voitures ?",
+        "a": "Oui, sangles d'appui-tête réglables compatibles avec 99% des véhicules."
+      }
+    ],
+    "keywords": [
+      "housse siege auto",
+      "housse chien voiture",
+      "protection banquette",
+      "animaux",
+      "auto"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "bandeaux-fitness",
+    "name": "Bandes de résistance en tissu (Lot de 3)",
+    "category": "sport",
+    "subcategory": "fitness",
+    "categoryLabel": "Sport & Fitness",
+    "price": 19.9,
+    "compareAtPrice": 29.9,
+    "rating": 4.9,
+    "reviewCount": 460,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 48,
+    "image": "/products/bandes-resistance.jpg",
+    "gallery": [
+      "/products/bandes-resistance.jpg",
+      "/products/bandeaux-fitness-features.jpg",
+      "/products/bandeaux-fitness-details.jpg"
+    ],
+    "altText": "Lot de 3 bandes élastiques de résistance en tissu pour fitness et musculation",
+    "shortDescription": "Ne roulent pas et ne pincent pas la peau grâce à leur tissage coton/latex épais avec bandes antiglisse intérieures.",
+    "benefits": [
+      "3 niveaux de résistance progressifs (Light, Medium, Heavy)",
+      "Grip antidérapant en silicone intérieur",
+      "Pochette en filet aéré incluse"
+    ],
+    "specs": {
+      "Matière": "Coton tressé & latex",
+      "Largeur": "8 cm"
+    },
+    "faq": [
+      {
+        "q": "Roulent-elles pendant les squats ?",
+        "a": "Non, le tissu épais et le grip interne restent fermement en place."
+      }
+    ],
+    "keywords": [
+      "bandes de resistance",
+      "elastiques fitness",
+      "fitness",
+      "fessiers",
+      "musculation",
+      "sport"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "ceinture-course",
+    "name": "Ceinture running sans rebond",
+    "category": "sport",
+    "subcategory": "running",
+    "categoryLabel": "Sport & Fitness",
+    "price": 16.9,
+    "compareAtPrice": 24.9,
+    "rating": 4.8,
+    "reviewCount": 310,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 55,
+    "image": "/products/ceinture-course.jpg",
+    "gallery": [
+      "/products/ceinture-course.jpg",
+      "/products/ceinture-course-features.jpg",
+      "/products/ceinture-course-details.jpg"
+    ],
+    "altText": "Ceinture fine et élastique pour smartphone et clés spécial course à pied",
+    "shortDescription": "Emportez smartphone, clés et gels énergétiques sans aucun rebond gênant pendant la course à pied.",
+    "benefits": [
+      "Lycra extensible déperlant protégeant de la sueur",
+      "Bandes réfléchissantes 360° pour la visibilité nocturne",
+      "Passage discret pour câble d'écouteurs"
+    ],
+    "specs": {
+      "Tour de taille": "65 à 120 cm réglable"
+    },
+    "faq": [
+      {
+        "q": "Un grand téléphone rentre-t-il ?",
+        "a": "Oui, extensible pour accueillir des smartphones jusqu'à 6,9 pouces."
+      }
+    ],
+    "keywords": [
+      "ceinture running",
+      "course a pied",
+      "marathon",
+      "running",
+      "sport"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "sac-sport-compact",
+    "name": "Sac de sport compartiment chaussures",
+    "category": "sport",
+    "subcategory": "accessoires-sport",
+    "categoryLabel": "Sport & Fitness",
+    "price": 29.9,
+    "compareAtPrice": 44.9,
+    "rating": 4.8,
+    "reviewCount": 275,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 30,
+    "image": "/products/sac-sport-compact.jpg",
+    "gallery": [
+      "/products/sac-sport-compact.jpg",
+      "/products/sac-sport-compact-features.jpg",
+      "/products/sac-sport-compact-details.jpg"
+    ],
+    "altText": "Sac de sport imperméable avec compartiment séparé pour chaussures",
+    "shortDescription": "Poche spéciale étanche pour serviette mouillée et compartiment ventilé séparé pour vos baskets.",
+    "benefits": [
+      "Compartiment chaussures indépendant avec œillets d'aération",
+      "Poche intérieure étanche pour affaires humides",
+      "Format accepté en bagage cabine d'avion"
+    ],
+    "specs": {
+      "Dimensions": "45 x 25 x 26 cm",
+      "Volume": "32 Litres"
+    },
+    "faq": [
+      {
+        "q": "Peut-il servir de sac de week-end ?",
+        "a": "Oui, son volume de 32L permet d'emporter le nécessaire pour 2 à 3 jours."
+      }
+    ],
+    "keywords": [
+      "sac de sport",
+      "sac fitness",
+      "compartiment chaussures",
+      "sport"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "bouteille-eau-pliable",
+    "name": "Gourde pliable en silicone 600 ml",
+    "category": "sport",
+    "subcategory": "accessoires-sport",
+    "categoryLabel": "Sport & Fitness",
+    "price": 14.9,
+    "compareAtPrice": 21.9,
+    "rating": 4.7,
+    "reviewCount": 180,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 55,
+    "image": "/products/bouteille-eau-pliable.jpg",
+    "gallery": [
+      "/products/bouteille-eau-pliable.jpg",
+      "/products/bouteille-eau-pliable-features.jpg",
+      "/products/bouteille-eau-pliable-details.jpg"
+    ],
+    "altText": "Gourde souple compactable en silicone platine pour sport et randonnée",
+    "shortDescription": "Se replie à 25% de son volume une fois bue pour un encombrement minimal dans votre sac de sport ou sac à dos.",
+    "benefits": [
+      "Silicone platine sans BPA certifié sans transfert de goût",
+      "Bouchon étanche à clapet verrouillable antifuite",
+      "Résiste aux boissons chaudes et glacées"
+    ],
+    "specs": {
+      "Pliée": "7 cm",
+      "Dépliée": "22 cm",
+      "Capacité": "600 ml"
+    },
+    "faq": [
+      {
+        "q": "Goût de plastique ?",
+        "a": "Non, le silicone platine de haute pureté est totalement inodore."
+      }
+    ],
+    "keywords": [
+      "gourde pliable",
+      "bouteille eau",
+      "sport",
+      "randonnee",
+      "hydratation"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "sacoche-velo",
+    "name": "Sacoche de cadre vélo tactile étanche",
+    "category": "sport",
+    "subcategory": "cyclisme",
+    "categoryLabel": "Sport & Fitness",
+    "price": 21.9,
+    "compareAtPrice": 32.9,
+    "rating": 4.8,
+    "reviewCount": 195,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 36,
+    "image": "/products/sacoche-velo.jpg",
+    "gallery": [
+      "/products/sacoche-velo.jpg",
+      "/products/sacoche-velo-features.jpg",
+      "/products/sacoche-velo-details.jpg"
+    ],
+    "altText": "Sacoche imperméable de cadre de vélo avec support écran tactile GPS",
+    "shortDescription": "Consultez votre GPS en pédalant grâce à la fenêtre tactile haute réactivité avec visière pare-soleil intégrée.",
+    "benefits": [
+      "Fenêtre TPU transparente tactile même sous la pluie",
+      "Visière rigide pare-soleil pour un écran lisible",
+      "Rangement sous le téléphone pour powerbank et clés"
+    ],
+    "specs": {
+      "Compatibilité": "Smartphones jusqu'à 6,8 pouces"
+    },
+    "faq": [
+      {
+        "q": "Le tactile fonctionne-t-il sous l'averse ?",
+        "a": "Oui, le film TPU reste réactif."
+      }
+    ],
+    "keywords": [
+      "sacoche velo",
+      "velo",
+      "cyclisme",
+      "support telephone velo",
+      "sport"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "organisateur-coffre",
+    "name": "Organisateur de coffre pliable renforcé",
+    "category": "auto",
+    "subcategory": "organisation",
+    "categoryLabel": "Auto",
+    "price": 29.9,
+    "compareAtPrice": 44.9,
+    "rating": 4.8,
+    "reviewCount": 278,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 31,
+    "image": "/products/organisateur-coffre.jpg",
+    "gallery": [
+      "/products/organisateur-coffre.jpg",
+      "/products/organisateur-coffre-features.jpg",
+      "/products/organisateur-coffre-details.jpg"
+    ],
+    "altText": "Organisateur pliable compartimenté pour coffre de voiture avec poignées alu",
+    "shortDescription": "Empêche vos courses, outillages et équipements de rouler dans le coffre grâce à ses cloisons rigides modulables.",
+    "benefits": [
+      "Panneaux renforcés avec bandes velcro antiglisse sous la base",
+      "Pliable en accordéon si non utilisé",
+      "Poignées solides en aluminium pour le transport"
+    ],
+    "specs": {
+      "Dimensions": "58 x 35 x 30 cm",
+      "Volume": "60 Litres"
+    },
+    "faq": [
+      {
+        "q": "Glisse-t-il dans les virages ?",
+        "a": "Non, les bandes agrippantes velcro sous la base le fixent au tapis de coffre."
+      }
+    ],
+    "keywords": [
+      "organisateur de coffre",
+      "rangement coffre",
+      "voiture",
+      "accessoires voiture",
+      "auto"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "organisateur-entre-sieges",
+    "name": "Organisateurs interstice sièges auto (Paire)",
+    "category": "auto",
+    "subcategory": "organisation",
+    "categoryLabel": "Auto",
+    "price": 19.9,
+    "compareAtPrice": 28.9,
+    "rating": 4.7,
+    "reviewCount": 164,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 45,
+    "image": "/products/organisateur-entre-sieges.jpg",
+    "gallery": [
+      "/products/organisateur-entre-sieges.jpg",
+      "/products/organisateur-entre-sieges-features.jpg",
+      "/products/organisateur-entre-sieges-details.jpg"
+    ],
+    "altText": "Paire de bacs de rangement pour fente entre siège avant et console de voiture",
+    "shortDescription": "Comble l'interstice entre le siège et la console pour éviter la chute des clés ou du téléphone tout en créant du rangement.",
+    "benefits": [
+      "Insertion directe en 2 secondes sans outil",
+      "Finitions premium en simili cuir noir surpiqué",
+      "Passage intégré pour brancher le câble de charge"
+    ],
+    "specs": {
+      "Lot": "Paire conducteur + passager"
+    },
+    "faq": [
+      {
+        "q": "Gêne-t-il le réglage des sièges ?",
+        "a": "Non, il glisse naturellement avec les mouvements du siège."
+      }
+    ],
+    "keywords": [
+      "organisateur siege auto",
+      "accessoires auto",
+      "rangement voiture",
+      "auto"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "camera-surveillance-wifi",
+    "name": "Caméra WiFi motorisée 360° intérieure/extérieure",
+    "category": "securite",
+    "subcategory": "cameras",
+    "categoryLabel": "Sécurité",
+    "price": 39.9,
+    "compareAtPrice": 59.9,
+    "rating": 4.9,
+    "reviewCount": 380,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 30,
+    "image": "/products/camera-surveillance-wifi.jpg",
+    "gallery": [
+      "/products/camera-surveillance-wifi.jpg",
+      "/products/camera-surveillance-wifi-features.jpg",
+      "/products/camera-surveillance-wifi-details.jpg"
+    ],
+    "altText": "Caméra de surveillance WiFi 360 degrés 2K avec vision nocturne",
+    "shortDescription": "Vision nocturne infrarouge haute définition 2K, suivi automatique des mouvements par IA et audio bidirectionnel.",
+    "benefits": [
+      "Résolution 2K 1296p nette avec rotation panoramique 360°",
+      "Notifications instantanées sur smartphone iOS & Android",
+      "Microphone et haut-parleur pour entendre et parler à distance"
+    ],
+    "specs": {
+      "Résolution": "2K 1296p HD",
+      "Connectivité": "WiFi 2.4 GHz"
+    },
+    "faq": [
+      {
+        "q": "Faut-il un abonnement payant ?",
+        "a": "Non, enregistrement local sur carte MicroSD ou stockage cloud optionnel."
+      }
+    ],
+    "keywords": [
+      "camera wifi",
+      "camera surveillance",
+      "camera 360",
+      "securite maison",
+      "securite"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "sonnette-video-connectee",
+    "name": "Sonnette vidéo connectée HD sans fil",
+    "category": "securite",
+    "subcategory": "maison-intelligente",
+    "categoryLabel": "Sécurité",
+    "price": 49.9,
+    "compareAtPrice": 69.9,
+    "rating": 4.8,
+    "reviewCount": 245,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 22,
+    "image": "/products/sonnette-video-connectee.jpg",
+    "gallery": [
+      "/products/sonnette-video-connectee.jpg",
+      "/products/sonnette-video-connectee-features.jpg",
+      "/products/sonnette-video-connectee-details.jpg"
+    ],
+    "altText": "Sonnette connectée sans fil étanche avec caméra vidéo grand angle",
+    "shortDescription": "Visualisez et répondez aux livreurs et visiteurs directement depuis votre smartphone où que vous soyez.",
+    "benefits": [
+      "Angle de vision panoramique 166° avec vision nocturne nette",
+      "Batterie rechargeable longue autonomie (jusqu'à 6 mois)",
+      "Carillon intérieur sans fil inclus dans le pack"
+    ],
+    "specs": {
+      "Étanchéité": "IP65 tout temps",
+      "Batterie": "Li-ion 5200 mAh"
+    },
+    "faq": [
+      {
+        "q": "Peut-on l'installer sans percer ?",
+        "a": "Oui, adhésif 3M ultra-puissant ou chevilles/vis fournis au choix."
+      }
+    ],
+    "keywords": [
+      "sonnette video",
+      "interphone sans fil",
+      "sonnette connectee",
+      "securite maison",
+      "securite"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "prise-connectee-wifi",
+    "name": "Prise connectée WiFi avec mesure d'énergie",
+    "category": "securite",
+    "subcategory": "maison-intelligente",
+    "categoryLabel": "Sécurité",
+    "price": 16.9,
+    "compareAtPrice": 24.9,
+    "rating": 4.8,
+    "reviewCount": 310,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 55,
+    "image": "/products/prise-connectee-wifi.jpg",
+    "gallery": [
+      "/products/prise-connectee-wifi.jpg",
+      "/products/prise-connectee-wifi-features.jpg",
+      "/products/prise-connectee-wifi-details.jpg"
+    ],
+    "altText": "Prise électrique connectée WiFi avec suivi de consommation en temps réel",
+    "shortDescription": "Allumez et éteignez vos appareils à distance et surveillez votre consommation électrique en direct.",
+    "benefits": [
+      "Compatible Alexa, Google Assistant et application Tuya/SmartLife",
+      "Programmation horaire et simulation de présence anti-cambriolage",
+      "Mesure des Watts consommés en temps réel"
+    ],
+    "specs": {
+      "Puissance max": "16A / 3680W"
+    },
+    "faq": [
+      {
+        "q": "Nécessite-t-elle un pont domotique ?",
+        "a": "Non, se connecte directement à votre box WiFi domestique en 2.4 GHz."
+      }
+    ],
+    "keywords": [
+      "prise connectee",
+      "domotique",
+      "economie energie",
+      "wifi",
+      "securite"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "detecteur-mouvement-connecte",
+    "name": "Détecteur de mouvement sans fil WiFi",
+    "category": "securite",
+    "subcategory": "detection",
+    "categoryLabel": "Sécurité",
+    "price": 19.9,
+    "compareAtPrice": 29.9,
+    "rating": 4.8,
+    "reviewCount": 185,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 40,
+    "image": "/products/detecteur-mouvement-connecte.jpg",
+    "gallery": [
+      "/products/detecteur-mouvement-connecte.jpg",
+      "/products/detecteur-mouvement-connecte-features.jpg",
+      "/products/detecteur-mouvement-connecte-details.jpg"
+    ],
+    "altText": "Capteur de présence et détecteur de mouvement connecté WiFi pour sécurité maison",
+    "shortDescription": "Détection infrarouge grand angle 110° jusqu'à 8 mètres. Envoie une alerte instantanée sur smartphone lors de toute intrusion.",
+    "benefits": [
+      "Alerte push instantanée sur smartphone en moins d'1 seconde",
+      "Angle de détection 110° couvrant toute la pièce",
+      "Fixation magnétique rotative ou adhésif 3M inclus"
+    ],
+    "specs": {
+      "Portée": "7 à 9 mètres",
+      "Connectivité": "WiFi 2.4 GHz"
+    },
+    "faq": [
+      {
+        "q": "Détecte-t-il les animaux de compagnie ?",
+        "a": "Immunité intelligente pour les animaux de moins de 15 kg."
+      }
+    ],
+    "keywords": [
+      "detecteur mouvement",
+      "capteur intrusion",
+      "alarme sans fil",
+      "securite maison",
+      "securite"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "trousse-toilette-suspendue",
+    "name": "Trousse de toilette suspendue dépliable",
+    "category": "voyage",
+    "subcategory": "organisation",
+    "categoryLabel": "Voyage",
+    "price": 22.9,
+    "compareAtPrice": 34.9,
+    "rating": 4.9,
+    "reviewCount": 375,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 29,
+    "image": "/products/trousse-toilette-suspendue.jpg",
+    "gallery": [
+      "/products/trousse-toilette-suspendue.jpg",
+      "/products/trousse-toilette-suspendue-features.jpg",
+      "/products/trousse-toilette-suspendue-details.jpg"
+    ],
+    "altText": "Trousse de toilette suspendue à crochet avec compartiments transparents",
+    "shortDescription": "Dépliez-la et suspendez-la au porte-serviettes d'hôtel. 4 compartiments transparents imperméables anti-fuites.",
+    "benefits": [
+      "Crochet pivotant 360° en acier robuste",
+      "Poches étanches transparentes faciles à nettoyer",
+      "Tissu déperlant résistant aux éclaboussures"
+    ],
+    "specs": {
+      "Dimensions dépliée": "85 x 28 cm"
+    },
+    "faq": [
+      {
+        "q": "Accueille-t-elle de grands flacons de shampoing ?",
+        "a": "Oui, le compartiment principal accepte des flacons verticaux de 22 cm."
+      }
+    ],
+    "keywords": [
+      "trousse de toilette",
+      "trousse suspendue",
+      "voyage",
+      "accessoires voyage"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "oreiller-voyage-memoire",
+    "name": "Oreiller de voyage ergonomique à mémoire de forme",
+    "category": "voyage",
+    "subcategory": "confort",
+    "categoryLabel": "Voyage",
+    "price": 21.9,
+    "compareAtPrice": 32,
+    "rating": 4.8,
+    "reviewCount": 190,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 35,
+    "image": "/products/oreiller-voyage-memoire.jpg",
+    "gallery": [
+      "/products/oreiller-voyage-memoire.jpg",
+      "/products/oreiller-voyage-memoire-features.jpg",
+      "/products/oreiller-voyage-memoire-details.jpg"
+    ],
+    "altText": "Coussin de voyage ergonomique pour la nuque en mousse viscoélastique",
+    "shortDescription": "Mousse viscoélastique maintenant la nuque à 360° en avion, train ou voiture. Se comprime dans sa pochette.",
+    "benefits": [
+      "Mousse à mémoire de forme haute densité qui soutient le menton",
+      "Housse velours magnétique douce et respirante",
+      "Se roule à 50% de sa taille dans son étui de transport"
+    ],
+    "specs": {
+      "Matière": "Mousse viscoélastique 100%"
+    },
+    "faq": [
+      {
+        "q": "La housse se lave-t-elle ?",
+        "a": "Oui, la housse est dézippable et lavable à 30°C."
+      }
+    ],
+    "keywords": [
+      "oreiller de voyage",
+      "coussin voyage avion",
+      "confort voyage",
+      "voyage"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "organisateur-bureau",
+    "name": "Organisateur de bureau rotatif 360°",
+    "category": "accessoires",
+    "subcategory": "accessoires-bureau",
+    "categoryLabel": "Accessoires",
+    "price": 18.9,
+    "compareAtPrice": 27.9,
+    "rating": 4.7,
+    "reviewCount": 154,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 25,
+    "image": "/products/organisateur-bureau.jpg",
+    "gallery": [
+      "/products/organisateur-bureau.jpg",
+      "/products/organisateur-bureau-features.jpg",
+      "/products/organisateur-bureau-details.jpg"
+    ],
+    "altText": "Pot à crayons et organisateur de bureau rotatif à 5 compartiments",
+    "shortDescription": "Accédez à vos stylos, ciseaux et fournitures d'un simple tour de main silencieux.",
+    "benefits": [
+      "5 compartiments étagés spacieux",
+      "Rotation silencieuse à 360° sur roulement à billes",
+      "Pieds antidérapants en caoutchouc"
+    ],
+    "specs": {
+      "Diamètre": "14 cm",
+      "Hauteur": "13 cm"
+    },
+    "faq": [
+      {
+        "q": "Est-il stable lorsqu'on le fait tourner ?",
+        "a": "Oui, la base lestée avec patins assure une stabilité parfaite."
+      }
+    ],
+    "keywords": [
+      "organisateur bureau",
+      "pot a crayon",
+      "bureau",
+      "accessoires bureau",
+      "accessoires"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "montre-quartz-minimaliste",
+    "name": "Montre quartz minimaliste unisexe",
+    "category": "accessoires",
+    "subcategory": "montres",
+    "categoryLabel": "Accessoires",
+    "price": 39.9,
+    "compareAtPrice": 59.9,
+    "rating": 4.9,
+    "reviewCount": 220,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 28,
+    "image": "/products/montre-quartz-minimaliste.jpg",
+    "gallery": [
+      "/products/montre-quartz-minimaliste.jpg",
+      "/products/montre-quartz-minimaliste-features.jpg",
+      "/products/montre-quartz-minimaliste-details.jpg"
+    ],
+    "altText": "Montre quartz minimaliste unisexe avec cadran blanc et boîtier épuré",
+    "shortDescription": "Boîtier extra-plat en acier inoxydable brossé avec cadran épuré et bracelet en cuir véritable interchangeable.",
+    "benefits": [
+      "Mouvement à quartz japonais précis et fiable",
+      "Verre minéral trempé anti-rayures",
+      "Étanche 3 ATM (résiste aux éclaboussures et lavage des mains)"
+    ],
+    "specs": {
+      "Diamètre": "40 mm",
+      "Épaisseur": "7.5 mm",
+      "Matière": "Acier 316L"
+    },
+    "faq": [
+      {
+        "q": "Le bracelet est-il remplaçable ?",
+        "a": "Oui, grâce au système de pompe flash sans outil standard 20 mm."
+      }
+    ],
+    "keywords": [
+      "montre",
+      "montre minimaliste",
+      "montre homme",
+      "montre femme",
+      "accessoires"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "parapluie-compact",
+    "name": "Parapluie pliant ultra-compact coupe-vent",
+    "category": "accessoires",
+    "subcategory": "accessoires-lifestyle",
+    "categoryLabel": "Accessoires",
+    "price": 19.9,
+    "compareAtPrice": 29.9,
+    "rating": 4.8,
+    "reviewCount": 205,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 44,
+    "image": "/products/parapluie-compact.jpg",
+    "gallery": [
+      "/products/parapluie-compact.jpg",
+      "/products/parapluie-compact-features.jpg",
+      "/products/parapluie-compact-details.jpg"
+    ],
+    "altText": "Parapluie de poche pliant ultra résistant aux rafales avec étui rigide",
+    "shortDescription": "Seulement 18 cm une fois replié. 8 baleines en fibre de verre résistantes aux fortes rafales sans se retourner.",
+    "benefits": [
+      "Armature anti-retournement en fibre de verre",
+      "Tissu déperlant nanotechnologique à séchage instantané",
+      "Étui rigide zippé anti-goutte inclus"
+    ],
+    "specs": {
+      "Longueur replié": "18 cm",
+      "Diamètre ouvert": "96 cm"
+    },
+    "faq": [
+      {
+        "q": "Rentre-t-il dans un sac à main ?",
+        "a": "Oui, aussi compact qu'un étui à lunettes standard."
+      }
+    ],
+    "keywords": [
+      "parapluie compact",
+      "parapluie pliable",
+      "pluie",
+      "accessoires"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "chargeur-sans-fil-induction",
+    "sku": "TECH-WIR-15W",
+    "slug": "chargeur-sans-fil-induction",
+    "name": "Chargeur sans fil rapide induction 15W",
+    "shortName": "Chargeur induction 15W",
+    "category": "technologie",
+    "subcategory": "telephones-accessoires",
+    "categoryLabel": "Technologie",
+    "price": 19.9,
+    "compareAtPrice": 27.9,
+    "rating": 4.8,
+    "reviewCount": 194,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 52,
+    "image": "/products/chargeur-sans-fil-induction.jpg",
+    "gallery": [
+      "/products/chargeur-sans-fil-induction.jpg",
+      "/products/chargeur-sans-fil-induction-features.jpg",
+      "/products/chargeur-sans-fil-induction-details.jpg"
+    ],
+    "altText": "Pad de charge rapide sans fil Qi 15W extra-plat en aluminium et tissu",
+    "shortDescription": "Déposez votre smartphone pour lancer la charge instantanément. Finition en alliage d'aluminium brossé et textile premium.",
+    "benefits": [
       "Recharge rapide Qi 15W optimisée pour iPhone et Android",
       "Épaisseur ultra-fine de 6 mm avec patins antidérapants",
       "Détection intelligente des objets métalliques parasites"
-],
-    specs: {
+    ],
+    "specs": {
       "Entrée": "USB-C 9V/2A",
       "Sortie": "5W / 7.5W / 10W / 15W",
       "Épaisseur": "6 mm"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Fonctionne-t-il avec une coque de protection ?",
-            "a": "Oui, avec toute coque non métallique jusqu'à 5 mm d'épaisseur."
+        "q": "Fonctionne-t-il avec une coque de protection ?",
+        "a": "Oui, avec toute coque non métallique jusqu'à 5 mm d'épaisseur."
       }
-],
-    keywords: ["chargeur sans fil","induction","chargeur induction","qi","smartphone","technologie"]
+    ],
+    "keywords": [
+      "chargeur sans fil",
+      "induction",
+      "chargeur induction",
+      "qi",
+      "smartphone",
+      "technologie"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'batterie-externe-compacte-10000',
-    sku: 'TECH-PWR-10K',
-    slug: 'batterie-externe-compacte-10000',
-    name: "Power bank compact 10000mAh charge rapide",
-    shortName: "Power bank 10000mAh",
-    category: 'technologie',
-    subcategory: 'gadgets',
-    categoryLabel: 'Technologie',
-    price: 24.90,
-    compareAtPrice: 34.90,
-    rating: 4.9,
-    reviewCount: 312,
-    badge: "Incontournable",
-    isBestSeller: true,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 60,
-    image: '/products/batterie-externe-compacte.jpg',
-    gallery: ["/products/batterie-externe-compacte.jpg"],
-    altText: "Batterie externe compacte 10000mAh avec affichage LED numérique du pourcentage",
-    shortDescription: "Format carte bancaire tenant dans la paume de la main. Recharges multiples avec affichage LED précis du niveau restant.",
-    benefits: [
-      "Capacité réelle 10 000 mAh : 2 à 3 recharges complètes de smartphone",
-      "Charge ultra-rapide 22.5W Power Delivery et Quick Charge 3.0",
-      "Affichage digital LED au pourcentage près"
-],
-    specs: {
-      "Capacité": "10 000 mAh / 37Wh",
-      "Poids": "180 g",
-      "Sorties": "USB-C PD + USB-A QC"
-},
-    faq: [
-      {
-            "q": "Est-elle autorisée en cabine d'avion ?",
-            "a": "Oui, certifiée conforme aux normes IATA pour le transport aérien en bagage cabine."
-      }
-],
-    keywords: ["power bank","batterie externe","chargeur portable","10000mah","usb c","technologie"]
-  },
-  {
-    id: 'mini-microphone-sans-fil',
-    sku: 'TECH-MIC-WIR',
-    slug: 'mini-microphone-sans-fil',
-    name: "Mini microphone cravate sans fil pour smartphone",
-    shortName: "Mini micro sans fil",
-    category: 'technologie',
-    subcategory: 'audio',
-    categoryLabel: 'Technologie',
-    price: 22.90,
-    compareAtPrice: 32.90,
-    rating: 4.7,
-    reviewCount: 165,
-    badge: "Tendance",
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 38,
-    image: 'https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=800&q=80"],
-    altText: "Mini micro cravate sans fil clip pour créateurs de contenu et smartphone",
-    shortDescription: "Plug & Play sans application requise. Son cristallin omnidirectionnel avec réduction active du bruit ambiant.",
-    benefits: [
+    "id": "mini-microphone-sans-fil",
+    "sku": "TECH-MIC-WIR",
+    "slug": "mini-microphone-sans-fil",
+    "name": "Mini microphone cravate sans fil pour smartphone",
+    "shortName": "Mini micro sans fil",
+    "category": "technologie",
+    "subcategory": "audio",
+    "categoryLabel": "Technologie",
+    "price": 22.9,
+    "compareAtPrice": 32.9,
+    "rating": 4.7,
+    "reviewCount": 165,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 38,
+    "image": "/products/mini-microphone-sans-fil.jpg",
+    "gallery": [
+      "/products/mini-microphone-sans-fil.jpg",
+      "/products/mini-microphone-sans-fil-features.jpg",
+      "/products/mini-microphone-sans-fil-details.jpg"
+    ],
+    "altText": "Mini micro cravate sans fil clip pour créateurs de contenu et smartphone",
+    "shortDescription": "Plug & Play sans application requise. Son cristallin omnidirectionnel avec réduction active du bruit ambiant.",
+    "benefits": [
       "Connexion instantanée 2.4 GHz sans latence jusqu'à 20 mètres",
       "Puce intelligente DSP de filtrage des bruits de vent et de fond",
       "Autonomie de 6 heures sur une seule charge"
-],
-    specs: {
+    ],
+    "specs": {
       "Portée": "20 m",
       "Autonomie": "6h",
       "Connecteur": "USB-C et adaptateur Lightning"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Faut-il installer une application ?",
-            "a": "Non, branchez le récepteur et le micro s'appaire en 1 seconde."
+        "q": "Faut-il installer une application ?",
+        "a": "Non, branchez le récepteur et le micro s'appaire en 1 seconde."
       }
-],
-    keywords: ["micro","micro sans fil","microphone","cravate","podcast","video","smartphone","technologie"]
+    ],
+    "keywords": [
+      "micro",
+      "micro sans fil",
+      "microphone",
+      "cravate",
+      "podcast",
+      "video",
+      "smartphone",
+      "technologie"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'support-telephone-bureau-pliable',
-    sku: 'TECH-STD-DSK',
-    slug: 'support-telephone-bureau-pliable',
-    name: "Support téléphone pliable réglable en aluminium",
-    shortName: "Support smartphone pliable",
-    category: 'technologie',
-    subcategory: 'telephones-accessoires',
-    categoryLabel: 'Technologie',
-    price: 14.90,
-    compareAtPrice: 19.90,
-    rating: 4.8,
-    reviewCount: 220,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 55,
-    image: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=800&q=80"],
-    altText: "Support de bureau pliable en aluminium pour smartphone et petite tablette",
-    shortDescription: "Double articulation 270° pour un angle de vue parfait en appel vidéo ou travail. Se replie à plat pour tenir dans une poche.",
-    benefits: [
+    "id": "support-telephone-bureau-pliable",
+    "sku": "TECH-STD-DSK",
+    "slug": "support-telephone-bureau-pliable",
+    "name": "Support téléphone pliable réglable en aluminium",
+    "shortName": "Support smartphone pliable",
+    "category": "technologie",
+    "subcategory": "telephones-accessoires",
+    "categoryLabel": "Technologie",
+    "price": 14.9,
+    "compareAtPrice": 19.9,
+    "rating": 4.8,
+    "reviewCount": 220,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 55,
+    "image": "/products/support-telephone-bureau-pliable.jpg",
+    "gallery": [
+      "/products/support-telephone-bureau-pliable.jpg",
+      "/products/support-telephone-bureau-pliable-features.jpg",
+      "/products/support-telephone-bureau-pliable-details.jpg"
+    ],
+    "altText": "Support de bureau pliable en aluminium pour smartphone et petite tablette",
+    "shortDescription": "Double articulation 270° pour un angle de vue parfait en appel vidéo ou travail. Se replie à plat pour tenir dans une poche.",
+    "benefits": [
       "Structure robuste en alliage d'aluminium fraisé",
       "Passe-câble ergonomique pour recharger pendant l'utilisation",
       "Coussinets en silicone anti-rayures et base antidérapante"
-],
-    specs: {
+    ],
+    "specs": {
       "Matière": "Aluminium anodisé + Silicone",
       "Pliable": "Oui (épaisseur 15 mm)",
       "Poids": "135 g"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Convient-il aussi aux tablettes ?",
-            "a": "Oui, compatible avec tout smartphone et tablettes jusqu'à 11 pouces."
+        "q": "Convient-il aussi aux tablettes ?",
+        "a": "Oui, compatible avec tout smartphone et tablettes jusqu'à 11 pouces."
       }
-],
-    keywords: ["support telephone","support smartphone","bureau","pliable","aluminium","technologie"]
+    ],
+    "keywords": [
+      "support telephone",
+      "support smartphone",
+      "bureau",
+      "pliable",
+      "aluminium",
+      "technologie"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'tapis-souris-xxl-ergonomique',
-    sku: 'TECH-MAT-XXL',
-    slug: 'tapis-souris-xxl-ergonomique',
-    name: "Tapis de souris XXL en cuir PU imperméable",
-    shortName: "Tapis de bureau XXL",
-    category: 'technologie',
-    subcategory: 'informatique',
-    categoryLabel: 'Technologie',
-    price: 16.90,
-    compareAtPrice: 24.90,
-    rating: 4.8,
-    reviewCount: 187,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'cover',
-    shippingEU: 'Stock UE',
-    stock: 40,
-    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"],
-    altText: "Sous-main et tapis de souris XXL 80x40cm en cuir PU bleu nuit et gris sur bureau design",
-    shortDescription: "Dimensions généreuses 80x40 cm. Protège votre bureau tout en offrant une glisse douce et fluide à votre souris.",
-    benefits: [
+    "id": "tapis-souris-xxl-ergonomique",
+    "sku": "TECH-MAT-XXL",
+    "slug": "tapis-souris-xxl-ergonomique",
+    "name": "Tapis de souris XXL en cuir PU imperméable",
+    "shortName": "Tapis de bureau XXL",
+    "category": "technologie",
+    "subcategory": "informatique",
+    "categoryLabel": "Technologie",
+    "price": 16.9,
+    "compareAtPrice": 24.9,
+    "rating": 4.8,
+    "reviewCount": 187,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "cover",
+    "shippingEU": "Stock UE",
+    "stock": 40,
+    "image": "/products/tapis-souris-xxl-ergonomique.jpg",
+    "gallery": [
+      "/products/tapis-souris-xxl-ergonomique.jpg",
+      "/products/tapis-souris-xxl-ergonomique-features.jpg",
+      "/products/tapis-souris-xxl-ergonomique-details.jpg"
+    ],
+    "altText": "Sous-main et tapis de souris XXL 80x40cm en cuir PU bleu nuit et gris sur bureau design",
+    "shortDescription": "Dimensions généreuses 80x40 cm. Protège votre bureau tout en offrant une glisse douce et fluide à votre souris.",
+    "benefits": [
       "Surface imperméable résistante aux éclaboussures de café ou d'eau",
       "Double face réversible avec deux coloris élégants",
       "Facile à nettoyer d'un simple coup de chiffon"
-],
-    specs: {
+    ],
+    "specs": {
       "Dimensions": "80 x 40 cm",
       "Épaisseur": "2 mm",
       "Matière": "Cuir PU synthétique premium"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Gêne-t-il le capteur optique de la souris ?",
-            "a": "Non, la micro-texture offre une précision optimale pour le travail comme le jeu."
+        "q": "Gêne-t-il le capteur optique de la souris ?",
+        "a": "Non, la micro-texture offre une précision optimale pour le travail comme le jeu."
       }
-],
-    keywords: ["tapis de souris","tapis bureau","sous main","xxl","cuir","informatique","technologie"]
+    ],
+    "keywords": [
+      "tapis de souris",
+      "tapis bureau",
+      "sous main",
+      "xxl",
+      "cuir",
+      "informatique",
+      "technologie"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'souris-sans-fil-ergonomique',
-    sku: 'TECH-MOU-SIL',
-    slug: 'souris-sans-fil-ergonomique',
-    name: "Souris ergonomique sans fil silencieuse 2.4G & Bluetooth",
-    shortName: "Souris sans fil ergonomique",
-    category: 'technologie',
-    subcategory: 'informatique',
-    categoryLabel: 'Technologie',
-    price: 18.90,
-    compareAtPrice: 26.90,
-    rating: 4.7,
-    reviewCount: 145,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 48,
-    image: '/products/souris-sans-fil-ergonomique.jpg',
-    gallery: ["/products/souris-sans-fil-ergonomique.jpg"],
-    altText: "Souris d'ordinateur ergonomique sans fil noire mate avec repose-pouce et clics silencieux",
-    shortDescription: "Prise en main naturelle réduisant la fatigue du poignet. Clics ultra-silencieux parfaits pour l'open-space et le télétravail.",
-    benefits: [
+    "id": "souris-sans-fil-ergonomique",
+    "sku": "TECH-MOU-SIL",
+    "slug": "souris-sans-fil-ergonomique",
+    "name": "Souris ergonomique sans fil silencieuse 2.4G & Bluetooth",
+    "shortName": "Souris sans fil ergonomique",
+    "category": "technologie",
+    "subcategory": "informatique",
+    "categoryLabel": "Technologie",
+    "price": 18.9,
+    "compareAtPrice": 26.9,
+    "rating": 4.7,
+    "reviewCount": 145,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 48,
+    "image": "/products/souris-sans-fil-ergonomique.jpg",
+    "gallery": [
+      "/products/souris-sans-fil-ergonomique.jpg",
+      "/products/souris-sans-fil-ergonomique-features.jpg",
+      "/products/souris-sans-fil-ergonomique-details.jpg"
+    ],
+    "altText": "Souris d'ordinateur ergonomique sans fil noire mate avec repose-pouce et clics silencieux",
+    "shortDescription": "Prise en main naturelle réduisant la fatigue du poignet. Clics ultra-silencieux parfaits pour l'open-space et le télétravail.",
+    "benefits": [
       "Double connexion : Bluetooth 5.0 et récepteur USB 2.4 GHz",
       "Clics 90% plus silencieux pour travailler sans déranger",
       "Capteur optique réglable 1000 / 1600 / 2400 DPI"
-],
-    specs: {
+    ],
+    "specs": {
       "DPI": "1000 - 2400",
       "Batterie": "Rechargeable USB-C (autonomie 60 jours)",
       "Poids": "92 g"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "La batterie est-elle rechargeable ?",
-            "a": "Oui, via son câble USB-C fourni, pas besoin de piles."
+        "q": "La batterie est-elle rechargeable ?",
+        "a": "Oui, via son câble USB-C fourni, pas besoin de piles."
       }
-],
-    keywords: ["souris","souris sans fil","souris ergonomique","silencieuse","bluetooth","informatique","technologie"]
+    ],
+    "keywords": [
+      "souris",
+      "souris sans fil",
+      "souris ergonomique",
+      "silencieuse",
+      "bluetooth",
+      "informatique",
+      "technologie"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'lampe-led-bureau-tactile',
-    sku: 'TECH-LMP-DSK',
-    slug: 'lampe-led-bureau-tactile',
-    name: "Lampe LED de bureau tactile avec variateur et port USB",
-    shortName: "Lampe LED de bureau tactile",
-    category: 'technologie',
-    subcategory: 'gadgets',
-    categoryLabel: 'Technologie',
-    price: 29.90,
-    compareAtPrice: 42.90,
-    rating: 4.9,
-    reviewCount: 210,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 35,
-    image: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80"],
-    altText: "Lampe de bureau LED architecturale blanche articulée avec variateur de lumière tactile",
-    shortDescription: "Éclairage anti-scintillement sans fatigue oculaire. 5 températures de couleur et variateur tactile d'intensité.",
-    benefits: [
+    "id": "lampe-led-bureau-tactile",
+    "sku": "TECH-LMP-DSK",
+    "slug": "lampe-led-bureau-tactile",
+    "name": "Lampe LED de bureau tactile avec variateur et port USB",
+    "shortName": "Lampe LED de bureau tactile",
+    "category": "technologie",
+    "subcategory": "gadgets",
+    "categoryLabel": "Technologie",
+    "price": 29.9,
+    "compareAtPrice": 42.9,
+    "rating": 4.9,
+    "reviewCount": 210,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 35,
+    "image": "/products/lampe-led-bureau-tactile.jpg",
+    "gallery": [
+      "/products/lampe-led-bureau-tactile.jpg",
+      "/products/lampe-led-bureau-tactile-features.jpg",
+      "/products/lampe-led-bureau-tactile-details.jpg"
+    ],
+    "altText": "Lampe de bureau LED architecturale blanche articulée avec variateur de lumière tactile",
+    "shortDescription": "Éclairage anti-scintillement sans fatigue oculaire. 5 températures de couleur et variateur tactile d'intensité.",
+    "benefits": [
       "Lumière douce anti-lumière bleue certifiée sans scintillement",
       "5 modes de température (chaud 3000K à blanc travail 6000K)",
       "Port USB intégré sur la base pour recharger votre téléphone"
-],
-    specs: {
+    ],
+    "specs": {
       "Puissance": "10W LED",
       "Modes": "5 teintes x 10 niveaux",
       "Port sortie": "USB 5V/1A"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "L'angle d'éclairage est-il ajustable ?",
-            "a": "Oui, le bras et la tête s'inclinent sur plusieurs axes à 180°."
+        "q": "L'angle d'éclairage est-il ajustable ?",
+        "a": "Oui, le bras et la tête s'inclinent sur plusieurs axes à 180°."
       }
-],
-    keywords: ["lampe","lampe bureau","lampe led","tactile","eclairage","teletravail","technologie"]
+    ],
+    "keywords": [
+      "lampe",
+      "lampe bureau",
+      "lampe led",
+      "tactile",
+      "eclairage",
+      "teletravail",
+      "technologie"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'webcam-full-hd-1080p',
-    sku: 'TECH-CAM-1080',
-    slug: 'webcam-full-hd-1080p',
-    name: "Webcam USB Full HD 1080p avec cache confidentialité et micro",
-    shortName: "Webcam Full HD 1080p",
-    category: 'technologie',
-    subcategory: 'informatique',
-    categoryLabel: 'Technologie',
-    price: 27.90,
-    compareAtPrice: 38.90,
-    rating: 4.8,
-    reviewCount: 175,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 42,
-    image: '/products/webcam-full-hd-1080p.jpg',
-    gallery: ["/products/webcam-full-hd-1080p.jpg"],
-    altText: "Webcam USB Full HD 1080p noire clipsable sur écran avec volet de confidentialité coulissant",
-    shortDescription: "Qualité d'image nette en télétravail et visioconférence. Microphone stéréo intégré et volet coulissant protégeant votre vie privée.",
-    benefits: [
+    "id": "webcam-full-hd-1080p",
+    "sku": "TECH-CAM-1080",
+    "slug": "webcam-full-hd-1080p",
+    "name": "Webcam USB Full HD 1080p avec cache confidentialité et micro",
+    "shortName": "Webcam Full HD 1080p",
+    "category": "technologie",
+    "subcategory": "informatique",
+    "categoryLabel": "Technologie",
+    "price": 27.9,
+    "compareAtPrice": 38.9,
+    "rating": 4.8,
+    "reviewCount": 175,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 42,
+    "image": "/products/webcam-full-hd-1080p.jpg",
+    "gallery": [
+      "/products/webcam-full-hd-1080p.jpg",
+      "/products/webcam-full-hd-1080p-features.jpg",
+      "/products/webcam-full-hd-1080p-details.jpg"
+    ],
+    "altText": "Webcam USB Full HD 1080p noire clipsable sur écran avec volet de confidentialité coulissant",
+    "shortDescription": "Qualité d'image nette en télétravail et visioconférence. Microphone stéréo intégré et volet coulissant protégeant votre vie privée.",
+    "benefits": [
       "Résolution Full HD 1080p à 30 images/seconde avec autofocus rapide",
       "Cache mécanique de sécurité pour bloquer l'objectif d'un geste",
       "Microphone stéréo avec réduction du bruit de fond"
-],
-    specs: {
+    ],
+    "specs": {
       "Résolution": "1920 x 1080 px",
       "Champ de vision": "90°",
       "Connexion": "USB Plug & Play (câble 1.5m)"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Fonctionne-t-il sur Mac et Windows ?",
-            "a": "Oui, compatible nativement Windows, macOS et ChromeOS sans pilote."
+        "q": "Fonctionne-t-il sur Mac et Windows ?",
+        "a": "Oui, compatible nativement Windows, macOS et ChromeOS sans pilote."
       }
-],
-    keywords: ["webcam","camera","visio","zoom","teletravail","1080p","informatique","technologie"]
+    ],
+    "keywords": [
+      "webcam",
+      "camera",
+      "visio",
+      "zoom",
+      "teletravail",
+      "1080p",
+      "informatique",
+      "technologie"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'bandeau-spa-velours',
-    sku: 'BEAU-BND-SPA',
-    slug: 'bandeau-spa-velours',
-    name: "Bandeau spa en velours éponge pour soins et maquillage",
-    shortName: "Bandeau spa en velours",
-    category: 'beaute',
-    subcategory: 'accessoires-beaute',
-    categoryLabel: 'Beauté',
-    price: 9.90,
-    compareAtPrice: 14.90,
-    rating: 4.8,
-    reviewCount: 245,
-    badge: "Pack Beauté",
-    isBestSeller: true,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 65,
-    bundleWith: 'rouleau-glace-visage',
-    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80"],
-    altText: "Bandeau de soin spa en tissu éponge velours rose poudré rembourré",
-    shortDescription: "Maintient les cheveux en arrière en douceur sans faire de plis ni serrer la tête pendant vos rituels de soin ou maquillage.",
-    benefits: [
+    "id": "bandeau-spa-velours",
+    "sku": "BEAU-BND-SPA",
+    "slug": "bandeau-spa-velours",
+    "name": "Bandeau spa en velours éponge pour soins et maquillage",
+    "shortName": "Bandeau spa en velours",
+    "category": "beaute",
+    "subcategory": "accessoires-beaute",
+    "categoryLabel": "Beauté",
+    "price": 9.9,
+    "compareAtPrice": 14.9,
+    "rating": 4.8,
+    "reviewCount": 245,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 65,
+    "bundleWith": "rouleau-glace-visage",
+    "image": "/products/bandeau-spa-velours-hero.jpg",
+    "gallery": [
+      "/products/bandeau-spa-velours-hero.jpg",
+      "/products/bandeau-spa-velours-features.jpg",
+      "/products/bandeau-spa-velours-details.jpg"
+    ],
+    "altText": "Bandeau de soin spa en tissu éponge velours rose poudré rembourré",
+    "shortDescription": "Maintient les cheveux en arrière en douceur sans faire de plis ni serrer la tête pendant vos rituels de soin ou maquillage.",
+    "benefits": [
       "Tissu éponge velours ultra-absorbant et moelleux",
       "Design ergonomique rembourré qui ne comprime pas les tempes",
       "Lavable en machine à 30°C sans perdre sa forme"
-],
-    specs: {
+    ],
+    "specs": {
       "Matière": "Éponge velours douce",
       "Taille": "Universelle élastique",
       "Entretien": "Lavage machine 30°C"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Glisse-t-il sur les cheveux fins ?",
-            "a": "Non, sa texture éponge offre un excellent maintien antidérapant."
+        "q": "Glisse-t-il sur les cheveux fins ?",
+        "a": "Non, sa texture éponge offre un excellent maintien antidérapant."
       }
-],
-    keywords: ["bandeau spa","bandeau visage","maquillage","soin visage","eponge","velours","beaute"]
+    ],
+    "keywords": [
+      "bandeau spa",
+      "bandeau visage",
+      "maquillage",
+      "soin visage",
+      "eponge",
+      "velours",
+      "beaute"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'miroir-led-tactile',
-    sku: 'BEAU-MIR-LED',
-    slug: 'miroir-led-tactile',
-    name: "Miroir de maquillage LED lumineux tactile avec variateur",
-    shortName: "Miroir LED tactile",
-    category: 'beaute',
-    subcategory: 'accessoires-beaute',
-    categoryLabel: 'Beauté',
-    price: 26.90,
-    compareAtPrice: 36.90,
-    rating: 4.9,
-    reviewCount: 290,
-    badge: "Incontournable",
-    isBestSeller: true,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 40,
-    bundleWith: 'organisateur-maquillage',
-    image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80"],
-    altText: "Miroir de maquillage sur pied avec anneau lumineux LED et bouton tactile",
-    shortDescription: "Éclairage lumière du jour naturel à intensité variable. Pivotant à 90° avec plateau range-bijoux sur la base.",
-    benefits: [
+    "id": "miroir-led-tactile",
+    "sku": "BEAU-MIR-LED",
+    "slug": "miroir-led-tactile",
+    "name": "Miroir de maquillage LED lumineux tactile avec variateur",
+    "shortName": "Miroir LED tactile",
+    "category": "beaute",
+    "subcategory": "accessoires-beaute",
+    "categoryLabel": "Beauté",
+    "price": 26.9,
+    "compareAtPrice": 36.9,
+    "rating": 4.9,
+    "reviewCount": 290,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 40,
+    "bundleWith": "organisateur-maquillage",
+    "image": "/products/miroir-led-tactile-hero.jpg",
+    "gallery": [
+      "/products/miroir-led-tactile-hero.jpg",
+      "/products/miroir-led-tactile-features.jpg",
+      "/products/miroir-led-tactile-details.jpg"
+    ],
+    "altText": "Miroir de maquillage sur pied avec anneau lumineux LED et bouton tactile",
+    "shortDescription": "Éclairage lumière du jour naturel à intensité variable. Pivotant à 90° avec plateau range-bijoux sur la base.",
+    "benefits": [
       "Ruban LED circulaire lumière naturelle fidèle (IRC > 90)",
       "Bouton tactile avec variateur d'intensité en continu",
       "Batterie rechargeable USB-C avec autonomie jusqu'à 2 semaines"
-],
-    specs: {
+    ],
+    "specs": {
       "Diamètre": "18 cm",
       "Batterie": "1200 mAh USB-C",
       "Éclairage": "Blanc chaud / naturel / blanc froid"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Faut-il le laisser branché ?",
-            "a": "Non, il fonctionne sans fil grâce à sa batterie rechargeable intégrée."
+        "q": "Faut-il le laisser branché ?",
+        "a": "Non, il fonctionne sans fil grâce à sa batterie rechargeable intégrée."
       }
-],
-    keywords: ["miroir led","miroir lumineux","miroir maquillage","eclairage","beaute"]
+    ],
+    "keywords": [
+      "miroir led",
+      "miroir lumineux",
+      "miroir maquillage",
+      "eclairage",
+      "beaute"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'gua-sha-quartz-rose',
-    sku: 'BEAU-GUA-QRTZ',
-    slug: 'gua-sha-quartz-rose',
-    name: "Gua sha en quartz rose naturel pour massage facial",
-    shortName: "Gua sha en quartz rose",
-    category: 'beaute',
-    subcategory: 'visage',
-    categoryLabel: 'Beauté',
-    price: 12.90,
-    compareAtPrice: 18.90,
-    rating: 4.8,
-    reviewCount: 198,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 55,
-    bundleWith: 'rouleau-glace-visage',
-    image: '/products/gua-sha-quartz-rose.jpg',
-    gallery: ["/products/gua-sha-quartz-rose.jpg"],
-    altText: "Pierre de massage Gua Sha en quartz rose véritable taillée en forme de cœur",
-    shortDescription: "Véritable pierre de quartz rose naturelle polie à la main. Sculpte l'ovale du visage et stimule l'éclat du teint.",
-    benefits: [
+    "id": "gua-sha-quartz-rose",
+    "sku": "BEAU-GUA-QRTZ",
+    "slug": "gua-sha-quartz-rose",
+    "name": "Gua sha en quartz rose naturel pour massage facial",
+    "shortName": "Gua sha en quartz rose",
+    "category": "beaute",
+    "subcategory": "visage",
+    "categoryLabel": "Beauté",
+    "price": 12.9,
+    "compareAtPrice": 18.9,
+    "rating": 4.8,
+    "reviewCount": 198,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 55,
+    "bundleWith": "rouleau-glace-visage",
+    "image": "/products/gua-sha-quartz-rose.jpg",
+    "gallery": [
+      "/products/gua-sha-quartz-rose.jpg",
+      "/products/gua-sha-quartz-rose-features.jpg",
+      "/products/gua-sha-quartz-rose-details.jpg"
+    ],
+    "altText": "Pierre de massage Gua Sha en quartz rose véritable taillée en forme de cœur",
+    "shortDescription": "Véritable pierre de quartz rose naturelle polie à la main. Sculpte l'ovale du visage et stimule l'éclat du teint.",
+    "benefits": [
       "100% Quartz rose véritable taillé et poli avec soin",
       "Forme ergonomique à 3 courbes adaptée à chaque zone du visage",
       "Effet fraîcheur naturel pour décongestionner le regard le matin"
-],
-    specs: {
+    ],
+    "specs": {
       "Matière": "100% Quartz rose naturel",
       "Dimensions": "8 x 5.5 cm",
       "Étui": "Pochette coton incluse"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Peut-on le mettre au réfrigérateur ?",
-            "a": "Oui, pour un effet glaçon et drainant encore plus intense."
+        "q": "Peut-on le mettre au réfrigérateur ?",
+        "a": "Oui, pour un effet glaçon et drainant encore plus intense."
       }
-],
-    keywords: ["gua sha","quartz rose","massage visage","drainage","soin visage","anti rides","beaute"]
+    ],
+    "keywords": [
+      "gua sha",
+      "quartz rose",
+      "massage visage",
+      "drainage",
+      "soin visage",
+      "anti rides",
+      "beaute"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'trousse-maquillage-voyage',
-    sku: 'BEAU-BAG-VOY',
-    slug: 'trousse-maquillage-voyage',
-    name: "Trousse de maquillage compartimentée grand format",
-    shortName: "Trousse de maquillage voyage",
-    category: 'beaute',
-    subcategory: 'accessoires-beaute',
-    categoryLabel: 'Beauté',
-    price: 19.90,
-    compareAtPrice: 28.90,
-    rating: 4.8,
-    reviewCount: 176,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 45,
-    image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80"],
-    altText: "Trousse vanity de maquillage beige crème avec compartiments réglables et poignée",
-    shortDescription: "Ouverture grand angle à plat pour visualiser tous vos produits d'un coup d'œil. Cloisons modulables et matière imperméable.",
-    benefits: [
+    "id": "trousse-maquillage-voyage",
+    "sku": "BEAU-BAG-VOY",
+    "slug": "trousse-maquillage-voyage",
+    "name": "Trousse de maquillage compartimentée grand format",
+    "shortName": "Trousse de maquillage voyage",
+    "category": "beaute",
+    "subcategory": "accessoires-beaute",
+    "categoryLabel": "Beauté",
+    "price": 19.9,
+    "compareAtPrice": 28.9,
+    "rating": 4.8,
+    "reviewCount": 176,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 45,
+    "image": "/products/trousse-maquillage.jpg",
+    "gallery": [
+      "/products/trousse-maquillage.jpg",
+      "/products/trousse-maquillage-voyage-features.jpg",
+      "/products/trousse-maquillage-voyage-details.jpg"
+    ],
+    "altText": "Trousse vanity de maquillage beige crème avec compartiments réglables et poignée",
+    "shortDescription": "Ouverture grand angle à plat pour visualiser tous vos produits d'un coup d'œil. Cloisons modulables et matière imperméable.",
+    "benefits": [
       "Grand volume avec séparateurs amovibles personnalisables",
       "Pochettes élastiques dédiées pour pinceaux avec rabat anti-taches",
       "Cuir synthétique grainé souple et résistant aux liquides"
-],
-    specs: {
+    ],
+    "specs": {
       "Dimensions": "24 x 14 x 14 cm",
       "Matière": "Cuir PU déperlant",
       "Fermeture": "Double zip doré renforcé"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Peut-elle contenir de grands flacons ?",
-            "a": "Oui, les flacons de lotions ou démaquillants standards rentrent facilement couchés."
+        "q": "Peut-elle contenir de grands flacons ?",
+        "a": "Oui, les flacons de lotions ou démaquillants standards rentrent facilement couchés."
       }
-],
-    keywords: ["trousse maquillage","vanity","trousse toilette","cosmetique","voyage","beaute"]
+    ],
+    "keywords": [
+      "trousse maquillage",
+      "vanity",
+      "trousse toilette",
+      "cosmetique",
+      "voyage",
+      "beaute"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'bonnet-satin-cheveux',
-    sku: 'BEAU-BNT-SAT',
-    slug: 'bonnet-satin-cheveux',
-    name: "Bonnet de nuit en satin double épaisseur pour cheveux",
-    shortName: "Bonnet en satin de nuit",
-    category: 'beaute',
-    subcategory: 'soins-cheveux',
-    categoryLabel: 'Beauté',
-    price: 11.90,
-    compareAtPrice: 16.90,
-    rating: 4.7,
-    reviewCount: 215,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 50,
-    bundleWith: 'rouleau-boucles-sans-chaleur',
-    image: '/products/bonnet-satin-cheveux.jpg',
-    gallery: ["/products/bonnet-satin-cheveux.jpg"],
-    altText: "Bonnet de nuit soyeux en satin double face pour protection des cheveux bouclés",
-    shortDescription: "Préserve l'hydratation capillaire et élimine les frisottis pendant le sommeil. Bandeau large extensible sans marques.",
-    benefits: [
+    "id": "bonnet-satin-cheveux",
+    "sku": "BEAU-BNT-SAT",
+    "slug": "bonnet-satin-cheveux",
+    "name": "Bonnet de nuit en satin double épaisseur pour cheveux",
+    "shortName": "Bonnet en satin de nuit",
+    "category": "beaute",
+    "subcategory": "soins-cheveux",
+    "categoryLabel": "Beauté",
+    "price": 11.9,
+    "compareAtPrice": 16.9,
+    "rating": 4.7,
+    "reviewCount": 215,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 50,
+    "bundleWith": "rouleau-boucles-sans-chaleur",
+    "image": "/products/bonnet-satin-cheveux.jpg",
+    "gallery": [
+      "/products/bonnet-satin-cheveux.jpg",
+      "/products/bonnet-satin-cheveux-features.jpg",
+      "/products/bonnet-satin-cheveux-details.jpg"
+    ],
+    "altText": "Bonnet de nuit soyeux en satin double face pour protection des cheveux bouclés",
+    "shortDescription": "Préserve l'hydratation capillaire et élimine les frisottis pendant le sommeil. Bandeau large extensible sans marques.",
+    "benefits": [
       "Satin soyeux réduisant les frottements et la casse des pointes",
       "Double épaisseur réversible respirante et douce",
       "Bandeau large élastique qui reste en place toute la nuit sans serrer"
-],
-    specs: {
+    ],
+    "specs": {
       "Matière": "100% Satin soyeux premium",
       "Diamètre": "36 cm (convient à tous volumes de cheveux)",
       "Entretien": "Lavage 30°C délicat"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Convient-il aux cheveux longs ou volumineux ?",
-            "a": "Oui, le dôme élastique est spécialement conçu pour accueillir tous types de volumes."
+        "q": "Convient-il aux cheveux longs ou volumineux ?",
+        "a": "Oui, le dôme élastique est spécialement conçu pour accueillir tous types de volumes."
       }
-],
-    keywords: ["bonnet satin","bonnet cheveux","satin de nuit","boucles","frisottis","soin cheveux","beaute"]
+    ],
+    "keywords": [
+      "bonnet satin",
+      "bonnet cheveux",
+      "satin de nuit",
+      "boucles",
+      "frisottis",
+      "soin cheveux",
+      "beaute"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'kit-pinceaux-maquillage',
-    sku: 'BEAU-BRS-KIT8',
-    slug: 'kit-pinceaux-maquillage',
-    name: "Kit de 8 pinceaux de maquillage essentiels avec étui",
-    shortName: "Kit 8 pinceaux maquillage",
-    category: 'beaute',
-    subcategory: 'maquillage',
-    categoryLabel: 'Beauté',
-    price: 17.90,
-    compareAtPrice: 25.90,
-    rating: 4.8,
-    reviewCount: 160,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 48,
-    image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=80"],
-    altText: "Ensemble de 8 pinceaux de maquillage avec manches champagne et poils synthétiques doux",
-    shortDescription: "Tous les essentiels teint et yeux réunis dans un étui de transport compact. Poils synthétiques ultra-doux haute densité.",
-    benefits: [
+    "id": "kit-pinceaux-maquillage",
+    "sku": "BEAU-BRS-KIT8",
+    "slug": "kit-pinceaux-maquillage",
+    "name": "Kit de 8 pinceaux de maquillage essentiels avec étui",
+    "shortName": "Kit 8 pinceaux maquillage",
+    "category": "beaute",
+    "subcategory": "maquillage",
+    "categoryLabel": "Beauté",
+    "price": 17.9,
+    "compareAtPrice": 25.9,
+    "rating": 4.8,
+    "reviewCount": 160,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 48,
+    "image": "/products/kit-pinceaux-maquillage.jpg",
+    "gallery": [
+      "/products/kit-pinceaux-maquillage.jpg",
+      "/products/kit-pinceaux-maquillage-features.jpg",
+      "/products/kit-pinceaux-maquillage-details.jpg"
+    ],
+    "altText": "Ensemble de 8 pinceaux de maquillage avec manches champagne et poils synthétiques doux",
+    "shortDescription": "Tous les essentiels teint et yeux réunis dans un étui de transport compact. Poils synthétiques ultra-doux haute densité.",
+    "benefits": [
       "Fibres synthétiques véganes douces et hypoallergéniques",
       "Application homogène sans traces ni perte de poils",
       "Étui compact protecteur idéal en déplacement"
-],
-    specs: {
+    ],
+    "specs": {
       "Contenu": "8 pinceaux (poudre, blush, fond de teint, estompeur...)",
       "Matière": "Fibres synthétiques + Virole alu",
       "Étui": "Inclus"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Comment les nettoyer ?",
-            "a": "Avec un savon doux ou nettoyant pinceaux à l'eau tiède, séchage à plat."
+        "q": "Comment les nettoyer ?",
+        "a": "Avec un savon doux ou nettoyant pinceaux à l'eau tiède, séchage à plat."
       }
-],
-    keywords: ["pinceaux maquillage","kit pinceaux","pinceau fond de teint","pinceau yeux","beaute"]
+    ],
+    "keywords": [
+      "pinceaux maquillage",
+      "kit pinceaux",
+      "pinceau fond de teint",
+      "pinceau yeux",
+      "beaute"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'vaporisateur-parfum-rechargeable',
-    sku: 'BEAU-VAP-5ML',
-    slug: 'vaporisateur-parfum-rechargeable',
-    name: "Mini vaporisateur de parfum rechargeable de poche 5ml",
-    shortName: "Vaporisateur parfum 5ml",
-    category: 'beaute',
-    subcategory: 'accessoires-beaute',
-    categoryLabel: 'Beauté',
-    price: 8.90,
-    compareAtPrice: 12.90,
-    rating: 4.8,
-    reviewCount: 230,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 70,
-    image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=80"],
-    altText: "Atomiseur de parfum de poche rechargeable 5ml en aluminium brossé rose gold",
-    shortDescription: "Remplissage instantané par le dessous sans entonnoir ni perte d'une seule goutte. Homologué pour les voyages en cabine avion.",
-    benefits: [
+    "id": "vaporisateur-parfum-rechargeable",
+    "sku": "BEAU-VAP-5ML",
+    "slug": "vaporisateur-parfum-rechargeable",
+    "name": "Mini vaporisateur de parfum rechargeable de poche 5ml",
+    "shortName": "Vaporisateur parfum 5ml",
+    "category": "beaute",
+    "subcategory": "accessoires-beaute",
+    "categoryLabel": "Beauté",
+    "price": 8.9,
+    "compareAtPrice": 12.9,
+    "rating": 4.8,
+    "reviewCount": 230,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 70,
+    "image": "/products/vaporisateur-parfum-rechargeable-hero.jpg",
+    "gallery": [
+      "/products/vaporisateur-parfum-rechargeable-hero.jpg",
+      "/products/vaporisateur-parfum-rechargeable-features.jpg",
+      "/products/vaporisateur-parfum-rechargeable-details.jpg"
+    ],
+    "altText": "Atomiseur de parfum de poche rechargeable 5ml en aluminium brossé rose gold",
+    "shortDescription": "Remplissage instantané par le dessous sans entonnoir ni perte d'une seule goutte. Homologué pour les voyages en cabine avion.",
+    "benefits": [
       "Système de valve brevetée anti-fuite par pompage direct",
       "Fenêtre transparente pour visualiser le niveau restant",
       "Coque en aluminium résistant aux chocs et aux chutes"
-],
-    specs: {
+    ],
+    "specs": {
       "Contenance": "5 ml (~65 pulvérisations)",
       "Dimensions": "8 x 1.7 cm",
       "Poids": "14 g"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Comment le remplir ?",
-            "a": "Retirez l'embout de votre flacon de parfum et pressez le dessous du vaporisateur plusieurs fois."
+        "q": "Comment le remplir ?",
+        "a": "Retirez l'embout de votre flacon de parfum et pressez le dessous du vaporisateur plusieurs fois."
       }
-],
-    keywords: ["vaporisateur parfum","atomiseur","parfum poche","voyage","rechargeable","beaute"]
+    ],
+    "keywords": [
+      "vaporisateur parfum",
+      "atomiseur",
+      "parfum poche",
+      "voyage",
+      "rechargeable",
+      "beaute"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'brosse-demelante-anti-casse',
-    sku: 'BEAU-BRS-DEM',
-    slug: 'brosse-demelante-anti-casse',
-    name: "Brosse démêlante flexible anti-casse pour cheveux",
-    shortName: "Brosse démêlante flexible",
-    category: 'beaute',
-    subcategory: 'soins-cheveux',
-    categoryLabel: 'Beauté',
-    price: 12.90,
-    compareAtPrice: 18.90,
-    rating: 4.8,
-    reviewCount: 185,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 55,
-    image: 'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=800&q=80"],
-    altText: "Brosse à cheveux aérée incurvée ergonomique pour démêlage sans douleur",
-    shortDescription: "Tête flexible incurvée épousant le crâne. Démêle les nœuds en douceur sur cheveux secs ou mouillés sans casser la fibre.",
-    benefits: [
+    "id": "brosse-demelante-anti-casse",
+    "sku": "BEAU-BRS-DEM",
+    "slug": "brosse-demelante-anti-casse",
+    "name": "Brosse démêlante flexible anti-casse pour cheveux",
+    "shortName": "Brosse démêlante flexible",
+    "category": "beaute",
+    "subcategory": "soins-cheveux",
+    "categoryLabel": "Beauté",
+    "price": 12.9,
+    "compareAtPrice": 18.9,
+    "rating": 4.8,
+    "reviewCount": 185,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 55,
+    "image": "/products/brosse-demelante-anti-casse.jpg",
+    "gallery": [
+      "/products/brosse-demelante-anti-casse.jpg",
+      "/products/brosse-demelante-anti-casse-features.jpg",
+      "/products/brosse-demelante-anti-casse-details.jpg"
+    ],
+    "altText": "Brosse à cheveux aérée incurvée ergonomique pour démêlage sans douleur",
+    "shortDescription": "Tête flexible incurvée épousant le crâne. Démêle les nœuds en douceur sur cheveux secs ou mouillés sans casser la fibre.",
+    "benefits": [
       "Picots souples à bouts ronds massant le cuir chevelu",
       "Corps ajouré accélérant le séchage au sèche-cheveux",
       "Efficace sur cheveux raides, ondulés, bouclés ou crépus"
-],
-    specs: {
+    ],
+    "specs": {
       "Matière": "Résine ABS flexible",
       "Longueur": "24 cm",
       "Poids": "78 g"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Peut-on l'utiliser sous la douche ?",
-            "a": "Oui, idéale pour répartir un après-shampoing ou masque sur cheveux mouillés."
+        "q": "Peut-on l'utiliser sous la douche ?",
+        "a": "Oui, idéale pour répartir un après-shampoing ou masque sur cheveux mouillés."
       }
-],
-    keywords: ["brosse demelante","brosse cheveux","anti casse","cheveux boucles","demelage","beaute"]
+    ],
+    "keywords": [
+      "brosse demelante",
+      "brosse cheveux",
+      "anti casse",
+      "cheveux boucles",
+      "demelage",
+      "beaute"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'robe-longue-boheme',
-    sku: 'MOD-ROB-LNG',
-    slug: 'robe-longue-boheme',
-    name: "Robe longue fluide ceinturée",
-    shortName: "Robe longue ceinturée",
-    category: 'mode',
-    subcategory: 'femme',
-    categoryLabel: 'Mode',
-    gender: 'femme',
-    price: 44.90,
-    compareAtPrice: 62.90,
-    rating: 4.9,
-    reviewCount: 220,
-    badge: "Tendance",
-    isBestSeller: true,
-    isNew: true,
-    isFashion: true,
-    imageDisplayMode: 'cover',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 35,
-    hasVariants: true,
-    sizes: ["XS","S","M","L","XL"],
-    colors: [
+    "id": "robe-longue-boheme",
+    "sku": "MOD-ROB-LNG",
+    "slug": "robe-longue-boheme",
+    "name": "Robe longue fluide ceinturée",
+    "shortName": "Robe longue ceinturée",
+    "category": "mode",
+    "subcategory": "femme",
+    "categoryLabel": "Mode",
+    "gender": "femme",
+    "price": 44.9,
+    "compareAtPrice": 62.9,
+    "rating": 4.9,
+    "reviewCount": 220,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": true,
+    "isFashion": true,
+    "imageDisplayMode": "cover",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 35,
+    "hasVariants": true,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
       {
-            "name": "Vert Sauge",
-            "hex": "#4d7c0f"
+        "name": "Vert Sauge",
+        "hex": "#4d7c0f"
       },
       {
-            "name": "Terracotta",
-            "hex": "#b45309"
+        "name": "Terracotta",
+        "hex": "#b45309"
       },
       {
-            "name": "Noir Ébène",
-            "hex": "#1e293b"
+        "name": "Noir Ébène",
+        "hex": "#1e293b"
       }
-],
-    defaultSize: 'M',
-    defaultColor: 'Vert Sauge',
-    image: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=800&q=80"],
-    altText: "Femme portant une élégante robe longue fluide d'été ceinturée à la taille",
-    shortDescription: "Tombé fluide spectaculaire en viscose respirante. Fente discrète sur le côté et ceinture amovible pour affiner la silhouette.",
-    benefits: [
+    ],
+    "defaultSize": "M",
+    "defaultColor": "Vert Sauge",
+    "image": "/products/robe-longue-boheme.jpg",
+    "gallery": [
+      "/products/robe-longue-boheme.jpg",
+      "/products/robe-longue-boheme-features.jpg",
+      "/products/robe-longue-boheme-details.jpg"
+    ],
+    "altText": "Femme portant une élégante robe longue fluide d'été ceinturée à la taille",
+    "shortDescription": "Tombé fluide spectaculaire en viscose respirante. Fente discrète sur le côté et ceinture amovible pour affiner la silhouette.",
+    "benefits": [
       "Viscose naturelle légère et opaque avec tombé élégant",
       "Ceinture amovible assortie à nouer devant ou au dos",
       "Convient aussi bien avec des sandales plates que des talons"
-],
-    specs: {
+    ],
+    "specs": {
       "Matière": "100% Viscose fluide",
       "Longueur": "Maxi chevilles",
       "Entretien": "Lavage délicat 30°C"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Quelle est la longueur totale ?",
-            "a": "Environ 135 cm de l'épaule à l'ourlet en taille M."
+        "q": "Quelle est la longueur totale ?",
+        "a": "Environ 135 cm de l'épaule à l'ourlet en taille M."
       }
-],
-    keywords: ["robe","robe longue","robe maxi","mode femme","robe fluide","robe ete"]
+    ],
+    "keywords": [
+      "robe",
+      "robe longue",
+      "robe maxi",
+      "mode femme",
+      "robe fluide",
+      "robe ete"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'pantalon-large-fluide',
-    sku: 'MOD-PNT-LRG',
-    slug: 'pantalon-large-fluide',
-    name: "Pantalon fluide taille haute jambe large",
-    shortName: "Pantalon fluide jambe large",
-    category: 'mode',
-    subcategory: 'femme',
-    categoryLabel: 'Mode',
-    gender: 'femme',
-    price: 36.90,
-    compareAtPrice: 49.90,
-    rating: 4.8,
-    reviewCount: 188,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: true,
-    imageDisplayMode: 'cover',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 42,
-    hasVariants: true,
-    sizes: ["XS","S","M","L","XL"],
-    colors: [
+    "id": "pantalon-large-fluide",
+    "sku": "MOD-PNT-LRG",
+    "slug": "pantalon-large-fluide",
+    "name": "Pantalon fluide taille haute jambe large",
+    "shortName": "Pantalon fluide jambe large",
+    "category": "mode",
+    "subcategory": "femme",
+    "categoryLabel": "Mode",
+    "gender": "femme",
+    "price": 36.9,
+    "compareAtPrice": 49.9,
+    "rating": 4.8,
+    "reviewCount": 188,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": true,
+    "imageDisplayMode": "cover",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 42,
+    "hasVariants": true,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
       {
-            "name": "Beige Lin",
-            "hex": "#d4b996"
+        "name": "Beige Lin",
+        "hex": "#d4b996"
       },
       {
-            "name": "Noir Intense",
-            "hex": "#1e293b"
+        "name": "Noir Intense",
+        "hex": "#1e293b"
       },
       {
-            "name": "Kaki Doux",
-            "hex": "#576574"
+        "name": "Kaki Doux",
+        "hex": "#576574"
       }
-],
-    defaultSize: 'M',
-    defaultColor: 'Beige Lin',
-    image: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80"],
-    altText: "Modèle portant un pantalon palazzo taille haute fluide beige sable à coupe large",
-    shortDescription: "Coupe palazzo fluide et évasée ultra-confortable. Taille haute gainante avec ceinture élastiquée au dos.",
-    benefits: [
+    ],
+    "defaultSize": "M",
+    "defaultColor": "Beige Lin",
+    "image": "/products/pantalon-large-fluide.jpg",
+    "gallery": [
+      "/products/pantalon-large-fluide.jpg",
+      "/products/pantalon-large-fluide-features.jpg",
+      "/products/pantalon-large-fluide-details.jpg"
+    ],
+    "altText": "Modèle portant un pantalon palazzo taille haute fluide beige sable à coupe large",
+    "shortDescription": "Coupe palazzo fluide et évasée ultra-confortable. Taille haute gainante avec ceinture élastiquée au dos.",
+    "benefits": [
       "Coupe jambe large très aérienne qui allonge la silhouette",
       "Ceinture plate devant avec élastique invisible au dos",
       "Poches italiennes latérales profondes et pratiques"
-],
-    specs: {
+    ],
+    "specs": {
       "Matière": "Viscose & Tencel soyeux",
       "Coupe": "Palazzo large taille haute",
       "Entretien": "Lavage 30°C"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Le pantalon est-il transparent ?",
-            "a": "Non, le tissage dense en viscose offre une opacité totale."
+        "q": "Le pantalon est-il transparent ?",
+        "a": "Non, le tissage dense en viscose offre une opacité totale."
       }
-],
-    keywords: ["pantalon","pantalon large","palazzo","taille haute","pantalon fluide","mode femme"]
+    ],
+    "keywords": [
+      "pantalon",
+      "pantalon large",
+      "palazzo",
+      "taille haute",
+      "pantalon fluide",
+      "mode femme"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'legging-sport-gainant',
-    sku: 'MOD-LEG-SPT',
-    slug: 'legging-sport-gainant',
-    name: "Legging de sport gainant taille haute sans couture",
-    shortName: "Legging sport gainant",
-    category: 'mode',
-    subcategory: 'femme',
-    categoryLabel: 'Mode',
-    gender: 'femme',
-    price: 27.90,
-    compareAtPrice: 38.90,
-    rating: 4.9,
-    reviewCount: 310,
-    badge: "Bestseller",
-    isBestSeller: true,
-    isNew: false,
-    isFashion: true,
-    imageDisplayMode: 'cover',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 55,
-    hasVariants: true,
-    sizes: ["XS","S","M","L","XL"],
-    colors: [
+    "id": "legging-sport-gainant",
+    "sku": "MOD-LEG-SPT",
+    "slug": "legging-sport-gainant",
+    "name": "Legging de sport gainant taille haute sans couture",
+    "shortName": "Legging sport gainant",
+    "category": "mode",
+    "subcategory": "femme",
+    "categoryLabel": "Mode",
+    "gender": "femme",
+    "price": 27.9,
+    "compareAtPrice": 38.9,
+    "rating": 4.9,
+    "reviewCount": 310,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": false,
+    "isFashion": true,
+    "imageDisplayMode": "cover",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 55,
+    "hasVariants": true,
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
       {
-            "name": "Noir Mat",
-            "hex": "#1e293b"
+        "name": "Noir Mat",
+        "hex": "#1e293b"
       },
       {
-            "name": "Gris Chiné",
-            "hex": "#64748b"
+        "name": "Gris Chiné",
+        "hex": "#64748b"
       },
       {
-            "name": "Bleu Marine",
-            "hex": "#1e3a8a"
+        "name": "Bleu Marine",
+        "hex": "#1e3a8a"
       }
-],
-    defaultSize: 'M',
-    defaultColor: 'Noir Mat',
-    image: 'https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=800&q=80"],
-    altText: "Legging de fitness gainant noir taille haute sans couture porté lors d'un entraînement",
-    shortDescription: "Effet sculptant doux sans aucune sensation de compression. Maille extensible opaque certifiée \"squat-proof\".",
-    benefits: [
+    ],
+    "defaultSize": "M",
+    "defaultColor": "Noir Mat",
+    "image": "/products/legging-sport-gainant.jpg",
+    "gallery": [
+      "/products/legging-sport-gainant.jpg",
+      "/products/legging-sport-gainant-features.jpg",
+      "/products/legging-sport-gainant-details.jpg"
+    ],
+    "altText": "Legging de fitness gainant noir taille haute sans couture porté lors d'un entraînement",
+    "shortDescription": "Effet sculptant doux sans aucune sensation de compression. Maille extensible opaque certifiée \"squat-proof\".",
+    "benefits": [
       "Ceinture gainante large qui reste parfaitement en place",
       "Tissu opaque respirant qui ne devient pas transparent lors des flexions",
       "Coutures plates anti-frottements et séchage express"
-],
-    specs: {
+    ],
+    "specs": {
       "Matière": "78% Polyamide, 22% Élasthanne",
       "Taille": "Haute sculptante",
       "Opacité": "100% Squat-proof"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "La taille roule-t-elle pendant la course ?",
-            "a": "Non, la bande de maintien de 10 cm ne roule pas durant l'effort."
+        "q": "La taille roule-t-elle pendant la course ?",
+        "a": "Non, la bande de maintien de 10 cm ne roule pas durant l'effort."
       }
-],
-    keywords: ["legging","legging sport","fitness","gainant","squat proof","mode femme"]
+    ],
+    "keywords": [
+      "legging",
+      "legging sport",
+      "fitness",
+      "gainant",
+      "squat proof",
+      "mode femme"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 't-shirt-classique-homme',
-    sku: 'MOD-TSH-HOM',
-    slug: 't-shirt-classique-homme',
-    name: "T-shirt classique col rond en coton bio peigné",
-    shortName: "T-shirt classique coton bio",
-    category: 'mode',
-    subcategory: 'homme',
-    categoryLabel: 'Mode',
-    gender: 'homme',
-    price: 19.90,
-    compareAtPrice: 26.90,
-    rating: 4.8,
-    reviewCount: 260,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: true,
-    imageDisplayMode: 'cover',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 50,
-    hasVariants: true,
-    sizes: ["S","M","L","XL","XXL"],
-    colors: [
+    "id": "t-shirt-classique-homme",
+    "sku": "MOD-TSH-HOM",
+    "slug": "t-shirt-classique-homme",
+    "name": "T-shirt classique col rond en coton bio peigné",
+    "shortName": "T-shirt classique coton bio",
+    "category": "mode",
+    "subcategory": "homme",
+    "categoryLabel": "Mode",
+    "gender": "homme",
+    "price": 19.9,
+    "compareAtPrice": 26.9,
+    "rating": 4.8,
+    "reviewCount": 260,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": true,
+    "imageDisplayMode": "cover",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 50,
+    "hasVariants": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
       {
-            "name": "Blanc Pur",
-            "hex": "#f8fafc"
+        "name": "Blanc Pur",
+        "hex": "#f8fafc"
       },
       {
-            "name": "Noir Ébène",
-            "hex": "#1e293b"
+        "name": "Noir Ébène",
+        "hex": "#1e293b"
       },
       {
-            "name": "Bleu Marine",
-            "hex": "#1e3a8a"
+        "name": "Bleu Marine",
+        "hex": "#1e3a8a"
       },
       {
-            "name": "Kaki",
-            "hex": "#4d7c0f"
+        "name": "Kaki",
+        "hex": "#4d7c0f"
       }
-],
-    defaultSize: 'L',
-    defaultColor: 'Blanc Pur',
-    image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80"],
-    altText: "Modèle homme portant un t-shirt basique blanc en coton bio coupe droite ajustée",
-    shortDescription: "L'indispensable du vestiaire masculin en coton bio 180g/m². Col côtelé indéformable et coupe droite impeccable.",
-    benefits: [
+    ],
+    "defaultSize": "L",
+    "defaultColor": "Blanc Pur",
+    "image": "/products/t-shirt-classique-homme.jpg",
+    "gallery": [
+      "/products/t-shirt-classique-homme.jpg",
+      "/products/t-shirt-classique-homme-features.jpg",
+      "/products/t-shirt-classique-homme-details.jpg"
+    ],
+    "altText": "Modèle homme portant un t-shirt basique blanc en coton bio coupe droite ajustée",
+    "shortDescription": "L'indispensable du vestiaire masculin en coton bio 180g/m². Col côtelé indéformable et coupe droite impeccable.",
+    "benefits": [
       "100% Coton peigné bio certifié OCS",
       "Grammage 180g/m² : équilibre idéal entre tenue et douceur",
       "Col double surpiqûre qui ne gondole pas au lavage"
-],
-    specs: {
+    ],
+    "specs": {
       "Matière": "100% Coton biologique",
       "Grammage": "180 g/m²",
       "Coupe": "Regular fit"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Rétrécit-il au premier lavage ?",
-            "a": "Le coton est pré-lavé pour éviter tout rétrécissement à 30°C."
+        "q": "Rétrécit-il au premier lavage ?",
+        "a": "Le coton est pré-lavé pour éviter tout rétrécissement à 30°C."
       }
-],
-    keywords: ["t-shirt","tee shirt homme","coton bio","col rond","tshirt","mode homme"]
+    ],
+    "keywords": [
+      "t-shirt",
+      "tee shirt homme",
+      "coton bio",
+      "col rond",
+      "tshirt",
+      "mode homme"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'pantalon-chino-stretch',
-    sku: 'MOD-CHI-HOM',
-    slug: 'pantalon-chino-stretch',
-    name: "Pantalon chino casual stretch coupe droite ajustée",
-    shortName: "Pantalon chino stretch",
-    category: 'mode',
-    subcategory: 'homme',
-    categoryLabel: 'Mode',
-    gender: 'homme',
-    price: 39.90,
-    compareAtPrice: 54.90,
-    rating: 4.8,
-    reviewCount: 195,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: true,
-    imageDisplayMode: 'cover',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 40,
-    hasVariants: true,
-    sizes: ["S","M","L","XL","XXL"],
-    colors: [
+    "id": "pantalon-chino-stretch",
+    "sku": "MOD-CHI-HOM",
+    "slug": "pantalon-chino-stretch",
+    "name": "Pantalon chino casual stretch coupe droite ajustée",
+    "shortName": "Pantalon chino stretch",
+    "category": "mode",
+    "subcategory": "homme",
+    "categoryLabel": "Mode",
+    "gender": "homme",
+    "price": 39.9,
+    "compareAtPrice": 54.9,
+    "rating": 4.8,
+    "reviewCount": 195,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": true,
+    "imageDisplayMode": "cover",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 40,
+    "hasVariants": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
       {
-            "name": "Beige Sable",
-            "hex": "#d4b996"
+        "name": "Beige Sable",
+        "hex": "#d4b996"
       },
       {
-            "name": "Bleu Marine",
-            "hex": "#1e3a8a"
+        "name": "Bleu Marine",
+        "hex": "#1e3a8a"
       },
       {
-            "name": "Noir",
-            "hex": "#1e293b"
+        "name": "Noir",
+        "hex": "#1e293b"
       }
-],
-    defaultSize: 'M',
-    defaultColor: 'Beige Sable',
-    image: 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=800&q=80"],
-    altText: "Pantalon chino casual stretch beige coupe ajustée porté par un homme en extérieur",
-    shortDescription: "Élégance décontractée au bureau comme en weekend. Coton twill extensible pour une liberté de mouvement totale.",
-    benefits: [
+    ],
+    "defaultSize": "M",
+    "defaultColor": "Beige Sable",
+    "image": "/products/pantalon-chino-stretch.jpg",
+    "gallery": [
+      "/products/pantalon-chino-stretch.jpg",
+      "/products/pantalon-chino-stretch-features.jpg",
+      "/products/pantalon-chino-stretch-details.jpg"
+    ],
+    "altText": "Pantalon chino casual stretch beige coupe ajustée porté par un homme en extérieur",
+    "shortDescription": "Élégance décontractée au bureau comme en weekend. Coton twill extensible pour une liberté de mouvement totale.",
+    "benefits": [
       "Coton twill souple enrichi de 3% d'élasthanne",
       "Coupe moderne droite ajustée qui met en valeur sans serrer",
       "Finition soignée avec poches passepoilées à l'arrière"
-],
-    specs: {
+    ],
+    "specs": {
       "Matière": "97% Coton, 3% Élasthanne",
       "Coupe": "Slim straight",
       "Fermeture": "Zip YKK + bouton"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Quelle longueur de jambe choisir ?",
-            "a": "La longueur standard correspond à un entrejambe 32 adaptable par revers."
+        "q": "Quelle longueur de jambe choisir ?",
+        "a": "La longueur standard correspond à un entrejambe 32 adaptable par revers."
       }
-],
-    keywords: ["pantalon","chino","pantalon chino","chino stretch","mode homme"]
+    ],
+    "keywords": [
+      "pantalon",
+      "chino",
+      "pantalon chino",
+      "chino stretch",
+      "mode homme"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'pantalon-cargo-homme',
-    sku: 'MOD-CRG-HOM',
-    slug: 'pantalon-cargo-homme',
-    name: "Pantalon cargo casual avec poches latérales",
-    shortName: "Pantalon cargo casual",
-    category: 'mode',
-    subcategory: 'homme',
-    categoryLabel: 'Mode',
-    gender: 'homme',
-    price: 42.90,
-    compareAtPrice: 58.90,
-    rating: 4.7,
-    reviewCount: 168,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: true,
-    imageDisplayMode: 'cover',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 36,
-    hasVariants: true,
-    sizes: ["S","M","L","XL","XXL"],
-    colors: [
+    "id": "pantalon-cargo-homme",
+    "sku": "MOD-CRG-HOM",
+    "slug": "pantalon-cargo-homme",
+    "name": "Pantalon cargo casual avec poches latérales",
+    "shortName": "Pantalon cargo casual",
+    "category": "mode",
+    "subcategory": "homme",
+    "categoryLabel": "Mode",
+    "gender": "homme",
+    "price": 42.9,
+    "compareAtPrice": 58.9,
+    "rating": 4.7,
+    "reviewCount": 168,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": true,
+    "imageDisplayMode": "cover",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 36,
+    "hasVariants": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
       {
-            "name": "Vert Kaki",
-            "hex": "#4d7c0f"
+        "name": "Vert Kaki",
+        "hex": "#4d7c0f"
       },
       {
-            "name": "Noir Intense",
-            "hex": "#1e293b"
+        "name": "Noir Intense",
+        "hex": "#1e293b"
       },
       {
-            "name": "Beige",
-            "hex": "#d4b996"
+        "name": "Beige",
+        "hex": "#d4b996"
       }
-],
-    defaultSize: 'L',
-    defaultColor: 'Vert Kaki',
-    image: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=800&q=80"],
-    altText: "Pantalon cargo homme vert kaki avec poches à rabat sur les cuisses coupe moderne",
-    shortDescription: "Inspiration streetwear utilitaire en toile de coton robuste. Poches à soufflet pratiques et bas de jambe resserré.",
-    benefits: [
+    ],
+    "defaultSize": "L",
+    "defaultColor": "Vert Kaki",
+    "image": "/products/pantalon-cargo-homme.jpg",
+    "gallery": [
+      "/products/pantalon-cargo-homme.jpg",
+      "/products/pantalon-cargo-homme-features.jpg",
+      "/products/pantalon-cargo-homme-details.jpg"
+    ],
+    "altText": "Pantalon cargo homme vert kaki avec poches à rabat sur les cuisses coupe moderne",
+    "shortDescription": "Inspiration streetwear utilitaire en toile de coton robuste. Poches à soufflet pratiques et bas de jambe resserré.",
+    "benefits": [
       "Toile ripstop résistante aux accrocs et à l'usure",
       "6 poches fonctionnelles pour smartphone, clés et portefeuille",
       "Ceinture confort avec passants et fermeture renforcée"
-],
-    specs: {
+    ],
+    "specs": {
       "Matière": "100% Coton ripstop résistant",
       "Poches": "6 poches sécurisées",
       "Coupe": "Tapered cargo"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "La coupe est-elle trop large ?",
-            "a": "Non, c'est une coupe fuselée moderne resserrée aux chevilles."
+        "q": "La coupe est-elle trop large ?",
+        "a": "Non, c'est une coupe fuselée moderne resserrée aux chevilles."
       }
-],
-    keywords: ["cargo","pantalon cargo","pantalon homme","streetwear","mode homme"]
+    ],
+    "keywords": [
+      "cargo",
+      "pantalon cargo",
+      "pantalon homme",
+      "streetwear",
+      "mode homme"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'sweat-capuche-confort',
-    sku: 'MOD-SWT-CPH',
-    slug: 'sweat-capuche-confort',
-    name: "Sweat à capuche confort molletonné épais",
-    shortName: "Sweat à capuche molletonné",
-    category: 'mode',
-    subcategory: 'homme',
-    categoryLabel: 'Mode',
-    gender: 'unisexe',
-    price: 38.90,
-    compareAtPrice: 52.90,
-    rating: 4.9,
-    reviewCount: 280,
-    badge: "Incontournable",
-    isBestSeller: true,
-    isNew: false,
-    isFashion: true,
-    imageDisplayMode: 'cover',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 45,
-    hasVariants: true,
-    sizes: ["S","M","L","XL","XXL"],
-    colors: [
+    "id": "sweat-capuche-confort",
+    "sku": "MOD-SWT-CPH",
+    "slug": "sweat-capuche-confort",
+    "name": "Sweat à capuche confort molletonné épais",
+    "shortName": "Sweat à capuche molletonné",
+    "category": "mode",
+    "subcategory": "homme",
+    "categoryLabel": "Mode",
+    "gender": "unisexe",
+    "price": 38.9,
+    "compareAtPrice": 52.9,
+    "rating": 4.9,
+    "reviewCount": 280,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": false,
+    "isFashion": true,
+    "imageDisplayMode": "cover",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 45,
+    "hasVariants": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
       {
-            "name": "Gris Chiné",
-            "hex": "#64748b"
+        "name": "Gris Chiné",
+        "hex": "#64748b"
       },
       {
-            "name": "Noir",
-            "hex": "#1e293b"
+        "name": "Noir",
+        "hex": "#1e293b"
       },
       {
-            "name": "Vert Forêt",
-            "hex": "#15803d"
+        "name": "Vert Forêt",
+        "hex": "#15803d"
       }
-],
-    defaultSize: 'L',
-    defaultColor: 'Gris Chiné',
-    image: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80"],
-    altText: "Sweat à capuche hoodie gris chiné molletonné avec poche kangourou porté par un modèle",
-    shortDescription: "Molleton brossé ultra-doux 320g/m². Capuche doublée avec cordons épais et poche kangourou spacieuse.",
-    benefits: [
+    ],
+    "defaultSize": "L",
+    "defaultColor": "Gris Chiné",
+    "image": "/products/sweat-capuche-confort.jpg",
+    "gallery": [
+      "/products/sweat-capuche-confort.jpg",
+      "/products/sweat-capuche-confort-features.jpg",
+      "/products/sweat-capuche-confort-details.jpg"
+    ],
+    "altText": "Sweat à capuche hoodie gris chiné molletonné avec poche kangourou porté par un modèle",
+    "shortDescription": "Molleton brossé ultra-doux 320g/m². Capuche doublée avec cordons épais et poche kangourou spacieuse.",
+    "benefits": [
       "Intérieur gratté ultra-doux procurant une chaleur réconfortante",
       "Bords-côtes élastiques renforcés aux poignets et à la taille",
       "Coupe moderne unisexe ni trop serrée ni trop ample"
-],
-    specs: {
+    ],
+    "specs": {
       "Matière": "80% Coton, 20% Polyester",
       "Grammage": "320 g/m²",
       "Poche": "Kangourou ventrale"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Ce modèle convient-il aux femmes ?",
-            "a": "Oui, coupe unisexe. Pour femme, nous conseillons une taille en dessous."
+        "q": "Ce modèle convient-il aux femmes ?",
+        "a": "Oui, coupe unisexe. Pour femme, nous conseillons une taille en dessous."
       }
-],
-    keywords: ["sweat","hoodie","sweat a capuche","molleton","streetwear","mode"]
+    ],
+    "keywords": [
+      "sweat",
+      "hoodie",
+      "sweat a capuche",
+      "molleton",
+      "streetwear",
+      "mode"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'sandales-cuir-plates',
-    sku: 'MOD-SND-PLT',
-    slug: 'sandales-cuir-plates',
-    name: "Sandales plates à brides croisées en cuir souple",
-    shortName: "Sandales plates à brides",
-    category: 'mode',
-    subcategory: 'chaussures',
-    categoryLabel: 'Mode',
-    gender: 'femme',
-    price: 32.90,
-    compareAtPrice: 45.90,
-    rating: 4.8,
-    reviewCount: 172,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: true,
-    imageDisplayMode: 'cover',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 35,
-    hasVariants: true,
-    sizes: ["36","37","38","39","40","41"],
-    colors: [
+    "id": "sandales-cuir-plates",
+    "sku": "MOD-SND-PLT",
+    "slug": "sandales-cuir-plates",
+    "name": "Sandales plates à brides croisées en cuir souple",
+    "shortName": "Sandales plates à brides",
+    "category": "mode",
+    "subcategory": "chaussures",
+    "categoryLabel": "Mode",
+    "gender": "femme",
+    "price": 32.9,
+    "compareAtPrice": 45.9,
+    "rating": 4.8,
+    "reviewCount": 172,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": true,
+    "imageDisplayMode": "cover",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 35,
+    "hasVariants": true,
+    "sizes": [
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41"
+    ],
+    "colors": [
       {
-            "name": "Camel Cuir",
-            "hex": "#b45309"
+        "name": "Camel Cuir",
+        "hex": "#b45309"
       },
       {
-            "name": "Noir",
-            "hex": "#1e293b"
+        "name": "Noir",
+        "hex": "#1e293b"
       },
       {
-            "name": "Doré Subtil",
-            "hex": "#d97706"
+        "name": "Doré Subtil",
+        "hex": "#d97706"
       }
-],
-    defaultSize: '38',
-    defaultColor: 'Camel Cuir',
-    image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80"],
-    altText: "Sandales plates d'été en cuir camel souple à brides minimalistes croisées",
-    shortDescription: "Confort absolu tout au long de la journée. Semelle intérieure moussée amortissante et brides en cuir souple anti-ampoules.",
-    benefits: [
+    ],
+    "defaultSize": "38",
+    "defaultColor": "Camel Cuir",
+    "image": "/products/sandales-cuir-plates.jpg",
+    "gallery": [
+      "/products/sandales-cuir-plates.jpg",
+      "/products/sandales-cuir-plates-features.jpg",
+      "/products/sandales-cuir-plates-details.jpg"
+    ],
+    "altText": "Sandales plates d'été en cuir camel souple à brides minimalistes croisées",
+    "shortDescription": "Confort absolu tout au long de la journée. Semelle intérieure moussée amortissante et brides en cuir souple anti-ampoules.",
+    "benefits": [
       "Semelle intérieure rembourrée avec mousse à mémoire de forme",
       "Brides en cuir souple doublé ne blessant pas le pied",
       "Semelle extérieure crantée antidérapante"
-],
-    specs: {
+    ],
+    "specs": {
       "Tige": "Cuir souple sélectionné",
       "Semelle": "Gomme antidérapante + mousse confort",
       "Talon": "1 cm"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Taillent-elles normalement ?",
-            "a": "Oui, choisissez votre pointure habituelle de chaussures de ville."
+        "q": "Taillent-elles normalement ?",
+        "a": "Oui, choisissez votre pointure habituelle de chaussures de ville."
       }
-],
-    keywords: ["sandales","sandales femme","chaussures ete","cuir","nu pieds","chaussures","mode"]
+    ],
+    "keywords": [
+      "sandales",
+      "sandales femme",
+      "chaussures ete",
+      "cuir",
+      "nu pieds",
+      "chaussures",
+      "mode"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'chaussures-marche-legeres',
-    sku: 'MOD-SHS-WAK',
-    slug: 'chaussures-marche-legeres',
-    name: "Chaussures de marche respirantes semelle amortissante",
-    shortName: "Chaussures de marche légères",
-    category: 'mode',
-    subcategory: 'chaussures',
-    categoryLabel: 'Mode',
-    gender: 'unisexe',
-    price: 39.90,
-    compareAtPrice: 55.90,
-    rating: 4.9,
-    reviewCount: 235,
-    badge: "Confort",
-    isBestSeller: true,
-    isNew: true,
-    isFashion: true,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 48,
-    hasVariants: true,
-    sizes: ["38","39","40","41","42","43","44"],
-    colors: [
+    "id": "chaussures-marche-legeres",
+    "sku": "MOD-SHS-WAK",
+    "slug": "chaussures-marche-legeres",
+    "name": "Chaussures de marche respirantes semelle amortissante",
+    "shortName": "Chaussures de marche légères",
+    "category": "mode",
+    "subcategory": "chaussures",
+    "categoryLabel": "Mode",
+    "gender": "unisexe",
+    "price": 39.9,
+    "compareAtPrice": 55.9,
+    "rating": 4.9,
+    "reviewCount": 235,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": true,
+    "isFashion": true,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 48,
+    "hasVariants": true,
+    "sizes": [
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44"
+    ],
+    "colors": [
       {
-            "name": "Noir & Blanc",
-            "hex": "#1e293b"
+        "name": "Noir & Blanc",
+        "hex": "#1e293b"
       },
       {
-            "name": "Gris Anthracite",
-            "hex": "#64748b"
+        "name": "Gris Anthracite",
+        "hex": "#64748b"
       }
-],
-    defaultSize: '41',
-    defaultColor: 'Noir & Blanc',
-    image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80"],
-    altText: "Baskets de marche légères respirantes avec semelle ergonomique amortissante",
-    shortDescription: "Seulement 220 grammes par pied. Tige en mesh tricoté sans coutures avec semelle EVA ultra-légère pour marcher sans fatigue.",
-    benefits: [
+    ],
+    "defaultSize": "41",
+    "defaultColor": "Noir & Blanc",
+    "image": "/products/chaussures-marche-legeres.jpg",
+    "gallery": [
+      "/products/chaussures-marche-legeres.jpg",
+      "/products/chaussures-marche-legeres-features.jpg",
+      "/products/chaussures-marche-legeres-details.jpg"
+    ],
+    "altText": "Baskets de marche légères respirantes avec semelle ergonomique amortissante",
+    "shortDescription": "Seulement 220 grammes par pied. Tige en mesh tricoté sans coutures avec semelle EVA ultra-légère pour marcher sans fatigue.",
+    "benefits": [
       "Tige tricotée flyknit respirante gardant le pied au sec",
       "Semelle intermédiaire EVA amortissant les chocs au talon",
       "Enfilage slip-on chaussette facile et rapide"
-],
-    specs: {
+    ],
+    "specs": {
       "Poids": "220 g (taille 41)",
       "Semelle": "EVA souple + renforts caoutchouc",
       "Tige": "Mesh élastique"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Sont-elles adaptées à la course à pied ?",
-            "a": "Idéales pour la marche rapide, le quotidien et les séances de fitness modérées."
+        "q": "Sont-elles adaptées à la course à pied ?",
+        "a": "Idéales pour la marche rapide, le quotidien et les séances de fitness modérées."
       }
-],
-    keywords: ["chaussures","chaussures de marche","baskets","sneakers","confort","chaussures sport","mode"]
+    ],
+    "keywords": [
+      "chaussures",
+      "chaussures de marche",
+      "baskets",
+      "sneakers",
+      "confort",
+      "chaussures sport",
+      "mode"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'sac-banane-multipoche',
-    sku: 'MOD-BAG-BAN',
-    slug: 'sac-banane-multipoche',
-    name: "Sac banane bandoulière multipoche déperlant",
-    shortName: "Sac banane bandoulière",
-    category: 'mode',
-    subcategory: 'sacs',
-    categoryLabel: 'Mode',
-    gender: 'unisexe',
-    price: 22.90,
-    compareAtPrice: 32.90,
-    rating: 4.8,
-    reviewCount: 215,
-    badge: "Tendance",
-    isBestSeller: true,
-    isNew: true,
-    isFashion: true,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 50,
-    image: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=800&q=80"],
-    altText: "Sac banane bandoulière tendance noir mat multipoches porté en travers de la poitrine",
-    shortDescription: "Se porte en bandoulière cross-body ou à la taille. 3 compartiments zippés sécurisés pour garder vos essentiels à portée de main.",
-    benefits: [
+    "id": "sac-banane-multipoche",
+    "sku": "MOD-BAG-BAN",
+    "slug": "sac-banane-multipoche",
+    "name": "Sac banane bandoulière multipoche déperlant",
+    "shortName": "Sac banane bandoulière",
+    "category": "mode",
+    "subcategory": "sacs",
+    "categoryLabel": "Mode",
+    "gender": "unisexe",
+    "price": 22.9,
+    "compareAtPrice": 32.9,
+    "rating": 4.8,
+    "reviewCount": 215,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": true,
+    "isFashion": true,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 50,
+    "image": "/products/sac-banane.jpg",
+    "gallery": [
+      "/products/sac-banane.jpg",
+      "/products/sac-banane-multipoche-features.jpg",
+      "/products/sac-banane-multipoche-details.jpg"
+    ],
+    "altText": "Sac banane bandoulière tendance noir mat multipoches porté en travers de la poitrine",
+    "shortDescription": "Se porte en bandoulière cross-body ou à la taille. 3 compartiments zippés sécurisés pour garder vos essentiels à portée de main.",
+    "benefits": [
       "Nylon haute densité indéchirable et déperlant sous la pluie",
       "Poche arrière zippée antivol contre le corps pour passeport et carte",
       "Sangle réglable robuste avec boucle rapide à clipser"
-],
-    specs: {
+    ],
+    "specs": {
       "Dimensions": "28 x 14 x 8 cm",
       "Matière": "Nylon Oxford déperlant",
       "Volume": "2.5 L"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Peut-on y ranger une petite bouteille d'eau ?",
-            "a": "Une gourde compacte ou bouteille 33cl y rentre avec vos clés et téléphone."
+        "q": "Peut-on y ranger une petite bouteille d'eau ?",
+        "a": "Une gourde compacte ou bouteille 33cl y rentre avec vos clés et téléphone."
       }
-],
-    keywords: ["sac banane","sac bandouliere","sacoche","sling bag","sacs","mode"]
+    ],
+    "keywords": [
+      "sac banane",
+      "sac bandouliere",
+      "sacoche",
+      "sling bag",
+      "sacs",
+      "mode"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'sac-a-dos-urbain-pc',
-    sku: 'MOD-BAG-DOS',
-    slug: 'sac-a-dos-urbain-pc',
-    name: "Sac à dos urbain antivol pour ordinateur 15.6 pouces",
-    shortName: "Sac à dos ordinateur 15.6\"",
-    category: 'mode',
-    subcategory: 'sacs',
-    categoryLabel: 'Mode',
-    gender: 'unisexe',
-    price: 42.90,
-    compareAtPrice: 59.90,
-    rating: 4.9,
-    reviewCount: 304,
-    badge: "Incontournable",
-    isBestSeller: true,
-    isNew: false,
-    isFashion: true,
-    imageDisplayMode: 'cover',
-    shippingEU: 'Livraison 2-4 jours (UE)',
-    stock: 38,
-    image: '/products/sac-a-dos-urbain.jpg',
-    gallery: ["/products/sac-a-dos-urbain.jpg"],
-    altText: "Sac à dos d'affaires urbain moderne gris ardoise déperlant pour ordinateur portable",
-    shortDescription: "Lignes épurées et compartiment antichoc molletonné pour PC jusqu'à 15.6\". Port de charge USB extérieur et dos aéré.",
-    benefits: [
+    "id": "sac-a-dos-urbain-pc",
+    "sku": "MOD-BAG-DOS",
+    "slug": "sac-a-dos-urbain-pc",
+    "name": "Sac à dos urbain antivol pour ordinateur 15.6 pouces",
+    "shortName": "Sac à dos ordinateur 15.6\"",
+    "category": "mode",
+    "subcategory": "sacs",
+    "categoryLabel": "Mode",
+    "gender": "unisexe",
+    "price": 42.9,
+    "compareAtPrice": 59.9,
+    "rating": 4.9,
+    "reviewCount": 304,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": false,
+    "isFashion": true,
+    "imageDisplayMode": "cover",
+    "shippingEU": "Livraison 2-4 jours (UE)",
+    "stock": 38,
+    "image": "/products/sac-a-dos-urbain.jpg",
+    "gallery": [
+      "/products/sac-a-dos-urbain.jpg",
+      "/products/sac-a-dos-urbain-pc-features.jpg",
+      "/products/sac-a-dos-urbain-pc-details.jpg"
+    ],
+    "altText": "Sac à dos d'affaires urbain moderne gris ardoise déperlant pour ordinateur portable",
+    "shortDescription": "Lignes épurées et compartiment antichoc molletonné pour PC jusqu'à 15.6\". Port de charge USB extérieur et dos aéré.",
+    "benefits": [
       "Compartiment ordinateur suspendu rembourré à 360 degrés",
       "Port de charge USB externe pour brancher un power bank",
       "Tissu déperlant résistant aux rayures avec passant pour valise"
-],
-    specs: {
+    ],
+    "specs": {
       "Capacité": "20 Litres",
       "Ordinateur": "Jusqu'à 15.6 pouces",
       "Poids": "680 g"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Passe-t-il sous le siège en cabine d'avion ?",
-            "a": "Oui, parfaitement aux normes bagage personnel sous le siège (Ryanair, EasyJet, Air France)."
+        "q": "Passe-t-il sous le siège en cabine d'avion ?",
+        "a": "Oui, parfaitement aux normes bagage personnel sous le siège (Ryanair, EasyJet, Air France)."
       }
-],
-    keywords: ["sac a dos","sac pc","ordinateur portable","sac voyage","travail","sacs","mode"]
+    ],
+    "keywords": [
+      "sac a dos",
+      "sac pc",
+      "ordinateur portable",
+      "sac voyage",
+      "travail",
+      "sacs",
+      "mode"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'separateurs-tiroirs-modulables',
-    sku: 'MAIS-SEP-TIR',
-    slug: 'separateurs-tiroirs-modulables',
-    name: "Séparateurs de tiroirs modulables extensibles (Lot de 4)",
-    shortName: "Séparateurs tiroirs extensibles",
-    category: 'maison',
-    subcategory: 'organisation',
-    categoryLabel: 'Maison',
-    price: 22.90,
-    compareAtPrice: 32.90,
-    rating: 4.8,
-    reviewCount: 164,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 45,
-    image: '/products/separateurs-tiroirs-modulables.jpg',
-    gallery: ["/products/separateurs-tiroirs-modulables.jpg"],
-    altText: "Lot de 4 séparateurs de tiroirs ajustables en bambou naturel avec ressorts de tension",
-    shortDescription: "S'adaptent en 2 secondes sans vis ni colle grâce à leur mécanisme à ressort. Bambou naturel élégant et durable.",
-    benefits: [
+    "id": "separateurs-tiroirs-modulables",
+    "sku": "MAIS-SEP-TIR",
+    "slug": "separateurs-tiroirs-modulables",
+    "name": "Séparateurs de tiroirs modulables extensibles (Lot de 4)",
+    "shortName": "Séparateurs tiroirs extensibles",
+    "category": "maison",
+    "subcategory": "organisation",
+    "categoryLabel": "Maison",
+    "price": 22.9,
+    "compareAtPrice": 32.9,
+    "rating": 4.8,
+    "reviewCount": 164,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 45,
+    "image": "/products/separateurs-tiroirs-modulables.jpg",
+    "gallery": [
+      "/products/separateurs-tiroirs-modulables.jpg",
+      "/products/separateurs-tiroirs-modulables-features.jpg",
+      "/products/separateurs-tiroirs-modulables-details.jpg"
+    ],
+    "altText": "Lot de 4 séparateurs de tiroirs ajustables en bambou naturel avec ressorts de tension",
+    "shortDescription": "S'adaptent en 2 secondes sans vis ni colle grâce à leur mécanisme à ressort. Bambou naturel élégant et durable.",
+    "benefits": [
       "Extensibles de 43 cm à 56 cm pour convenir à tous les tiroirs",
       "Embouts en mousse EVA protégeant le meuble des rayures",
       "Parfaits pour la cuisine, la salle de bain ou le dressing"
-],
-    specs: {
+    ],
+    "specs": {
       "Contenu": "4 séparateurs extensibles",
       "Longueur": "43 à 56 cm",
       "Matière": "Bambou 100% naturel"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Faut-il percer pour les installer ?",
-            "a": "Non, le ressort interne maintient fermement le séparateur par simple pression."
+        "q": "Faut-il percer pour les installer ?",
+        "a": "Non, le ressort interne maintient fermement le séparateur par simple pression."
       }
-],
-    keywords: ["separateur tiroir","rangement tiroir","organisation cuisine","bambou","maison"]
+    ],
+    "keywords": [
+      "separateur tiroir",
+      "rangement tiroir",
+      "organisation cuisine",
+      "bambou",
+      "maison"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'range-epices-rotatif',
-    sku: 'MAIS-EPC-ROT',
-    slug: 'range-epices-rotatif',
-    name: "Support à épices rotatif 360° pour plan de travail",
-    shortName: "Range-épices rotatif 360°",
-    category: 'maison',
-    subcategory: 'cuisine',
-    categoryLabel: 'Maison',
-    price: 19.90,
-    compareAtPrice: 28.90,
-    rating: 4.8,
-    reviewCount: 180,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 50,
-    image: '/products/range-epices-rotatif.jpg',
-    gallery: ["/products/range-epices-rotatif.jpg"],
-    altText: "Plateau tournant double étage pour flacons d'épices et assaisonnements en cuisine",
-    shortDescription: "Accédez à tous vos pots d'épices d'une simple rotation sans fouiller au fond du placard. Double niveau à roulement à billes.",
-    benefits: [
+    "id": "range-epices-rotatif",
+    "sku": "MAIS-EPC-ROT",
+    "slug": "range-epices-rotatif",
+    "name": "Support à épices rotatif 360° pour plan de travail",
+    "shortName": "Range-épices rotatif 360°",
+    "category": "maison",
+    "subcategory": "cuisine",
+    "categoryLabel": "Maison",
+    "price": 19.9,
+    "compareAtPrice": 28.9,
+    "rating": 4.8,
+    "reviewCount": 180,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 50,
+    "image": "/products/range-epices-rotatif.jpg",
+    "gallery": [
+      "/products/range-epices-rotatif.jpg",
+      "/products/range-epices-rotatif-features.jpg",
+      "/products/range-epices-rotatif-details.jpg"
+    ],
+    "altText": "Plateau tournant double étage pour flacons d'épices et assaisonnements en cuisine",
+    "shortDescription": "Accédez à tous vos pots d'épices d'une simple rotation sans fouiller au fond du placard. Double niveau à roulement à billes.",
+    "benefits": [
       "Rotation fluide et silencieuse à 360 degrés sur roulements à billes",
       "Rebord haut anti-chute empêchant les flacons de basculer",
       "Surface texturée antidérapante lavable d'un coup d'éponge"
-],
-    specs: {
+    ],
+    "specs": {
       "Diamètre": "25 cm",
       "Hauteur": "15 cm",
       "Matière": "Acier laqué inoxydable et plastique sans BPA"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Combien de pots peut-il contenir ?",
-            "a": "Entre 16 et 20 pots d'épices de taille standard répartis sur les deux étages."
+        "q": "Combien de pots peut-il contenir ?",
+        "a": "Entre 16 et 20 pots d'épices de taille standard répartis sur les deux étages."
       }
-],
-    keywords: ["range epices","tourniquet epices","rangement cuisine","plateau rotatif","maison"]
+    ],
+    "keywords": [
+      "range epices",
+      "tourniquet epices",
+      "rangement cuisine",
+      "plateau rotatif",
+      "maison"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'brosse-nettoyage-electrique',
-    sku: 'MAIS-BRS-ELEC',
-    slug: 'brosse-nettoyage-electrique',
-    name: "Brosse de nettoyage électrique rotative sans fil multi-surfaces",
-    shortName: "Brosse électrique rotative",
-    category: 'maison',
-    subcategory: 'nettoyage',
-    categoryLabel: 'Maison',
-    price: 34.90,
-    compareAtPrice: 48.90,
-    rating: 4.9,
-    reviewCount: 265,
-    badge: "Tendance",
-    isBestSeller: true,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 42,
-    image: '/products/brosse-nettoyage-electrique.jpg',
-    gallery: ["/products/brosse-nettoyage-electrique.jpg"],
-    altText: "Brosse de nettoyage rotative électrique blanche sans fil avec têtes interchangeables pour joints et carrelage",
-    shortDescription: "Nettoyez joints, éviers, plaques et carrelages sans frotter ni forcer. Moteur puissant à double vitesse et étanche IPX7.",
-    benefits: [
-      "Vitesse de rotation 350 tr/min désincrustant les graisses et le calcaire",
-      "3 têtes interchangeables : brosse plate, dôme d'angle et tampon éponge",
-      "Étanche IPX7 pour une utilisation sécurisée sous l'eau"
-],
-    specs: {
-      "Autonomie": "90 minutes",
-      "Recharge": "USB-C rapide",
-      "Étanchéité": "IPX7 étanche"
-},
-    faq: [
-      {
-            "q": "Raye-t-elle les plaques vitrocéramiques ?",
-            "a": "Non, l'embout éponge doux est spécialement adapté aux surfaces fragiles."
-      }
-],
-    keywords: ["brosse electrique","nettoyage","brosse rotative","joints carrelage","salle de bain","maison"]
-  },
-  {
-    id: 'distributeur-savon-automatique',
-    sku: 'MAIS-DISP-SAV',
-    slug: 'distributeur-savon-automatique',
-    name: "Distributeur de savon automatique sans contact à capteur infrarouge",
-    shortName: "Distributeur de savon automatique",
-    category: 'maison',
-    subcategory: 'cuisine',
-    categoryLabel: 'Maison',
-    price: 21.90,
-    compareAtPrice: 29.90,
-    rating: 4.8,
-    reviewCount: 190,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 45,
-    image: '/products/distributeur-savon-automatique.jpg',
-    gallery: ["/products/distributeur-savon-automatique.jpg"],
-    altText: "Distributeur de savon liquide sans contact automatique en acier inoxydable avec capteur infrarouge",
-    shortDescription: "Hygiène parfaite en cuisine et salle de bain. Détecte la main en 0.2 seconde et distribue la dose exacte sans toucher la pompe.",
-    benefits: [
+    "id": "distributeur-savon-automatique",
+    "sku": "MAIS-DISP-SAV",
+    "slug": "distributeur-savon-automatique",
+    "name": "Distributeur de savon automatique sans contact à capteur infrarouge",
+    "shortName": "Distributeur de savon automatique",
+    "category": "maison",
+    "subcategory": "cuisine",
+    "categoryLabel": "Maison",
+    "price": 21.9,
+    "compareAtPrice": 29.9,
+    "rating": 4.8,
+    "reviewCount": 190,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 45,
+    "image": "/products/distributeur-savon-automatique.jpg",
+    "gallery": [
+      "/products/distributeur-savon-automatique.jpg",
+      "/products/distributeur-savon-automatique-features.jpg",
+      "/products/distributeur-savon-automatique-details.jpg"
+    ],
+    "altText": "Distributeur de savon liquide sans contact automatique en acier inoxydable avec capteur infrarouge",
+    "shortDescription": "Hygiène parfaite en cuisine et salle de bain. Détecte la main en 0.2 seconde et distribue la dose exacte sans toucher la pompe.",
+    "benefits": [
       "Capteur infrarouge haute précision ultra-rapide (0.2s)",
       "Débit réglable sur 3 niveaux pour limiter le gaspillage",
       "Corps étanche IPX4 avec base surélevée anti-humidité"
-],
-    specs: {
+    ],
+    "specs": {
       "Contenance": "350 ml",
       "Alimentation": "Batterie rechargeable USB-C",
       "Étanchéité": "IPX4"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Fonctionne-t-il avec du liquide vaisselle ?",
-            "a": "Oui, parfaitement compatible avec le savon pour les mains et le liquide vaisselle."
+        "q": "Fonctionne-t-il avec du liquide vaisselle ?",
+        "a": "Oui, parfaitement compatible avec le savon pour les mains et le liquide vaisselle."
       }
-],
-    keywords: ["distributeur savon","savon automatique","sans contact","hygiene","cuisine","maison"]
+    ],
+    "keywords": [
+      "distributeur savon",
+      "savon automatique",
+      "sans contact",
+      "hygiene",
+      "cuisine",
+      "maison"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'porte-eponge-evier-inox',
-    sku: 'MAIS-PRT-EPG',
-    slug: 'porte-eponge-evier-inox',
-    name: "Support d'évier télescopique avec porte-éponge et égouttoir",
-    shortName: "Porte-éponge d'évier télescopique",
-    category: 'maison',
-    subcategory: 'cuisine',
-    categoryLabel: 'Maison',
-    price: 15.90,
-    compareAtPrice: 21.90,
-    rating: 4.7,
-    reviewCount: 145,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 55,
-    image: '/products/porte-eponge-evier-inox.jpg',
-    gallery: ["/products/porte-eponge-evier-inox.jpg"],
-    altText: "Organisateur égouttoir télescopique pour évier en acier inoxydable avec barre porte-torchon",
-    shortDescription: "S'étire pour s'ajuster à la largeur de votre bac d'évier. Fond ajouré permettant un séchage rapide sans eau stagnante.",
-    benefits: [
+    "id": "porte-eponge-evier-inox",
+    "sku": "MAIS-PRT-EPG",
+    "slug": "porte-eponge-evier-inox",
+    "name": "Support d'évier télescopique avec porte-éponge et égouttoir",
+    "shortName": "Porte-éponge d'évier télescopique",
+    "category": "maison",
+    "subcategory": "cuisine",
+    "categoryLabel": "Maison",
+    "price": 15.9,
+    "compareAtPrice": 21.9,
+    "rating": 4.7,
+    "reviewCount": 145,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 55,
+    "image": "/products/porte-eponge-evier-inox.jpg",
+    "gallery": [
+      "/products/porte-eponge-evier-inox.jpg",
+      "/products/porte-eponge-evier-inox-features.jpg",
+      "/products/porte-eponge-evier-inox-details.jpg"
+    ],
+    "altText": "Organisateur égouttoir télescopique pour évier en acier inoxydable avec barre porte-torchon",
+    "shortDescription": "S'étire pour s'ajuster à la largeur de votre bac d'évier. Fond ajouré permettant un séchage rapide sans eau stagnante.",
+    "benefits": [
       "Longueur réglable de 36 à 48 cm convenant à 99% des éviers",
       "Barre supérieure intégrée pour suspendre le torchon ou chiffonnette",
       "Acier inoxydable et plastique robuste anti-rouille"
-],
-    specs: {
+    ],
+    "specs": {
       "Longueur extensible": "36 à 48 cm",
       "Matière": "Polypropylène renforcé + Inox",
       "Couleur": "Gris anthracite"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "L'eau s'écoule-t-elle directement dans l'évier ?",
-            "a": "Oui, les trous de drainage évacuent l'eau directement dans la cuve."
+        "q": "L'eau s'écoule-t-elle directement dans l'évier ?",
+        "a": "Oui, les trous de drainage évacuent l'eau directement dans la cuve."
       }
-],
-    keywords: ["porte eponge","egouttoir evier","rangement evier","cuisine","maison"]
+    ],
+    "keywords": [
+      "porte eponge",
+      "egouttoir evier",
+      "rangement evier",
+      "cuisine",
+      "maison"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'boites-hermetiques-lot4',
-    sku: 'MAIS-BOX-LOT4',
-    slug: 'boites-hermetiques-lot4',
-    name: "Lot de 4 boîtes alimentaires hermétiques avec couvercles à clips",
-    shortName: "Lot de 4 boîtes hermétiques",
-    category: 'maison',
-    subcategory: 'cuisine',
-    categoryLabel: 'Maison',
-    price: 23.90,
-    compareAtPrice: 32.90,
-    rating: 4.9,
-    reviewCount: 228,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 40,
-    image: 'https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&w=800&q=80"],
-    altText: "Ensemble de 4 boîtes alimentaires transparentes hermétiques empilables avec joints silicone étanches",
-    shortDescription: "Conservation hermétique garantie sans fuite ni odeur. 100% étanches aux liquides, empilables pour un gain de place dans le frigo.",
-    benefits: [
+    "id": "boites-hermetiques-lot4",
+    "sku": "MAIS-BOX-LOT4",
+    "slug": "boites-hermetiques-lot4",
+    "name": "Lot de 4 boîtes alimentaires hermétiques avec couvercles à clips",
+    "shortName": "Lot de 4 boîtes hermétiques",
+    "category": "maison",
+    "subcategory": "cuisine",
+    "categoryLabel": "Maison",
+    "price": 23.9,
+    "compareAtPrice": 32.9,
+    "rating": 4.9,
+    "reviewCount": 228,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 40,
+    "image": "/products/boites-hermetiques-lot4.jpg",
+    "gallery": [
+      "/products/boites-hermetiques-lot4.jpg",
+      "/products/boites-hermetiques-lot4-features.jpg",
+      "/products/boites-hermetiques-lot4-details.jpg"
+    ],
+    "altText": "Ensemble de 4 boîtes alimentaires transparentes hermétiques empilables avec joints silicone étanches",
+    "shortDescription": "Conservation hermétique sans fuite ni odeur. Conception étanche aux liquides, empilables pour un gain de place dans le frigo.",
+    "benefits": [
       "Joint en silicone étanche et système de fermeture 4 clips sécurisés",
       "Compatibles micro-ondes, lave-vaisselle et congélateur (-20°C à +110°C)",
       "Plastique de qualité alimentaire sans BPA cristal résistant aux chocs"
-],
-    specs: {
+    ],
+    "specs": {
       "Volumes": "400ml, 800ml, 1400ml, 2200ml",
       "Matière": "Sans BPA certifié contact alimentaire",
       "Entretien": "Lave-vaisselle"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Peut-on transporter de la soupe sans fuite ?",
-            "a": "Oui, l'étanchéité liquide est totale même secouée dans un sac."
+        "q": "Peut-on transporter de la soupe sans fuite ?",
+        "a": "Oui, l'étanchéité liquide est totale même secouée dans un sac."
       }
-],
-    keywords: ["boite hermetique","boites conservation","tupperware","frigo","cuisine","maison"]
+    ],
+    "keywords": [
+      "boite hermetique",
+      "boites conservation",
+      "tupperware",
+      "frigo",
+      "cuisine",
+      "maison"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'reglette-led-detecteur-mouvement',
-    sku: 'MAIS-LED-MVT',
-    slug: 'reglette-led-detecteur-mouvement',
-    name: "Réglette LED sans fil sous meuble avec détecteur de mouvement",
-    shortName: "Réglette LED sous meuble",
-    category: 'maison',
-    subcategory: 'decoration',
-    categoryLabel: 'Maison',
-    price: 17.90,
-    compareAtPrice: 24.90,
-    rating: 4.8,
-    reviewCount: 215,
-    badge: "Incontournable",
-    isBestSeller: true,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 50,
-    image: '/products/reglette-led-detecteur-mouvement.jpg',
-    gallery: ["/products/reglette-led-detecteur-mouvement.jpg"],
-    altText: "Bande lumineuse réglette LED magnétique sans fil fixée sous un placard de cuisine avec éclairage chaud",
-    shortDescription: "Fixation magnétique instantanée sans perçage. S'allume automatiquement à votre passage et s'éteint après 20 secondes.",
-    benefits: [
-      "Fixation par bande adhésive aimantée : se retire d'un geste pour la recharge",
-      "Capteur crépusculaire + mouvement jusqu'à 3 mètres avec angle 120°",
-      "Batterie lithium rechargeable USB-C avec autonomie jusqu'à 60 jours"
-],
-    specs: {
-      "Longueur": "30 cm",
-      "Éclairage": "Blanc chaud 3000K ou naturel 4500K",
-      "Batterie": "USB-C rechargeable"
-},
-    faq: [
-      {
-            "q": "Faut-il percer les meubles pour l'installer ?",
-            "a": "Aucun perçage : collez le patch magnétique et la réglette s'y aimante."
-      }
-],
-    keywords: ["reglette led","lampe placard","detecteur mouvement","eclairage sous meuble","cuisine","maison"]
-  },
-  {
-    id: 'balle-interactive-chat',
-    sku: 'ANI-BAL-CAT',
-    slug: 'balle-interactive-chat',
-    name: "Balle interactive lumineuse automatique 360° pour chat",
-    shortName: "Balle interactive chat",
-    category: 'animaux',
-    subcategory: 'chats',
-    categoryLabel: 'Animaux',
-    price: 16.90,
-    compareAtPrice: 23.90,
-    rating: 4.8,
-    reviewCount: 220,
-    badge: "Tendance",
-    isBestSeller: true,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 45,
-    image: '/products/balle-interactive-chat.jpg',
-    gallery: ["/products/balle-interactive-chat.jpg"],
-    altText: "Balle interactive motorisée lumineuse roulant sur le sol pour amuser les chats",
-    shortDescription: "Roule toute seule de façon imprévisible en évitant les obstacles. Réveille l'instinct de chasseur de votre félin pendant vos absences.",
-    benefits: [
+    "id": "balle-interactive-chat",
+    "sku": "ANI-BAL-CAT",
+    "slug": "balle-interactive-chat",
+    "name": "Balle interactive lumineuse automatique 360° pour chat",
+    "shortName": "Balle interactive chat",
+    "category": "animaux",
+    "subcategory": "chats",
+    "categoryLabel": "Animaux",
+    "price": 16.9,
+    "compareAtPrice": 23.9,
+    "rating": 4.8,
+    "reviewCount": 220,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 45,
+    "image": "/products/balle-interactive-chat.jpg",
+    "gallery": [
+      "/products/balle-interactive-chat.jpg",
+      "/products/balle-interactive-chat-features.jpg",
+      "/products/balle-interactive-chat-details.jpg"
+    ],
+    "altText": "Balle interactive motorisée lumineuse roulant sur le sol pour amuser les chats",
+    "shortDescription": "Roule toute seule de façon imprévisible en évitant les obstacles. Réveille l'instinct de chasseur de votre félin pendant vos absences.",
+    "benefits": [
       "Capteur d'obstacles intelligent : change de trajectoire automatiquement",
       "Revêtement en silicone doux et silencieux sur le parquet ou carrelage",
       "Rechargeable en USB-C (arrêt automatique après 45 minutes de jeu)"
-],
-    specs: {
+    ],
+    "specs": {
       "Diamètre": "4.3 cm",
       "Matière": "Silicone sans danger + ABS",
       "Recharge": "USB-C (câble inclus)"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Fait-elle du bruit sur le sol ?",
-            "a": "Le revêtement en silicone absorbe les chocs pour un roulement très silencieux."
+        "q": "Fait-elle du bruit sur le sol ?",
+        "a": "Le revêtement en silicone absorbe les chocs pour un roulement très silencieux."
       }
-],
-    keywords: ["jouet chat","balle interactive","balle lumineuse","chat","animaux"]
+    ],
+    "keywords": [
+      "jouet chat",
+      "balle interactive",
+      "balle lumineuse",
+      "chat",
+      "animaux"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'jouet-distributeur-friandises',
-    sku: 'ANI-TOY-DOG',
-    slug: 'jouet-distributeur-friandises',
-    name: "Balle distributrice de friandises anti-glouton pour chien",
-    shortName: "Balle distributrice friandises",
-    category: 'animaux',
-    subcategory: 'chiens',
-    categoryLabel: 'Animaux',
-    price: 13.90,
-    compareAtPrice: 19.90,
-    rating: 4.8,
-    reviewCount: 180,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 50,
-    image: 'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=800&q=80"],
-    altText: "Chien jouant avec une balle distributrice de croquettes en caoutchouc naturel robuste",
-    shortDescription: "Stimule l'intelligence de votre chien tout en ralentissant l'ingestion de nourriture. Caoutchouc naturel ultra-résistant aux morsures.",
-    benefits: [
+    "id": "jouet-distributeur-friandises",
+    "sku": "ANI-TOY-DOG",
+    "slug": "jouet-distributeur-friandises",
+    "name": "Balle distributrice de friandises anti-glouton pour chien",
+    "shortName": "Balle distributrice friandises",
+    "category": "animaux",
+    "subcategory": "chiens",
+    "categoryLabel": "Animaux",
+    "price": 13.9,
+    "compareAtPrice": 19.9,
+    "rating": 4.8,
+    "reviewCount": 180,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 50,
+    "image": "/products/jouet-distributeur-friandises.jpg",
+    "gallery": [
+      "/products/jouet-distributeur-friandises.jpg",
+      "/products/jouet-distributeur-friandises-features.jpg",
+      "/products/jouet-distributeur-friandises-details.jpg"
+    ],
+    "altText": "Chien jouant avec une balle distributrice de croquettes en caoutchouc naturel robuste",
+    "shortDescription": "Stimule l'intelligence de votre chien tout en ralentissant l'ingestion de nourriture. Caoutchouc naturel ultra-résistant aux morsures.",
+    "benefits": [
       "Ralentit les repas et évite les ballonnements des chiens gloutons",
       "Occupe mentalement le chien et combat l'ennui et l'anxiété",
       "Caoutchouc naturel non toxique doux pour les dents et gencives"
-],
-    specs: {
+    ],
+    "specs": {
       "Diamètre": "8 cm",
       "Matière": "Caoutchouc naturel 100% sûr",
       "Entretien": "Lavable à l'eau"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Convient-elle aux grands chiens ?",
-            "a": "Oui, sa matière dense résiste aux mâchoires puissantes de taille moyenne à grande."
+        "q": "Convient-elle aux grands chiens ?",
+        "a": "Oui, sa matière dense résiste aux mâchoires puissantes de taille moyenne à grande."
       }
-],
-    keywords: ["jouet chien","distributeur friandises","anti glouton","balle chien","animaux"]
+    ],
+    "keywords": [
+      "jouet chien",
+      "distributeur friandises",
+      "anti glouton",
+      "balle chien",
+      "animaux"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'ceinture-securite-chien-auto',
-    sku: 'ANI-SEC-AUT',
-    slug: 'ceinture-securite-chien-auto',
-    name: "Ceinture de sécurité auto élastique avec amortisseur pour chien",
-    shortName: "Ceinture de sécurité chien",
-    category: 'animaux',
-    subcategory: 'voyage',
-    categoryLabel: 'Animaux',
-    price: 11.90,
-    compareAtPrice: 16.90,
-    rating: 4.9,
-    reviewCount: 240,
-    badge: "Sécurité",
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 60,
-    bundleWith: 'housse-siege-animaux',
-    image: '/products/ceinture-securite-chien-auto.jpg',
-    gallery: ["/products/ceinture-securite-chien-auto.jpg"],
-    altText: "Sangle de sécurité pour chien avec amortisseur élastique clipsée dans la boucle de ceinture de voiture",
-    shortDescription: "Protège votre chien en cas de freinage brusque. S'enclenche directement dans la boucle de ceinture de n'importe quelle voiture.",
-    benefits: [
+    "id": "ceinture-securite-chien-auto",
+    "sku": "ANI-SEC-AUT",
+    "slug": "ceinture-securite-chien-auto",
+    "name": "Ceinture de sécurité auto élastique avec amortisseur pour chien",
+    "shortName": "Ceinture de sécurité chien",
+    "category": "animaux",
+    "subcategory": "voyage",
+    "categoryLabel": "Animaux",
+    "price": 11.9,
+    "compareAtPrice": 16.9,
+    "rating": 4.9,
+    "reviewCount": 240,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 60,
+    "bundleWith": "housse-siege-animaux",
+    "image": "/products/ceinture-securite-chien-auto.jpg",
+    "gallery": [
+      "/products/ceinture-securite-chien-auto.jpg",
+      "/products/ceinture-securite-chien-auto-features.jpg",
+      "/products/ceinture-securite-chien-auto-details.jpg"
+    ],
+    "altText": "Sangle de sécurité pour chien avec amortisseur élastique clipsée dans la boucle de ceinture de voiture",
+    "shortDescription": "Protège votre chien en cas de freinage brusque. S'enclenche directement dans la boucle de ceinture de n'importe quelle voiture.",
+    "benefits": [
       "Amortisseur élastique bungee absorbant les chocs en cas de freinage",
       "Mousqueton pivotant 360° en alliage de zinc ultra-résistant",
       "Longueur réglable de 53 à 74 cm pour le confort assis ou couché"
-],
-    specs: {
+    ],
+    "specs": {
       "Longueur": "53 à 74 cm réglable",
       "Matière": "Nylon haute résistance + élastique",
       "Boucle": "Universelle voiture"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Doit-on l'attacher au collier ou au harnais ?",
-            "a": "Toujours fixer sur un harnais pour protéger les cervicales de votre animal."
+        "q": "Doit-on l'attacher au collier ou au harnais ?",
+        "a": "Toujours fixer sur un harnais pour protéger les cervicales de votre animal."
       }
-],
-    keywords: ["ceinture chien","securite voiture chien","attache chien auto","voyage animaux","auto","animaux"]
+    ],
+    "keywords": [
+      "ceinture chien",
+      "securite voiture chien",
+      "attache chien auto",
+      "voyage animaux",
+      "auto",
+      "animaux"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'tapis-gamelle-silicone',
-    sku: 'ANI-TAP-GAM',
-    slug: 'tapis-gamelle-silicone',
-    name: "Tapis de gamelle en silicone étanche avec rebord anti-débordement",
-    shortName: "Tapis de gamelle silicone",
-    category: 'animaux',
-    subcategory: 'accessoires',
-    categoryLabel: 'Animaux',
-    price: 12.90,
-    compareAtPrice: 17.90,
-    rating: 4.8,
-    reviewCount: 165,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 45,
-    bundleWith: 'gamelle-pliable',
-    image: 'https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=800&q=80"],
-    altText: "Tapis de sol étanche en silicone gris pour gamelles de chien et chat avec rebord relevé",
-    shortDescription: "Terminé les éclaboussures d'eau et les croquettes éparpillées sur le sol. Rebord relevé de 1 cm retenant tous les débordements.",
-    benefits: [
+    "id": "tapis-gamelle-silicone",
+    "sku": "ANI-TAP-GAM",
+    "slug": "tapis-gamelle-silicone",
+    "name": "Tapis de gamelle en silicone étanche avec rebord anti-débordement",
+    "shortName": "Tapis de gamelle silicone",
+    "category": "animaux",
+    "subcategory": "accessoires",
+    "categoryLabel": "Animaux",
+    "price": 12.9,
+    "compareAtPrice": 17.9,
+    "rating": 4.8,
+    "reviewCount": 165,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 45,
+    "bundleWith": "gamelle-pliable",
+    "image": "/products/tapis-gamelle-silicone.jpg",
+    "gallery": [
+      "/products/tapis-gamelle-silicone.jpg",
+      "/products/tapis-gamelle-silicone-features.jpg",
+      "/products/tapis-gamelle-silicone-details.jpg"
+    ],
+    "altText": "Tapis de sol étanche en silicone gris pour gamelles de chien et chat avec rebord relevé",
+    "shortDescription": "Terminé les éclaboussures d'eau et les croquettes éparpillées sur le sol. Rebord relevé de 1 cm retenant tous les débordements.",
+    "benefits": [
       "Silicone alimentaire sans BPA imperméable et antidérapant",
       "Rebord haut empêchant les liquides de couler sur le sol",
       "Passe au lave-vaisselle ou se rince sous le robinet en 5 secondes"
-],
-    specs: {
+    ],
+    "specs": {
       "Dimensions": "48 x 30 cm",
       "Matière": "100% Silicone de qualité alimentaire",
       "Rebord": "1 cm"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Les gamelles glissent-elles dessus ?",
-            "a": "Non, le silicone a un pouvoir adhérent naturel qui stabilise les bols."
+        "q": "Les gamelles glissent-elles dessus ?",
+        "a": "Non, le silicone a un pouvoir adhérent naturel qui stabilise les bols."
       }
-],
-    keywords: ["tapis gamelle","tapis chien","silicone etanche","anti debordement","gamelle","animaux"]
+    ],
+    "keywords": [
+      "tapis gamelle",
+      "tapis chien",
+      "silicone etanche",
+      "anti debordement",
+      "gamelle",
+      "animaux"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'coupe-griffes-led-animaux',
-    sku: 'ANI-CLP-LED',
-    slug: 'coupe-griffes-led-animaux',
-    name: "Coupe-griffes professionnel pour animaux avec éclairage LED",
-    shortName: "Coupe-griffes LED animaux",
-    category: 'animaux',
-    subcategory: 'toilettage',
-    categoryLabel: 'Animaux',
-    price: 14.90,
-    compareAtPrice: 21.90,
-    rating: 4.8,
-    reviewCount: 198,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 50,
-    bundleWith: 'nettoyeur-pattes-chiens',
-    image: '/products/coupe-griffes-led-animaux.jpg',
-    gallery: ["/products/coupe-griffes-led-animaux.jpg"],
-    altText: "Coupe-griffes ergonomique avec lampe LED intégrée éclairant la veine de la griffe",
-    shortDescription: "Lumière LED intégrée illuminant la ligne sanguine dans la griffe pour couper en toute sécurité sans blesser votre animal.",
-    benefits: [
+    "id": "coupe-griffes-led-animaux",
+    "sku": "ANI-CLP-LED",
+    "slug": "coupe-griffes-led-animaux",
+    "name": "Coupe-griffes professionnel pour animaux avec éclairage LED",
+    "shortName": "Coupe-griffes LED animaux",
+    "category": "animaux",
+    "subcategory": "toilettage",
+    "categoryLabel": "Animaux",
+    "price": 14.9,
+    "compareAtPrice": 21.9,
+    "rating": 4.8,
+    "reviewCount": 198,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 50,
+    "bundleWith": "nettoyeur-pattes-chiens",
+    "image": "/products/coupe-griffes-led-animaux.jpg",
+    "gallery": [
+      "/products/coupe-griffes-led-animaux.jpg",
+      "/products/coupe-griffes-led-animaux-features.jpg",
+      "/products/coupe-griffes-led-animaux-details.jpg"
+    ],
+    "altText": "Coupe-griffes ergonomique avec lampe LED intégrée éclairant la veine de la griffe",
+    "shortDescription": "Lumière LED intégrée illuminant la ligne sanguine dans la griffe pour couper en toute sécurité sans blesser votre animal.",
+    "benefits": [
       "Éclairage LED puissant pour visualiser parfaitement la veine",
       "Lame tranchante en acier inoxydable avec garde de sécurité",
       "Récupérateur de griffes transparent intégré pour éviter les projections"
-],
-    specs: {
+    ],
+    "specs": {
       "Lames": "Acier trempé inoxydable",
       "Éclairage": "LED blanche haute luminosité",
       "Lime": "Inclus dans le manche"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Convient-il aussi pour les chats ?",
-            "a": "Oui, idéal pour les chats et les chiens de petite et moyenne taille."
+        "q": "Convient-il aussi pour les chats ?",
+        "a": "Oui, idéal pour les chats et les chiens de petite et moyenne taille."
       }
-],
-    keywords: ["coupe griffes","griffes chien","griffes chat","toilettage animaux","animaux"]
+    ],
+    "keywords": [
+      "coupe griffes",
+      "griffes chien",
+      "griffes chat",
+      "toilettage animaux",
+      "animaux"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'distributeur-sacs-dejections',
-    sku: 'ANI-BAG-DSP',
-    slug: 'distributeur-sacs-dejections',
-    name: "Distributeur de sacs à déjections avec mousqueton + 6 rouleaux biodégradables",
-    shortName: "Distributeur de sacs à déjections",
-    category: 'animaux',
-    subcategory: 'chiens',
-    categoryLabel: 'Animaux',
-    price: 9.90,
-    compareAtPrice: 13.90,
-    rating: 4.7,
-    reviewCount: 210,
-    badge: "Essentiel",
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 65,
-    bundleWith: 'gourde-portable-chiens',
-    image: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=800&q=80"],
-    altText: "Distributeur capsule compact vert fixé sur une laisse de promenade avec sacs à déjections",
-    shortDescription: "Se clipse sur n'importe quelle laisse. Livré avec 6 rouleaux (90 sacs) ultra-résistants et 100% étanches.",
-    benefits: [
+    "id": "distributeur-sacs-dejections",
+    "sku": "ANI-BAG-DSP",
+    "slug": "distributeur-sacs-dejections",
+    "name": "Distributeur de sacs à déjections avec mousqueton + 6 rouleaux biodégradables",
+    "shortName": "Distributeur de sacs à déjections",
+    "category": "animaux",
+    "subcategory": "chiens",
+    "categoryLabel": "Animaux",
+    "price": 9.9,
+    "compareAtPrice": 13.9,
+    "rating": 4.7,
+    "reviewCount": 210,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 65,
+    "bundleWith": "gourde-portable-chiens",
+    "image": "/products/distributeur-sacs-dejections.jpg",
+    "gallery": [
+      "/products/distributeur-sacs-dejections.jpg",
+      "/products/distributeur-sacs-dejections-features.jpg",
+      "/products/distributeur-sacs-dejections-details.jpg"
+    ],
+    "altText": "Distributeur capsule compact vert fixé sur une laisse de promenade avec sacs à déjections",
+    "shortDescription": "Se clipse sur n'importe quelle laisse. Livré avec 6 rouleaux (90 sacs) ultra-résistants et étanches aux liquides.",
+    "benefits": [
       "Mousqueton métallique solide qui se fixe à la poignée de la laisse",
       "Sortie facile sac par sac sans blocage ni déchirure",
       "Inclus 90 sacs biodégradables épais et opaques"
-],
-    specs: {
+    ],
+    "specs": {
       "Inclus": "1 distributeur + 6 rouleaux (90 sacs)",
       "Matière": "Amidon de maïs biodégradable",
       "Dimensions": "Capsule 8 x 4 cm"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Les sacs sont-ils parfumés ?",
-            "a": "Non, garantis sans parfum chimique irritant pour les animaux."
+        "q": "Les sacs sont-ils parfumés ?",
+        "a": "Non, garantis sans parfum chimique irritant pour les animaux."
       }
-],
-    keywords: ["sacs dejections","distributeur sacs chien","crotte chien","promenade chien","animaux"]
+    ],
+    "keywords": [
+      "sacs dejections",
+      "distributeur sacs chien",
+      "crotte chien",
+      "promenade chien",
+      "animaux"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'chargeur-voiture-usb-c-60w',
-    sku: 'AUT-CHG-60W',
-    slug: 'chargeur-voiture-usb-c-60w',
-    name: "Chargeur allume-cigare USB-C 60W double port charge rapide",
-    shortName: "Chargeur allume-cigare 60W",
-    category: 'auto',
-    subcategory: 'telephone-charge',
-    categoryLabel: 'Auto',
-    price: 14.90,
-    compareAtPrice: 20.90,
-    rating: 4.8,
-    reviewCount: 195,
-    badge: "Pack Auto",
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 55,
-    bundleWith: 'support-telephone-voiture',
-    image: '/products/chargeur-voiture-usb-c.jpg',
-    gallery: ["/products/chargeur-voiture-usb-c.jpg"],
-    altText: "Chargeur allume-cigare métallique miniature double port USB-C et USB-A inséré dans une console de voiture",
-    shortDescription: "Corps en alliage d'aluminium ultra-compact affleurant la prise. Charge simultanément deux appareils à vitesse maximale.",
-    benefits: [
+    "id": "chargeur-voiture-usb-c-60w",
+    "sku": "AUT-CHG-60W",
+    "slug": "chargeur-voiture-usb-c-60w",
+    "name": "Chargeur allume-cigare USB-C 60W double port charge rapide",
+    "shortName": "Chargeur allume-cigare 60W",
+    "category": "auto",
+    "subcategory": "telephone-charge",
+    "categoryLabel": "Auto",
+    "price": 14.9,
+    "compareAtPrice": 20.9,
+    "rating": 4.8,
+    "reviewCount": 195,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 55,
+    "bundleWith": "support-telephone-voiture",
+    "image": "/products/chargeur-voiture-usb-c.jpg",
+    "gallery": [
+      "/products/chargeur-voiture-usb-c.jpg",
+      "/products/chargeur-voiture-usb-c-60w-features.jpg",
+      "/products/chargeur-voiture-usb-c-60w-details.jpg"
+    ],
+    "altText": "Chargeur allume-cigare métallique miniature double port USB-C et USB-A inséré dans une console de voiture",
+    "shortDescription": "Corps en alliage d'aluminium ultra-compact affleurant la prise. Charge simultanément deux appareils à vitesse maximale.",
+    "benefits": [
       "Puissance 60W combinée (30W USB-C PD + 30W USB-A QC3.0)",
       "Anneau lumineux LED bleu discret facilitant le branchement nocturne",
       "Protection intégrée contre les surtensions et surchauffes"
-],
-    specs: {
+    ],
+    "specs": {
       "Entrée": "12V - 24V (voiture et camion)",
       "Sorties": "USB-C PD 30W + USB-A QC 30W",
       "Finition": "Métal anodisé"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Dépasse-t-il beaucoup de la prise ?",
-            "a": "Non, sa tête miniature ne dépasse que de 5 mm pour rester très discret."
+        "q": "Dépasse-t-il beaucoup de la prise ?",
+        "a": "Non, sa tête miniature ne dépasse que de 5 mm pour rester très discret."
       }
-],
-    keywords: ["chargeur voiture","allume cigare","chargeur rapide","usb c voiture","accessoires auto","auto"]
+    ],
+    "keywords": [
+      "chargeur voiture",
+      "allume cigare",
+      "chargeur rapide",
+      "usb c voiture",
+      "accessoires auto",
+      "auto"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'chiffons-microfibres-auto-lot3',
-    sku: 'AUT-MIC-LOT3',
-    slug: 'chiffons-microfibres-auto-lot3',
-    name: "Chiffons microfibres haute densité 800 GSM pour lustrage auto (Lot de 3)",
-    shortName: "Chiffons microfibres auto (x3)",
-    category: 'auto',
-    subcategory: 'nettoyage',
-    categoryLabel: 'Auto',
-    price: 12.90,
-    compareAtPrice: 17.90,
-    rating: 4.9,
-    reviewCount: 220,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 50,
-    image: 'https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&w=800&q=80"],
-    altText: "Lot de 3 serviettes microfibres de lustrage épaisses bicolores jaune et gris pour carrosserie automobile",
-    shortDescription: "Densité exceptionnelle 800 GSM. Absorbe jusqu'à 10 fois son poids en eau sans laisser la moindre micro-rayure ni peluche.",
-    benefits: [
+    "id": "chiffons-microfibres-auto-lot3",
+    "sku": "AUT-MIC-LOT3",
+    "slug": "chiffons-microfibres-auto-lot3",
+    "name": "Chiffons microfibres haute densité 800 GSM pour lustrage auto (Lot de 3)",
+    "shortName": "Chiffons microfibres auto (x3)",
+    "category": "auto",
+    "subcategory": "nettoyage",
+    "categoryLabel": "Auto",
+    "price": 12.9,
+    "compareAtPrice": 17.9,
+    "rating": 4.9,
+    "reviewCount": 220,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 50,
+    "image": "/products/chiffons-microfibres-auto-lot3.jpg",
+    "gallery": [
+      "/products/chiffons-microfibres-auto-lot3.jpg",
+      "/products/chiffons-microfibres-auto-lot3-features.jpg",
+      "/products/chiffons-microfibres-auto-lot3-details.jpg"
+    ],
+    "altText": "Lot de 3 serviettes microfibres de lustrage épaisses bicolores jaune et gris pour carrosserie automobile",
+    "shortDescription": "Densité exceptionnelle 800 GSM. Absorbe jusqu'à 10 fois son poids en eau sans laisser la moindre micro-rayure ni peluche.",
+    "benefits": [
       "Épaisseur moelleuse 800 GSM ultra-sécurisante pour les vernis fragiles",
       "Bordure en soie satinée évitant toute rayure sur la carrosserie",
       "Parfait pour le séchage, le lustrage et le dépoussiérage du tableau de bord"
-],
-    specs: {
+    ],
+    "specs": {
       "Dimensions": "40 x 40 cm",
       "Densité": "800 GSM",
       "Quantité": "Lot de 3 chiffons"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Sont-ils lavables en machine ?",
-            "a": "Oui, lavage à 40°C sans adoucissant pour préserver le pouvoir électrostatique."
+        "q": "Sont-ils lavables en machine ?",
+        "a": "Oui, lavage à 40°C sans adoucissant pour préserver le pouvoir électrostatique."
       }
-],
-    keywords: ["microfibre","chiffon voiture","lustrage auto","nettoyage voiture","lavage auto","auto"]
+    ],
+    "keywords": [
+      "microfibre",
+      "chiffon voiture",
+      "lustrage auto",
+      "nettoyage voiture",
+      "lavage auto",
+      "auto"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'mini-poubelle-voiture-etanche',
-    sku: 'AUT-BIN-CAR',
-    slug: 'mini-poubelle-voiture-etanche',
-    name: "Mini poubelle de voiture étanche avec couvercle à clapet",
-    shortName: "Mini poubelle de voiture",
-    category: 'auto',
-    subcategory: 'organisation',
-    categoryLabel: 'Auto',
-    price: 13.90,
-    compareAtPrice: 19.90,
-    rating: 4.8,
-    reviewCount: 175,
-    badge: "Kit Auto",
-    isBestSeller: true,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 45,
-    bundleWith: 'organisateur-entre-sieges',
-    image: 'https://images.unsplash.com/photo-1508974239320-0a029497e820?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1508974239320-0a029497e820?auto=format&fit=crop&w=800&q=80"],
-    altText: "Mini poubelle de voiture noire étanche avec couvercle à bouton poussoir fixée dans un vide-poche de portière",
-    shortDescription: "Gardez votre habitacle toujours propre. Se clipse sur la portière ou au dos du siège avec fermeture à poussoir anti-odeurs.",
-    benefits: [
+    "id": "mini-poubelle-voiture-etanche",
+    "sku": "AUT-BIN-CAR",
+    "slug": "mini-poubelle-voiture-etanche",
+    "name": "Mini poubelle de voiture étanche avec couvercle à clapet",
+    "shortName": "Mini poubelle de voiture",
+    "category": "auto",
+    "subcategory": "organisation",
+    "categoryLabel": "Auto",
+    "price": 13.9,
+    "compareAtPrice": 19.9,
+    "rating": 4.8,
+    "reviewCount": 175,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 45,
+    "bundleWith": "organisateur-entre-sieges",
+    "image": "/products/mini-poubelle-voiture-etanche-hero.jpg",
+    "gallery": [
+      "/products/mini-poubelle-voiture-etanche-hero.jpg",
+      "/products/mini-poubelle-voiture-etanche-features.jpg",
+      "/products/mini-poubelle-voiture-etanche-details.jpg"
+    ],
+    "altText": "Mini poubelle de voiture noire étanche avec couvercle à bouton poussoir fixée dans un vide-poche de portière",
+    "shortDescription": "Gardez votre habitacle toujours propre. Se clipse sur la portière ou au dos du siège avec fermeture à poussoir anti-odeurs.",
+    "benefits": [
       "Couvercle étanche à ressort s'ouvrant d'une simple pression du doigt",
       "Corps 100% étanche résistant aux liquides renversés et canettes",
       "Clip de fixation arrière robuste convenant à toute portière"
-],
-    specs: {
+    ],
+    "specs": {
       "Dimensions": "16 x 14 x 8.5 cm",
       "Matière": "Plastique ABS étanche",
       "Capacité": "1 Litre"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Prend-elle beaucoup de place ?",
-            "a": "Non, son profil plat se glisse parfaitement dans le vide-poche de portière."
+        "q": "Prend-elle beaucoup de place ?",
+        "a": "Non, son profil plat se glisse parfaitement dans le vide-poche de portière."
       }
-],
-    keywords: ["poubelle voiture","mini poubelle auto","rangement voiture","proprete habitacle","auto"]
+    ],
+    "keywords": [
+      "poubelle voiture",
+      "mini poubelle auto",
+      "rangement voiture",
+      "proprete habitacle",
+      "auto"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'organisateur-dossier-siege-auto',
-    sku: 'AUT-ORG-BKS',
-    slug: 'organisateur-dossier-siege-auto',
-    name: "Organisateur dossier de siège auto avec support tablette tactile",
-    shortName: "Organisateur dossier de siège",
-    category: 'auto',
-    subcategory: 'organisation',
-    categoryLabel: 'Auto',
-    price: 19.90,
-    compareAtPrice: 27.90,
-    rating: 4.8,
-    reviewCount: 230,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 40,
-    image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"],
-    altText: "Organisateur de siège arrière de voiture noir avec fenêtre transparente pour tablette et poches bouteilles",
-    shortDescription: "Indispensable pour les trajets en famille. Protège le siège des coups de pieds des enfants tout en organisant tablettes, jouets et gourdes.",
-    benefits: [
+    "id": "organisateur-dossier-siege-auto",
+    "sku": "AUT-ORG-BKS",
+    "slug": "organisateur-dossier-siege-auto",
+    "name": "Organisateur dossier de siège auto avec support tablette tactile",
+    "shortName": "Organisateur dossier de siège",
+    "category": "auto",
+    "subcategory": "organisation",
+    "categoryLabel": "Auto",
+    "price": 19.9,
+    "compareAtPrice": 27.9,
+    "rating": 4.8,
+    "reviewCount": 230,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 40,
+    "image": "/products/organisateur-dossier-siege-auto-hero.jpg",
+    "gallery": [
+      "/products/organisateur-dossier-siege-auto-hero.jpg",
+      "/products/organisateur-dossier-siege-auto-features.jpg",
+      "/products/organisateur-dossier-siege-auto-details.jpg"
+    ],
+    "altText": "Organisateur de siège arrière de voiture noir avec fenêtre transparente pour tablette et poches bouteilles",
+    "shortDescription": "Indispensable pour les trajets en famille. Protège le siège des coups de pieds des enfants tout en organisant tablettes, jouets et gourdes.",
+    "benefits": [
       "Poche tactile transparente compatible avec iPad et tablettes jusqu'à 10.5\"",
       "Tissu Oxford 600D ultra-résistant protégeant le dossier des traces de boue",
       "9 compartiments de rangement dédiés (boissons, mouchoirs, snacks)"
-],
-    specs: {
+    ],
+    "specs": {
       "Dimensions": "61 x 41 cm",
       "Matière": "Oxford 600D imperméable",
       "Fixation": "Sangles réglables boucle clip"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "La tablette reste-t-elle tactile à travers la fenêtre ?",
-            "a": "Oui, la fenêtre en PVC transparent haute sensibilité permet d'utiliser l'écran tactile."
+        "q": "La tablette reste-t-elle tactile à travers la fenêtre ?",
+        "a": "Oui, la fenêtre en PVC transparent haute sensibilité permet d'utiliser l'écran tactile."
       }
-],
-    keywords: ["organisateur siege auto","protection siege voiture","porte tablette voiture","voyage enfant","auto"]
+    ],
+    "keywords": [
+      "organisateur siege auto",
+      "protection siege voiture",
+      "porte tablette voiture",
+      "voyage enfant",
+      "auto"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'pare-soleil-retractable-parebrise',
-    sku: 'AUT-SUN-WND',
-    slug: 'pare-soleil-retractable-parebrise',
-    name: "Pare-soleil rétractable pliable parapluie pour pare-brise",
-    shortName: "Pare-soleil parapluie pare-brise",
-    category: 'auto',
-    subcategory: 'confort',
-    categoryLabel: 'Auto',
-    price: 18.90,
-    compareAtPrice: 26.90,
-    rating: 4.8,
-    reviewCount: 205,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 48,
-    image: '/products/pare-soleil-retractable-parebrise.jpg',
-    gallery: ["/products/pare-soleil-retractable-parebrise.jpg"],
-    altText: "Pare-soleil pliable type parapluie réfléchissant argenté déployé sur le pare-brise intérieur d'une voiture",
-    shortDescription: "Se déploie et se replie en 3 secondes comme un parapluie. Bloque 99% des UV et maintient l'habitacle au frais en plein été.",
-    benefits: [
+    "id": "pare-soleil-retractable-parebrise",
+    "sku": "AUT-SUN-WND",
+    "slug": "pare-soleil-retractable-parebrise",
+    "name": "Pare-soleil rétractable pliable parapluie pour pare-brise",
+    "shortName": "Pare-soleil parapluie pare-brise",
+    "category": "auto",
+    "subcategory": "confort",
+    "categoryLabel": "Auto",
+    "price": 18.9,
+    "compareAtPrice": 26.9,
+    "rating": 4.8,
+    "reviewCount": 205,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 48,
+    "image": "/products/pare-soleil-retractable-parebrise.jpg",
+    "gallery": [
+      "/products/pare-soleil-retractable-parebrise.jpg",
+      "/products/pare-soleil-retractable-parebrise-features.jpg",
+      "/products/pare-soleil-retractable-parebrise-details.jpg"
+    ],
+    "altText": "Pare-soleil pliable type parapluie réfléchissant argenté déployé sur le pare-brise intérieur d'une voiture",
+    "shortDescription": "Se déploie et se replie en 3 secondes comme un parapluie. Bloque 99% des UV et maintient l'habitacle au frais en plein été.",
+    "benefits": [
       "Revêtement titane argenté réflecteur thermique haute performance",
       "Armature à 10 baleines renforcées sans rayure pour le tableau de bord",
       "Rangement ultra-compact dans la boîte à gants avec étui en cuir synthétique"
-],
-    specs: {
+    ],
+    "specs": {
       "Dimensions ouvert": "140 x 79 cm (universel berlines et SUV)",
       "Protection": "UPF 50+ UV",
       "Poids": "360 g"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Est-il facile à ranger ?",
-            "a": "Aussi simple qu'un parapluie de poche, il se glisse dans le vide-poche ou sous le siège."
+        "q": "Est-il facile à ranger ?",
+        "a": "Aussi simple qu'un parapluie de poche, il se glisse dans le vide-poche ou sous le siège."
       }
-],
-    keywords: ["pare soleil","pare soleil voiture","pare brise","protection chaleur voiture","auto"]
+    ],
+    "keywords": [
+      "pare soleil",
+      "pare soleil voiture",
+      "pare brise",
+      "protection chaleur voiture",
+      "auto"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'tapis-yoga-antiderapant-tpe',
-    sku: 'SPT-YOG-MAT',
-    slug: 'tapis-yoga-antiderapant-tpe',
-    name: "Tapis de yoga écologique TPE antidérapant avec lignes d'alignement",
-    shortName: "Tapis de yoga antidérapant",
-    category: 'sport',
-    subcategory: 'yoga',
-    categoryLabel: 'Sport',
-    price: 29.90,
-    compareAtPrice: 42.90,
-    rating: 4.9,
-    reviewCount: 275,
-    badge: "Incontournable",
-    isBestSeller: true,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 40,
-    image: '/products/tapis-yoga-antiderapant-tpe.jpg',
-    gallery: ["/products/tapis-yoga-antiderapant-tpe.jpg"],
-    altText: "Tapis de yoga bicolore vert sauge et gris étalé avec repères d'alignement corporel gravés",
-    shortDescription: "Épaisseur confort 6 mm protégeant les articulations. Matière TPE écologique antidérapante même en cas de transpiration.",
-    benefits: [
+    "id": "tapis-yoga-antiderapant-tpe",
+    "sku": "SPT-YOG-MAT",
+    "slug": "tapis-yoga-antiderapant-tpe",
+    "name": "Tapis de yoga écologique TPE antidérapant avec lignes d'alignement",
+    "shortName": "Tapis de yoga antidérapant",
+    "category": "sport",
+    "subcategory": "yoga",
+    "categoryLabel": "Sport",
+    "price": 29.9,
+    "compareAtPrice": 42.9,
+    "rating": 4.9,
+    "reviewCount": 275,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 40,
+    "image": "/products/tapis-yoga-antiderapant-tpe.jpg",
+    "gallery": [
+      "/products/tapis-yoga-antiderapant-tpe.jpg",
+      "/products/tapis-yoga-antiderapant-tpe-features.jpg",
+      "/products/tapis-yoga-antiderapant-tpe-details.jpg"
+    ],
+    "altText": "Tapis de yoga bicolore vert sauge et gris étalé avec repères d'alignement corporel gravés",
+    "shortDescription": "Épaisseur confort 6 mm protégeant les articulations. Matière TPE écologique antidérapante même en cas de transpiration.",
+    "benefits": [
       "Double face texturée antidérapante offrant une adhérence maximale",
       "Lignes de guidage gravées au laser pour perfectionner vos postures",
       "Sans PVC ni substances toxiques, léger avec sangle de transport offerte"
-],
-    specs: {
+    ],
+    "specs": {
       "Dimensions": "183 x 61 cm",
       "Épaisseur": "6 mm confort",
       "Matière": "TPE recyclable écologique"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "La sangle de transport est-elle incluse ?",
-            "a": "Oui, une sangle élastique de transport est fournie avec chaque tapis."
+        "q": "La sangle de transport est-elle incluse ?",
+        "a": "Oui, une sangle élastique de transport est fournie avec chaque tapis."
       }
-],
-    keywords: ["tapis yoga","yoga mat","pilates","tapis fitness","gymnastique","sport"]
+    ],
+    "keywords": [
+      "tapis yoga",
+      "yoga mat",
+      "pilates",
+      "tapis fitness",
+      "gymnastique",
+      "sport"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'rouleau-massage-mousse-muscle',
-    sku: 'SPT-ROL-MAS',
-    slug: 'rouleau-massage-mousse-muscle',
-    name: "Rouleau de massage musculaire en mousse haute densité (Foam roller)",
-    shortName: "Rouleau de massage musculaire",
-    category: 'sport',
-    subcategory: 'fitness',
-    categoryLabel: 'Sport',
-    price: 19.90,
-    compareAtPrice: 28.90,
-    rating: 4.8,
-    reviewCount: 190,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 45,
-    bundleWith: 'bandeaux-fitness',
-    image: 'https://images.unsplash.com/photo-1600618528240-fb9fc964b853?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1600618528240-fb9fc964b853?auto=format&fit=crop&w=800&q=80"],
-    altText: "Rouleau de massage musculaire en mousse texturée noire pour auto-massage et récupération",
-    shortDescription: "Soulage les tensions et accélère la récupération musculaire. Zones de massage ciblées reproduisant les pressions d'un masseur.",
-    benefits: [
+    "id": "rouleau-massage-mousse-muscle",
+    "sku": "SPT-ROL-MAS",
+    "slug": "rouleau-massage-mousse-muscle",
+    "name": "Rouleau de massage musculaire en mousse haute densité (Foam roller)",
+    "shortName": "Rouleau de massage musculaire",
+    "category": "sport",
+    "subcategory": "fitness",
+    "categoryLabel": "Sport",
+    "price": 19.9,
+    "compareAtPrice": 28.9,
+    "rating": 4.8,
+    "reviewCount": 190,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 45,
+    "bundleWith": "bandeaux-fitness",
+    "image": "/products/rouleau-mousse.jpg",
+    "gallery": [
+      "/products/rouleau-mousse.jpg",
+      "/products/rouleau-massage-mousse-muscle-features.jpg",
+      "/products/rouleau-massage-mousse-muscle-details.jpg"
+    ],
+    "altText": "Rouleau de massage musculaire en mousse texturée noire pour auto-massage et récupération",
+    "shortDescription": "Soulage les tensions et accélère la récupération musculaire. Zones de massage ciblées reproduisant les pressions d'un masseur.",
+    "benefits": [
       "Relâche les fascias et réduit les courbatures après l'entraînement",
       "Cœur renforcé supportant jusqu'à 150 kg sans déformation",
       "Idéal pour le dos, les cuisses, mollets et fessiers"
-],
-    specs: {
+    ],
+    "specs": {
       "Longueur": "33 cm",
       "Diamètre": "14 cm",
       "Matière": "Mousse EVA haute densité"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Fait-il mal lors des premières utilisations ?",
-            "a": "Une légère sensibilité est normale lors de la libération des tensions, ajustez la pression avec votre poids."
+        "q": "Fait-il mal lors des premières utilisations ?",
+        "a": "Une légère sensibilité est normale lors de la libération des tensions, ajustez la pression avec votre poids."
       }
-],
-    keywords: ["rouleau massage","foam roller","recuperation musculaire","courbatures","fitness","sport"]
+    ],
+    "keywords": [
+      "rouleau massage",
+      "foam roller",
+      "recuperation musculaire",
+      "courbatures",
+      "fitness",
+      "sport"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'corde-a-sauter-roulements-acier',
-    sku: 'SPT-JMP-ROP',
-    slug: 'corde-a-sauter-roulements-acier',
-    name: "Corde à sauter de vitesse réglable avec roulements à billes",
-    shortName: "Corde à sauter de vitesse",
-    category: 'sport',
-    subcategory: 'fitness',
-    categoryLabel: 'Sport',
-    price: 12.90,
-    compareAtPrice: 17.90,
-    rating: 4.8,
-    reviewCount: 220,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 55,
-    image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=800&q=80',
-    gallery: ['https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=800&q=80'],
-    altText: "Corde à sauter de vitesse en câble d'acier avec poignées en aluminium antidérapantes",
-    shortDescription: "Double roulement à billes 360° pour une rotation fluide sans aucun emmêlement. Câble d'acier gainé réglable à votre taille.",
-    benefits: [
+    "id": "corde-a-sauter-roulements-acier",
+    "sku": "SPT-JMP-ROP",
+    "slug": "corde-a-sauter-roulements-acier",
+    "name": "Corde à sauter de vitesse réglable avec roulements à billes",
+    "shortName": "Corde à sauter de vitesse",
+    "category": "sport",
+    "subcategory": "fitness",
+    "categoryLabel": "Sport",
+    "price": 12.9,
+    "compareAtPrice": 17.9,
+    "rating": 4.8,
+    "reviewCount": 220,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 55,
+    "image": "/products/corde-a-sauter.jpg",
+    "gallery": [
+      "/products/corde-a-sauter.jpg",
+      "/products/corde-a-sauter-roulements-acier-features.jpg",
+      "/products/corde-a-sauter-roulements-acier-details.jpg"
+    ],
+    "altText": "Corde à sauter de vitesse en câble d'acier avec poignées en aluminium antidérapantes",
+    "shortDescription": "Double roulement à billes 360° pour une rotation fluide sans aucun emmêlement. Câble d'acier gainé réglable à votre taille.",
+    "benefits": [
       "Système de roulements professionnels ultra-rapides sans frottement",
       "Câble en acier tressé gainé de PVC résistant à l'abrasion",
       "Poignées métalliques légères avec texture moletée antidérapante"
-],
-    specs: {
+    ],
+    "specs": {
       "Longueur": "3 m réglable sans outils",
       "Poignées": "Aluminium moleté 15 cm",
       "Poids": "170 g"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Comment régler la longueur ?",
-            "a": "Deux vis manuelles aux extrémités des poignées permettent de couper ou bloquer le câble à votre taille."
+        "q": "Comment régler la longueur ?",
+        "a": "Deux vis manuelles aux extrémités des poignées permettent de couper ou bloquer le câble à votre taille."
       }
-],
-    keywords: ["corde a sauter","cardio","crossfit","fitness","endurance","sport"]
+    ],
+    "keywords": [
+      "corde a sauter",
+      "cardio",
+      "crossfit",
+      "fitness",
+      "endurance",
+      "sport"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'gants-fitness-respirants',
-    sku: 'SPT-GLV-FIT',
-    slug: 'gants-fitness-respirants',
-    name: "Gants d'entraînement fitness respirants avec protège-poignets",
-    shortName: "Gants de fitness respirants",
-    category: 'sport',
-    subcategory: 'fitness',
-    categoryLabel: 'Sport',
-    price: 14.90,
-    compareAtPrice: 21.90,
-    rating: 4.7,
-    reviewCount: 160,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 45,
-    hasVariants: true,
-    sizes: ["M","L","XL"],
-    defaultSize: 'L',
-    image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80"],
-    altText: "Paire de gants de musculation noirs avec paume renforcée en silicone et bande de poignet ajustable",
-    shortDescription: "Protection intégrale contre les ampoules et callosités. Bandeau de poignet intégré pour stabiliser l'articulation lors des charges lourdes.",
-    benefits: [
-      "Coussinets en gel silicone antidérapant offrant un grip infaillible sur les barres",
+    "id": "gants-fitness-respirants",
+    "sku": "SPT-GLV-FIT",
+    "slug": "gants-fitness-respirants",
+    "name": "Gants d'entraînement fitness respirants avec protège-poignets",
+    "shortName": "Gants de fitness respirants",
+    "category": "sport",
+    "subcategory": "fitness",
+    "categoryLabel": "Sport",
+    "price": 14.9,
+    "compareAtPrice": 21.9,
+    "rating": 4.7,
+    "reviewCount": 160,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 45,
+    "hasVariants": true,
+    "sizes": [
+      "M",
+      "L",
+      "XL"
+    ],
+    "defaultSize": "L",
+    "image": "/products/gants-fitness-respirants.jpg",
+    "gallery": [
+      "/products/gants-fitness-respirants.jpg",
+      "/products/gants-fitness-respirants-features.jpg",
+      "/products/gants-fitness-respirants-details.jpg"
+    ],
+    "altText": "Paire de gants de musculation noirs avec paume renforcée en silicone et bande de poignet ajustable",
+    "shortDescription": "Protection intégrale contre les ampoules et callosités. Bandeau de poignet intégré pour stabiliser l'articulation lors des charges lourdes.",
+    "benefits": [
+      "Coussinets en gel silicone antidérapant offrant un adhérence renforcée sur les barres",
       "Bande élastique de maintien du poignet réduisant le risque d'entorse",
       "Tissu mesh micro-perforé sur le dos de la main pour une aération optimale"
-],
-    specs: {
+    ],
+    "specs": {
       "Matière": "Microfibre respirante + Silicone",
       "Fermeture": "Velcro renforcé",
       "Tailles": "M, L, XL"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Peut-on les laver ?",
-            "a": "Oui, lavage à la main à l'eau tiède savonneuse et séchage à l'air libre."
+        "q": "Peut-on les laver ?",
+        "a": "Oui, lavage à la main à l'eau tiède savonneuse et séchage à l'air libre."
       }
-],
-    keywords: ["gants musculation","gants fitness","protege poignet","grip barre","sport"]
+    ],
+    "keywords": [
+      "gants musculation",
+      "gants fitness",
+      "protege poignet",
+      "grip barre",
+      "sport"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'shaker-sport-inox',
-    sku: 'SPT-SHK-700',
-    slug: 'shaker-sport-inox',
-    name: "Shaker sport étanche 700ml avec bille mélangeuse en acier",
-    shortName: "Shaker sport étanche 700ml",
-    category: 'sport',
-    subcategory: 'fitness',
-    categoryLabel: 'Sport',
-    price: 13.90,
-    compareAtPrice: 19.90,
-    rating: 4.8,
-    reviewCount: 205,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 50,
-    image: 'https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=800&q=80"],
-    altText: "Shaker protéine noir mat 700ml avec bouchon hermétique et fouet mélangeur inox",
-    shortDescription: "Mélange crémeux et instantané sans aucun grumeau. 100% étanche avec bouchon à clapet sécurisé et graduations intérieures.",
-    benefits: [
-      "Bille shaker en acier chirurgical brisant les grumeaux en 5 secondes",
+    "id": "shaker-sport-inox",
+    "sku": "SPT-SHK-700",
+    "slug": "shaker-sport-inox",
+    "name": "Shaker sport étanche 700ml avec bille mélangeuse en acier",
+    "shortName": "Shaker sport étanche 700ml",
+    "category": "sport",
+    "subcategory": "fitness",
+    "categoryLabel": "Sport",
+    "price": 13.9,
+    "compareAtPrice": 19.9,
+    "rating": 4.8,
+    "reviewCount": 205,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 50,
+    "image": "/products/shaker-sport-inox.jpg",
+    "gallery": [
+      "/products/shaker-sport-inox.jpg",
+      "/products/shaker-sport-inox-features.jpg",
+      "/products/shaker-sport-inox-details.jpg"
+    ],
+    "altText": "Shaker protéine noir mat 700ml avec bouchon hermétique et fouet mélangeur inox",
+    "shortDescription": "Mélange crémeux et instantané sans aucun grumeau. Système étanche anti-fuite avec bouchon à clapet sécurisé et graduations intérieures.",
+    "benefits": [
+      "Bille mélangeuse en acier inoxydable pour un shaker fluide sans grumeaux",
       "Couvercle vissé étanche avec anneau de transport ergonomique",
-      "Matériau garanti sans BPA ni phtalates n'absorbant pas les mauvaises odeurs"
-],
-    specs: {
+      "Matériau certifié sans BPA ni phtalates n'absorbant pas les mauvaises odeurs"
+    ],
+    "specs": {
       "Contenance": "700 ml",
       "Matière": "Sans BPA certifié contact alimentaire",
       "Bille": "Inox 304"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Passe-t-il au lave-vaisselle ?",
-            "a": "Oui, entièrement démontable et lavable au panier supérieur du lave-vaisselle."
+        "q": "Passe-t-il au lave-vaisselle ?",
+        "a": "Oui, entièrement démontable et lavable au panier supérieur du lave-vaisselle."
       }
-],
-    keywords: ["shaker","proteine","gourde sport","bouteille sport","musculation","sport"]
+    ],
+    "keywords": [
+      "shaker",
+      "proteine",
+      "gourde sport",
+      "bouteille sport",
+      "musculation",
+      "sport"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'pese-bagages-electronique',
-    sku: 'VOY-SCL-50K',
-    slug: 'pese-bagages-electronique',
-    name: "Pèse-bagages électronique portable précis jusqu'à 50 kg",
-    shortName: "Pèse-bagages numérique",
-    category: 'voyage',
-    subcategory: 'accessoires',
-    categoryLabel: 'Voyage',
-    price: 12.90,
-    compareAtPrice: 18.90,
-    rating: 4.9,
-    reviewCount: 310,
-    badge: "Essentiel",
-    isBestSeller: true,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 60,
-    bundleWith: 'cubes-rangement-valise',
-    image: '/products/pese-bagages-electronique.jpg',
-    gallery: ["/products/pese-bagages-electronique.jpg"],
-    altText: "Balance pèse-bagages électronique argentée avec crochet pour peser valises d'avion",
-    shortDescription: "Évitez les frais de surpoids à l'aéroport. Écran LCD rétroéclairé avec arrêt automatique et fonction tare.",
-    benefits: [
-      "Précision à 10 grammes près jusqu'à 50 kg de charge",
-      "Écran digital rétroéclairé vert lisible même dans l'obscurité",
-      "Format de poche ultra-léger (90g) qui vous accompagne en voyage"
-],
-    specs: {
-      "Capacité max": "50 kg",
-      "Précision": "10 g",
-      "Alimentation": "Pile CR2032 incluse"
-},
-    faq: [
-      {
-            "q": "La pile est-elle fournie ?",
-            "a": "Oui, une pile bouton longue durée est déjà installée avec languette de protection."
-      }
-],
-    keywords: ["pese bagages","balance valise","poids bagage","aeroport","valise","voyage"]
-  },
-  {
-    id: 'etiquettes-bagages-cuir-lot2',
-    sku: 'VOY-TAG-CUIR',
-    slug: 'etiquettes-bagages-cuir-lot2',
-    name: "Étiquettes de bagage en cuir avec rabat de confidentialité (Lot de 2)",
-    shortName: "Étiquettes bagage cuir (x2)",
-    category: 'voyage',
-    subcategory: 'accessoires',
-    categoryLabel: 'Voyage',
-    price: 9.90,
-    compareAtPrice: 14.90,
-    rating: 4.8,
-    reviewCount: 185,
-    badge: "Pack Voyage",
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 55,
-    bundleWith: 'cubes-rangement-valise',
-    image: '/products/etiquettes-bagages-cuir.jpg',
-    gallery: ["/products/etiquettes-bagages-cuir.jpg"],
-    altText: "Lot de 2 étiquettes de valise en cuir camel avec rabat de protection des coordonnées",
-    shortDescription: "Identifiez votre valise au premier coup d'œil. Rabat en cuir protégeant vos données personnelles des regards indiscrets.",
-    benefits: [
+    "id": "etiquettes-bagages-cuir-lot2",
+    "sku": "VOY-TAG-CUIR",
+    "slug": "etiquettes-bagages-cuir-lot2",
+    "name": "Étiquettes de bagage en cuir avec rabat de confidentialité (Lot de 2)",
+    "shortName": "Étiquettes bagage cuir (x2)",
+    "category": "voyage",
+    "subcategory": "accessoires",
+    "categoryLabel": "Voyage",
+    "price": 9.9,
+    "compareAtPrice": 14.9,
+    "rating": 4.8,
+    "reviewCount": 185,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 55,
+    "bundleWith": "cubes-rangement-valise",
+    "image": "/products/etiquettes-bagages-cuir.jpg",
+    "gallery": [
+      "/products/etiquettes-bagages-cuir.jpg",
+      "/products/etiquettes-bagages-cuir-lot2-features.jpg",
+      "/products/etiquettes-bagages-cuir-lot2-details.jpg"
+    ],
+    "altText": "Lot de 2 étiquettes de valise en cuir camel avec rabat de protection des coordonnées",
+    "shortDescription": "Identifiez votre valise au premier coup d'œil. Rabat en cuir protégeant vos données personnelles des regards indiscrets.",
+    "benefits": [
       "Cuir synthétique grainé résistant aux frottements et intempéries",
       "Rabat de confidentialité masquant adresse et numéro de téléphone",
       "Boucle en acier inox robuste empêchant tout détachement"
-],
-    specs: {
+    ],
+    "specs": {
       "Dimensions": "11 x 7 cm",
       "Attache": "Lanière boucle acier",
       "Quantité": "Lot de 2 étiquettes"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Les cartes d'adresse sont-elles incluses ?",
-            "a": "Oui, 2 cartes pré-imprimées sont insérées sous film protecteur transparent."
+        "q": "Les cartes d'adresse sont-elles incluses ?",
+        "a": "Oui, 2 cartes pré-imprimées sont insérées sous film protecteur transparent."
       }
-],
-    keywords: ["etiquette bagage","porte etiquette","valise","voyage","accessoires voyage"]
+    ],
+    "keywords": [
+      "etiquette bagage",
+      "porte etiquette",
+      "valise",
+      "voyage",
+      "accessoires voyage"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'organisateur-electronique-voyage',
-    sku: 'VOY-ORG-CBL',
-    slug: 'organisateur-electronique-voyage',
-    name: "Pochette organisatrice de câbles et accessoires électroniques de voyage",
-    shortName: "Pochette électronique voyage",
-    category: 'voyage',
-    subcategory: 'organisation',
-    categoryLabel: 'Voyage',
-    price: 17.90,
-    compareAtPrice: 24.90,
-    rating: 4.8,
-    reviewCount: 220,
-    badge: null,
-    isBestSeller: true,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 48,
-    image: '/products/organisateur-electronique-voyage.jpg',
-    gallery: ["/products/organisateur-electronique-voyage.jpg"],
-    altText: "Housse de voyage zippée double compartiment pour câbles, chargeurs et adaptateurs",
-    shortDescription: "Finis les câbles emmêlés au fond du sac. Double compartiment rembourré avec élastiques et poches filet pour tous vos accessoires.",
-    benefits: [
+    "id": "organisateur-electronique-voyage",
+    "sku": "VOY-ORG-CBL",
+    "slug": "organisateur-electronique-voyage",
+    "name": "Pochette organisatrice de câbles et accessoires électroniques de voyage",
+    "shortName": "Pochette électronique voyage",
+    "category": "voyage",
+    "subcategory": "organisation",
+    "categoryLabel": "Voyage",
+    "price": 17.9,
+    "compareAtPrice": 24.9,
+    "rating": 4.8,
+    "reviewCount": 220,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 48,
+    "image": "/products/organisateur-electronique-voyage.jpg",
+    "gallery": [
+      "/products/organisateur-electronique-voyage.jpg",
+      "/products/organisateur-electronique-voyage-features.jpg",
+      "/products/organisateur-electronique-voyage-details.jpg"
+    ],
+    "altText": "Housse de voyage zippée double compartiment pour câbles, chargeurs et adaptateurs",
+    "shortDescription": "Finis les câbles emmêlés au fond du sac. Double compartiment rembourré avec élastiques et poches filet pour tous vos accessoires.",
+    "benefits": [
       "Double niveau d'organisation avec 8 passants élastiques et 5 poches filet",
       "Mousse antichoc protégeant disque dur, power bank et adaptateurs",
       "Tissu déperlant avec fermeture éclair fluide à double curseur"
-],
-    specs: {
+    ],
+    "specs": {
       "Dimensions": "24 x 18 x 5 cm",
       "Matière": "Polyester Oxford déperlant",
       "Poids": "190 g"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Un chargeur d'ordinateur peut-il y loger ?",
-            "a": "Oui, le grand compartiment inférieur accueille un chargeur PC ou Mac standard."
+        "q": "Un chargeur d'ordinateur peut-il y loger ?",
+        "a": "Oui, le grand compartiment inférieur accueille un chargeur PC ou Mac standard."
       }
-],
-    keywords: ["organisateur electronique","pochette cable","trousse voyage tech","chargeur","voyage"]
+    ],
+    "keywords": [
+      "organisateur electronique",
+      "pochette cable",
+      "trousse voyage tech",
+      "chargeur",
+      "voyage"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'masque-sommeil-3d-occultant',
-    sku: 'VOY-MSK-3D',
-    slug: 'masque-sommeil-3d-occultant',
-    name: "Masque de sommeil 3D occultant à mémoire de forme",
-    shortName: "Masque de sommeil 3D",
-    category: 'voyage',
-    subcategory: 'confort',
-    categoryLabel: 'Voyage',
-    price: 11.90,
-    compareAtPrice: 16.90,
-    rating: 4.9,
-    reviewCount: 260,
-    badge: "Confort",
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 55,
-    bundleWith: 'oreiller-voyage-memoire',
-    image: '/products/masque-sommeil-3d-occultant.jpg',
-    gallery: ["/products/masque-sommeil-3d-occultant.jpg"],
-    altText: "Masque de nuit ergonomique 3D noir avec cavité oculaire profonde et bandeau réglable",
-    shortDescription: "Occultation totale à 100% de la lumière. Cavités profilées 3D n'exerçant aucune pression sur les paupières ni les cils.",
-    benefits: [
+    "id": "masque-sommeil-3d-occultant",
+    "sku": "VOY-MSK-3D",
+    "slug": "masque-sommeil-3d-occultant",
+    "name": "Masque de sommeil 3D occultant à mémoire de forme",
+    "shortName": "Masque de sommeil 3D",
+    "category": "voyage",
+    "subcategory": "confort",
+    "categoryLabel": "Voyage",
+    "price": 11.9,
+    "compareAtPrice": 16.9,
+    "rating": 4.9,
+    "reviewCount": 260,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 55,
+    "bundleWith": "oreiller-voyage-memoire",
+    "image": "/products/masque-sommeil-3d-occultant.jpg",
+    "gallery": [
+      "/products/masque-sommeil-3d-occultant.jpg",
+      "/products/masque-sommeil-3d-occultant-features.jpg",
+      "/products/masque-sommeil-3d-occultant-details.jpg"
+    ],
+    "altText": "Masque de nuit ergonomique 3D noir avec cavité oculaire profonde et bandeau réglable",
+    "shortDescription": "Occultation totale à 100% de la lumière. Cavités profilées 3D n'exerçant aucune pression sur les paupières ni les cils.",
+    "benefits": [
       "Bordure nasale ergonomique bloquant chaque rayon de lumière",
       "Mousse à mémoire de forme ultra-douce et respirante",
       "Bandeau élastique réglable plat qui ne tire pas les cheveux"
-],
-    specs: {
+    ],
+    "specs": {
       "Matière": "Mousse mémoire respirante + Soie synthétique",
       "Occultation": "100% Blackout",
       "Fermeture": "Sangle réglable"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Écrase-t-il les extensions de cils ?",
-            "a": "Non, les cavités oculaires profondes de 15 mm permettent de cligner des yeux librement."
+        "q": "Écrase-t-il les extensions de cils ?",
+        "a": "Non, les cavités oculaires profondes de 15 mm permettent de cligner des yeux librement."
       }
-],
-    keywords: ["masque de sommeil","masque nuit","avion","occultant","sommeil","voyage"]
+    ],
+    "keywords": [
+      "masque de sommeil",
+      "masque nuit",
+      "avion",
+      "occultant",
+      "sommeil",
+      "voyage"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'ampoule-connectee-wifi-rgb',
-    sku: 'SEC-BLB-RGB',
-    slug: 'ampoule-connectee-wifi-rgb',
-    name: "Ampoule connectée WiFi E27 RGB + Blanc chaud/froid",
-    shortName: "Ampoule connectée WiFi E27",
-    category: 'securite',
-    subcategory: 'maison-intelligente',
-    categoryLabel: 'Sécurité',
-    price: 14.90,
-    compareAtPrice: 21.90,
-    rating: 4.8,
-    reviewCount: 235,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 50,
-    bundleWith: 'prise-connectee-wifi',
-    image: '/products/ampoule-connectee-wifi-rgb.jpg',
-    gallery: ["/products/ampoule-connectee-wifi-rgb.jpg"],
-    altText: "Ampoule connectée intelligente WiFi E27 avec éclairage multicolore et blanc chaud",
-    shortDescription: "Simulez votre présence à la maison à distance. 16 millions de couleurs et programmation horaire compatible Alexa et Google Home.",
-    benefits: [
+    "id": "ampoule-connectee-wifi-rgb",
+    "sku": "SEC-BLB-RGB",
+    "slug": "ampoule-connectee-wifi-rgb",
+    "name": "Ampoule connectée WiFi E27 RGB + Blanc chaud/froid",
+    "shortName": "Ampoule connectée WiFi E27",
+    "category": "securite",
+    "subcategory": "maison-intelligente",
+    "categoryLabel": "Sécurité",
+    "price": 14.9,
+    "compareAtPrice": 21.9,
+    "rating": 4.8,
+    "reviewCount": 235,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 50,
+    "bundleWith": "prise-connectee-wifi",
+    "image": "/products/ampoule-connectee-wifi-rgb.jpg",
+    "gallery": [
+      "/products/ampoule-connectee-wifi-rgb.jpg",
+      "/products/ampoule-connectee-wifi-rgb-features.jpg",
+      "/products/ampoule-connectee-wifi-rgb-details.jpg"
+    ],
+    "altText": "Ampoule connectée intelligente WiFi E27 avec éclairage multicolore et blanc chaud",
+    "shortDescription": "Simulez votre présence à la maison à distance. 16 millions de couleurs et programmation horaire compatible Alexa et Google Home.",
+    "benefits": [
       "Connexion directe au WiFi de votre box sans pont supplémentaire requis",
       "Simulation de présence automatique pour dissuader les cambriolages",
       "Variateur de luminosité et programmation réveil en douceur"
-],
-    specs: {
+    ],
+    "specs": {
       "Culot": "E27 standard",
       "Puissance": "9W (équivalent 60W)",
       "Luminosité": "806 Lumens",
       "Connectivité": "WiFi 2.4 GHz"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Faut-il un pont domotique ?",
-            "a": "Non, elle se connecte directement à votre WiFi via l'application smartphone."
+        "q": "Faut-il un pont domotique ?",
+        "a": "Non, elle se connecte directement à votre WiFi via l'application smartphone."
       }
-],
-    keywords: ["ampoule connectee","ampoule wifi","domotique","alexa","google home","simulation presence","securite"]
+    ],
+    "keywords": [
+      "ampoule connectee",
+      "ampoule wifi",
+      "domotique",
+      "alexa",
+      "google home",
+      "simulation presence",
+      "securite"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'detecteur-ouverture-porte-fenetre',
-    sku: 'SEC-SNS-DRW',
-    slug: 'detecteur-ouverture-porte-fenetre',
-    name: "Capteur d'ouverture porte et fenêtre sans fil connecté WiFi",
-    shortName: "Capteur d'ouverture connecté",
-    category: 'securite',
-    subcategory: 'surveillance',
-    categoryLabel: 'Sécurité',
-    price: 16.90,
-    compareAtPrice: 24.90,
-    rating: 4.8,
-    reviewCount: 178,
-    badge: "Sécurité",
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 45,
-    bundleWith: 'camera-surveillance-wifi',
-    image: '/products/detecteur-ouverture-porte-fenetre.jpg',
-    gallery: ["/products/detecteur-ouverture-porte-fenetre.jpg"],
-    altText: "Paire de capteurs magnétiques blancs connectés d'ouverture de porte et fenêtre",
-    shortDescription: "Recevez une notification instantanée sur votre smartphone dès qu'une porte ou fenêtre est ouverte. Installation en 1 minute par adhésif.",
-    benefits: [
+    "id": "detecteur-ouverture-porte-fenetre",
+    "sku": "SEC-SNS-DRW",
+    "slug": "detecteur-ouverture-porte-fenetre",
+    "name": "Capteur d'ouverture porte et fenêtre sans fil connecté WiFi",
+    "shortName": "Capteur d'ouverture connecté",
+    "category": "securite",
+    "subcategory": "surveillance",
+    "categoryLabel": "Sécurité",
+    "price": 16.9,
+    "compareAtPrice": 24.9,
+    "rating": 4.8,
+    "reviewCount": 178,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 45,
+    "bundleWith": "camera-surveillance-wifi",
+    "image": "/products/detecteur-ouverture-porte-fenetre.jpg",
+    "gallery": [
+      "/products/detecteur-ouverture-porte-fenetre.jpg",
+      "/products/detecteur-ouverture-porte-fenetre-features.jpg",
+      "/products/detecteur-ouverture-porte-fenetre-details.jpg"
+    ],
+    "altText": "Paire de capteurs magnétiques blancs connectés d'ouverture de porte et fenêtre",
+    "shortDescription": "Recevez une notification instantanée sur votre smartphone dès qu'une porte ou fenêtre est ouverte. Installation en 1 minute par adhésif.",
+    "benefits": [
       "Alerte push instantanée sur smartphone en cas d'intrusion",
       "Historique complet des ouvertures et fermetures consultable en direct",
       "Autonomie jusqu'à 1 an sur pile bouton avec notification de batterie faible"
-],
-    specs: {
+    ],
+    "specs": {
       "Fixation": "Adhésif 3M puissant inclus",
       "Portée": "WiFi 2.4 GHz",
       "Autonomie": "12 mois"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Fonctionne-t-il sur une baie vitrée ?",
-            "a": "Oui, compatible avec tout type de porte, fenêtre, baie vitrée ou tiroir."
+        "q": "Fonctionne-t-il sur une baie vitrée ?",
+        "a": "Oui, compatible avec tout type de porte, fenêtre, baie vitrée ou tiroir."
       }
-],
-    keywords: ["capteur porte","detecteur ouverture","alarme fenetre","anti intrusion","securite"]
+    ],
+    "keywords": [
+      "capteur porte",
+      "detecteur ouverture",
+      "alarme fenetre",
+      "anti intrusion",
+      "securite"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'mini-camera-surveillance-aimant',
-    sku: 'SEC-CAM-MAG',
-    slug: 'mini-camera-surveillance-aimant',
-    name: "Mini caméra de surveillance magnétique HD 1080p avec vision nocturne",
-    shortName: "Mini caméra magnétique 1080p",
-    category: 'securite',
-    subcategory: 'cameras',
-    categoryLabel: 'Sécurité',
-    price: 26.90,
-    compareAtPrice: 38.90,
-    rating: 4.7,
-    reviewCount: 204,
-    badge: "Discret",
-    isBestSeller: true,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 40,
-    image: '/products/mini-camera-surveillance-aimant.jpg',
-    gallery: ["/products/mini-camera-surveillance-aimant.jpg"],
-    altText: "Petite caméra de surveillance circulaire noire magnétique discrète avec support rotatif",
-    shortDescription: "Seulement 3.5 cm de diamètre. Base aimantée se fixant partout en toute discrétion. Vidéo en direct sur smartphone et vision nocturne.",
-    benefits: [
+    "id": "mini-camera-surveillance-aimant",
+    "sku": "SEC-CAM-MAG",
+    "slug": "mini-camera-surveillance-aimant",
+    "name": "Mini caméra de surveillance magnétique HD 1080p avec vision nocturne",
+    "shortName": "Mini caméra magnétique 1080p",
+    "category": "securite",
+    "subcategory": "cameras",
+    "categoryLabel": "Sécurité",
+    "price": 26.9,
+    "compareAtPrice": 38.9,
+    "rating": 4.7,
+    "reviewCount": 204,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 40,
+    "image": "/products/mini-camera-surveillance-aimant.jpg",
+    "gallery": [
+      "/products/mini-camera-surveillance-aimant.jpg",
+      "/products/mini-camera-surveillance-aimant-features.jpg",
+      "/products/mini-camera-surveillance-aimant-details.jpg"
+    ],
+    "altText": "Petite caméra de surveillance circulaire noire magnétique discrète avec support rotatif",
+    "shortDescription": "Seulement 3.5 cm de diamètre. Base aimantée se fixant partout en toute discrétion. Vidéo en direct sur smartphone et vision nocturne.",
+    "benefits": [
       "Taille miniature ultra-discrète avec aimant puissant intégré",
       "Vision nocturne infrarouge invisible à l'œil nu dans le noir",
       "Détecteur de mouvement avec enregistrement automatique sur carte micro-SD"
-],
-    specs: {
+    ],
+    "specs": {
       "Résolution": "Full HD 1080p",
       "Diamètre": "3.5 cm",
       "Batterie": "Rechargeable intégrée (fonctionne aussi branchée)"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Peut-on visionner à distance en direct ?",
-            "a": "Oui, via l'application smartphone gratuite connectée au WiFi de votre domicile."
+        "q": "Peut-on visionner à distance en direct ?",
+        "a": "Oui, via l'application smartphone gratuite connectée au WiFi de votre domicile."
       }
-],
-    keywords: ["mini camera","camera discrete","camera surveillance","vision nocturne","securite"]
+    ],
+    "keywords": [
+      "mini camera",
+      "camera discrete",
+      "camera surveillance",
+      "vision nocturne",
+      "securite"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'porte-cartes-aluminium-anti-rfid',
-    sku: 'ACC-CRD-ALU',
-    slug: 'porte-cartes-aluminium-anti-rfid',
-    name: "Porte-cartes automatique en aluminium avec protection anti-RFID",
-    shortName: "Porte-cartes automatique anti-RFID",
-    category: 'accessoires',
-    subcategory: 'portefeuilles',
-    categoryLabel: 'Accessoires',
-    price: 15.90,
-    compareAtPrice: 22.90,
-    rating: 4.9,
-    reviewCount: 310,
-    badge: "Incontournable",
-    isBestSeller: true,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    image: '/products/porte-cartes-aluminium-anti-rfid.jpg',
-    gallery: ["/products/porte-cartes-aluminium-anti-rfid.jpg"],
-    altText: "Porte-cartes minimaliste en aluminium noir brossé éjectant les cartes bancaires en cascade",
-    shortDescription: "Un clic sur le bouton inférieur éjecte vos cartes en éventail. Boîtier en aluminium bloquant les tentatives de piratage sans contact.",
-    benefits: [
+    "id": "porte-cartes-aluminium-anti-rfid",
+    "sku": "ACC-CRD-ALU",
+    "slug": "porte-cartes-aluminium-anti-rfid",
+    "name": "Porte-cartes automatique en aluminium avec protection anti-RFID",
+    "shortName": "Porte-cartes automatique anti-RFID",
+    "category": "accessoires",
+    "subcategory": "portefeuilles",
+    "categoryLabel": "Accessoires",
+    "price": 15.9,
+    "compareAtPrice": 22.9,
+    "rating": 4.9,
+    "reviewCount": 310,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "image": "/products/porte-cartes-aluminium-anti-rfid.jpg",
+    "gallery": [
+      "/products/porte-cartes-aluminium-anti-rfid.jpg",
+      "/products/porte-cartes-aluminium-anti-rfid-features.jpg",
+      "/products/porte-cartes-aluminium-anti-rfid-details.jpg"
+    ],
+    "altText": "Porte-cartes minimaliste en aluminium noir brossé éjectant les cartes bancaires en cascade",
+    "shortDescription": "Un clic sur le bouton inférieur éjecte vos cartes en éventail. Boîtier en aluminium bloquant les tentatives de piratage sans contact.",
+    "benefits": [
       "Éjection mécanique fluide d'un simple geste à une main",
       "Protection certifiée anti-RFID / NFC contre le vol de données bancaires",
       "Épaisseur de seulement 9 mm pour tenir dans la poche avant sans gêner"
-],
-    specs: {
+    ],
+    "specs": {
       "Capacité": "5 à 6 cartes bancaires",
       "Dimensions": "9.5 x 6.2 x 0.9 cm",
       "Matière": "Aluminium aérospatial"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Les cartes risquent-elles de tomber ?",
-            "a": "Non, un grip en silicone interne retient fermement les cartes même retourné."
+        "q": "Les cartes risquent-elles de tomber ?",
+        "a": "Non, un grip en silicone interne retient fermement les cartes même retourné."
       }
-],
-    keywords: ["porte cartes","portefeuille","anti rfid","pop up","aluminium","accessoires"]
+    ],
+    "keywords": [
+      "porte cartes",
+      "portefeuille",
+      "anti rfid",
+      "pop up",
+      "aluminium",
+      "accessoires"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'portefeuille-compact-cuir',
-    sku: 'ACC-WLT-LEA',
-    slug: 'portefeuille-compact-cuir',
-    name: "Portefeuille compact en cuir véritable avec pince à billets",
-    shortName: "Portefeuille cuir avec pince billets",
-    category: 'accessoires',
-    subcategory: 'portefeuilles',
-    categoryLabel: 'Accessoires',
-    price: 24.90,
-    compareAtPrice: 35.90,
-    rating: 4.8,
-    reviewCount: 198,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: false,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 45,
-    image: 'https://images.unsplash.com/photo-1559563458-527698bf5295?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1559563458-527698bf5295?auto=format&fit=crop&w=800&q=80"],
-    altText: "Portefeuille fin bifold en cuir marron vintage avec pince à billets intégrée en acier",
-    shortDescription: "Allie tradition et modernité. Cuir véritable pleine fleur patiné avec pince à billets en acier inoxydable et protection RFID.",
-    benefits: [
+    "id": "portefeuille-compact-cuir",
+    "sku": "ACC-WLT-LEA",
+    "slug": "portefeuille-compact-cuir",
+    "name": "Portefeuille compact en cuir véritable avec pince à billets",
+    "shortName": "Portefeuille cuir avec pince billets",
+    "category": "accessoires",
+    "subcategory": "portefeuilles",
+    "categoryLabel": "Accessoires",
+    "price": 24.9,
+    "compareAtPrice": 35.9,
+    "rating": 4.8,
+    "reviewCount": 198,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 45,
+    "image": "/products/portefeuille-cuir.jpg",
+    "gallery": [
+      "/products/portefeuille-cuir.jpg",
+      "/products/portefeuille-compact-cuir-features.jpg",
+      "/products/portefeuille-compact-cuir-details.jpg"
+    ],
+    "altText": "Portefeuille fin bifold en cuir marron vintage avec pince à billets intégrée en acier",
+    "shortDescription": "Allie tradition et modernité. Cuir véritable pleine fleur patiné avec pince à billets en acier inoxydable et protection RFID.",
+    "benefits": [
       "Véritable cuir pleine fleur développant une belle patine avec le temps",
       "Pince à billets en acier trempé maintenant fermement vos billets en euros",
       "Capacité jusqu'à 8 cartes dans un format ultra-plat"
-],
-    specs: {
+    ],
+    "specs": {
       "Matière": "100% Cuir véritable pleine fleur",
       "Dimensions": "11 x 7.5 cm",
       "Protection": "Anti-RFID"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Les billets en euros rentrent-ils sans dépasser ?",
-            "a": "Oui, conçu spécifiquement pour les billets de 10€, 20€ et 50€ pliés en deux."
+        "q": "Les billets en euros rentrent-ils sans dépasser ?",
+        "a": "Oui, conçu spécifiquement pour les billets de 10€, 20€ et 50€ pliés en deux."
       }
-],
-    keywords: ["portefeuille","portefeuille cuir","pince a billets","portefeuille homme","accessoires"]
+    ],
+    "keywords": [
+      "portefeuille",
+      "portefeuille cuir",
+      "pince a billets",
+      "portefeuille homme",
+      "accessoires"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'lunettes-soleil-polarisees-classiques',
-    sku: 'ACC-SUN-POL',
-    slug: 'lunettes-soleil-polarisees-classiques',
-    name: "Lunettes de soleil polarisées monture classique protection UV400",
-    shortName: "Lunettes de soleil polarisées UV400",
-    category: 'accessoires',
-    subcategory: 'lunettes',
-    categoryLabel: 'Accessoires',
-    price: 21.90,
-    compareAtPrice: 32.90,
-    rating: 4.8,
-    reviewCount: 225,
-    badge: "Tendance",
-    isBestSeller: true,
-    isNew: true,
-    isFashion: true,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 50,
-    image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=800&q=80"],
-    altText: "Lunettes de soleil polarisées monture classique noire mate avec verres antireflet UV400",
-    shortDescription: "Verres polarisés TAC éliminant les reflets gênants sur la route ou l'eau. Monture légère et charnières à ressort ultra-confortables.",
-    benefits: [
+    "id": "lunettes-soleil-polarisees-classiques",
+    "sku": "ACC-SUN-POL",
+    "slug": "lunettes-soleil-polarisees-classiques",
+    "name": "Lunettes de soleil polarisées monture classique protection UV400",
+    "shortName": "Lunettes de soleil polarisées UV400",
+    "category": "accessoires",
+    "subcategory": "lunettes",
+    "categoryLabel": "Accessoires",
+    "price": 21.9,
+    "compareAtPrice": 32.9,
+    "rating": 4.8,
+    "reviewCount": 225,
+    "badge": null,
+    "isBestSeller": true,
+    "isNew": true,
+    "isFashion": true,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 50,
+    "image": "/products/lunettes-soleil-polarisees-classiques.jpg",
+    "gallery": [
+      "/products/lunettes-soleil-polarisees-classiques.jpg",
+      "/products/lunettes-soleil-polarisees-classiques-features.jpg",
+      "/products/lunettes-soleil-polarisees-classiques-details.jpg"
+    ],
+    "altText": "Lunettes de soleil polarisées monture classique noire mate avec verres antireflet UV400",
+    "shortDescription": "Verres polarisés TAC éliminant les reflets gênants sur la route ou l'eau. Monture légère et charnières à ressort ultra-confortables.",
+    "benefits": [
       "Verres polarisés haute définition catégorie 3 certifiés UV400",
       "Supprime l'éblouissement lors de la conduite automobile",
       "Charnières métalliques à ressort s'adaptant à toutes les largeurs de visage"
-],
-    specs: {
+    ],
+    "specs": {
       "Protection": "100% UV400 (UVA & UVB)",
       "Verres": "Polarisés TAC Catégorie 3",
       "Étui": "Étui rigide + microfibre inclus"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "L'étui de transport est-il fourni ?",
-            "a": "Oui, livré avec étui rigide zippé et chiffon de nettoyage en microfibre."
+        "q": "L'étui de transport est-il fourni ?",
+        "a": "Oui, livré avec étui rigide zippé et chiffon de nettoyage en microfibre."
       }
-],
-    keywords: ["lunettes de soleil","lunettes polarisees","uv400","solaire","conduite","accessoires"]
+    ],
+    "keywords": [
+      "lunettes de soleil",
+      "lunettes polarisees",
+      "uv400",
+      "solaire",
+      "conduite",
+      "accessoires"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'ceinture-cuir-automatique',
-    sku: 'ACC-BEL-AUT',
-    slug: 'ceinture-cuir-automatique',
-    name: "Ceinture en cuir véritable avec boucle automatique sans trous",
-    shortName: "Ceinture cuir boucle automatique",
-    category: 'accessoires',
-    subcategory: 'accessoires-mode',
-    categoryLabel: 'Accessoires',
-    price: 22.90,
-    compareAtPrice: 32.90,
-    rating: 4.9,
-    reviewCount: 240,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: true,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 45,
-    image: '/products/ceinture-cuir.jpg',
-    gallery: ["/products/ceinture-cuir.jpg"],
-    altText: "Ceinture en cuir noir véritable pour homme avec boucle automatique en métal brossé",
-    shortDescription: "Système à crémaillère millimétrique : ajustement parfait sans trou qui s'abîme. Se règle d'un simple geste discret.",
-    benefits: [
+    "id": "ceinture-cuir-automatique",
+    "sku": "ACC-BEL-AUT",
+    "slug": "ceinture-cuir-automatique",
+    "name": "Ceinture en cuir véritable avec boucle automatique sans trous",
+    "shortName": "Ceinture cuir boucle automatique",
+    "category": "accessoires",
+    "subcategory": "accessoires-mode",
+    "categoryLabel": "Accessoires",
+    "price": 22.9,
+    "compareAtPrice": 32.9,
+    "rating": 4.9,
+    "reviewCount": 240,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": true,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 45,
+    "image": "/products/ceinture-cuir-automatique.jpg",
+    "gallery": [
+      "/products/ceinture-cuir-automatique.jpg",
+      "/products/ceinture-cuir-automatique-features.jpg",
+      "/products/ceinture-cuir-automatique-details.jpg"
+    ],
+    "altText": "Ceinture en cuir noir véritable pour homme avec boucle automatique en métal brossé",
+    "shortDescription": "Système à crémaillère millimétrique : ajustement parfait sans trou qui s'abîme. Se règle d'un simple geste discret.",
+    "benefits": [
       "32 crans de micro-ajustement tous les 5 mm (bien plus précis qu'une ceinture à trous)",
       "Lanière en cuir véritable pleine fleur sélectionné pour sa longévité",
       "Longueur facilement recoupable à vos mesures exactes sans outil spécial"
-],
-    specs: {
+    ],
+    "specs": {
       "Matière": "Cuir véritable de vachette",
       "Largeur": "3.5 cm standard passant pantalon",
       "Longueur": "125 cm recoupable"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Comment ajuster la longueur si elle est trop longue ?",
-            "a": "Déclipsez la boucle, coupez le surplus de cuir avec des ciseaux et reclippez."
+        "q": "Comment ajuster la longueur si elle est trop longue ?",
+        "a": "Déclipsez la boucle, coupez le surplus de cuir avec des ciseaux et reclippez."
       }
-],
-    keywords: ["ceinture","ceinture cuir","boucle automatique","ceinture sans trous","homme","accessoires"]
+    ],
+    "keywords": [
+      "ceinture",
+      "ceinture cuir",
+      "boucle automatique",
+      "ceinture sans trous",
+      "homme",
+      "accessoires"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
   },
   {
-    id: 'bracelet-jonc-acier-inoxydable',
-    sku: 'ACC-BRC-JON',
-    slug: 'bracelet-jonc-acier-inoxydable',
-    name: "Bracelet jonc ouvert minimaliste en acier inoxydable",
-    shortName: "Bracelet jonc acier inoxydable",
-    category: 'accessoires',
-    subcategory: 'bijoux',
-    categoryLabel: 'Accessoires',
-    price: 16.90,
-    compareAtPrice: 24.90,
-    rating: 4.8,
-    reviewCount: 175,
-    badge: null,
-    isBestSeller: false,
-    isNew: true,
-    isFashion: true,
-    imageDisplayMode: 'contain',
-    shippingEU: 'Stock UE',
-    stock: 50,
-    image: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&w=800&q=80',
-    gallery: ["https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&w=800&q=80"],
-    altText: "Bracelet jonc ouvert minimaliste argenté en acier inoxydable brossé unisexe",
-    shortDescription: "Design intemporel unisexe. Acier chirurgical 316L inaltérable qui ne noircit pas, ne décolore pas et résiste à l'eau et au parfum.",
-    benefits: [
+    "id": "bracelet-jonc-acier-inoxydable",
+    "sku": "ACC-BRC-JON",
+    "slug": "bracelet-jonc-acier-inoxydable",
+    "name": "Bracelet jonc ouvert minimaliste en acier inoxydable",
+    "shortName": "Bracelet jonc acier inoxydable",
+    "category": "accessoires",
+    "subcategory": "bijoux",
+    "categoryLabel": "Accessoires",
+    "price": 16.9,
+    "compareAtPrice": 24.9,
+    "rating": 4.8,
+    "reviewCount": 175,
+    "badge": null,
+    "isBestSeller": false,
+    "isNew": true,
+    "isFashion": true,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE",
+    "stock": 50,
+    "image": "/products/bracelet-jonc-acier-inoxydable.jpg",
+    "gallery": [
+      "/products/bracelet-jonc-acier-inoxydable.jpg",
+      "/products/bracelet-jonc-acier-inoxydable-features.jpg",
+      "/products/bracelet-jonc-acier-inoxydable-details.jpg"
+    ],
+    "altText": "Bracelet jonc ouvert minimaliste argenté en acier inoxydable brossé unisexe",
+    "shortDescription": "Design intemporel unisexe. Acier chirurgical 316L inaltérable qui ne noircit pas, ne décolore pas et résiste à l'eau et au parfum.",
+    "benefits": [
       "Acier chirurgical 316L 100% hypoallergénique sans nickel",
       "Résiste à l'eau de mer, sous la douche et à la transpiration",
       "Légèrement malléable pour s'ajuster au millimètre à votre poignet"
-],
-    specs: {
+    ],
+    "specs": {
       "Matière": "Acier inoxydable chirurgical 316L",
       "Largeur": "6 mm",
       "Finition": "Argent brossé"
-},
-    faq: [
+    },
+    "faq": [
       {
-            "q": "Peut-on le porter sous la douche ?",
-            "a": "Absolument, l'acier inoxydable 316L ne rouille jamais et ne verdit pas la peau."
+        "q": "Peut-on le porter sous la douche ?",
+        "a": "Absolument, l'acier inoxydable 316L ne rouille jamais et ne verdit pas la peau."
       }
-],
-    keywords: ["bracelet","jonc","bijoux","acier inoxydable","bracelet homme","bracelet femme","accessoires"]
+    ],
+    "keywords": [
+      "bracelet",
+      "jonc",
+      "bijoux",
+      "acier inoxydable",
+      "bracelet homme",
+      "bracelet femme",
+      "accessoires"
+    ],
+    "isCurated": false,
+    "isArchived": true,
+    "status": "archived"
+  },
+  {
+    "id": "chargeur-magnetique-3-en-1",
+    "sku": "TECH-CHG-3IN1",
+    "slug": "chargeur-magnetique-sans-fil-3-en-1",
+    "name": "Chargeur Magnétique Sans Fil 3-en-1 Pliable",
+    "shortName": "Chargeur 3-en-1 Pliable",
+    "category": "tech",
+    "subcategory": "charge-energie",
+    "categoryLabel": "Tech & Gadgets",
+    "price": 39.9,
+    "compareAtPrice": 59.9,
+    "rating": 4.9,
+    "reviewCount": 112,
+    "badge": "Nouveau",
+    "isBestSeller": false,
+    "isNew": true,
+    "isCurated": true,
+    "curatedOrder": 6,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 45,
+    "image": "/products/unsplash_2.jpg",
+    "gallery": [
+      "/products/unsplash_2.jpg",
+      "/products/chargeur-magnetique-3-en-1-features.jpg",
+      "/products/chargeur-magnetique-3-en-1-details.jpg"
+    ],
+    "altText": "Chargeur magnétique sans fil 3-en-1 pliable pour smartphone montre et écouteurs",
+    "shortDescription": "Station de charge compacte et pliable pour recharger simultanément votre smartphone, votre montre connectée et vos écouteurs sans fil. Idéal pour le voyage et le bureau.",
+    "benefits": [
+      "Charge simultanée de 3 appareils",
+      "Format pliable ultra-compact idéal pour voyager",
+      "Fixation magnétique puissante compatible MagSafe"
+    ],
+    "specs": {
+      "Puissance totale": "15W + 5W + 3W",
+      "Compatibilité": "Smartphones Qi/MagSafe, montres, écouteurs",
+      "Poids": "140 g",
+      "Dimensions plié": "7 x 7 x 2 cm"
+    },
+    "faq": [
+      {
+        "q": "Le câble d'alimentation est-il fourni ?",
+        "a": "Oui, un câble USB-C vers USB-C est inclus dans la boîte."
+      }
+    ],
+    "keywords": [
+      "chargeur sans fil",
+      "magsafe",
+      "3-en-1",
+      "station de charge",
+      "voyage"
+    ]
+  },
+  {
+    "id": "bouteille-eau-intelligente",
+    "sku": "HOME-BTL-SMART",
+    "slug": "bouteille-eau-intelligente-temperature",
+    "name": "Bouteille d'Eau Intelligente avec Affichage Température",
+    "shortName": "Bouteille Isotherme Smart",
+    "category": "maison",
+    "subcategory": "conservation",
+    "categoryLabel": "Maison & Cuisine",
+    "price": 24.9,
+    "compareAtPrice": 34.9,
+    "rating": 4.8,
+    "reviewCount": 89,
+    "badge": "Populaire",
+    "isBestSeller": false,
+    "isNew": true,
+    "isCurated": false,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 60,
+    "image": "/products/unsplash_5.jpg",
+    "gallery": [
+      "/products/unsplash_5.jpg",
+      "/products/bouteille-eau-intelligente-features.jpg",
+      "/products/bouteille-eau-intelligente-details.jpg"
+    ],
+    "altText": "Bouteille d'eau isotherme avec écran LED affichage température",
+    "shortDescription": "Gourde isotherme en acier inoxydable avec un écran LED tactile sur le bouchon pour vérifier instantanément la température de votre boisson.",
+    "benefits": [
+      "Isolation thermique double paroi (chaud 12h, froid 24h)",
+      "Écran LED tactile sans pile à recharger (durée de vie 3 ans)",
+      "Design épuré et filtre à thé intégré"
+    ],
+    "specs": {
+      "Capacité": "500 ml",
+      "Matériau": "Acier inoxydable 304 de qualité alimentaire",
+      "Étanche": "Oui, joint en silicone 360°"
+    },
+    "faq": [
+      {
+        "q": "Faut-il recharger le bouchon ?",
+        "a": "Non, la puce intelligente est conçue pour durer plusieurs années sans aucune recharge."
+      }
+    ],
+    "keywords": [
+      "gourde isotherme",
+      "bouteille intelligente",
+      "led",
+      "temperature",
+      "sport"
+    ]
+  },
+  {
+    "id": "aspirateur-bureau-compact",
+    "sku": "TECH-VAC-DESK",
+    "slug": "aspirateur-bureau-compact-sans-fil",
+    "name": "Aspirateur de Bureau Compact Sans Fil",
+    "shortName": "Mini Aspirateur Bureau",
+    "category": "tech",
+    "subcategory": "accessoires-pc-mobile",
+    "categoryLabel": "Tech & Gadgets",
+    "price": 19.9,
+    "compareAtPrice": 29.9,
+    "rating": 4.7,
+    "reviewCount": 64,
+    "badge": "",
+    "isBestSeller": false,
+    "isNew": true,
+    "isCurated": false,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 120,
+    "image": "/products/unsplash_8.jpg",
+    "gallery": [
+      "/products/unsplash_8.jpg",
+      "/products/aspirateur-bureau-compact-features.jpg",
+      "/products/aspirateur-bureau-compact-details.jpg"
+    ],
+    "altText": "Mini aspirateur de bureau design sans fil",
+    "shortDescription": "Gardez votre espace de travail impeccable. Ce mini aspirateur aspire les miettes, la poussière et les résidus de gomme sur votre bureau ou clavier en un clin d'œil.",
+    "benefits": [
+      "Aspiration puissante et silencieuse à 360°",
+      "Format ultra-compact tenant dans la paume de la main",
+      "Fonctionne sur batterie rechargeable via USB"
+    ],
+    "specs": {
+      "Alimentation": "Batterie lithium rechargeable (câble USB inclus)",
+      "Bruit": "< 50 dB",
+      "Poids": "150 g"
+    },
+    "faq": [
+      {
+        "q": "Peut-on l'utiliser pour nettoyer le clavier d'un ordinateur ?",
+        "a": "Absolument, ses petites brosses inférieures sont parfaites pour déloger la poussière entre les touches."
+      }
+    ],
+    "keywords": [
+      "aspirateur bureau",
+      "clavier",
+      "nettoyage",
+      "gadget",
+      "sans fil"
+    ]
+  },
+  {
+    "id": "mini-compresseur-air",
+    "sku": "AUTO-CMP-MINI",
+    "slug": "mini-compresseur-air-portatif",
+    "name": "Mini Compresseur d'Air Portatif Rechargeable",
+    "shortName": "Mini Compresseur Auto",
+    "category": "voyage-auto",
+    "subcategory": "entretien-auto",
+    "categoryLabel": "Voyage, Auto & Outdoor",
+    "price": 49.9,
+    "compareAtPrice": 79.9,
+    "rating": 4.9,
+    "reviewCount": 210,
+    "badge": "Top Vente",
+    "isBestSeller": true,
+    "isNew": true,
+    "isCurated": true,
+    "curatedOrder": 5,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 35,
+    "image": "/products/unsplash_11.jpg",
+    "gallery": [
+      "/products/unsplash_11.jpg",
+      "/products/mini-compresseur-air-features.jpg",
+      "/products/mini-compresseur-air-details.jpg"
+    ],
+    "altText": "Mini compresseur d'air portatif sur batterie pour pneus de voiture et vélo",
+    "shortDescription": "Gonflez vos pneus de voiture, vélo ou ballons n'importe où. Pompe à air électrique de poche avec arrêt automatique et lampe LED intégrée.",
+    "benefits": [
+      "Détection précise de la pression et arrêt automatique intelligent",
+      "Batterie haute capacité permettant de regonfler jusqu'à 4 pneus de voiture",
+      "Écran digital clair et lampe de poche de secours intégrée"
+    ],
+    "specs": {
+      "Pression max": "150 PSI",
+      "Batterie": "4000 mAh (recharge USB-C)",
+      "Valve": "Adaptateurs multiples inclus (Presta, Schrader, ballon)"
+    },
+    "faq": [
+      {
+        "q": "Est-il assez puissant pour un pneu de SUV ?",
+        "a": "Oui, il peut tout à fait ajuster la pression d'un gros véhicule en quelques minutes."
+      }
+    ],
+    "keywords": [
+      "compresseur",
+      "pompe electrique",
+      "voiture",
+      "velo",
+      "secours"
+    ]
+  },
+  {
+    "id": "reveil-lumineux-simulateur-aube",
+    "sku": "HOME-ALR-DAWN",
+    "slug": "reveil-lumineux-simulateur-aube",
+    "name": "Réveil Lumineux Simulateur d'Aube",
+    "shortName": "Réveil Aube Naturelle",
+    "category": "maison",
+    "subcategory": "eclairage-led",
+    "categoryLabel": "Maison & Cuisine",
+    "price": 34.9,
+    "compareAtPrice": 59.9,
+    "rating": 4.8,
+    "reviewCount": 145,
+    "badge": "",
+    "isBestSeller": false,
+    "isNew": true,
+    "isCurated": false,
+    "status": "active",
+    "isFashion": false,
+    "imageDisplayMode": "contain",
+    "shippingEU": "Stock UE disponible",
+    "stock": 80,
+    "image": "/products/unsplash_14.jpg",
+    "gallery": [
+      "/products/unsplash_14.jpg",
+      "/products/reveil-lumineux-simulateur-aube-features.jpg",
+      "/products/reveil-lumineux-simulateur-aube-details.jpg"
+    ],
+    "altText": "Réveil lumineux avec simulateur d'aube et sons de la nature",
+    "shortDescription": "Réveillez-vous en douceur et sans stress grâce à ce réveil qui simule le lever du soleil. Idéal pour les matins difficiles en hiver.",
+    "benefits": [
+      "Simulation progressive de l'aube (de 10 à 60 minutes avant l'alarme)",
+      "Choix de 7 sons naturels apaisants ou radio FM",
+      "Fonction lampe de chevet avec 20 réglages de luminosité et 7 couleurs"
+    ],
+    "specs": {
+      "Fonctions": "Alarme double, fonction Snooze, radio",
+      "Alimentation": "Prise secteur (câble inclus) + pile de sauvegarde",
+      "Luminosité": "Réglable, sans lumière bleue la nuit"
+    },
+    "faq": [
+      {
+        "q": "Peut-on l'utiliser comme simple veilleuse ?",
+        "a": "Oui, il propose plusieurs couleurs d'ambiance et peut rester allumé à la luminosité souhaitée."
+      }
+    ],
+    "keywords": [
+      "reveil lumineux",
+      "simulateur aube",
+      "sommeil",
+      "lampe",
+      "matin"
+    ]
   }
 ];
