@@ -64,6 +64,17 @@ export default function CataloguePage({
     setSearchQuery(initialSearch);
   }, [initialSearch]);
 
+  // Ensure catalogue page always opens from the very top
+  useEffect(() => {
+    try {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    } catch {
+      window.scrollTo(0, 0);
+    }
+  }, [selectedCategory, selectedSubcategory]);
+
   const currentCategoryData = useMemo(() => {
     return MAIN_CATEGORIES.find((c) => c.id === selectedCategory) || null;
   }, [selectedCategory]);
@@ -146,6 +157,10 @@ export default function CataloguePage({
           if (!product.isBestSeller) return false;
         } else if (selectedCategory === 'deals') {
           if (!product.compareAtPrice) return false;
+        } else if (selectedCategory === 'tech' || selectedCategory === 'technologie') {
+          if (product.category !== 'tech' && product.category !== 'technologie') return false;
+        } else if (selectedCategory === 'voyage-auto' || selectedCategory === 'voyage' || selectedCategory === 'auto') {
+          if (product.category !== 'voyage-auto' && product.category !== 'voyage' && product.category !== 'auto') return false;
         } else if (product.category !== selectedCategory) {
           return false;
         }
@@ -208,8 +223,17 @@ export default function CataloguePage({
       if (sortBy === 'price_desc') return b.price - a.price;
       if (sortBy === 'rating') return b.rating - a.rating;
       if (sortBy === 'newest') return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0);
-      // Popular (default)
-      return b.reviewCount - a.reviewCount;
+      
+      // Default: Prioritize the Curated 20 Products first
+      const aCurated = a.isCurated ? 1 : 0;
+      const bCurated = b.isCurated ? 1 : 0;
+      if (aCurated !== bCurated) {
+        return bCurated - aCurated;
+      }
+      if (a.isCurated && b.isCurated) {
+        return (a.curatedOrder || 99) - (b.curatedOrder || 99);
+      }
+      return (b.isBestSeller ? 1 : 0) - (a.isBestSeller ? 1 : 0) || b.reviewCount - a.reviewCount;
     });
   }, [
     products,
@@ -610,6 +634,39 @@ export default function CataloguePage({
               )}
             </button>
           </div>
+        </div>
+
+        {/* Quick Collection Filter Pills */}
+        <div className="catalogue-collection-pills-bar" role="tablist" aria-label="Filtrer par collection">
+          {[
+            { id: 'all', label: 'Tous' },
+            { id: 'tech', label: 'Tech' },
+            { id: 'maison', label: 'Maison' },
+            { id: 'beaute', label: 'Beauté' },
+            { id: 'voyage-auto', label: 'Voyage & Auto' }
+          ].map((pill) => {
+            const isPillActive =
+              selectedCategory === pill.id ||
+              (pill.id === 'tech' && selectedCategory === 'technologie') ||
+              (pill.id === 'voyage-auto' && (selectedCategory === 'voyage' || selectedCategory === 'auto'));
+
+            return (
+              <button
+                key={pill.id}
+                type="button"
+                role="tab"
+                aria-selected={isPillActive}
+                className={`collection-pill-btn ${isPillActive ? 'active' : ''}`}
+                onClick={() => {
+                  setSelectedCategory(pill.id);
+                  setSelectedSubcategory(null);
+                  if (onSelectCategory) onSelectCategory(pill.id);
+                }}
+              >
+                {pill.label}
+              </button>
+            );
+          })}
         </div>
 
         {/* Layout: Sidebar + Grid */}

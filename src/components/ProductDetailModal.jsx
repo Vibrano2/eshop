@@ -89,6 +89,58 @@ export default function ProductDetailModal({
   const [selectedImage, setSelectedImage] = useState(product.gallery?.[0] || product.image);
   const [quantity, setQuantity] = useState(1);
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
+  const scrollContentRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (scrollContentRef.current) {
+      scrollContentRef.current.scrollTop = 0;
+    }
+  }, [product?.id]);
+
+  const galleryList = React.useMemo(() => {
+    if (product.gallery && product.gallery.length > 0) {
+      return product.gallery;
+    }
+    return [product.image];
+  }, [product]);
+
+  const currentGalleryIndex = Math.max(0, galleryList.indexOf(selectedImage));
+
+  const handlePrevImage = () => {
+    if (galleryList.length <= 1) return;
+    const newIdx = (currentGalleryIndex - 1 + galleryList.length) % galleryList.length;
+    setSelectedImage(galleryList[newIdx]);
+  };
+
+  const handleNextImage = () => {
+    if (galleryList.length <= 1) return;
+    const newIdx = (currentGalleryIndex + 1) % galleryList.length;
+    setSelectedImage(galleryList[newIdx]);
+  };
+
+  const [touchStartX, setTouchStartX] = useState(null);
+
+  const handleTouchStart = (e) => {
+    if (e.touches && e.touches.length > 0) {
+      setTouchStartX(e.touches[0].clientX);
+    }
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStartX === null) return;
+    if (e.changedTouches && e.changedTouches.length > 0) {
+      const touchEndX = e.changedTouches[0].clientX;
+      const diffX = touchStartX - touchEndX;
+      if (Math.abs(diffX) > 40) {
+        if (diffX > 0) {
+          handleNextImage();
+        } else {
+          handlePrevImage();
+        }
+      }
+    }
+    setTouchStartX(null);
+  };
 
   // Variant selection states
   const [selectedSize, setSelectedSize] = useState(product.defaultSize || product.sizes?.[0] || null);
@@ -373,29 +425,93 @@ export default function ProductDetailModal({
           <X size={20} />
         </button>
 
-        <div className="modal-scroll-content">
+        <div className="modal-scroll-content" ref={scrollContentRef}>
           <div className="pdp-grid">
             {/* Gallery Column */}
             <div className="pdp-gallery">
-              <img
-                src={selectedImage}
-                alt={product.altText || product.name}
-                className="pdp-main-image"
-                onError={(e) => {
-                  e.currentTarget.src = 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=80';
-                }}
-              />
+              <div
+                className="pdp-main-image-wrap"
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+              >
+                <img
+                  src={selectedImage}
+                  alt={product.altText || product.name}
+                  className="pdp-main-image"
+                  onError={(e) => {
+                    e.currentTarget.src = 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=80';
+                  }}
+                />
 
-              {product.gallery && product.gallery.length > 1 && (
-                <div className="pdp-thumbs">
-                  {product.gallery.map((img, idx) => (
-                    <img
+                {galleryList.length > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      className="pdp-nav-btn prev"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handlePrevImage();
+                      }}
+                      aria-label="Image précédente"
+                      title="Précédent"
+                    >
+                      <ChevronLeft size={20} />
+                    </button>
+                    <button
+                      type="button"
+                      className="pdp-nav-btn next"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleNextImage();
+                      }}
+                      aria-label="Image suivante"
+                      title="Suivant"
+                    >
+                      <ChevronRight size={20} />
+                    </button>
+                    <div className="pdp-gallery-counter">
+                      {currentGalleryIndex + 1} / {galleryList.length}
+                    </div>
+                  </>
+                )}
+              </div>
+
+              {galleryList.length > 1 && (
+                <div className="pdp-dots" aria-hidden="true">
+                  {galleryList.map((img, idx) => (
+                    <button
                       key={idx}
-                      src={img}
-                      alt={`${product.name} vue ${idx + 1}`}
-                      className={`pdp-thumb ${selectedImage === img ? 'active' : ''}`}
+                      type="button"
+                      className={`pdp-dot ${selectedImage === img ? 'active' : ''}`}
                       onClick={() => setSelectedImage(img)}
+                      aria-label={`Aller à l'image ${idx + 1}`}
                     />
+                  ))}
+                </div>
+              )}
+
+              {galleryList.length > 1 && (
+                <div className="pdp-thumbs" role="tablist" aria-label="Galerie photos du produit">
+                  {galleryList.map((img, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      role="tab"
+                      aria-selected={selectedImage === img}
+                      className={`pdp-thumb-btn ${selectedImage === img ? 'active' : ''}`}
+                      onClick={() => setSelectedImage(img)}
+                      title={`Afficher photo ${idx + 1}`}
+                    >
+                      <img
+                        src={img}
+                        alt={`${product.name} vue ${idx + 1}`}
+                        className="pdp-thumb-img"
+                        loading="lazy"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                    </button>
                   ))}
                 </div>
               )}

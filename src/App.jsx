@@ -631,7 +631,30 @@ export default function App() {
     setIsTrackingOpen(true);
   };
 
-  // View Navigation Helpers with Browser URL Sync
+  // View Navigation Helpers with Browser URL Sync & Instant Scroll-To-Top
+  const scrollToPageTop = () => {
+    try {
+      const prevBehavior = document.documentElement.style.scrollBehavior;
+      document.documentElement.style.scrollBehavior = 'auto';
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      setTimeout(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        document.documentElement.style.scrollBehavior = prevBehavior;
+      }, 40);
+    } catch {
+      window.scrollTo(0, 0);
+    }
+  };
+
+  // Guarantee every page view starts from the very top on navigation
+  useEffect(() => {
+    scrollToPageTop();
+  }, [activeView, selectedCategory, selectedSubcategory]);
+
   const handleOpenShop = (category = 'all', subcategory = null) => {
     setSelectedCategory(category);
     setSelectedSubcategory(subcategory);
@@ -642,7 +665,7 @@ export default function App() {
       window.history.pushState({ category, subcategory }, '', targetUrl);
     }
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToPageTop();
   };
 
   const handleNavigateHome = () => {
@@ -655,7 +678,7 @@ export default function App() {
       window.history.pushState({}, '', '/');
     }
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToPageTop();
   };
 
   const handleOpenAdmin = () => {
@@ -663,7 +686,7 @@ export default function App() {
     if (window.location.pathname !== '/admin') {
       window.history.pushState({}, '', '/admin');
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToPageTop();
   };
 
   const handleOpenAccount = (tab = 'orders') => {
@@ -672,7 +695,7 @@ export default function App() {
     if (window.location.pathname !== '/account') {
       window.history.pushState({}, '', '/account');
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToPageTop();
   };
 
   // =========================================================================
