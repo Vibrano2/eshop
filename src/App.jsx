@@ -212,11 +212,57 @@ export default function App() {
     }
   }, []);
 
-  // Cart state persisted in localStorage
+  // Safe cart migration & hydration helper against authoritative PRODUCTS catalog
+  const hydrateAndMigrateCart = (rawList) => {
+    if (!Array.isArray(rawList) || rawList.length === 0) return [];
+    const idMap = new Map(PRODUCTS.map((p) => [p.id, p]));
+    const slugMap = new Map(PRODUCTS.filter((p) => p.slug).map((p) => [p.slug, p]));
+    const skuMap = new Map(PRODUCTS.filter((p) => p.sku).map((p) => [p.sku, p]));
+
+    const migrated = [];
+    for (const item of rawList) {
+      if (!item) continue;
+      const lookupKey = String(item.id || item.key || '').trim();
+      const canonicalProd = idMap.get(lookupKey) || slugMap.get(lookupKey) || skuMap.get(lookupKey);
+
+      if (canonicalProd) {
+        const qty = Math.max(1, Math.min(99, parseInt(item.quantity, 10) || 1));
+        const availableStock = canonicalProd.stock !== undefined ? canonicalProd.stock : 50;
+        if (availableStock <= 0) continue;
+        const clampedQty = Math.min(qty, availableStock);
+
+        const itemKey = item.selectedSize || item.selectedColor
+          ? `${canonicalProd.id}-${item.selectedSize || ''}-${item.selectedColor || ''}`
+          : canonicalProd.id;
+
+        migrated.push({
+          key: itemKey,
+          id: canonicalProd.id, // Authoritative canonical identifier
+          sku: canonicalProd.sku,
+          slug: canonicalProd.slug,
+          name: canonicalProd.name,
+          price: canonicalProd.price,
+          image: canonicalProd.image || item.image || '',
+          selectedSize: item.selectedSize || null,
+          selectedColor: item.selectedColor || null,
+          quantity: clampedQty
+        });
+      }
+    }
+    return migrated;
+  };
+
+  // Cart state persisted in localStorage with safe catalog migration
   const [cartItems, setCartItems] = useState(() => {
     try {
       const saved = localStorage.getItem('eshop_cart');
-      return saved ? JSON.parse(saved) : [];
+      if (!saved) return [];
+      const parsed = JSON.parse(saved);
+      const migrated = hydrateAndMigrateCart(parsed);
+      if (JSON.stringify(migrated) !== saved) {
+        localStorage.setItem('eshop_cart', JSON.stringify(migrated));
+      }
+      return migrated;
     } catch {
       return [];
     }
@@ -556,14 +602,17 @@ export default function App() {
     }
   }, [cartSubtotal, discountCode]);
 
-  // Cart operations with variant support
+  // Cart operations with variant support and canonical ID resolution
   const handleAddToCart = (product, quantity = 1, variant = null) => {
+    if (!product) return;
+    // Resolve canonical product from authoritative catalog
+    const canonicalProd = PRODUCTS.find((p) => p.id === product.id || p.slug === product.id || p.sku === product.id) || product;
     const itemKey = variant && (variant.size || variant.color)
-      ? `${product.id}-${variant.size || ''}-${variant.color || ''}`
-      : product.id;
+      ? `${canonicalProd.id}-${variant.size || ''}-${variant.color || ''}`
+      : canonicalProd.id;
 
     setCartItems((prev) => {
-      const existingIndex = prev.findIndex((item) => item.key === itemKey || (item.id === product.id && !variant && !item.selectedSize));
+      const existingIndex = prev.findIndex((item) => item.key === itemKey || (item.id === canonicalProd.id && !variant && !item.selectedSize));
       if (existingIndex > -1) {
         return prev.map((item, idx) =>
           idx === existingIndex
@@ -575,10 +624,12 @@ export default function App() {
         ...prev,
         {
           key: itemKey,
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          image: product.image,
+          id: canonicalProd.id, // Permanent canonical ID
+          sku: canonicalProd.sku,
+          slug: canonicalProd.slug,
+          name: canonicalProd.name,
+          price: canonicalProd.price,
+          image: canonicalProd.image || product.image || '',
           selectedSize: variant?.size || null,
           selectedColor: variant?.color || null,
           quantity
@@ -1170,6 +1221,7 @@ export default function App() {
       {/* Automated Support Chatbot Widget */}
       <ChatWidget
         lang={currentLang}
+        isCheckoutOpen={isCheckoutOpen}
         onOpenTracking={() => setIsTrackingOpen(true)}
         onOpenShop={handleOpenShop}
         onOpenReassurance={() => setIsReassuranceOpen(true)}

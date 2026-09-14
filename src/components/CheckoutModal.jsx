@@ -856,13 +856,29 @@ export default function CheckoutModal({
               </span>
             </div>
 
-            {/* Payment Error Banner */}
+            {/* Payment & Inventory Error Banner */}
             {paymentError && (
-              <div className="checkout-payment-error-box">
-                <AlertCircle size={18} />
-                <div>
-                  <strong>Échec de la transaction</strong>
-                  <p>{paymentError}</p>
+              <div className="checkout-payment-error-box" role="alert">
+                <AlertCircle size={20} style={{ flexShrink: 0, marginTop: '2px' }} />
+                <div style={{ flex: 1 }}>
+                  <strong>
+                    {paymentError.includes('panier') || paymentError.includes('disponible') || paymentError.includes('stock')
+                      ? 'Disponibilité des articles'
+                      : 'Validation du paiement'}
+                  </strong>
+                  <p style={{ marginTop: '0.25rem', lineHeight: 1.45 }}>{paymentError}</p>
+                  {(paymentError.includes('panier') || paymentError.includes('disponible') || paymentError.includes('stock')) && (
+                    <div style={{ marginTop: '0.6rem' }}>
+                      <button
+                        type="button"
+                        onClick={onClose}
+                        className="btn btn-sm btn-outline"
+                        style={{ padding: '0.35rem 0.75rem', fontSize: '0.8rem', borderColor: '#ef4444', color: '#b91c1c' }}
+                      >
+                        Modifier mon panier
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             )}

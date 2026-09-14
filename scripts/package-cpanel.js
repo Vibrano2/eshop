@@ -61,12 +61,29 @@ if (fs.existsSync(path.join(rootDir, 'public'))) {
   copyDirSync(path.join(rootDir, 'public'), path.join(tempDir, 'public'));
 }
 
-// 6. Create zip using PowerShell Compress-Archive
+// 6. Copy src/data for catalog sync
+if (fs.existsSync(path.join(rootDir, 'src', 'data'))) {
+  copyDirSync(path.join(rootDir, 'src', 'data'), path.join(tempDir, 'src', 'data'));
+}
+
+// 7. Create zip archive (cross-platform support for Windows, Linux, macOS, and CI runners)
 console.log('🗜️ Compressing files into cpanel-deploy.zip...');
 try {
-  execSync(`powershell -NoProfile -Command "Compress-Archive -Path '${tempDir}/*' -DestinationPath '${zipFile}' -Force"`, {
-    stdio: 'inherit'
-  });
+  if (process.platform === 'win32') {
+    try {
+      execSync(`powershell -NoProfile -Command "Compress-Archive -Path '${tempDir}/*' -DestinationPath '${zipFile}' -Force"`, {
+        stdio: 'inherit'
+      });
+    } catch {
+      execSync(`tar -a -c -f "${zipFile}" -C "${tempDir}" .`, { stdio: 'inherit' });
+    }
+  } else {
+    try {
+      execSync(`cd "${tempDir}" && zip -r "${zipFile}" .`, { stdio: 'inherit' });
+    } catch {
+      execSync(`tar -czf "${zipFile}" -C "${tempDir}" .`, { stdio: 'inherit' });
+    }
+  }
 
   const stats = fs.statSync(zipFile);
   const sizeMb = (stats.size / (1024 * 1024)).toFixed(2);

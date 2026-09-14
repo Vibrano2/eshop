@@ -1,0 +1,74 @@
+name: CI / CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Test & Integrity Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Unit, Security & Stripe Test Suite
+        run: npm test
+
+      - name: Run Full Catalog & Checkout Integrity Audit (123 Products)
+        run: npm run test:catalog
+
+  build:
+    name: Build & Package Deployment
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Production Frontend (Vite)
+        run: npm run build
+
+      - name: Package cPanel Deployment Bundle
+        run: node scripts/package-cpanel.js
+
+      - name: Upload Production Dist Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-production
+          path: dist/
+          retention-days: 7
+
+      - name: Upload cPanel Deployment Package
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpanel-deploy-package
+          path: cpanel-deploy.zip
+          retention-days: 14

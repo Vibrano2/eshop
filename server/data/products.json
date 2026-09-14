@@ -1,5 +1,4 @@
-// Catégories disponibles : tech, maison, beaute, voyage-auto, mode, animaux, sport, securite, accessoires
-export const PRODUCTS = [
+[
   {
     "id": "batterie-externe-compacte-10000",
     "sku": "TECH-PWR-10K",
@@ -7296,4 +7295,4 @@ export const PRODUCTS = [
       "matin"
     ]
   }
-];
+]

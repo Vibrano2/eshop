@@ -13,7 +13,10 @@
     "build:all": "npm run build",
     "package:cpanel": "npx vite build && node scripts/package-cpanel.js",
     "seed": "node server/seed.js",
-    "test": "node --test server/test/api.test.js"
+    "test": "node --test server/test/api.test.js",
+    "test:catalog": "node scripts/audit_full_catalog_checkout.js",
+    "test:all": "npm run test && npm run test:catalog",
+    "ci": "npm run test && npm run test:catalog && npm run build"
   },
   "dependencies": {
     "@stripe/stripe-js": "^9.16.0",

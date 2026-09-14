@@ -5536,6 +5536,26 @@ a {
   z-index: 999;
 }
 
+/* Guarantee Chat Widget never covers or overlaps checkout tunnel or payment fields */
+body:has(.checkout-modal) .chat-widget-wrapper,
+.modal-backdrop:has(.checkout-modal) ~ .chat-widget-wrapper,
+.checkout-modal ~ .chat-widget-wrapper {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .chat-widget-wrapper {
+    bottom: 1rem;
+    right: 1rem;
+  }
+  .chat-launcher-btn {
+    padding: 0.5rem 0.85rem;
+  }
+  .chat-launcher-label {
+    font-size: 0.78rem;
+  }
+}
+
 .chat-launcher-btn {
   display: flex;
   align-items: center;

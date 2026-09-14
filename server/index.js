@@ -14,6 +14,7 @@ import authRouter from './routes/auth.js';
 import adminRouter from './routes/admin.js';
 import paymentRouter from './routes/payment.js';
 import reviewsRouter, { seedInitialReviews } from './routes/reviews.js';
+import { syncCatalog } from './services/catalogSync.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -77,8 +78,9 @@ app.use(
 // General rate limiter for /api routes
 app.use('/api', generalApiRateLimiter);
 
-// Initialize SQLite database
+// Initialize SQLite database and sync authoritative catalog
 initDatabase();
+syncCatalog();
 seedInitialReviews();
 
 // Health Check with system metrics

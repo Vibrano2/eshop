@@ -4,10 +4,13 @@ import { TRANSLATIONS } from '../data/translations';
 
 export default function ChatWidget({
   lang = 'fr',
+  isCheckoutOpen = false,
   onOpenTracking,
   onOpenShop,
   onOpenReassurance
 }) {
+  if (isCheckoutOpen) return null;
+
   const [isOpen, setIsOpen] = useState(false);
   const [hasUnread, setHasUnread] = useState(true);
   const [inputText, setInputText] = useState('');

@@ -3,6 +3,7 @@ import crypto from 'node:crypto';
 import { db } from '../db.js';
 import { paymentRateLimiter } from '../middleware/rateLimiter.js';
 import { sendOrderConfirmationEmail } from '../services/email.js';
+import { syncCatalog } from '../services/catalogSync.js';
 
 const router = Router();
 
@@ -58,23 +59,62 @@ export function buildAndSavePendingOrder({ items = [], customer = {}, discountCo
     throw new Error('Adresse email client invalide.');
   }
 
-  // 1. Authoritative server-side price validation
+  // 1. Authoritative server-side price & inventory validation
   const validatedItems = [];
   let serverSubtotal = 0;
 
   for (const rawItem of items) {
     if (!rawItem || !rawItem.id) continue;
-    const dbProd = db.prepare('SELECT id, name, price, stock, image FROM products WHERE id = ?').get(String(rawItem.id));
+    const cleanLookup = String(rawItem.id || '').trim();
+
+    // Query by canonical ID, with fallback to slug or SKU
+    let dbProd = db.prepare('SELECT id, sku, slug, name, price, stock, image, details_json FROM products WHERE id = ? OR slug = ? OR sku = ?').get(cleanLookup, cleanLookup, cleanLookup);
+
+    // Self-healing fallback: if product table is unseeded or missing products, sync catalog automatically
     if (!dbProd) {
-      throw new Error(`Article introuvable en stock (ID: ${rawItem.id})`);
+      try {
+        const prodCount = db.prepare('SELECT count(*) as count FROM products').get()?.count || 0;
+        if (prodCount < 120) {
+          syncCatalog({ force: true });
+          dbProd = db.prepare('SELECT id, sku, slug, name, price, stock, image, details_json FROM products WHERE id = ? OR slug = ? OR sku = ?').get(cleanLookup, cleanLookup, cleanLookup);
+        }
+      } catch (syncErr) {
+        console.warn('[Inventory Check] Self-healing sync attempt error:', syncErr.message);
+      }
+    }
+
+    if (!dbProd) {
+      console.warn(`[Inventory Checkout Error] Product introuvable in database for lookup: "${cleanLookup}" (Item: ${rawItem.name || 'Unnamed'})`);
+      throw new Error("Un article de votre panier n'est plus disponible. Mettez votre panier à jour puis réessayez.");
+    }
+
+    // Check active product status
+    let status = 'active';
+    try {
+      const details = JSON.parse(dbProd.details_json || '{}');
+      if (details.status) status = details.status;
+    } catch {}
+    if (status === 'archived' || status === 'inactive') {
+      console.warn(`[Inventory Checkout Error] Product ${dbProd.id} is inactive or archived`);
+      throw new Error(`L'article « ${dbProd.name} » n'est plus en vente actuellement. Veuillez retirer cet article pour finaliser votre commande.`);
+    }
+
+    // Validate requested quantity against available stock
+    const quantity = Math.max(1, Math.min(99, parseInt(rawItem.quantity, 10) || 1));
+    const availableStock = dbProd.stock !== null && dbProd.stock !== undefined ? Number(dbProd.stock) : 50;
+    if (availableStock < quantity) {
+      console.warn(`[Inventory Checkout Error] Insufficient stock for ${dbProd.id}: requested ${quantity}, available ${availableStock}`);
+      throw new Error(`Le produit « ${dbProd.name} » n'a plus assez d'exemplaires en stock disponible (${availableStock} restant(s)). Veuillez ajuster la quantité.`);
     }
 
     const unitPrice = Number(dbProd.price);
-    const quantity = Math.max(1, Math.min(99, parseInt(rawItem.quantity, 10) || 1));
     serverSubtotal += unitPrice * quantity;
 
+    // Use permanent canonical product ID for orders
     validatedItems.push({
       id: dbProd.id,
+      sku: dbProd.sku,
+      slug: dbProd.slug,
       name: dbProd.name,
       image: dbProd.image || rawItem.image || '',
       price: unitPrice,
@@ -113,7 +153,18 @@ export function buildAndSavePendingOrder({ items = [], customer = {}, discountCo
   const serverShippingFee = isFreeShipping ? 0.0 : 3.90;
   const serverTotalAmount = Math.round(Math.max(0, serverSubtotal - serverDiscountAmount + serverShippingFee) * 100) / 100;
 
-  const orderNumber = `EU-${Math.floor(100000 + Math.random() * 900000)}`;
+  let orderNumber;
+  let attempts = 0;
+  do {
+    const randomSuffix = crypto.randomInt(100000, 999999);
+    orderNumber = `EU-${randomSuffix}`;
+    const exists = db.prepare('SELECT 1 FROM orders WHERE order_number = ?').get(orderNumber);
+    if (!exists) break;
+    attempts++;
+  } while (attempts < 10);
+  if (attempts >= 10) {
+    orderNumber = `EU-${Date.now().toString().slice(-6)}-${crypto.randomInt(100, 999)}`;
+  }
   const countryCode = String(customer.country || customer.countryCode || 'FR').trim().toUpperCase().slice(0, 2);
   const carrier = countryCode === 'FR' ? 'Colissimo Suivi' : 'DHL Express Europe';
   const estimatedDelivery = getEstimatedDeliveryRange(countryCode);
@@ -304,17 +355,25 @@ export function processOrderPaymentSuccess(orderNumber, sessionOrPiId = '') {
     { title: 'Livraison en boîte aux lettres ou contre signature', date: order.estimated_delivery, done: false }
   ];
 
-  db.prepare(`
-    UPDATE orders 
-    SET status = 'en_preparation', tracking_steps_json = ? 
-    WHERE order_number = ?
-  `).run(JSON.stringify(trackingSteps), orderNumber);
+  db.exec('BEGIN IMMEDIATE;');
+  try {
+    db.prepare(`
+      UPDATE orders 
+      SET status = 'en_preparation', tracking_steps_json = ? 
+      WHERE order_number = ?
+    `).run(JSON.stringify(trackingSteps), orderNumber);
 
-  // Decrement stock in database
-  const items = db.prepare('SELECT product_id, quantity FROM order_items WHERE order_number = ?').all(orderNumber);
-  const updateStock = db.prepare('UPDATE products SET stock = MAX(0, stock - ?) WHERE id = ?');
-  for (const it of items) {
-    updateStock.run(it.quantity, it.product_id);
+    // Decrement stock atomically in database
+    const items = db.prepare('SELECT product_id, quantity FROM order_items WHERE order_number = ?').all(orderNumber);
+    const updateStock = db.prepare('UPDATE products SET stock = MAX(0, stock - ?) WHERE id = ?');
+    for (const it of items) {
+      updateStock.run(it.quantity, it.product_id);
+    }
+    db.exec('COMMIT;');
+  } catch (txErr) {
+    try { db.exec('ROLLBACK;'); } catch {}
+    console.error('Failed to atomically update order and stock:', txErr);
+    throw txErr;
   }
 
   // Fetch full order for confirmation email

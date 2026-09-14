@@ -13,6 +13,7 @@ function formatProduct(row) {
   return {
     id: row.id,
     sku: row.sku,
+    slug: row.slug || row.id,
     name: row.name,
     category: row.category,
     subcategory: row.subcategory,
@@ -110,11 +111,12 @@ router.get('/', (req, res) => {
   }
 });
 
-// GET /api/products/:id
+// GET /api/products/:id (also matches by slug or sku)
 router.get('/:id', (req, res) => {
   try {
     const { id } = req.params;
-    const row = db.prepare('SELECT * FROM products WHERE id = ?').get(id);
+    const cleanLookup = String(id || '').trim();
+    const row = db.prepare('SELECT * FROM products WHERE id = ? OR slug = ? OR sku = ?').get(cleanLookup, cleanLookup, cleanLookup);
 
     if (!row) {
       return res.status(404).json({ success: false, error: 'Product not found' });

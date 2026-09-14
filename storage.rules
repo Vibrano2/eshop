@@ -1,0 +1,42 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isValidImage() {
+      return request.resource.size < 5 * 1024 * 1024 &&
+             request.resource.contentType.matches('image/(jpeg|jpg|png|webp|gif)');
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+             (request.auth.token.admin == true ||
+              request.auth.token.role == 'admin');
+    }
+
+    // User profile pictures and private uploads
+    match /users/{userId}/{allPaths=**} {
+      allow read: if true;
+      allow write: if isOwner(userId) && isValidImage();
+    }
+
+    // Product images: Public read, Admin write
+    match /products/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidImage();
+    }
+
+    // Default Deny: All other paths are locked
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

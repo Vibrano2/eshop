@@ -46,6 +46,7 @@ cpanel-deploy.zip
 temp_cpanel/
 
 # Scratch & test scripts
+/*.cjs
 scratch_*.cjs
 test_*.cjs
 search_*.cjs

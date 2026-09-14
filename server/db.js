@@ -24,6 +24,7 @@ export function initDatabase() {
     CREATE TABLE IF NOT EXISTS products (
       id TEXT PRIMARY KEY,
       sku TEXT,
+      slug TEXT,
       name TEXT NOT NULL,
       category TEXT NOT NULL,
       subcategory TEXT,
@@ -177,5 +178,19 @@ export function initDatabase() {
     }
   } catch (migErr) {
     console.warn('Migration product_reviews.photos_json check:', migErr.message);
+  }
+
+  // Migration for existing tables: add slug to products if missing
+  try {
+    const prodCols = db.prepare("PRAGMA table_info(products)").all();
+    if (!prodCols.some(col => col.name === 'slug')) {
+      db.prepare("ALTER TABLE products ADD COLUMN slug TEXT").run();
+    }
+    db.exec(`
+      CREATE INDEX IF NOT EXISTS idx_products_slug ON products(slug);
+      CREATE INDEX IF NOT EXISTS idx_products_sku ON products(sku);
+    `);
+  } catch (migErr) {
+    console.warn('Migration products.slug check:', migErr.message);
   }
 }

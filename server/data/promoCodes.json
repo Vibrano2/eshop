@@ -1,0 +1,65 @@
+[
+  {
+    "code": "BIENVENUE10",
+    "discountPercent": 10,
+    "minAmount": 0,
+    "description": "-10% sur tout le panier dès le 1er achat",
+    "badge": "-10%"
+  },
+  {
+    "code": "PROMO15",
+    "discountPercent": 15,
+    "minAmount": 30,
+    "description": "-15% dès 30 € d'achats",
+    "badge": "-15%"
+  },
+  {
+    "code": "VIP20",
+    "discountPercent": 20,
+    "minAmount": 50,
+    "description": "-20% dès 50 € d'achats",
+    "badge": "-20%"
+  },
+  {
+    "code": "LIVRAISON",
+    "freeShipping": true,
+    "minAmount": 0,
+    "description": "Livraison standard UE offerte",
+    "badge": "Livraison Offerte"
+  },
+  {
+    "code": "REVIENS10",
+    "discountPercent": 10,
+    "minAmount": 0,
+    "description": "Offre exclusive rétention : -10% immédiats sur votre panier",
+    "badge": "-10%"
+  },
+  {
+    "code": "FIDELITE5",
+    "fixedDiscount": 5,
+    "minAmount": 25,
+    "description": "Bon fidélité de -5 € débloqué",
+    "badge": "-5 €"
+  },
+  {
+    "code": "FIDELITE10",
+    "fixedDiscount": 10,
+    "minAmount": 40,
+    "description": "Bon fidélité de -10 € débloqué",
+    "badge": "-10 €"
+  },
+  {
+    "code": "FIDELITE20",
+    "fixedDiscount": 20,
+    "minAmount": 60,
+    "description": "Bon fidélité VIP de -20 € débloqué",
+    "badge": "-20 €"
+  },
+  {
+    "code": "PARRAIN10",
+    "fixedDiscount": 10,
+    "minAmount": 40,
+    "description": "Offre parrainage : -10 € offerts",
+    "badge": "-10 €"
+  }
+]
