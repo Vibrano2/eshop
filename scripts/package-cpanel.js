@@ -10,7 +10,13 @@ console.log('📦 Preparing cPanel deployment package...');
 
 // 1. Clean previous temp and zip
 if (fs.existsSync(tempDir)) fs.rmSync(tempDir, { recursive: true, force: true });
-if (fs.existsSync(zipFile)) fs.rmSync(zipFile, { force: true });
+if (fs.existsSync(zipFile)) {
+  try {
+    fs.rmSync(zipFile, { force: true });
+  } catch (rmErr) {
+    console.warn('⚠️ Notice: existing zip is busy, will overwrite during archiving.');
+  }
+}
 
 fs.mkdirSync(tempDir, { recursive: true });
 
