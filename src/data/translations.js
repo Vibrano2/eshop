@@ -24,8 +24,8 @@ export const TRANSLATIONS = {
     trust: {
       deliveryTitle: 'Livraison Rapide UE',
       deliveryDesc: 'Expédié sous 24/48h depuis nos entrepôts européens',
-      paymentTitle: 'Paiement 100% Sécurisé',
-      paymentDesc: 'CB, Visa, Mastercard, PayPal & Apple Pay',
+      paymentTitle: 'Paiement Sécurisé Stripe',
+      paymentDesc: 'CB, Visa, Mastercard, Apple Pay & Google Pay',
       warrantyTitle: 'Garantie Légale 2 Ans',
       warrantyDesc: 'Conformité et assistance réactive 7j/7',
       returnsTitle: 'Satisfait ou Remboursé',
@@ -152,8 +152,8 @@ export const TRANSLATIONS = {
     trust: {
       deliveryTitle: 'Fast EU Delivery',
       deliveryDesc: 'Shipped within 24/48h from our European warehouses',
-      paymentTitle: '100% Secure Payment',
-      paymentDesc: 'Credit cards, PayPal, Apple Pay & Google Pay',
+      paymentTitle: 'Stripe Secure Payment',
+      paymentDesc: 'Credit cards, Apple Pay & Google Pay via Stripe',
       warrantyTitle: '2-Year Legal Warranty',
       warrantyDesc: 'EU compliance and responsive 7/7 support',
       returnsTitle: 'Money Back Guarantee',
@@ -280,8 +280,8 @@ export const TRANSLATIONS = {
     trust: {
       deliveryTitle: 'Schnelle EU-Lieferung',
       deliveryDesc: 'Versand innerhalb 24/48h aus europäischen Lagern',
-      paymentTitle: '100% Sichere Bezahlung',
-      paymentDesc: 'Kreditkarten, PayPal, Apple Pay & Google Pay',
+      paymentTitle: 'Sichere Stripe-Zahlung',
+      paymentDesc: 'Kreditkarten, Apple Pay & Google Pay über Stripe',
       warrantyTitle: '2 Jahre gesetzliche Garantie',
       warrantyDesc: 'EU-Konformität und reaktionsschneller 7/7 Support',
       returnsTitle: 'Geld-zurück-Garantie',

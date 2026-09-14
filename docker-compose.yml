@@ -7,11 +7,16 @@ services:
     restart: unless-stopped
     ports:
       - "3001:3001"
+    env_file:
+      - path: .env
+        required: false
     environment:
       - NODE_ENV=production
       - PORT=3001
-      - SESSION_SECRET=eshop-secret-super-secure-key-2026
-      - ADMIN_API_KEY=admin-secret-eshop-2026
+      - SESSION_SECRET=${SESSION_SECRET}
+      - ADMIN_API_KEY=${ADMIN_API_KEY}
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - RESEND_API=${RESEND_API}
     volumes:
       - eshop-data:/app/server/data
     healthcheck:

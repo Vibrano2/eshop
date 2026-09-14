@@ -39,11 +39,17 @@ let insertedProducts = 0;
 for (const p of PRODUCTS) {
   const details = {
     shortDescription: p.shortDescription || '',
-    bulletPoints: p.bulletPoints || [],
-    highlights: p.highlights || [],
-    specifications: p.specifications || {},
+    shortName: p.shortName || p.name,
+    categoryLabel: p.categoryLabel || p.category,
+    badge: p.badge || null,
+    isCurated: p.isCurated ?? false,
+    curatedOrder: p.curatedOrder ?? 999,
+    status: p.status || (p.isCurated ? 'active' : 'archived'),
+    benefits: p.benefits || p.bulletPoints || [],
+    specs: p.specs || p.specifications || {},
     faq: p.faq || [],
-    customerReviews: p.customerReviews || []
+    customerReviews: p.customerReviews || [],
+    compareAtPrice: p.compareAtPrice || p.originalPrice || null
   };
 
   insertProductStmt.run(
@@ -53,10 +59,10 @@ for (const p of PRODUCTS) {
     p.category,
     p.subcategory || '',
     Number(p.price) || 0,
-    p.originalPrice ? Number(p.originalPrice) : null,
+    p.compareAtPrice ? Number(p.compareAtPrice) : (p.originalPrice ? Number(p.originalPrice) : null),
     p.stock !== undefined ? p.stock : 50,
     Number(p.rating) || 4.8,
-    Number(p.reviewsCount) || 120,
+    Number(p.reviewsCount || p.reviewCount) || 120,
     p.image,
     p.imageDisplayMode || (p.isFashion ? 'cover' : 'contain'),
     p.isBestSeller ? 1 : 0,
@@ -107,13 +113,14 @@ if (res.count === 0) {
   `).run();
 
   console.log('✓ Created initial loyalty account (ESHOP-EU4821 with 50 points).');
+} else {
+  // Ensure loyalty points are clean
+  db.prepare(`UPDATE loyalty_accounts SET points = 50 WHERE referral_code = 'ESHOP-EU4821' AND points > 500`).run();
 }
 
-// 4. Seed Users (Admin & Demo)
-// Always ensure demo@eshopstore.shop has admin privileges for seamless testing
-db.prepare(`
-  UPDATE users SET role = 'admin' WHERE email = 'demo@eshopstore.shop'
-`).run();
+// 4. Seed Users (Dedicated Admin only)
+// Clean up any legacy demo users to ensure strict role segregation
+db.prepare(`DELETE FROM users WHERE email IN ('demo@eshop-store.eu', 'demo@eshopstore.shop')`).run();
 
 const checkAdminStmt = db.prepare(`SELECT count(*) as count FROM users WHERE email = 'admin@eshopstore.shop'`);
 if (checkAdminStmt.get().count === 0) {
@@ -137,9 +144,9 @@ if (checkOrdersStmt.get().count < 3) {
   const sampleOrders = [
     {
       orderNumber: 'EU-849201',
-      customerEmail: 'claire.laurent@example.fr',
-      firstName: 'Claire',
-      lastName: 'Laurent',
+      customerEmail: 'marie.dupont@example.fr',
+      firstName: 'Marie',
+      lastName: 'Dupont',
       address: '15 Rue de Rivoli',
       postalCode: '75001',
       city: 'Paris',

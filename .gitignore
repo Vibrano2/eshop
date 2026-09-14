@@ -10,9 +10,16 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+# Environment & secrets
 *.local
 .env
-.env.*.local
+.env.*
+!.env.example
+*.pem
+*.key
+*serviceAccount*.json
+*credentials*.json
+firebase-adminsdk*.json
 
 # Editor directories and files
 .vscode/*
@@ -33,3 +40,18 @@ scripts/temp_images/
 # SQLite databases
 *.db
 *.db-journal
+
+# Deployment archives
+cpanel-deploy.zip
+temp_cpanel/
+
+# Scratch & test scripts
+scratch_*.cjs
+test_*.cjs
+search_*.cjs
+strip_placeholders.cjs
+public/test_*.html
+public/verification.html
+public/products/test_*
+scripts/test_*.cjs
+scripts/desk_keyboard.jpg

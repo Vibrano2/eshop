@@ -122,7 +122,7 @@ export default function ThreeDSModal({
         <div className="threeds-summary-box">
           <div className="summary-row">
             <span className="summary-label">Marchand :</span>
-            <span className="summary-value font-bold">ESHOP-STORE.EU</span>
+            <span className="summary-value font-bold">EshopStore</span>
           </div>
           <div className="summary-row">
             <span className="summary-label">Montant à régler :</span>
@@ -240,7 +240,7 @@ export default function ThreeDSModal({
               </div>
               <h4>Vérifiez votre application {selectedBank.name}</h4>
               <p>
-                Une demande d'autorisation de <strong>{Number(totalAmount).toFixed(2)} €</strong> pour <strong>ESHOP-STORE.EU</strong> vous attend sur votre smartphone.
+                Une demande d'autorisation de <strong>{Number(totalAmount).toFixed(2)} €</strong> pour <strong>EshopStore</strong> vous attend sur votre smartphone.
               </p>
               <div className="app-timer">
                 <Clock size={14} />

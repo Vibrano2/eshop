@@ -373,7 +373,7 @@ export default function AccountPage({
               </div>
               <div className="account-meta-details">
                 <span className="account-meta-item">
-                  <Mail size={14} /> {currentUser?.email || 'client@eshopstore.shop'}
+                  <Mail size={14} /> {currentUser?.email || ''}
                 </span>
                 {currentUser?.city && (
                   <span className="account-meta-item">
@@ -412,7 +412,7 @@ export default function AccountPage({
                 <Gift size={22} />
               </div>
               <div className="account-kpi-data">
-                <span className="kpi-value">{currentUser?.loyaltyPoints || 50} pts</span>
+                <span className="kpi-value">{currentUser?.loyaltyPoints ?? 0} pts</span>
                 <span className="kpi-label">Fidélité (échangeable)</span>
               </div>
             </div>
@@ -424,7 +424,7 @@ export default function AccountPage({
               <div className="account-kpi-data">
                 <div className="referral-code-display">
                   <span className="kpi-value font-mono">
-                    {currentUser?.loyaltyCode || 'ESHOP-EU4821'}
+                    {currentUser?.loyaltyCode || '—'}
                   </span>
                   <button
                     className="account-copy-icon-btn"
@@ -911,7 +911,7 @@ export default function AccountPage({
                 <div className="balance-header">
                   <span className="balance-subtitle">Votre solde disponible</span>
                   <div className="balance-number-row">
-                    <span className="balance-big-number">{currentUser?.loyaltyPoints || 50}</span>
+                    <span className="balance-big-number">{currentUser?.loyaltyPoints ?? 0}</span>
                     <span className="balance-unit">points</span>
                   </div>
                 </div>
@@ -919,26 +919,30 @@ export default function AccountPage({
                 <div className="balance-progress-box">
                   <div className="progress-labels">
                     <span>Objectif prochain bon : 100 pts (-10€)</span>
-                    <span>{(currentUser?.loyaltyPoints || 50)} / 100</span>
+                    <span>{(currentUser?.loyaltyPoints ?? 0)} / 100</span>
                   </div>
                   <div className="progress-bar-track">
                     <div
                       className="progress-bar-fill"
-                      style={{ width: `${Math.min(100, ((currentUser?.loyaltyPoints || 50) / 100) * 100)}%` }}
+                      style={{ width: `${Math.min(100, (((currentUser?.loyaltyPoints ?? 0) / 100) * 100))}%` }}
                     />
                   </div>
                 </div>
 
                 <div className="balance-tiers-list">
-                  <div className="tier-row active">
+                  <div className={`tier-row ${(currentUser?.loyaltyPoints ?? 0) >= 50 ? 'active' : ''}`}>
                     <span className="tier-points">50 pts</span>
                     <span className="tier-benefit">Bon de remise de 5,00 €</span>
-                    <span className="tier-tag unlocked">Débloqué ✓</span>
+                    <span className={`tier-tag ${(currentUser?.loyaltyPoints ?? 0) >= 50 ? 'unlocked' : ''}`}>
+                      {(currentUser?.loyaltyPoints ?? 0) >= 50 ? 'Débloqué ✓' : '50 pts requis'}
+                    </span>
                   </div>
-                  <div className="tier-row">
+                  <div className={`tier-row ${(currentUser?.loyaltyPoints ?? 0) >= 100 ? 'active' : ''}`}>
                     <span className="tier-points">100 pts</span>
                     <span className="tier-benefit">Bon de remise de 10,00 €</span>
-                    <span className="tier-tag">À portée</span>
+                    <span className={`tier-tag ${(currentUser?.loyaltyPoints ?? 0) >= 100 ? 'unlocked' : ''}`}>
+                      {(currentUser?.loyaltyPoints ?? 0) >= 100 ? 'Débloqué ✓' : 'À portée'}
+                    </span>
                   </div>
                   <div className="tier-row">
                     <span className="tier-points">200 pts</span>
@@ -963,7 +967,7 @@ export default function AccountPage({
                   <div className="referral-code-label">Votre code de parrainage exclusif :</div>
                   <div className="referral-code-copy-row">
                     <span className="code-text font-mono">
-                      {currentUser?.loyaltyCode || 'ESHOP-EU4821'}
+                      {currentUser?.loyaltyCode || '—'}
                     </span>
                     <button
                       className="btn-copy-code"

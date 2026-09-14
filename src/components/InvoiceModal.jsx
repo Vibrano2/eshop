@@ -95,8 +95,12 @@ export default function InvoiceModal({ order, isOpen, onClose }) {
           <div className="invoice-header">
             <div className="invoice-brand">
               <div className="invoice-logo">
-                <span className="brand-star">★</span>
-                <span className="brand-title">eshop<span>-store.eu</span></span>
+                <img
+                  src="/logo.svg"
+                  alt="EshopStore"
+                  style={{ width: '28px', height: '28px', objectFit: 'contain', marginRight: '8px', verticalAlign: 'middle' }}
+                />
+                <span className="brand-title">Eshop<span>Store</span></span>
               </div>
               <p className="invoice-slogan">Le quotidien simplifié • Expédition express UE</p>
               <div className="invoice-seller-details">

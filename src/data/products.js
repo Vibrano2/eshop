@@ -1,17 +1,3 @@
-export const CATEGORIES = [
-  { id: 'all', label: 'Tous les produits', icon: 'Sparkles' },
-  { id: 'mode', label: 'Mode', icon: 'Shirt' },
-  { id: 'beaute', label: 'Beauté', icon: 'Sparkle' },
-  { id: 'technologie', label: 'Technologie', icon: 'Laptop' },
-  { id: 'maison', label: 'Maison', icon: 'Utensils' },
-  { id: 'animaux', label: 'Animaux', icon: 'Dog' },
-  { id: 'sport', label: 'Sport & Fitness', icon: 'Dumbbell' },
-  { id: 'auto', label: 'Auto', icon: 'Car' },
-  { id: 'securite', label: 'Sécurité', icon: 'ShieldCheck' },
-  { id: 'voyage', label: 'Voyage', icon: 'Plane' },
-  { id: 'accessoires', label: 'Accessoires', icon: 'Watch' }
-];
-
 // Catégories disponibles : tech, maison, beaute, voyage-auto, mode, animaux, sport, securite, accessoires
 export const PRODUCTS = [
   {
@@ -40,21 +26,22 @@ export const PRODUCTS = [
     "image": "/products/batterie-externe-compacte-10000-hero-v2.jpg",
     "gallery": [
       "/products/batterie-externe-compacte-10000-hero-v2.jpg",
-      "/products/batterie-externe-compacte.jpg",
-      "/products/batterie-externe-compacte-10000-details.jpg"
+      "/products/batterie-externe-compacte-lifestyle.jpg",
+      "/products/batterie-externe-compacte-10000-details.jpg",
+      "/products/batterie-externe-compacte-closeup.jpg"
     ],
-    "altText": "Batterie externe magnétique sans fil 10000mAh charge rapide USB-C",
-    "shortDescription": "Format compact magnétique compatible MagSafe et Qi. Double recharge sans fil 15W et port USB-C 20W Power Delivery.",
+    "altText": "Batterie externe magnétique sans fil compacte avec recharge sans fil et port USB-C",
+    "shortDescription": "Format compact magnétique avec fixation instantanée. Recharge sans fil et port USB-C polyvalent.",
     "benefits": [
-      "Fixation magnétique ultra-puissante compatible avec toutes les coques fines",
-      "Double charge rapide : sans fil 15W Qi + port USB-C 20W Power Delivery",
-      "Affichage LED numérique précis du pourcentage restant de batterie"
+      "Fixation magnétique instantanée au dos du smartphone",
+      "Recharge sans fil pratique et port USB-C",
+      "Format compact et léger avec indicateur de batterie"
     ],
     "specs": {
-      "Capacité": "10 000 mAh / 37Wh",
-      "Puissance sans fil": "15W / 10W / 7.5W Qi",
-      "Sortie USB-C": "20W PD Fast Charge",
-      "Poids": "185 g format poche"
+      "Type": "Batterie externe magnétique sans fil",
+      "Connectique": "Port USB-C",
+      "Recharge": "Sans fil magnétique et filaire USB-C",
+      "Indicateur": "Témoins LED de niveau de charge"
     },
     "faq": [
       {
@@ -97,15 +84,16 @@ export const PRODUCTS = [
     "image": "/products/mini-imprimante-thermique.jpg",
     "gallery": [
       "/products/mini-imprimante-thermique.jpg",
-      "/products/mini-imprimante-thermique-bluetooth-features.jpg",
-      "/products/mini-imprimante-thermique-bluetooth-details.jpg"
+      "/products/mini-imprimante-thermique-bluetooth-lifestyle.jpg",
+      "/products/mini-imprimante-thermique-bluetooth-details.jpg",
+      "/products/mini-imprimante-thermique-bluetooth-closeup.jpg"
     ],
     "altText": "Mini imprimante thermique portable Bluetooth sans encre de poche",
     "shortDescription": "Imprimez instantanément mémos, listes de courses, étiquettes et photos sans aucune cartouche d’encre depuis votre smartphone.",
     "benefits": [
-      "Zéro encre nécessaire : tête thermique haute résolution 203 DPI",
+      "Zéro encre nécessaire : tête thermique haute résolution sans encre",
       "Connexion Bluetooth rapide compatible application iOS et Android",
-      "Batterie rechargeable 1200 mAh ultra-légère (160 g)"
+      "Batterie rechargeable intégrée ultra-légère (160 g)"
     ],
     "specs": {
       "Technologie": "Impression thermique directe sans encre",
@@ -154,8 +142,9 @@ export const PRODUCTS = [
     "image": "/products/souffleur-air-electrique-rechargeable-hero.jpg",
     "gallery": [
       "/products/souffleur-air-electrique-rechargeable-hero.jpg",
-      "/products/souffleur-air-electrique-rechargeable-features.jpg",
-      "/products/souffleur-air-electrique-rechargeable-details.jpg"
+      "/products/souffleur-air-electrique-lifestyle.jpg",
+      "/products/souffleur-air-electrique-rechargeable-details.jpg",
+      "/products/souffleur-air-electrique-closeup.jpg"
     ],
     "altText": "Souffleur d’air comprimé électrique rechargeable pour PC et électronique",
     "shortDescription": "Alternative écologique et économique aux bombes d’air jetables. Moteur puissant haute performance réglable pour dépoussiérer claviers et appareils.",
@@ -209,8 +198,9 @@ export const PRODUCTS = [
     "image": "/products/support-telephone-voiture.jpg",
     "gallery": [
       "/products/support-telephone-voiture.jpg",
-      "/products/support-telephone-voiture-features.jpg",
-      "/products/support-telephone-voiture-details.jpg"
+      "/products/support-telephone-voiture-lifestyle.jpg",
+      "/products/support-telephone-voiture-details.jpg",
+      "/products/support-telephone-voiture-closeup.jpg"
     ],
     "altText": "Support téléphone magnétique rotatif 360° pour grille d'aération",
     "shortDescription": "Fixation magnétique instantanée sur grille d’aération. Maintien ferme et stable grâce aux aimants N52 et rotule 360° orientable.",
@@ -264,8 +254,9 @@ export const PRODUCTS = [
     "image": "/products/chargeur-65w-gan.jpg",
     "gallery": [
       "/products/chargeur-65w-gan.jpg",
-      "/products/chargeur-rapide-65w-gan-features.jpg",
-      "/products/chargeur-rapide-65w-gan-details.jpg"
+      "/products/chargeur-rapide-65w-gan-lifestyle.jpg",
+      "/products/chargeur-rapide-65w-gan-details.jpg",
+      "/products/chargeur-rapide-65w-gan-closeup.jpg"
     ],
     "altText": "Chargeur rapide multiport 65W GaN USB-C et USB-A compact",
     "shortDescription": "Technologie GaN III 65W ultra-compacte. 3 ports de charge rapide pour alimenter simultanément ordinateur portable, tablette et smartphone.",
@@ -316,11 +307,12 @@ export const PRODUCTS = [
     "imageDisplayMode": "contain",
     "shippingEU": "Stock UE disponible",
     "stock": 60,
-    "image": "/products/mini-machine-sceller.jpg",
+    "image": "/products/mini-machine-sceller-sachets-hero.jpg",
     "gallery": [
-      "/products/mini-machine-sceller.jpg",
-      "/products/mini-machine-sceller-sachets-features.jpg",
-      "/products/mini-machine-sceller-sachets-details.jpg"
+      "/products/mini-machine-sceller-sachets-hero.jpg",
+      "/products/mini-machine-sceller-sachets-lifestyle.jpg",
+      "/products/mini-machine-sceller-sachets-details.jpg",
+      "/products/mini-machine-sceller-sachets-closeup.jpg"
     ],
     "altText": "Mini machine à sceller les sachets plastique hermétique 2-en-1 rechargeable",
     "shortDescription": "Scelleur thermique hermétique avec lame rétractable intégrée. Conservez vos biscuits, chips et aliments à l’abri de l’humidité.",
@@ -374,8 +366,9 @@ export const PRODUCTS = [
     "image": "/products/blender-portable-rechargeable-hero.jpg",
     "gallery": [
       "/products/blender-portable-rechargeable-hero.jpg",
-      "/products/blender-portable-rechargeable-features.jpg",
-      "/products/blender-portable-rechargeable-details.jpg"
+      "/products/blender-portable-rechargeable-lifestyle.jpg",
+      "/products/blender-portable-rechargeable-details.jpg",
+      "/products/blender-portable-rechargeable-closeup.jpg"
     ],
     "altText": "Blender portable smoothie maker rechargeable USB-C 6 lames",
     "shortDescription": "Préparez smoothies frais, shakers et purées n’importe où. 6 lames en inox 304, bocal nomade sans BPA et recharge USB-C rapide.",
@@ -429,8 +422,9 @@ export const PRODUCTS = [
     "image": "/products/lunch-box-electrique-chauffante-hero-v2.jpg",
     "gallery": [
       "/products/lunch-box-electrique-chauffante-hero-v2.jpg",
-      "/products/lunch-box-electrique-chauffante-features.jpg",
-      "/products/lunch-box-electrique-chauffante-details.jpg"
+      "/products/lunch-box-electrique-chauffante-lifestyle.jpg",
+      "/products/lunch-box-electrique-chauffante-details.jpg",
+      "/products/lunch-box-electrique-chauffante-closeup.jpg"
     ],
     "altText": "Lunch box électrique chauffante 220V et 12V avec bol inox",
     "shortDescription": "Réchauffez vos plats maison en 20 à 30 minutes sans micro-ondes. Double prise 220V bureau et 12V voiture avec cuve inox amovible 1.5 L.",
@@ -484,8 +478,9 @@ export const PRODUCTS = [
     "image": "/products/brosse-nettoyage-electrique-hero.jpg",
     "gallery": [
       "/products/brosse-nettoyage-electrique-hero.jpg",
-      "/products/brosse-nettoyage-electrique-features.jpg",
-      "/products/brosse-nettoyage-electrique-details.jpg"
+      "/products/brosse-nettoyage-electrique-lifestyle.jpg",
+      "/products/brosse-nettoyage-electrique-details.jpg",
+      "/products/brosse-nettoyage-electrique-closeup.jpg"
     ],
     "altText": "Brosse de nettoyage électrique rotative sans fil multi-surfaces avec manche télescopique",
     "shortDescription": "Nettoyez carrelages, joints, douches et éviers sans forcer. Moteur 300 tr/min, manche télescopique et têtes interchangeables.",
@@ -539,8 +534,9 @@ export const PRODUCTS = [
     "image": "/products/reglette-led-detecteur-mouvement.jpg",
     "gallery": [
       "/products/reglette-led-detecteur-mouvement.jpg",
-      "/products/reglette-led-detecteur-mouvement-features.jpg",
-      "/products/reglette-led-detecteur-mouvement-details.jpg"
+      "/products/reglette-led-detecteur-mouvement-lifestyle.jpg",
+      "/products/reglette-led-detecteur-mouvement-details.jpg",
+      "/products/reglette-led-detecteur-mouvement-closeup.jpg"
     ],
     "altText": "Lampe réglette LED magnétique sans fil avec détecteur de mouvement crépusculaire",
     "shortDescription": "Éclairage d’appoint magnétique à allumage automatique au passage. Idéal pour dressings, placards, couloirs et dessous de meubles.",
@@ -594,8 +590,9 @@ export const PRODUCTS = [
     "image": "/products/rouleau-anti-peluches.jpg",
     "gallery": [
       "/products/rouleau-anti-peluches.jpg",
-      "/products/rouleau-anti-peluches-features.jpg",
-      "/products/rouleau-anti-peluches-details.jpg"
+      "/products/rouleau-anti-peluches-lifestyle.jpg",
+      "/products/rouleau-anti-peluches-details.jpg",
+      "/products/rouleau-anti-peluches-closeup.jpg"
     ],
     "altText": "Rasoir anti-bouloches électrique rechargeable pour vêtements et pulls en laine",
     "shortDescription": "Rénovez vos pulls en laine, manteaux, écharpes et canapés. Grille alvéolée protectrice en acier inox et 6 lames rotatives affûtées.",
@@ -649,8 +646,9 @@ export const PRODUCTS = [
     "image": "/products/rouleau-glace-visage.jpg",
     "gallery": [
       "/products/rouleau-glace-visage.jpg",
-      "/products/rouleau-glace-visage-features.jpg",
-      "/products/rouleau-glace-visage-details.jpg"
+      "/products/rouleau-glace-visage-lifestyle.jpg",
+      "/products/rouleau-glace-visage-details.jpg",
+      "/products/rouleau-glace-visage-closeup.jpg"
     ],
     "altText": "Rouleau de glace pour massage cryothérapie du visage anti-gonflement",
     "shortDescription": "Rituel cryo matinal pour décongestionner le regard, tonifier la peau et estomper les poches et rougeurs en 5 minutes.",
@@ -704,8 +702,9 @@ export const PRODUCTS = [
     "image": "/products/masseur-cuir-chevelu.jpg",
     "gallery": [
       "/products/masseur-cuir-chevelu.jpg",
-      "/products/masseur-cuir-chevelu-features.jpg",
-      "/products/masseur-cuir-chevelu-details.jpg"
+      "/products/masseur-cuir-chevelu-lifestyle.jpg",
+      "/products/masseur-cuir-chevelu-details.jpg",
+      "/products/masseur-cuir-chevelu-closeup.jpg"
     ],
     "altText": "Brosse masseur cuir chevelu en silicone doux sous la douche",
     "shortDescription": "Picots en silicone souple qui stimulent la microcirculation des racines, favorisent la pousse et éliminent peaux mortes et résidus.",
@@ -758,8 +757,9 @@ export const PRODUCTS = [
     "image": "/products/rouleau-boucles-sans-chaleur.jpg",
     "gallery": [
       "/products/rouleau-boucles-sans-chaleur.jpg",
-      "/products/rouleau-boucles-sans-chaleur-features.jpg",
-      "/products/rouleau-boucles-sans-chaleur-details.jpg"
+      "/products/rouleau-boucles-sans-chaleur-lifestyle.jpg",
+      "/products/rouleau-boucles-sans-chaleur-details.jpg",
+      "/products/rouleau-boucles-sans-chaleur-closeup.jpg"
     ],
     "altText": "Kit de boucles sans chaleur en satin avec chouchous et pince crocodile",
     "shortDescription": "Ondulations soyeuses sans aucun dommage thermique. Enroulez vos mèches avant de dormir et réveillez-vous avec des boucles sublimes.",
@@ -812,8 +812,9 @@ export const PRODUCTS = [
     "image": "/products/defroisseur-vapeur-portable-hero-v2.jpg",
     "gallery": [
       "/products/defroisseur-vapeur-portable-hero-v2.jpg",
-      "/products/defroisseur-vapeur.jpg",
-      "/products/defroisseur-vapeur-portable-details.jpg"
+      "/products/defroisseur-vapeur-portable-lifestyle.jpg",
+      "/products/defroisseur-vapeur-portable-details.jpg",
+      "/products/defroisseur-vapeur-portable-closeup.jpg"
     ],
     "altText": "Défroisseur vapeur à main compact pliable pour voyage et maison",
     "shortDescription": "Défroissez, désodorisez et rafraîchissez vos tenues en 25 secondes. Tête pliable compacte idéale à la maison comme dans votre valise.",
@@ -867,8 +868,9 @@ export const PRODUCTS = [
     "image": "/products/aspirateur-voiture-sans-fil.jpg",
     "gallery": [
       "/products/aspirateur-voiture-sans-fil.jpg",
-      "/products/aspirateur-voiture-sans-fil-features.jpg",
-      "/products/aspirateur-voiture-sans-fil-details.jpg"
+      "/products/aspirateur-voiture-sans-fil-lifestyle.jpg",
+      "/products/aspirateur-voiture-sans-fil-details.jpg",
+      "/products/aspirateur-voiture-sans-fil-closeup.jpg"
     ],
     "altText": "Aspirateur de voiture sans fil rechargeable 4-en-1 avec souffleur",
     "shortDescription": "Aspiration cyclonique 9 000 Pa, soufflerie et pompe à vide. Nettoyez sièges, tapis et fentes de votre véhicule sans fil encombrant.",
@@ -922,8 +924,9 @@ export const PRODUCTS = [
     "image": "/products/sac-voyage-pliable-extensible-hero.jpg",
     "gallery": [
       "/products/sac-voyage-pliable-extensible-hero.jpg",
-      "/products/sac-voyage-pliable.jpg",
-      "/products/sac-voyage-pliable-extensible-details.jpg"
+      "/products/sac-voyage-pliable-extensible-lifestyle.jpg",
+      "/products/sac-voyage-pliable-extensible-details.jpg",
+      "/products/sac-voyage-pliable-extensible-closeup.jpg"
     ],
     "altText": "Sac de voyage week-end pliable imperméable avec compartiment séparé linge humide",
     "shortDescription": "Sac de voyage déperlant avec soufflet inférieur zippé modulable. Compartiment étanche pour affaires humides et manchon trolley pour valise.",
@@ -977,8 +980,9 @@ export const PRODUCTS = [
     "image": "/products/cubes-rangement-valise.jpg",
     "gallery": [
       "/products/cubes-rangement-valise.jpg",
-      "/products/cubes-rangement-valise-features.jpg",
-      "/products/cubes-rangement-valise-details.jpg"
+      "/products/cubes-rangement-valise-lifestyle.jpg",
+      "/products/cubes-rangement-valise-details.jpg",
+      "/products/cubes-rangement-valise-closeup.jpg"
     ],
     "altText": "Organisateurs cubes de rangement compressibles pour valise lot de 6 pièces",
     "shortDescription": "Gagnez jusqu’à 60% d’espace dans vos bagages grâce à la double fermeture éclair de compression. Lot de 6 housses ultralégères déperlantes.",
@@ -1031,8 +1035,9 @@ export const PRODUCTS = [
     "image": "/products/pese-bagages-electronique.jpg",
     "gallery": [
       "/products/pese-bagages-electronique.jpg",
-      "/products/pese-bagages-electronique-features.jpg",
-      "/products/pese-bagages-electronique-details.jpg"
+      "/products/pese-bagages-electronique-lifestyle.jpg",
+      "/products/pese-bagages-electronique-details.jpg",
+      "/products/pese-bagages-electronique-closeup.jpg"
     ],
     "altText": "Pèse-bagage électronique numérique suspendu précis jusqu'à 50 kg",
     "shortDescription": "Évitez les mauvaises surprises et frais d’excédent de bagages à l’aéroport. Mesure ultra-précise jusqu’à 50 kg avec écran LCD rétroéclairé.",
@@ -1086,8 +1091,9 @@ export const PRODUCTS = [
     "image": "/products/ventilateur-cou-rechargeable-hero-v2.jpg",
     "gallery": [
       "/products/ventilateur-cou-rechargeable-hero-v2.jpg",
-      "/products/ventilateur-cou-rechargeable-hero.jpg",
-      "/products/ventilateur-cou-rechargeable-details.jpg"
+      "/products/ventilateur-cou-rechargeable-lifestyle.jpg",
+      "/products/ventilateur-cou-rechargeable-details.jpg",
+      "/products/ventilateur-cou-rechargeable-closeup.jpg"
     ],
     "altText": "Ventilateur de cou sans pales mains libres rechargeable USB-C",
     "shortDescription": "Rafraîchissement mains libres à 360° sans pale apparente. 3 vitesses de brise silencieuse et batterie 4000 mAh pour voyages et journées chaudes.",
@@ -1136,8 +1142,9 @@ export const PRODUCTS = [
     "image": "/products/robe-fluide-ete.jpg",
     "gallery": [
       "/products/robe-fluide-ete.jpg",
-      "/products/robe-fluide-ete-features.jpg",
-      "/products/robe-fluide-ete-details.jpg"
+      "/products/robe-fluide-ete-lifestyle.jpg",
+      "/products/robe-fluide-ete-details.jpg",
+      "/products/robe-fluide-ete-closeup.jpg"
     ],
     "altText": "Robe portefeuille fluide midi pour femme en terracotta",
     "shortDescription": "Coupe flatteuse cache-cœur en viscose fluide et respirante. Parfaite pour le quotidien et les soirées estivales.",
@@ -1219,8 +1226,9 @@ export const PRODUCTS = [
     "image": "/products/tshirt-oversize-coton.jpg",
     "gallery": [
       "/products/tshirt-oversize-coton.jpg",
-      "/products/t-shirt-oversize-coton-features.jpg",
-      "/products/t-shirt-oversize-coton-details.jpg"
+      "/products/t-shirt-oversize-coton-lifestyle.jpg",
+      "/products/t-shirt-oversize-coton-details.jpg",
+      "/products/t-shirt-oversize-coton-closeup.jpg"
     ],
     "altText": "T-shirt oversize blanc en coton épais pour femme",
     "shortDescription": "Coton peigné 240g/m² au tombé lourd et structuré. Coupe boxy moderne pour un look décontracté chic.",
@@ -1298,8 +1306,9 @@ export const PRODUCTS = [
     "image": "/products/jean-taille-haute-femme.jpg",
     "gallery": [
       "/products/jean-taille-haute-femme.jpg",
-      "/products/jean-slim-confort-features.jpg",
-      "/products/jean-slim-confort-details.jpg"
+      "/products/jean-slim-confort-lifestyle.jpg",
+      "/products/jean-slim-confort-details.jpg",
+      "/products/jean-slim-confort-closeup.jpg"
     ],
     "altText": "Jean denim bleu stretch taille haute pour femme",
     "shortDescription": "Denim innovant à mémoire de forme qui galbe la silhouette tout en offrant un grand confort toute la journée.",
@@ -1375,8 +1384,9 @@ export const PRODUCTS = [
     "image": "/products/chemise-lin-homme.jpg",
     "gallery": [
       "/products/chemise-lin-homme.jpg",
-      "/products/chemise-lin-homme-features.jpg",
-      "/products/chemise-lin-homme-details.jpg"
+      "/products/chemise-lin-homme-lifestyle.jpg",
+      "/products/chemise-lin-homme-details.jpg",
+      "/products/chemise-lin-homme-closeup.jpg"
     ],
     "altText": "Chemise d'homme casual en lin lavé avec col mao",
     "shortDescription": "Lin normand respirant et thermorégulateur. Col officier épuré pour une allure chic sans effort.",
@@ -1457,8 +1467,9 @@ export const PRODUCTS = [
     "image": "/products/polo-classique-homme.jpg",
     "gallery": [
       "/products/polo-classique-homme.jpg",
-      "/products/polo-coton-homme-features.jpg",
-      "/products/polo-coton-homme-details.jpg"
+      "/products/polo-coton-homme-lifestyle.jpg",
+      "/products/polo-coton-homme-details.jpg",
+      "/products/polo-coton-homme-closeup.jpg"
     ],
     "altText": "Polo homme bleu marine en maille piquée",
     "shortDescription": "Maille piquée respirante haute densité avec patte 2 boutons nacrés et fentes latérales d'aisance.",
@@ -1537,8 +1548,9 @@ export const PRODUCTS = [
     "image": "/products/baskets-casual-respirantes.jpg",
     "gallery": [
       "/products/baskets-casual-respirantes.jpg",
-      "/products/baskets-casual-respirantes-features.jpg",
-      "/products/baskets-casual-respirantes-details.jpg"
+      "/products/baskets-casual-respirantes-lifestyle.jpg",
+      "/products/baskets-casual-respirantes-details.jpg",
+      "/products/baskets-casual-respirantes-closeup.jpg"
     ],
     "altText": "Baskets légères respirantes blanches et grises unisexe",
     "shortDescription": "Semelle à mémoire de forme et mesh respirant. Légèreté absolue (210g) pour arpenter la ville en tout confort.",
@@ -1618,8 +1630,9 @@ export const PRODUCTS = [
     "image": "/products/sac-bandouliere.jpg",
     "gallery": [
       "/products/sac-bandouliere.jpg",
-      "/products/sac-bandouliere-demi-lune-features.jpg",
-      "/products/sac-bandouliere-demi-lune-details.jpg"
+      "/products/sac-bandouliere-demi-lune-lifestyle.jpg",
+      "/products/sac-bandouliere-demi-lune-details.jpg",
+      "/products/sac-bandouliere-demi-lune-closeup.jpg"
     ],
     "altText": "Sac bandoulière demi-lune femme en cuir végétal camel",
     "shortDescription": "Cuir vegan premium texturé grainé. Format demi-lune compact mais spacieux pour smartphone, clés et portefeuille.",
@@ -1691,8 +1704,9 @@ export const PRODUCTS = [
     "image": "/products/ensemble-lounge-cotele.jpg",
     "gallery": [
       "/products/ensemble-lounge-cotele.jpg",
-      "/products/ensemble-lounge-confort-features.jpg",
-      "/products/ensemble-lounge-confort-details.jpg"
+      "/products/ensemble-lounge-confort-lifestyle.jpg",
+      "/products/ensemble-lounge-confort-details.jpg",
+      "/products/ensemble-lounge-confort-closeup.jpg"
     ],
     "altText": "Ensemble lounge détente deux pièces sweat et pantalon côtelé pour femme",
     "shortDescription": "Comprend un sweat col rond décontracté et un pantalon palazzo fluide à taille élastiquée.",
@@ -1766,8 +1780,9 @@ export const PRODUCTS = [
     "image": "/products/organisateur-maquillage.jpg",
     "gallery": [
       "/products/organisateur-maquillage.jpg",
-      "/products/organisateur-maquillage-features.jpg",
-      "/products/organisateur-maquillage-details.jpg"
+      "/products/organisateur-maquillage-lifestyle.jpg",
+      "/products/organisateur-maquillage-details.jpg",
+      "/products/organisateur-maquillage-closeup.jpg"
     ],
     "altText": "Tour de rangement maquillage rotative 360 degrés en acrylique",
     "shortDescription": "Regroupe flacons, sérums, pinceaux et crèmes sur plateaux réglables en hauteur d'un simple tour de main.",
@@ -1816,15 +1831,16 @@ export const PRODUCTS = [
     "image": "/products/brosse-nettoyante-visage.jpg",
     "gallery": [
       "/products/brosse-nettoyante-visage.jpg",
-      "/products/brosse-nettoyante-visage-features.jpg",
-      "/products/brosse-nettoyante-visage-details.jpg"
+      "/products/brosse-nettoyante-visage-lifestyle.jpg",
+      "/products/brosse-nettoyante-visage-details.jpg",
+      "/products/brosse-nettoyante-visage-closeup.jpg"
     ],
     "altText": "Brosse sonique nettoyante pour le visage en silicone étanche",
     "shortDescription": "Pulsations soniques douces pour désincruster les pores et exfolier la peau sans agression.",
     "benefits": [
       "Silicone chirurgical ultra-hygiénique et antibactérien",
       "5 intensités de vibrations réglables",
-      "100% étanche IPX7 pour une utilisation sous la douche"
+      "conception étanche IPX7 pour une utilisation sous la douche"
     ],
     "specs": {
       "Étanchéité": "IPX7",
@@ -1866,8 +1882,9 @@ export const PRODUCTS = [
     "image": "/products/support-ordinateur-portable.jpg",
     "gallery": [
       "/products/support-ordinateur-portable.jpg",
-      "/products/support-ordinateur-portable-features.jpg",
-      "/products/support-ordinateur-portable-details.jpg"
+      "/products/support-ordinateur-portable-lifestyle.jpg",
+      "/products/support-ordinateur-portable-details.jpg",
+      "/products/support-ordinateur-portable-closeup.jpg"
     ],
     "altText": "Support ventilé pliable en aluminium pour ordinateur portable",
     "shortDescription": "Surélève votre écran au niveau des yeux pour prévenir les douleurs cervicales et optimiser le refroidissement.",
@@ -1917,8 +1934,9 @@ export const PRODUCTS = [
     "image": "/products/hub-usb-c-7en1.jpg",
     "gallery": [
       "/products/hub-usb-c-7en1.jpg",
-      "/products/hub-usb-c-7en1-features.jpg",
-      "/products/hub-usb-c-7en1-details.jpg"
+      "/products/hub-usb-c-7en1-lifestyle.jpg",
+      "/products/hub-usb-c-7en1-details.jpg",
+      "/products/hub-usb-c-7en1-closeup.jpg"
     ],
     "altText": "Adaptateur Hub USB-C 7 ports en aluminium avec sortie HDMI 4K",
     "shortDescription": "Ajoutez 1 port HDMI 4K, 3 ports USB 3.0, 1 chargeur rapide PD 100W et lecteurs cartes SD/MicroSD à votre PC ou Mac.",
@@ -1968,8 +1986,9 @@ export const PRODUCTS = [
     "image": "/products/ecouteurs-bluetooth-pro.jpg",
     "gallery": [
       "/products/ecouteurs-bluetooth-pro.jpg",
-      "/products/ecouteurs-bluetooth-pro-features.jpg",
-      "/products/ecouteurs-bluetooth-pro-details.jpg"
+      "/products/ecouteurs-bluetooth-pro-lifestyle.jpg",
+      "/products/ecouteurs-bluetooth-pro-details.jpg",
+      "/products/ecouteurs-bluetooth-pro-closeup.jpg"
     ],
     "altText": "Écouteurs sans fil Bluetooth avec boîtier de charge compact",
     "shortDescription": "Audio haute fidélité avec basses profondes, réduction de bruit passive et autonomie de 28h avec le boîtier.",
@@ -2016,11 +2035,12 @@ export const PRODUCTS = [
     "imageDisplayMode": "contain",
     "shippingEU": "Stock UE",
     "stock": 60,
-    "image": "/products/organisateur-cables.jpg",
+    "image": "/products/organisateur-cables-hero.jpg",
     "gallery": [
-      "/products/organisateur-cables.jpg",
-      "/products/organisateur-cables-features.jpg",
-      "/products/organisateur-cables-details.jpg"
+      "/products/organisateur-cables-hero.jpg",
+      "/products/organisateur-cables-lifestyle.jpg",
+      "/products/organisateur-cables-details.jpg",
+      "/products/organisateur-cables-closeup.jpg"
     ],
     "altText": "Clips et base magnétique pour organisation des câbles de bureau",
     "shortDescription": "Maintient vos cordons de chargeurs USB-C et Lightning bien rangés sur le bureau sans jamais glisser derrière.",
@@ -2069,8 +2089,9 @@ export const PRODUCTS = [
     "image": "/products/repose-pieds-ergonomique.jpg",
     "gallery": [
       "/products/repose-pieds-ergonomique.jpg",
-      "/products/repose-pieds-ergonomique-features.jpg",
-      "/products/repose-pieds-ergonomique-details.jpg"
+      "/products/repose-pieds-ergonomique-lifestyle.jpg",
+      "/products/repose-pieds-ergonomique-details.jpg",
+      "/products/repose-pieds-ergonomique-closeup.jpg"
     ],
     "altText": "Repose-pieds ergonomique sous bureau en mousse à mémoire de forme",
     "shortDescription": "Stimule le retour veineux et soulage le bas du dos pendant les longues sessions de travail assis.",
@@ -2119,8 +2140,9 @@ export const PRODUCTS = [
     "image": "/products/doublures-silicone-airfryer.jpg",
     "gallery": [
       "/products/doublures-silicone-airfryer.jpg",
-      "/products/doublures-silicone-airfryer-features.jpg",
-      "/products/doublures-silicone-airfryer-details.jpg"
+      "/products/doublures-silicone-airfryer-lifestyle.jpg",
+      "/products/doublures-silicone-airfryer-details.jpg",
+      "/products/doublures-silicone-airfryer-closeup.jpg"
     ],
     "altText": "Paire de moules en silicone antiadhésifs pour panier friteuse Air Fryer",
     "shortDescription": "Gardez le tiroir de votre friteuse à air comme neuf. Rainures de surélévation pour des cuissons croustillantes.",
@@ -2170,8 +2192,9 @@ export const PRODUCTS = [
     "image": "/products/pulverisateur-huile.jpg",
     "gallery": [
       "/products/pulverisateur-huile.jpg",
-      "/products/pulverisateur-huile-features.jpg",
-      "/products/pulverisateur-huile-details.jpg"
+      "/products/pulverisateur-huile-lifestyle.jpg",
+      "/products/pulverisateur-huile-details.jpg",
+      "/products/pulverisateur-huile-closeup.jpg"
     ],
     "altText": "Bouteille brumisateur d'huile en verre avec buse de pulvérisation",
     "shortDescription": "Diffuse une brume d'huile ultra-fine et régulière pour réduire la matière grasse de 75% sur vos plats et salades.",
@@ -2220,8 +2243,9 @@ export const PRODUCTS = [
     "image": "/products/accessoires-airfryer.jpg",
     "gallery": [
       "/products/accessoires-airfryer.jpg",
-      "/products/accessoires-airfryer-features.jpg",
-      "/products/accessoires-airfryer-details.jpg"
+      "/products/accessoires-airfryer-lifestyle.jpg",
+      "/products/accessoires-airfryer-details.jpg",
+      "/products/accessoires-airfryer-closeup.jpg"
     ],
     "altText": "Kit complet de 8 accessoires inox et moules pour friteuse à air",
     "shortDescription": "Multipliez les recettes de votre friteuse : gâteaux, brochettes, pizzas et cuissons étagées sur 2 niveaux.",
@@ -2269,8 +2293,9 @@ export const PRODUCTS = [
     "image": "/products/organisateur-sous-evier.jpg",
     "gallery": [
       "/products/organisateur-sous-evier.jpg",
-      "/products/organisateur-sous-evier-features.jpg",
-      "/products/organisateur-sous-evier-details.jpg"
+      "/products/organisateur-sous-evier-lifestyle.jpg",
+      "/products/organisateur-sous-evier-details.jpg",
+      "/products/organisateur-sous-evier-closeup.jpg"
     ],
     "altText": "Étagère de rangement coulissante à tiroirs sous évier",
     "shortDescription": "Optimise l'espace perdu autour des tuyaux sous l'évier grâce à son tiroir coulissant fluide à 2 étages.",
@@ -2317,8 +2342,9 @@ export const PRODUCTS = [
     "image": "/products/brosse-anti-poils.jpg",
     "gallery": [
       "/products/brosse-anti-poils.jpg",
-      "/products/brosse-anti-poils-features.jpg",
-      "/products/brosse-anti-poils-details.jpg"
+      "/products/brosse-anti-poils-lifestyle.jpg",
+      "/products/brosse-anti-poils-details.jpg",
+      "/products/brosse-anti-poils-closeup.jpg"
     ],
     "altText": "Brosse autonettoyante ramasse-poils animaux pour tissus et vêtements",
     "shortDescription": "Retire instantanément les poils incrustés sur canapés, tapis, vêtements et sièges auto grâce à sa base autonettoyante.",
@@ -2368,8 +2394,9 @@ export const PRODUCTS = [
     "image": "/products/nettoyeur-pattes-chiens.jpg",
     "gallery": [
       "/products/nettoyeur-pattes-chiens.jpg",
-      "/products/nettoyeur-pattes-chiens-features.jpg",
-      "/products/nettoyeur-pattes-chiens-details.jpg"
+      "/products/nettoyeur-pattes-chiens-lifestyle.jpg",
+      "/products/nettoyeur-pattes-chiens-details.jpg",
+      "/products/nettoyeur-pattes-chiens-closeup.jpg"
     ],
     "altText": "Gobelet nettoyeur de pattes boueuses pour chien avec picots silicone",
     "shortDescription": "Élimine la boue et le sable des pattes de votre animal après la balade sans salir le sol de la maison.",
@@ -2417,8 +2444,9 @@ export const PRODUCTS = [
     "image": "/products/gourde-portable-chiens.jpg",
     "gallery": [
       "/products/gourde-portable-chiens.jpg",
-      "/products/gourde-portable-chiens-features.jpg",
-      "/products/gourde-portable-chiens-details.jpg"
+      "/products/gourde-portable-chiens-lifestyle.jpg",
+      "/products/gourde-portable-chiens-details.jpg",
+      "/products/gourde-portable-chiens-closeup.jpg"
     ],
     "altText": "Bouteille d'eau portable antifuite pour chien avec distributeur",
     "shortDescription": "Auget ergonomique incurvé. Une simple pression sur le bouton verse l'eau et récupère le surplus non bu.",
@@ -2467,8 +2495,9 @@ export const PRODUCTS = [
     "image": "/products/gamelle-pliable.jpg",
     "gallery": [
       "/products/gamelle-pliable.jpg",
-      "/products/gamelle-pliable-features.jpg",
-      "/products/gamelle-pliable-details.jpg"
+      "/products/gamelle-pliable-lifestyle.jpg",
+      "/products/gamelle-pliable-details.jpg",
+      "/products/gamelle-pliable-closeup.jpg"
     ],
     "altText": "Gamelle nomade pliable en silicone pour chien et chat",
     "shortDescription": "Se replie à plat (1 cm d'épaisseur) pour s'accrocher à votre sac ou à la laisse avec son mousqueton alu.",
@@ -2516,8 +2545,9 @@ export const PRODUCTS = [
     "image": "/products/housse-siege-animaux.jpg",
     "gallery": [
       "/products/housse-siege-animaux.jpg",
-      "/products/housse-siege-animaux-features.jpg",
-      "/products/housse-siege-animaux-details.jpg"
+      "/products/housse-siege-animaux-lifestyle.jpg",
+      "/products/housse-siege-animaux-details.jpg",
+      "/products/housse-siege-animaux-closeup.jpg"
     ],
     "altText": "Housse imperméable de protection de banquette arrière pour chien",
     "shortDescription": "Protège la banquette arrière des griffures, poils et boue. Format hamac sécurisé avec fenêtre en filet aérée.",
@@ -2565,8 +2595,9 @@ export const PRODUCTS = [
     "image": "/products/bandes-resistance.jpg",
     "gallery": [
       "/products/bandes-resistance.jpg",
-      "/products/bandeaux-fitness-features.jpg",
-      "/products/bandeaux-fitness-details.jpg"
+      "/products/bandeaux-fitness-lifestyle.jpg",
+      "/products/bandeaux-fitness-details.jpg",
+      "/products/bandeaux-fitness-closeup.jpg"
     ],
     "altText": "Lot de 3 bandes élastiques de résistance en tissu pour fitness et musculation",
     "shortDescription": "Ne roulent pas et ne pincent pas la peau grâce à leur tissage coton/latex épais avec bandes antiglisse intérieures.",
@@ -2616,8 +2647,9 @@ export const PRODUCTS = [
     "image": "/products/ceinture-course.jpg",
     "gallery": [
       "/products/ceinture-course.jpg",
-      "/products/ceinture-course-features.jpg",
-      "/products/ceinture-course-details.jpg"
+      "/products/ceinture-course-lifestyle.jpg",
+      "/products/ceinture-course-details.jpg",
+      "/products/ceinture-course-closeup.jpg"
     ],
     "altText": "Ceinture fine et élastique pour smartphone et clés spécial course à pied",
     "shortDescription": "Emportez smartphone, clés et gels énergétiques sans aucun rebond gênant pendant la course à pied.",
@@ -2662,11 +2694,12 @@ export const PRODUCTS = [
     "imageDisplayMode": "contain",
     "shippingEU": "Livraison 2-4 jours (UE)",
     "stock": 30,
-    "image": "/products/sac-sport-compact.jpg",
+    "image": "/products/sac-sport-compact-hero.jpg",
     "gallery": [
-      "/products/sac-sport-compact.jpg",
-      "/products/sac-sport-compact-features.jpg",
-      "/products/sac-sport-compact-details.jpg"
+      "/products/sac-sport-compact-hero.jpg",
+      "/products/sac-sport-compact-lifestyle.jpg",
+      "/products/sac-sport-compact-details.jpg",
+      "/products/sac-sport-compact-closeup.jpg"
     ],
     "altText": "Sac de sport imperméable avec compartiment séparé pour chaussures",
     "shortDescription": "Poche spéciale étanche pour serviette mouillée et compartiment ventilé séparé pour vos baskets.",
@@ -2714,8 +2747,9 @@ export const PRODUCTS = [
     "image": "/products/bouteille-eau-pliable.jpg",
     "gallery": [
       "/products/bouteille-eau-pliable.jpg",
-      "/products/bouteille-eau-pliable-features.jpg",
-      "/products/bouteille-eau-pliable-details.jpg"
+      "/products/bouteille-eau-pliable-lifestyle.jpg",
+      "/products/bouteille-eau-pliable-details.jpg",
+      "/products/bouteille-eau-pliable-closeup.jpg"
     ],
     "altText": "Gourde souple compactable en silicone platine pour sport et randonnée",
     "shortDescription": "Se replie à 25% de son volume une fois bue pour un encombrement minimal dans votre sac de sport ou sac à dos.",
@@ -2765,8 +2799,9 @@ export const PRODUCTS = [
     "image": "/products/sacoche-velo.jpg",
     "gallery": [
       "/products/sacoche-velo.jpg",
-      "/products/sacoche-velo-features.jpg",
-      "/products/sacoche-velo-details.jpg"
+      "/products/sacoche-velo-lifestyle.jpg",
+      "/products/sacoche-velo-details.jpg",
+      "/products/sacoche-velo-closeup.jpg"
     ],
     "altText": "Sacoche imperméable de cadre de vélo avec support écran tactile GPS",
     "shortDescription": "Consultez votre GPS en pédalant grâce à la fenêtre tactile haute réactivité avec visière pare-soleil intégrée.",
@@ -2814,8 +2849,9 @@ export const PRODUCTS = [
     "image": "/products/organisateur-coffre.jpg",
     "gallery": [
       "/products/organisateur-coffre.jpg",
-      "/products/organisateur-coffre-features.jpg",
-      "/products/organisateur-coffre-details.jpg"
+      "/products/organisateur-coffre-lifestyle.jpg",
+      "/products/organisateur-coffre-details.jpg",
+      "/products/organisateur-coffre-closeup.jpg"
     ],
     "altText": "Organisateur pliable compartimenté pour coffre de voiture avec poignées alu",
     "shortDescription": "Empêche vos courses, outillages et équipements de rouler dans le coffre grâce à ses cloisons rigides modulables.",
@@ -2864,8 +2900,9 @@ export const PRODUCTS = [
     "image": "/products/organisateur-entre-sieges.jpg",
     "gallery": [
       "/products/organisateur-entre-sieges.jpg",
-      "/products/organisateur-entre-sieges-features.jpg",
-      "/products/organisateur-entre-sieges-details.jpg"
+      "/products/organisateur-entre-sieges-lifestyle.jpg",
+      "/products/organisateur-entre-sieges-details.jpg",
+      "/products/organisateur-entre-sieges-closeup.jpg"
     ],
     "altText": "Paire de bacs de rangement pour fente entre siège avant et console de voiture",
     "shortDescription": "Comble l'interstice entre le siège et la console pour éviter la chute des clés ou du téléphone tout en créant du rangement.",
@@ -2912,8 +2949,9 @@ export const PRODUCTS = [
     "image": "/products/camera-surveillance-wifi.jpg",
     "gallery": [
       "/products/camera-surveillance-wifi.jpg",
-      "/products/camera-surveillance-wifi-features.jpg",
-      "/products/camera-surveillance-wifi-details.jpg"
+      "/products/camera-surveillance-wifi-lifestyle.jpg",
+      "/products/camera-surveillance-wifi-details.jpg",
+      "/products/camera-surveillance-wifi-closeup.jpg"
     ],
     "altText": "Caméra de surveillance WiFi 360 degrés 2K avec vision nocturne",
     "shortDescription": "Vision nocturne infrarouge haute définition 2K, suivi automatique des mouvements par IA et audio bidirectionnel.",
@@ -2962,8 +3000,9 @@ export const PRODUCTS = [
     "image": "/products/sonnette-video-connectee.jpg",
     "gallery": [
       "/products/sonnette-video-connectee.jpg",
-      "/products/sonnette-video-connectee-features.jpg",
-      "/products/sonnette-video-connectee-details.jpg"
+      "/products/sonnette-video-connectee-lifestyle.jpg",
+      "/products/sonnette-video-connectee-details.jpg",
+      "/products/sonnette-video-connectee-closeup.jpg"
     ],
     "altText": "Sonnette connectée sans fil étanche avec caméra vidéo grand angle",
     "shortDescription": "Visualisez et répondez aux livreurs et visiteurs directement depuis votre smartphone où que vous soyez.",
@@ -3012,8 +3051,9 @@ export const PRODUCTS = [
     "image": "/products/prise-connectee-wifi.jpg",
     "gallery": [
       "/products/prise-connectee-wifi.jpg",
-      "/products/prise-connectee-wifi-features.jpg",
-      "/products/prise-connectee-wifi-details.jpg"
+      "/products/prise-connectee-wifi-lifestyle.jpg",
+      "/products/prise-connectee-wifi-details.jpg",
+      "/products/prise-connectee-wifi-closeup.jpg"
     ],
     "altText": "Prise électrique connectée WiFi avec suivi de consommation en temps réel",
     "shortDescription": "Allumez et éteignez vos appareils à distance et surveillez votre consommation électrique en direct.",
@@ -3061,8 +3101,9 @@ export const PRODUCTS = [
     "image": "/products/detecteur-mouvement-connecte.jpg",
     "gallery": [
       "/products/detecteur-mouvement-connecte.jpg",
-      "/products/detecteur-mouvement-connecte-features.jpg",
-      "/products/detecteur-mouvement-connecte-details.jpg"
+      "/products/detecteur-mouvement-connecte-lifestyle.jpg",
+      "/products/detecteur-mouvement-connecte-details.jpg",
+      "/products/detecteur-mouvement-connecte-closeup.jpg"
     ],
     "altText": "Capteur de présence et détecteur de mouvement connecté WiFi pour sécurité maison",
     "shortDescription": "Détection infrarouge grand angle 110° jusqu'à 8 mètres. Envoie une alerte instantanée sur smartphone lors de toute intrusion.",
@@ -3111,8 +3152,9 @@ export const PRODUCTS = [
     "image": "/products/trousse-toilette-suspendue.jpg",
     "gallery": [
       "/products/trousse-toilette-suspendue.jpg",
-      "/products/trousse-toilette-suspendue-features.jpg",
-      "/products/trousse-toilette-suspendue-details.jpg"
+      "/products/trousse-toilette-suspendue-lifestyle.jpg",
+      "/products/trousse-toilette-suspendue-details.jpg",
+      "/products/trousse-toilette-suspendue-closeup.jpg"
     ],
     "altText": "Trousse de toilette suspendue à crochet avec compartiments transparents",
     "shortDescription": "Dépliez-la et suspendez-la au porte-serviettes d'hôtel. 4 compartiments transparents imperméables anti-fuites.",
@@ -3159,8 +3201,9 @@ export const PRODUCTS = [
     "image": "/products/oreiller-voyage-memoire.jpg",
     "gallery": [
       "/products/oreiller-voyage-memoire.jpg",
-      "/products/oreiller-voyage-memoire-features.jpg",
-      "/products/oreiller-voyage-memoire-details.jpg"
+      "/products/oreiller-voyage-memoire-lifestyle.jpg",
+      "/products/oreiller-voyage-memoire-details.jpg",
+      "/products/oreiller-voyage-memoire-closeup.jpg"
     ],
     "altText": "Coussin de voyage ergonomique pour la nuque en mousse viscoélastique",
     "shortDescription": "Mousse viscoélastique maintenant la nuque à 360° en avion, train ou voiture. Se comprime dans sa pochette.",
@@ -3207,8 +3250,9 @@ export const PRODUCTS = [
     "image": "/products/organisateur-bureau.jpg",
     "gallery": [
       "/products/organisateur-bureau.jpg",
-      "/products/organisateur-bureau-features.jpg",
-      "/products/organisateur-bureau-details.jpg"
+      "/products/organisateur-bureau-lifestyle.jpg",
+      "/products/organisateur-bureau-details.jpg",
+      "/products/organisateur-bureau-closeup.jpg"
     ],
     "altText": "Pot à crayons et organisateur de bureau rotatif à 5 compartiments",
     "shortDescription": "Accédez à vos stylos, ciseaux et fournitures d'un simple tour de main silencieux.",
@@ -3257,8 +3301,9 @@ export const PRODUCTS = [
     "image": "/products/montre-quartz-minimaliste.jpg",
     "gallery": [
       "/products/montre-quartz-minimaliste.jpg",
-      "/products/montre-quartz-minimaliste-features.jpg",
-      "/products/montre-quartz-minimaliste-details.jpg"
+      "/products/montre-quartz-minimaliste-lifestyle.jpg",
+      "/products/montre-quartz-minimaliste-details.jpg",
+      "/products/montre-quartz-minimaliste-closeup.jpg"
     ],
     "altText": "Montre quartz minimaliste unisexe avec cadran blanc et boîtier épuré",
     "shortDescription": "Boîtier extra-plat en acier inoxydable brossé avec cadran épuré et bracelet en cuir véritable interchangeable.",
@@ -3305,11 +3350,12 @@ export const PRODUCTS = [
     "imageDisplayMode": "contain",
     "shippingEU": "Stock UE",
     "stock": 44,
-    "image": "/products/parapluie-compact.jpg",
+    "image": "/products/parapluie-compact-hero.jpg",
     "gallery": [
-      "/products/parapluie-compact.jpg",
-      "/products/parapluie-compact-features.jpg",
-      "/products/parapluie-compact-details.jpg"
+      "/products/parapluie-compact-hero.jpg",
+      "/products/parapluie-compact-lifestyle.jpg",
+      "/products/parapluie-compact-details.jpg",
+      "/products/parapluie-compact-closeup.jpg"
     ],
     "altText": "Parapluie de poche pliant ultra résistant aux rafales avec étui rigide",
     "shortDescription": "Seulement 18 cm une fois replié. 8 baleines en fibre de verre résistantes aux fortes rafales sans se retourner.",
@@ -3361,8 +3407,9 @@ export const PRODUCTS = [
     "image": "/products/chargeur-sans-fil-induction.jpg",
     "gallery": [
       "/products/chargeur-sans-fil-induction.jpg",
-      "/products/chargeur-sans-fil-induction-features.jpg",
-      "/products/chargeur-sans-fil-induction-details.jpg"
+      "/products/chargeur-sans-fil-induction-lifestyle.jpg",
+      "/products/chargeur-sans-fil-induction-details.jpg",
+      "/products/chargeur-sans-fil-induction-closeup.jpg"
     ],
     "altText": "Pad de charge rapide sans fil Qi 15W extra-plat en aluminium et tissu",
     "shortDescription": "Déposez votre smartphone pour lancer la charge instantanément. Finition en alliage d'aluminium brossé et textile premium.",
@@ -3414,11 +3461,12 @@ export const PRODUCTS = [
     "imageDisplayMode": "contain",
     "shippingEU": "Stock UE",
     "stock": 38,
-    "image": "/products/mini-microphone-sans-fil.jpg",
+    "image": "/products/mini-microphone-sans-fil-hero.jpg",
     "gallery": [
-      "/products/mini-microphone-sans-fil.jpg",
-      "/products/mini-microphone-sans-fil-features.jpg",
-      "/products/mini-microphone-sans-fil-details.jpg"
+      "/products/mini-microphone-sans-fil-hero.jpg",
+      "/products/mini-microphone-sans-fil-lifestyle.jpg",
+      "/products/mini-microphone-sans-fil-details.jpg",
+      "/products/mini-microphone-sans-fil-closeup.jpg"
     ],
     "altText": "Mini micro cravate sans fil clip pour créateurs de contenu et smartphone",
     "shortDescription": "Plug & Play sans application requise. Son cristallin omnidirectionnel avec réduction active du bruit ambiant.",
@@ -3475,8 +3523,9 @@ export const PRODUCTS = [
     "image": "/products/support-telephone-bureau-pliable.jpg",
     "gallery": [
       "/products/support-telephone-bureau-pliable.jpg",
-      "/products/support-telephone-bureau-pliable-features.jpg",
-      "/products/support-telephone-bureau-pliable-details.jpg"
+      "/products/support-telephone-bureau-pliable-lifestyle.jpg",
+      "/products/support-telephone-bureau-pliable-details.jpg",
+      "/products/support-telephone-bureau-pliable-closeup.jpg"
     ],
     "altText": "Support de bureau pliable en aluminium pour smartphone et petite tablette",
     "shortDescription": "Double articulation 270° pour un angle de vue parfait en appel vidéo ou travail. Se replie à plat pour tenir dans une poche.",
@@ -3528,11 +3577,12 @@ export const PRODUCTS = [
     "imageDisplayMode": "cover",
     "shippingEU": "Stock UE",
     "stock": 40,
-    "image": "/products/tapis-souris-xxl-ergonomique.jpg",
+    "image": "/products/tapis-souris-xxl-ergonomique-setup.jpg",
     "gallery": [
-      "/products/tapis-souris-xxl-ergonomique.jpg",
-      "/products/tapis-souris-xxl-ergonomique-features.jpg",
-      "/products/tapis-souris-xxl-ergonomique-details.jpg"
+      "/products/tapis-souris-xxl-ergonomique-setup.jpg",
+      "/products/tapis-souris-xxl-ergonomique-lifestyle.jpg",
+      "/products/tapis-souris-xxl-ergonomique-details.jpg",
+      "/products/tapis-souris-xxl-ergonomique-closeup.jpg"
     ],
     "altText": "Sous-main et tapis de souris XXL 80x40cm en cuir PU bleu nuit et gris sur bureau design",
     "shortDescription": "Dimensions généreuses 80x40 cm. Protège votre bureau tout en offrant une glisse douce et fluide à votre souris.",
@@ -3588,8 +3638,9 @@ export const PRODUCTS = [
     "image": "/products/souris-sans-fil-ergonomique.jpg",
     "gallery": [
       "/products/souris-sans-fil-ergonomique.jpg",
-      "/products/souris-sans-fil-ergonomique-features.jpg",
-      "/products/souris-sans-fil-ergonomique-details.jpg"
+      "/products/souris-sans-fil-ergonomique-lifestyle.jpg",
+      "/products/souris-sans-fil-ergonomique-details.jpg",
+      "/products/souris-sans-fil-ergonomique-closeup.jpg"
     ],
     "altText": "Souris d'ordinateur ergonomique sans fil noire mate avec repose-pouce et clics silencieux",
     "shortDescription": "Prise en main naturelle réduisant la fatigue du poignet. Clics ultra-silencieux parfaits pour l'open-space et le télétravail.",
@@ -3642,11 +3693,12 @@ export const PRODUCTS = [
     "imageDisplayMode": "contain",
     "shippingEU": "Stock UE",
     "stock": 35,
-    "image": "/products/lampe-led-bureau-tactile.jpg",
+    "image": "/products/lampe-led-bureau-tactile-hero.jpg",
     "gallery": [
-      "/products/lampe-led-bureau-tactile.jpg",
-      "/products/lampe-led-bureau-tactile-features.jpg",
-      "/products/lampe-led-bureau-tactile-details.jpg"
+      "/products/lampe-led-bureau-tactile-hero.jpg",
+      "/products/lampe-led-bureau-tactile-lifestyle.jpg",
+      "/products/lampe-led-bureau-tactile-details.jpg",
+      "/products/lampe-led-bureau-tactile-closeup.jpg"
     ],
     "altText": "Lampe de bureau LED architecturale blanche articulée avec variateur de lumière tactile",
     "shortDescription": "Éclairage anti-scintillement sans fatigue oculaire. 5 températures de couleur et variateur tactile d'intensité.",
@@ -3702,8 +3754,9 @@ export const PRODUCTS = [
     "image": "/products/webcam-full-hd-1080p.jpg",
     "gallery": [
       "/products/webcam-full-hd-1080p.jpg",
-      "/products/webcam-full-hd-1080p-features.jpg",
-      "/products/webcam-full-hd-1080p-details.jpg"
+      "/products/webcam-full-hd-1080p-lifestyle.jpg",
+      "/products/webcam-full-hd-1080p-details.jpg",
+      "/products/webcam-full-hd-1080p-closeup.jpg"
     ],
     "altText": "Webcam USB Full HD 1080p noire clipsable sur écran avec volet de confidentialité coulissant",
     "shortDescription": "Qualité d'image nette en télétravail et visioconférence. Microphone stéréo intégré et volet coulissant protégeant votre vie privée.",
@@ -3761,8 +3814,9 @@ export const PRODUCTS = [
     "image": "/products/bandeau-spa-velours-hero.jpg",
     "gallery": [
       "/products/bandeau-spa-velours-hero.jpg",
-      "/products/bandeau-spa-velours-features.jpg",
-      "/products/bandeau-spa-velours-details.jpg"
+      "/products/bandeau-spa-velours-lifestyle.jpg",
+      "/products/bandeau-spa-velours-details.jpg",
+      "/products/bandeau-spa-velours-closeup.jpg"
     ],
     "altText": "Bandeau de soin spa en tissu éponge velours rose poudré rembourré",
     "shortDescription": "Maintient les cheveux en arrière en douceur sans faire de plis ni serrer la tête pendant vos rituels de soin ou maquillage.",
@@ -3819,8 +3873,9 @@ export const PRODUCTS = [
     "image": "/products/miroir-led-tactile-hero.jpg",
     "gallery": [
       "/products/miroir-led-tactile-hero.jpg",
-      "/products/miroir-led-tactile-features.jpg",
-      "/products/miroir-led-tactile-details.jpg"
+      "/products/miroir-led-tactile-lifestyle.jpg",
+      "/products/miroir-led-tactile-details.jpg",
+      "/products/miroir-led-tactile-closeup.jpg"
     ],
     "altText": "Miroir de maquillage sur pied avec anneau lumineux LED et bouton tactile",
     "shortDescription": "Éclairage lumière du jour naturel à intensité variable. Pivotant à 90° avec plateau range-bijoux sur la base.",
@@ -3875,8 +3930,9 @@ export const PRODUCTS = [
     "image": "/products/gua-sha-quartz-rose.jpg",
     "gallery": [
       "/products/gua-sha-quartz-rose.jpg",
-      "/products/gua-sha-quartz-rose-features.jpg",
-      "/products/gua-sha-quartz-rose-details.jpg"
+      "/products/gua-sha-quartz-rose-lifestyle.jpg",
+      "/products/gua-sha-quartz-rose-details.jpg",
+      "/products/gua-sha-quartz-rose-closeup.jpg"
     ],
     "altText": "Pierre de massage Gua Sha en quartz rose véritable taillée en forme de cœur",
     "shortDescription": "Véritable pierre de quartz rose naturelle polie à la main. Sculpte l'ovale du visage et stimule l'éclat du teint.",
@@ -3929,11 +3985,12 @@ export const PRODUCTS = [
     "imageDisplayMode": "contain",
     "shippingEU": "Stock UE",
     "stock": 45,
-    "image": "/products/trousse-maquillage.jpg",
+    "image": "/products/trousse-maquillage-voyage-open.jpg",
     "gallery": [
-      "/products/trousse-maquillage.jpg",
-      "/products/trousse-maquillage-voyage-features.jpg",
-      "/products/trousse-maquillage-voyage-details.jpg"
+      "/products/trousse-maquillage-voyage-open.jpg",
+      "/products/trousse-maquillage-voyage-lifestyle.jpg",
+      "/products/trousse-maquillage-voyage-details.jpg",
+      "/products/trousse-maquillage-voyage-closeup.jpg"
     ],
     "altText": "Trousse vanity de maquillage beige crème avec compartiments réglables et poignée",
     "shortDescription": "Ouverture grand angle à plat pour visualiser tous vos produits d'un coup d'œil. Cloisons modulables et matière imperméable.",
@@ -3989,8 +4046,9 @@ export const PRODUCTS = [
     "image": "/products/bonnet-satin-cheveux.jpg",
     "gallery": [
       "/products/bonnet-satin-cheveux.jpg",
-      "/products/bonnet-satin-cheveux-features.jpg",
-      "/products/bonnet-satin-cheveux-details.jpg"
+      "/products/bonnet-satin-cheveux-lifestyle.jpg",
+      "/products/bonnet-satin-cheveux-details.jpg",
+      "/products/bonnet-satin-cheveux-closeup.jpg"
     ],
     "altText": "Bonnet de nuit soyeux en satin double face pour protection des cheveux bouclés",
     "shortDescription": "Préserve l'hydratation capillaire et élimine les frisottis pendant le sommeil. Bandeau large extensible sans marques.",
@@ -4046,8 +4104,9 @@ export const PRODUCTS = [
     "image": "/products/kit-pinceaux-maquillage.jpg",
     "gallery": [
       "/products/kit-pinceaux-maquillage.jpg",
-      "/products/kit-pinceaux-maquillage-features.jpg",
-      "/products/kit-pinceaux-maquillage-details.jpg"
+      "/products/kit-pinceaux-maquillage-lifestyle.jpg",
+      "/products/kit-pinceaux-maquillage-details.jpg",
+      "/products/kit-pinceaux-maquillage-closeup.jpg"
     ],
     "altText": "Ensemble de 8 pinceaux de maquillage avec manches champagne et poils synthétiques doux",
     "shortDescription": "Tous les essentiels teint et yeux réunis dans un étui de transport compact. Poils synthétiques ultra-doux haute densité.",
@@ -4101,8 +4160,9 @@ export const PRODUCTS = [
     "image": "/products/vaporisateur-parfum-rechargeable-hero.jpg",
     "gallery": [
       "/products/vaporisateur-parfum-rechargeable-hero.jpg",
-      "/products/vaporisateur-parfum-rechargeable-features.jpg",
-      "/products/vaporisateur-parfum-rechargeable-details.jpg"
+      "/products/vaporisateur-parfum-rechargeable-lifestyle.jpg",
+      "/products/vaporisateur-parfum-rechargeable-details.jpg",
+      "/products/vaporisateur-parfum-rechargeable-closeup.jpg"
     ],
     "altText": "Atomiseur de parfum de poche rechargeable 5ml en aluminium brossé rose gold",
     "shortDescription": "Remplissage instantané par le dessous sans entonnoir ni perte d'une seule goutte. Homologué pour les voyages en cabine avion.",
@@ -4157,8 +4217,9 @@ export const PRODUCTS = [
     "image": "/products/brosse-demelante-anti-casse.jpg",
     "gallery": [
       "/products/brosse-demelante-anti-casse.jpg",
-      "/products/brosse-demelante-anti-casse-features.jpg",
-      "/products/brosse-demelante-anti-casse-details.jpg"
+      "/products/brosse-demelante-anti-casse-lifestyle.jpg",
+      "/products/brosse-demelante-anti-casse-details.jpg",
+      "/products/brosse-demelante-anti-casse-closeup.jpg"
     ],
     "altText": "Brosse à cheveux aérée incurvée ergonomique pour démêlage sans douleur",
     "shortDescription": "Tête flexible incurvée épousant le crâne. Démêle les nœuds en douceur sur cheveux secs ou mouillés sans casser la fibre.",
@@ -4238,8 +4299,9 @@ export const PRODUCTS = [
     "image": "/products/robe-longue-boheme.jpg",
     "gallery": [
       "/products/robe-longue-boheme.jpg",
-      "/products/robe-longue-boheme-features.jpg",
-      "/products/robe-longue-boheme-details.jpg"
+      "/products/robe-longue-boheme-lifestyle.jpg",
+      "/products/robe-longue-boheme-details.jpg",
+      "/products/robe-longue-boheme-closeup.jpg"
     ],
     "altText": "Femme portant une élégante robe longue fluide d'été ceinturée à la taille",
     "shortDescription": "Tombé fluide spectaculaire en viscose respirante. Fente discrète sur le côté et ceinture amovible pour affiner la silhouette.",
@@ -4319,8 +4381,9 @@ export const PRODUCTS = [
     "image": "/products/pantalon-large-fluide.jpg",
     "gallery": [
       "/products/pantalon-large-fluide.jpg",
-      "/products/pantalon-large-fluide-features.jpg",
-      "/products/pantalon-large-fluide-details.jpg"
+      "/products/pantalon-large-fluide-lifestyle.jpg",
+      "/products/pantalon-large-fluide-details.jpg",
+      "/products/pantalon-large-fluide-closeup.jpg"
     ],
     "altText": "Modèle portant un pantalon palazzo taille haute fluide beige sable à coupe large",
     "shortDescription": "Coupe palazzo fluide et évasée ultra-confortable. Taille haute gainante avec ceinture élastiquée au dos.",
@@ -4400,8 +4463,9 @@ export const PRODUCTS = [
     "image": "/products/legging-sport-gainant.jpg",
     "gallery": [
       "/products/legging-sport-gainant.jpg",
-      "/products/legging-sport-gainant-features.jpg",
-      "/products/legging-sport-gainant-details.jpg"
+      "/products/legging-sport-gainant-lifestyle.jpg",
+      "/products/legging-sport-gainant-details.jpg",
+      "/products/legging-sport-gainant-closeup.jpg"
     ],
     "altText": "Legging de fitness gainant noir taille haute sans couture porté lors d'un entraînement",
     "shortDescription": "Effet sculptant doux sans aucune sensation de compression. Maille extensible opaque certifiée \"squat-proof\".",
@@ -4482,11 +4546,12 @@ export const PRODUCTS = [
     ],
     "defaultSize": "L",
     "defaultColor": "Blanc Pur",
-    "image": "/products/t-shirt-classique-homme.jpg",
+    "image": "/products/t-shirt-classique-homme-hero.jpg",
     "gallery": [
-      "/products/t-shirt-classique-homme.jpg",
-      "/products/t-shirt-classique-homme-features.jpg",
-      "/products/t-shirt-classique-homme-details.jpg"
+      "/products/t-shirt-classique-homme-hero.jpg",
+      "/products/t-shirt-classique-homme-lifestyle.jpg",
+      "/products/t-shirt-classique-homme-details.jpg",
+      "/products/t-shirt-classique-homme-closeup.jpg"
     ],
     "altText": "Modèle homme portant un t-shirt basique blanc en coton bio coupe droite ajustée",
     "shortDescription": "L'indispensable du vestiaire masculin en coton bio 180g/m². Col côtelé indéformable et coupe droite impeccable.",
@@ -4566,8 +4631,9 @@ export const PRODUCTS = [
     "image": "/products/pantalon-chino-stretch.jpg",
     "gallery": [
       "/products/pantalon-chino-stretch.jpg",
-      "/products/pantalon-chino-stretch-features.jpg",
-      "/products/pantalon-chino-stretch-details.jpg"
+      "/products/pantalon-chino-stretch-lifestyle.jpg",
+      "/products/pantalon-chino-stretch-details.jpg",
+      "/products/pantalon-chino-stretch-closeup.jpg"
     ],
     "altText": "Pantalon chino casual stretch beige coupe ajustée porté par un homme en extérieur",
     "shortDescription": "Élégance décontractée au bureau comme en weekend. Coton twill extensible pour une liberté de mouvement totale.",
@@ -4646,8 +4712,9 @@ export const PRODUCTS = [
     "image": "/products/pantalon-cargo-homme.jpg",
     "gallery": [
       "/products/pantalon-cargo-homme.jpg",
-      "/products/pantalon-cargo-homme-features.jpg",
-      "/products/pantalon-cargo-homme-details.jpg"
+      "/products/pantalon-cargo-homme-lifestyle.jpg",
+      "/products/pantalon-cargo-homme-details.jpg",
+      "/products/pantalon-cargo-homme-closeup.jpg"
     ],
     "altText": "Pantalon cargo homme vert kaki avec poches à rabat sur les cuisses coupe moderne",
     "shortDescription": "Inspiration streetwear utilitaire en toile de coton robuste. Poches à soufflet pratiques et bas de jambe resserré.",
@@ -4726,8 +4793,9 @@ export const PRODUCTS = [
     "image": "/products/sweat-capuche-confort.jpg",
     "gallery": [
       "/products/sweat-capuche-confort.jpg",
-      "/products/sweat-capuche-confort-features.jpg",
-      "/products/sweat-capuche-confort-details.jpg"
+      "/products/sweat-capuche-confort-lifestyle.jpg",
+      "/products/sweat-capuche-confort-details.jpg",
+      "/products/sweat-capuche-confort-closeup.jpg"
     ],
     "altText": "Sweat à capuche hoodie gris chiné molletonné avec poche kangourou porté par un modèle",
     "shortDescription": "Molleton brossé ultra-doux 320g/m². Capuche doublée avec cordons épais et poche kangourou spacieuse.",
@@ -4808,8 +4876,9 @@ export const PRODUCTS = [
     "image": "/products/sandales-cuir-plates.jpg",
     "gallery": [
       "/products/sandales-cuir-plates.jpg",
-      "/products/sandales-cuir-plates-features.jpg",
-      "/products/sandales-cuir-plates-details.jpg"
+      "/products/sandales-cuir-plates-lifestyle.jpg",
+      "/products/sandales-cuir-plates-details.jpg",
+      "/products/sandales-cuir-plates-closeup.jpg"
     ],
     "altText": "Sandales plates d'été en cuir camel souple à brides minimalistes croisées",
     "shortDescription": "Confort absolu tout au long de la journée. Semelle intérieure moussée amortissante et brides en cuir souple anti-ampoules.",
@@ -4888,8 +4957,9 @@ export const PRODUCTS = [
     "image": "/products/chaussures-marche-legeres.jpg",
     "gallery": [
       "/products/chaussures-marche-legeres.jpg",
-      "/products/chaussures-marche-legeres-features.jpg",
-      "/products/chaussures-marche-legeres-details.jpg"
+      "/products/chaussures-marche-legeres-lifestyle.jpg",
+      "/products/chaussures-marche-legeres-details.jpg",
+      "/products/chaussures-marche-legeres-closeup.jpg"
     ],
     "altText": "Baskets de marche légères respirantes avec semelle ergonomique amortissante",
     "shortDescription": "Seulement 220 grammes par pied. Tige en mesh tricoté sans coutures avec semelle EVA ultra-légère pour marcher sans fatigue.",
@@ -4946,8 +5016,9 @@ export const PRODUCTS = [
     "image": "/products/sac-banane.jpg",
     "gallery": [
       "/products/sac-banane.jpg",
-      "/products/sac-banane-multipoche-features.jpg",
-      "/products/sac-banane-multipoche-details.jpg"
+      "/products/sac-banane-multipoche-lifestyle.jpg",
+      "/products/sac-banane-multipoche-details.jpg",
+      "/products/sac-banane-multipoche-closeup.jpg"
     ],
     "altText": "Sac banane bandoulière tendance noir mat multipoches porté en travers de la poitrine",
     "shortDescription": "Se porte en bandoulière cross-body ou à la taille. 3 compartiments zippés sécurisés pour garder vos essentiels à portée de main.",
@@ -5003,8 +5074,9 @@ export const PRODUCTS = [
     "image": "/products/sac-a-dos-urbain.jpg",
     "gallery": [
       "/products/sac-a-dos-urbain.jpg",
-      "/products/sac-a-dos-urbain-pc-features.jpg",
-      "/products/sac-a-dos-urbain-pc-details.jpg"
+      "/products/sac-a-dos-urbain-pc-lifestyle.jpg",
+      "/products/sac-a-dos-urbain-pc-details.jpg",
+      "/products/sac-a-dos-urbain-pc-closeup.jpg"
     ],
     "altText": "Sac à dos d'affaires urbain moderne gris ardoise déperlant pour ordinateur portable",
     "shortDescription": "Lignes épurées et compartiment antichoc molletonné pour PC jusqu'à 15.6\". Port de charge USB extérieur et dos aéré.",
@@ -5060,8 +5132,9 @@ export const PRODUCTS = [
     "image": "/products/separateurs-tiroirs-modulables.jpg",
     "gallery": [
       "/products/separateurs-tiroirs-modulables.jpg",
-      "/products/separateurs-tiroirs-modulables-features.jpg",
-      "/products/separateurs-tiroirs-modulables-details.jpg"
+      "/products/separateurs-tiroirs-modulables-lifestyle.jpg",
+      "/products/separateurs-tiroirs-modulables-details.jpg",
+      "/products/separateurs-tiroirs-modulables-closeup.jpg"
     ],
     "altText": "Lot de 4 séparateurs de tiroirs ajustables en bambou naturel avec ressorts de tension",
     "shortDescription": "S'adaptent en 2 secondes sans vis ni colle grâce à leur mécanisme à ressort. Bambou naturel élégant et durable.",
@@ -5115,8 +5188,9 @@ export const PRODUCTS = [
     "image": "/products/range-epices-rotatif.jpg",
     "gallery": [
       "/products/range-epices-rotatif.jpg",
-      "/products/range-epices-rotatif-features.jpg",
-      "/products/range-epices-rotatif-details.jpg"
+      "/products/range-epices-rotatif-lifestyle.jpg",
+      "/products/range-epices-rotatif-details.jpg",
+      "/products/range-epices-rotatif-closeup.jpg"
     ],
     "altText": "Plateau tournant double étage pour flacons d'épices et assaisonnements en cuisine",
     "shortDescription": "Accédez à tous vos pots d'épices d'une simple rotation sans fouiller au fond du placard. Double niveau à roulement à billes.",
@@ -5170,8 +5244,9 @@ export const PRODUCTS = [
     "image": "/products/distributeur-savon-automatique.jpg",
     "gallery": [
       "/products/distributeur-savon-automatique.jpg",
-      "/products/distributeur-savon-automatique-features.jpg",
-      "/products/distributeur-savon-automatique-details.jpg"
+      "/products/distributeur-savon-automatique-lifestyle.jpg",
+      "/products/distributeur-savon-automatique-details.jpg",
+      "/products/distributeur-savon-automatique-closeup.jpg"
     ],
     "altText": "Distributeur de savon liquide sans contact automatique en acier inoxydable avec capteur infrarouge",
     "shortDescription": "Hygiène parfaite en cuisine et salle de bain. Détecte la main en 0.2 seconde et distribue la dose exacte sans toucher la pompe.",
@@ -5226,8 +5301,9 @@ export const PRODUCTS = [
     "image": "/products/porte-eponge-evier-inox.jpg",
     "gallery": [
       "/products/porte-eponge-evier-inox.jpg",
-      "/products/porte-eponge-evier-inox-features.jpg",
-      "/products/porte-eponge-evier-inox-details.jpg"
+      "/products/porte-eponge-evier-inox-lifestyle.jpg",
+      "/products/porte-eponge-evier-inox-details.jpg",
+      "/products/porte-eponge-evier-inox-closeup.jpg"
     ],
     "altText": "Organisateur égouttoir télescopique pour évier en acier inoxydable avec barre porte-torchon",
     "shortDescription": "S'étire pour s'ajuster à la largeur de votre bac d'évier. Fond ajouré permettant un séchage rapide sans eau stagnante.",
@@ -5278,11 +5354,12 @@ export const PRODUCTS = [
     "imageDisplayMode": "contain",
     "shippingEU": "Stock UE",
     "stock": 40,
-    "image": "/products/boites-hermetiques-lot4.jpg",
+    "image": "/products/boites-hermetiques-lot4-hero.jpg",
     "gallery": [
-      "/products/boites-hermetiques-lot4.jpg",
-      "/products/boites-hermetiques-lot4-features.jpg",
-      "/products/boites-hermetiques-lot4-details.jpg"
+      "/products/boites-hermetiques-lot4-hero.jpg",
+      "/products/boites-hermetiques-lot4-lifestyle.jpg",
+      "/products/boites-hermetiques-lot4-details.jpg",
+      "/products/boites-hermetiques-lot4-closeup.jpg"
     ],
     "altText": "Ensemble de 4 boîtes alimentaires transparentes hermétiques empilables avec joints silicone étanches",
     "shortDescription": "Conservation hermétique sans fuite ni odeur. Conception étanche aux liquides, empilables pour un gain de place dans le frigo.",
@@ -5337,8 +5414,9 @@ export const PRODUCTS = [
     "image": "/products/balle-interactive-chat.jpg",
     "gallery": [
       "/products/balle-interactive-chat.jpg",
-      "/products/balle-interactive-chat-features.jpg",
-      "/products/balle-interactive-chat-details.jpg"
+      "/products/balle-interactive-chat-lifestyle.jpg",
+      "/products/balle-interactive-chat-details.jpg",
+      "/products/balle-interactive-chat-closeup.jpg"
     ],
     "altText": "Balle interactive motorisée lumineuse roulant sur le sol pour amuser les chats",
     "shortDescription": "Roule toute seule de façon imprévisible en évitant les obstacles. Réveille l'instinct de chasseur de votre félin pendant vos absences.",
@@ -5389,11 +5467,12 @@ export const PRODUCTS = [
     "imageDisplayMode": "contain",
     "shippingEU": "Stock UE",
     "stock": 50,
-    "image": "/products/jouet-distributeur-friandises.jpg",
+    "image": "/products/jouet-distributeur-friandises-hero.jpg",
     "gallery": [
-      "/products/jouet-distributeur-friandises.jpg",
-      "/products/jouet-distributeur-friandises-features.jpg",
-      "/products/jouet-distributeur-friandises-details.jpg"
+      "/products/jouet-distributeur-friandises-hero.jpg",
+      "/products/jouet-distributeur-friandises-lifestyle.jpg",
+      "/products/jouet-distributeur-friandises-details.jpg",
+      "/products/jouet-distributeur-friandises-closeup.jpg"
     ],
     "altText": "Chien jouant avec une balle distributrice de croquettes en caoutchouc naturel robuste",
     "shortDescription": "Stimule l'intelligence de votre chien tout en ralentissant l'ingestion de nourriture. Caoutchouc naturel ultra-résistant aux morsures.",
@@ -5404,7 +5483,7 @@ export const PRODUCTS = [
     ],
     "specs": {
       "Diamètre": "8 cm",
-      "Matière": "Caoutchouc naturel 100% sûr",
+      "Matière": "Caoutchouc naturel Conforme CE",
       "Entretien": "Lavable à l'eau"
     },
     "faq": [
@@ -5448,8 +5527,9 @@ export const PRODUCTS = [
     "image": "/products/ceinture-securite-chien-auto.jpg",
     "gallery": [
       "/products/ceinture-securite-chien-auto.jpg",
-      "/products/ceinture-securite-chien-auto-features.jpg",
-      "/products/ceinture-securite-chien-auto-details.jpg"
+      "/products/ceinture-securite-chien-auto-lifestyle.jpg",
+      "/products/ceinture-securite-chien-auto-details.jpg",
+      "/products/ceinture-securite-chien-auto-closeup.jpg"
     ],
     "altText": "Sangle de sécurité pour chien avec amortisseur élastique clipsée dans la boucle de ceinture de voiture",
     "shortDescription": "Protège votre chien en cas de freinage brusque. S'enclenche directement dans la boucle de ceinture de n'importe quelle voiture.",
@@ -5505,8 +5585,9 @@ export const PRODUCTS = [
     "image": "/products/tapis-gamelle-silicone.jpg",
     "gallery": [
       "/products/tapis-gamelle-silicone.jpg",
-      "/products/tapis-gamelle-silicone-features.jpg",
-      "/products/tapis-gamelle-silicone-details.jpg"
+      "/products/tapis-gamelle-silicone-lifestyle.jpg",
+      "/products/tapis-gamelle-silicone-details.jpg",
+      "/products/tapis-gamelle-silicone-closeup.jpg"
     ],
     "altText": "Tapis de sol étanche en silicone gris pour gamelles de chien et chat avec rebord relevé",
     "shortDescription": "Terminé les éclaboussures d'eau et les croquettes éparpillées sur le sol. Rebord relevé de 1 cm retenant tous les débordements.",
@@ -5562,8 +5643,9 @@ export const PRODUCTS = [
     "image": "/products/coupe-griffes-led-animaux.jpg",
     "gallery": [
       "/products/coupe-griffes-led-animaux.jpg",
-      "/products/coupe-griffes-led-animaux-features.jpg",
-      "/products/coupe-griffes-led-animaux-details.jpg"
+      "/products/coupe-griffes-led-animaux-lifestyle.jpg",
+      "/products/coupe-griffes-led-animaux-details.jpg",
+      "/products/coupe-griffes-led-animaux-closeup.jpg"
     ],
     "altText": "Coupe-griffes ergonomique avec lampe LED intégrée éclairant la veine de la griffe",
     "shortDescription": "Lumière LED intégrée illuminant la ligne sanguine dans la griffe pour couper en toute sécurité sans blesser votre animal.",
@@ -5615,11 +5697,12 @@ export const PRODUCTS = [
     "shippingEU": "Stock UE",
     "stock": 65,
     "bundleWith": "gourde-portable-chiens",
-    "image": "/products/distributeur-sacs-dejections.jpg",
+    "image": "/products/distributeur-sacs-dejections-hero.jpg",
     "gallery": [
-      "/products/distributeur-sacs-dejections.jpg",
-      "/products/distributeur-sacs-dejections-features.jpg",
-      "/products/distributeur-sacs-dejections-details.jpg"
+      "/products/distributeur-sacs-dejections-hero.jpg",
+      "/products/distributeur-sacs-dejections-lifestyle.jpg",
+      "/products/distributeur-sacs-dejections-details.jpg",
+      "/products/distributeur-sacs-dejections-closeup.jpg"
     ],
     "altText": "Distributeur capsule compact vert fixé sur une laisse de promenade avec sacs à déjections",
     "shortDescription": "Se clipse sur n'importe quelle laisse. Livré avec 6 rouleaux (90 sacs) ultra-résistants et étanches aux liquides.",
@@ -5674,8 +5757,9 @@ export const PRODUCTS = [
     "image": "/products/chargeur-voiture-usb-c.jpg",
     "gallery": [
       "/products/chargeur-voiture-usb-c.jpg",
-      "/products/chargeur-voiture-usb-c-60w-features.jpg",
-      "/products/chargeur-voiture-usb-c-60w-details.jpg"
+      "/products/chargeur-voiture-usb-c-60w-lifestyle.jpg",
+      "/products/chargeur-voiture-usb-c-60w-details.jpg",
+      "/products/chargeur-voiture-usb-c-60w-closeup.jpg"
     ],
     "altText": "Chargeur allume-cigare métallique miniature double port USB-C et USB-A inséré dans une console de voiture",
     "shortDescription": "Corps en alliage d'aluminium ultra-compact affleurant la prise. Charge simultanément deux appareils à vitesse maximale.",
@@ -5730,8 +5814,9 @@ export const PRODUCTS = [
     "image": "/products/chiffons-microfibres-auto-lot3.jpg",
     "gallery": [
       "/products/chiffons-microfibres-auto-lot3.jpg",
-      "/products/chiffons-microfibres-auto-lot3-features.jpg",
-      "/products/chiffons-microfibres-auto-lot3-details.jpg"
+      "/products/chiffons-microfibres-auto-lot3-lifestyle.jpg",
+      "/products/chiffons-microfibres-auto-lot3-details.jpg",
+      "/products/chiffons-microfibres-auto-lot3-closeup.jpg"
     ],
     "altText": "Lot de 3 serviettes microfibres de lustrage épaisses bicolores jaune et gris pour carrosserie automobile",
     "shortDescription": "Densité exceptionnelle 800 GSM. Absorbe jusqu'à 10 fois son poids en eau sans laisser la moindre micro-rayure ni peluche.",
@@ -5787,14 +5872,15 @@ export const PRODUCTS = [
     "image": "/products/mini-poubelle-voiture-etanche-hero.jpg",
     "gallery": [
       "/products/mini-poubelle-voiture-etanche-hero.jpg",
-      "/products/mini-poubelle-voiture-etanche-features.jpg",
-      "/products/mini-poubelle-voiture-etanche-details.jpg"
+      "/products/mini-poubelle-voiture-etanche-lifestyle.jpg",
+      "/products/mini-poubelle-voiture-etanche-details.jpg",
+      "/products/mini-poubelle-voiture-etanche-closeup.jpg"
     ],
     "altText": "Mini poubelle de voiture noire étanche avec couvercle à bouton poussoir fixée dans un vide-poche de portière",
     "shortDescription": "Gardez votre habitacle toujours propre. Se clipse sur la portière ou au dos du siège avec fermeture à poussoir anti-odeurs.",
     "benefits": [
       "Couvercle étanche à ressort s'ouvrant d'une simple pression du doigt",
-      "Corps 100% étanche résistant aux liquides renversés et canettes",
+      "Corps conception étanche résistant aux liquides renversés et canettes",
       "Clip de fixation arrière robuste convenant à toute portière"
     ],
     "specs": {
@@ -5842,14 +5928,15 @@ export const PRODUCTS = [
     "image": "/products/organisateur-dossier-siege-auto-hero.jpg",
     "gallery": [
       "/products/organisateur-dossier-siege-auto-hero.jpg",
-      "/products/organisateur-dossier-siege-auto-features.jpg",
-      "/products/organisateur-dossier-siege-auto-details.jpg"
+      "/products/organisateur-dossier-siege-auto-lifestyle.jpg",
+      "/products/organisateur-dossier-siege-auto-details.jpg",
+      "/products/organisateur-dossier-siege-auto-closeup.jpg"
     ],
     "altText": "Organisateur de siège arrière de voiture noir avec fenêtre transparente pour tablette et poches bouteilles",
     "shortDescription": "Indispensable pour les trajets en famille. Protège le siège des coups de pieds des enfants tout en organisant tablettes, jouets et gourdes.",
     "benefits": [
       "Poche tactile transparente compatible avec iPad et tablettes jusqu'à 10.5\"",
-      "Tissu Oxford 600D ultra-résistant protégeant le dossier des traces de boue",
+      "Tissu résistant et déperlant protégeant le dossier des traces de boue",
       "9 compartiments de rangement dédiés (boissons, mouchoirs, snacks)"
     ],
     "specs": {
@@ -5894,16 +5981,17 @@ export const PRODUCTS = [
     "imageDisplayMode": "contain",
     "shippingEU": "Stock UE",
     "stock": 48,
-    "image": "/products/pare-soleil-retractable-parebrise.jpg",
+    "image": "/products/pare-soleil-retractable-parebrise-installed.jpg",
     "gallery": [
-      "/products/pare-soleil-retractable-parebrise.jpg",
-      "/products/pare-soleil-retractable-parebrise-features.jpg",
-      "/products/pare-soleil-retractable-parebrise-details.jpg"
+      "/products/pare-soleil-retractable-parebrise-installed.jpg",
+      "/products/pare-soleil-retractable-parebrise-lifestyle.jpg",
+      "/products/pare-soleil-retractable-parebrise-details.jpg",
+      "/products/pare-soleil-retractable-parebrise-closeup.jpg"
     ],
     "altText": "Pare-soleil pliable type parapluie réfléchissant argenté déployé sur le pare-brise intérieur d'une voiture",
     "shortDescription": "Se déploie et se replie en 3 secondes comme un parapluie. Bloque 99% des UV et maintient l'habitacle au frais en plein été.",
     "benefits": [
-      "Revêtement titane argenté réflecteur thermique haute performance",
+      "Revêtement réflecteur de chaleur réflecteur thermique haute performance",
       "Armature à 10 baleines renforcées sans rayure pour le tableau de bord",
       "Rangement ultra-compact dans la boîte à gants avec étui en cuir synthétique"
     ],
@@ -5952,8 +6040,9 @@ export const PRODUCTS = [
     "image": "/products/tapis-yoga-antiderapant-tpe.jpg",
     "gallery": [
       "/products/tapis-yoga-antiderapant-tpe.jpg",
-      "/products/tapis-yoga-antiderapant-tpe-features.jpg",
-      "/products/tapis-yoga-antiderapant-tpe-details.jpg"
+      "/products/tapis-yoga-antiderapant-tpe-lifestyle.jpg",
+      "/products/tapis-yoga-antiderapant-tpe-details.jpg",
+      "/products/tapis-yoga-antiderapant-tpe-closeup.jpg"
     ],
     "altText": "Tapis de yoga bicolore vert sauge et gris étalé avec repères d'alignement corporel gravés",
     "shortDescription": "Épaisseur confort 6 mm protégeant les articulations. Matière TPE écologique antidérapante même en cas de transpiration.",
@@ -6009,8 +6098,9 @@ export const PRODUCTS = [
     "image": "/products/rouleau-mousse.jpg",
     "gallery": [
       "/products/rouleau-mousse.jpg",
-      "/products/rouleau-massage-mousse-muscle-features.jpg",
-      "/products/rouleau-massage-mousse-muscle-details.jpg"
+      "/products/rouleau-massage-mousse-muscle-lifestyle.jpg",
+      "/products/rouleau-massage-mousse-muscle-details.jpg",
+      "/products/rouleau-massage-mousse-muscle-closeup.jpg"
     ],
     "altText": "Rouleau de massage musculaire en mousse texturée noire pour auto-massage et récupération",
     "shortDescription": "Soulage les tensions et accélère la récupération musculaire. Zones de massage ciblées reproduisant les pressions d'un masseur.",
@@ -6065,8 +6155,9 @@ export const PRODUCTS = [
     "image": "/products/corde-a-sauter.jpg",
     "gallery": [
       "/products/corde-a-sauter.jpg",
-      "/products/corde-a-sauter-roulements-acier-features.jpg",
-      "/products/corde-a-sauter-roulements-acier-details.jpg"
+      "/products/corde-a-sauter-roulements-acier-lifestyle.jpg",
+      "/products/corde-a-sauter-roulements-acier-details.jpg",
+      "/products/corde-a-sauter-roulements-acier-closeup.jpg"
     ],
     "altText": "Corde à sauter de vitesse en câble d'acier avec poignées en aluminium antidérapantes",
     "shortDescription": "Double roulement à billes 360° pour une rotation fluide sans aucun emmêlement. Câble d'acier gainé réglable à votre taille.",
@@ -6125,11 +6216,12 @@ export const PRODUCTS = [
       "XL"
     ],
     "defaultSize": "L",
-    "image": "/products/gants-fitness-respirants.jpg",
+    "image": "/products/gants-fitness-respirants-hero.jpg",
     "gallery": [
-      "/products/gants-fitness-respirants.jpg",
-      "/products/gants-fitness-respirants-features.jpg",
-      "/products/gants-fitness-respirants-details.jpg"
+      "/products/gants-fitness-respirants-hero.jpg",
+      "/products/gants-fitness-respirants-lifestyle.jpg",
+      "/products/gants-fitness-respirants-details.jpg",
+      "/products/gants-fitness-respirants-closeup.jpg"
     ],
     "altText": "Paire de gants de musculation noirs avec paume renforcée en silicone et bande de poignet ajustable",
     "shortDescription": "Protection intégrale contre les ampoules et callosités. Bandeau de poignet intégré pour stabiliser l'articulation lors des charges lourdes.",
@@ -6183,8 +6275,9 @@ export const PRODUCTS = [
     "image": "/products/shaker-sport-inox.jpg",
     "gallery": [
       "/products/shaker-sport-inox.jpg",
-      "/products/shaker-sport-inox-features.jpg",
-      "/products/shaker-sport-inox-details.jpg"
+      "/products/shaker-sport-inox-lifestyle.jpg",
+      "/products/shaker-sport-inox-details.jpg",
+      "/products/shaker-sport-inox-closeup.jpg"
     ],
     "altText": "Shaker protéine noir mat 700ml avec bouchon hermétique et fouet mélangeur inox",
     "shortDescription": "Mélange crémeux et instantané sans aucun grumeau. Système étanche anti-fuite avec bouchon à clapet sécurisé et graduations intérieures.",
@@ -6240,8 +6333,9 @@ export const PRODUCTS = [
     "image": "/products/etiquettes-bagages-cuir.jpg",
     "gallery": [
       "/products/etiquettes-bagages-cuir.jpg",
-      "/products/etiquettes-bagages-cuir-lot2-features.jpg",
-      "/products/etiquettes-bagages-cuir-lot2-details.jpg"
+      "/products/etiquettes-bagages-cuir-lot2-lifestyle.jpg",
+      "/products/etiquettes-bagages-cuir-lot2-details.jpg",
+      "/products/etiquettes-bagages-cuir-lot2-closeup.jpg"
     ],
     "altText": "Lot de 2 étiquettes de valise en cuir camel avec rabat de protection des coordonnées",
     "shortDescription": "Identifiez votre valise au premier coup d'œil. Rabat en cuir protégeant vos données personnelles des regards indiscrets.",
@@ -6295,8 +6389,9 @@ export const PRODUCTS = [
     "image": "/products/organisateur-electronique-voyage.jpg",
     "gallery": [
       "/products/organisateur-electronique-voyage.jpg",
-      "/products/organisateur-electronique-voyage-features.jpg",
-      "/products/organisateur-electronique-voyage-details.jpg"
+      "/products/organisateur-electronique-voyage-lifestyle.jpg",
+      "/products/organisateur-electronique-voyage-details.jpg",
+      "/products/organisateur-electronique-voyage-closeup.jpg"
     ],
     "altText": "Housse de voyage zippée double compartiment pour câbles, chargeurs et adaptateurs",
     "shortDescription": "Finis les câbles emmêlés au fond du sac. Double compartiment rembourré avec élastiques et poches filet pour tous vos accessoires.",
@@ -6351,8 +6446,9 @@ export const PRODUCTS = [
     "image": "/products/masque-sommeil-3d-occultant.jpg",
     "gallery": [
       "/products/masque-sommeil-3d-occultant.jpg",
-      "/products/masque-sommeil-3d-occultant-features.jpg",
-      "/products/masque-sommeil-3d-occultant-details.jpg"
+      "/products/masque-sommeil-3d-occultant-lifestyle.jpg",
+      "/products/masque-sommeil-3d-occultant-details.jpg",
+      "/products/masque-sommeil-3d-occultant-closeup.jpg"
     ],
     "altText": "Masque de nuit ergonomique 3D noir avec cavité oculaire profonde et bandeau réglable",
     "shortDescription": "Occultation totale à 100% de la lumière. Cavités profilées 3D n'exerçant aucune pression sur les paupières ni les cils.",
@@ -6408,8 +6504,9 @@ export const PRODUCTS = [
     "image": "/products/ampoule-connectee-wifi-rgb.jpg",
     "gallery": [
       "/products/ampoule-connectee-wifi-rgb.jpg",
-      "/products/ampoule-connectee-wifi-rgb-features.jpg",
-      "/products/ampoule-connectee-wifi-rgb-details.jpg"
+      "/products/ampoule-connectee-wifi-rgb-lifestyle.jpg",
+      "/products/ampoule-connectee-wifi-rgb-details.jpg",
+      "/products/ampoule-connectee-wifi-rgb-closeup.jpg"
     ],
     "altText": "Ampoule connectée intelligente WiFi E27 avec éclairage multicolore et blanc chaud",
     "shortDescription": "Simulez votre présence à la maison à distance. 16 millions de couleurs et programmation horaire compatible Alexa et Google Home.",
@@ -6467,8 +6564,9 @@ export const PRODUCTS = [
     "image": "/products/detecteur-ouverture-porte-fenetre.jpg",
     "gallery": [
       "/products/detecteur-ouverture-porte-fenetre.jpg",
-      "/products/detecteur-ouverture-porte-fenetre-features.jpg",
-      "/products/detecteur-ouverture-porte-fenetre-details.jpg"
+      "/products/detecteur-ouverture-porte-fenetre-lifestyle.jpg",
+      "/products/detecteur-ouverture-porte-fenetre-details.jpg",
+      "/products/detecteur-ouverture-porte-fenetre-closeup.jpg"
     ],
     "altText": "Paire de capteurs magnétiques blancs connectés d'ouverture de porte et fenêtre",
     "shortDescription": "Recevez une notification instantanée sur votre smartphone dès qu'une porte ou fenêtre est ouverte. Installation en 1 minute par adhésif.",
@@ -6522,8 +6620,9 @@ export const PRODUCTS = [
     "image": "/products/mini-camera-surveillance-aimant.jpg",
     "gallery": [
       "/products/mini-camera-surveillance-aimant.jpg",
-      "/products/mini-camera-surveillance-aimant-features.jpg",
-      "/products/mini-camera-surveillance-aimant-details.jpg"
+      "/products/mini-camera-surveillance-aimant-lifestyle.jpg",
+      "/products/mini-camera-surveillance-aimant-details.jpg",
+      "/products/mini-camera-surveillance-aimant-closeup.jpg"
     ],
     "altText": "Petite caméra de surveillance circulaire noire magnétique discrète avec support rotatif",
     "shortDescription": "Seulement 3.5 cm de diamètre. Base aimantée se fixant partout en toute discrétion. Vidéo en direct sur smartphone et vision nocturne.",
@@ -6576,8 +6675,9 @@ export const PRODUCTS = [
     "image": "/products/porte-cartes-aluminium-anti-rfid.jpg",
     "gallery": [
       "/products/porte-cartes-aluminium-anti-rfid.jpg",
-      "/products/porte-cartes-aluminium-anti-rfid-features.jpg",
-      "/products/porte-cartes-aluminium-anti-rfid-details.jpg"
+      "/products/porte-cartes-aluminium-anti-rfid-lifestyle.jpg",
+      "/products/porte-cartes-aluminium-anti-rfid-details.jpg",
+      "/products/porte-cartes-aluminium-anti-rfid-closeup.jpg"
     ],
     "altText": "Porte-cartes minimaliste en aluminium noir brossé éjectant les cartes bancaires en cascade",
     "shortDescription": "Un clic sur le bouton inférieur éjecte vos cartes en éventail. Boîtier en aluminium bloquant les tentatives de piratage sans contact.",
@@ -6632,8 +6732,9 @@ export const PRODUCTS = [
     "image": "/products/portefeuille-cuir.jpg",
     "gallery": [
       "/products/portefeuille-cuir.jpg",
-      "/products/portefeuille-compact-cuir-features.jpg",
-      "/products/portefeuille-compact-cuir-details.jpg"
+      "/products/portefeuille-compact-cuir-lifestyle.jpg",
+      "/products/portefeuille-compact-cuir-details.jpg",
+      "/products/portefeuille-compact-cuir-closeup.jpg"
     ],
     "altText": "Portefeuille fin bifold en cuir marron vintage avec pince à billets intégrée en acier",
     "shortDescription": "Allie tradition et modernité. Cuir véritable pleine fleur patiné avec pince à billets en acier inoxydable et protection RFID.",
@@ -6687,8 +6788,9 @@ export const PRODUCTS = [
     "image": "/products/lunettes-soleil-polarisees-classiques.jpg",
     "gallery": [
       "/products/lunettes-soleil-polarisees-classiques.jpg",
-      "/products/lunettes-soleil-polarisees-classiques-features.jpg",
-      "/products/lunettes-soleil-polarisees-classiques-details.jpg"
+      "/products/lunettes-soleil-polarisees-classiques-lifestyle.jpg",
+      "/products/lunettes-soleil-polarisees-classiques-details.jpg",
+      "/products/lunettes-soleil-polarisees-classiques-closeup.jpg"
     ],
     "altText": "Lunettes de soleil polarisées monture classique noire mate avec verres antireflet UV400",
     "shortDescription": "Verres polarisés TAC éliminant les reflets gênants sur la route ou l'eau. Monture légère et charnières à ressort ultra-confortables.",
@@ -6743,8 +6845,9 @@ export const PRODUCTS = [
     "image": "/products/ceinture-cuir-automatique.jpg",
     "gallery": [
       "/products/ceinture-cuir-automatique.jpg",
-      "/products/ceinture-cuir-automatique-features.jpg",
-      "/products/ceinture-cuir-automatique-details.jpg"
+      "/products/ceinture-cuir-automatique-lifestyle.jpg",
+      "/products/ceinture-cuir-automatique-details.jpg",
+      "/products/ceinture-cuir-automatique-closeup.jpg"
     ],
     "altText": "Ceinture en cuir noir véritable pour homme avec boucle automatique en métal brossé",
     "shortDescription": "Système à crémaillère millimétrique : ajustement parfait sans trou qui s'abîme. Se règle d'un simple geste discret.",
@@ -6796,16 +6899,17 @@ export const PRODUCTS = [
     "imageDisplayMode": "contain",
     "shippingEU": "Stock UE",
     "stock": 50,
-    "image": "/products/bracelet-jonc-acier-inoxydable.jpg",
+    "image": "/products/bracelet-jonc-acier-inoxydable-hero.jpg",
     "gallery": [
-      "/products/bracelet-jonc-acier-inoxydable.jpg",
-      "/products/bracelet-jonc-acier-inoxydable-features.jpg",
-      "/products/bracelet-jonc-acier-inoxydable-details.jpg"
+      "/products/bracelet-jonc-acier-inoxydable-hero.jpg",
+      "/products/bracelet-jonc-acier-inoxydable-lifestyle.jpg",
+      "/products/bracelet-jonc-acier-inoxydable-details.jpg",
+      "/products/bracelet-jonc-acier-inoxydable-closeup.jpg"
     ],
     "altText": "Bracelet jonc ouvert minimaliste argenté en acier inoxydable brossé unisexe",
-    "shortDescription": "Design intemporel unisexe. Acier chirurgical 316L inaltérable qui ne noircit pas, ne décolore pas et résiste à l'eau et au parfum.",
+    "shortDescription": "Design intemporel unisexe. acier inoxydable 316L inaltérable qui ne noircit pas, ne décolore pas et résiste à l'eau et au parfum.",
     "benefits": [
-      "Acier chirurgical 316L 100% hypoallergénique sans nickel",
+      "acier inoxydable durable hypoallergénique sans nickel",
       "Résiste à l'eau de mer, sous la douche et à la transpiration",
       "Légèrement malléable pour s'ajuster au millimètre à votre poignet"
     ],
@@ -6856,11 +6960,12 @@ export const PRODUCTS = [
     "imageDisplayMode": "contain",
     "shippingEU": "Stock UE disponible",
     "stock": 45,
-    "image": "/products/unsplash_2.jpg",
+    "image": "/products/chargeur-magnetique-3-en-1-hero.jpg",
     "gallery": [
-      "/products/unsplash_2.jpg",
-      "/products/chargeur-magnetique-3-en-1-features.jpg",
-      "/products/chargeur-magnetique-3-en-1-details.jpg"
+      "/products/chargeur-magnetique-3-en-1-hero.jpg",
+      "/products/chargeur-magnetique-3-en-1-lifestyle.jpg",
+      "/products/chargeur-magnetique-3-en-1-details.jpg",
+      "/products/chargeur-magnetique-3-en-1-closeup.jpg"
     ],
     "altText": "Chargeur magnétique sans fil 3-en-1 pliable pour smartphone montre et écouteurs",
     "shortDescription": "Station de charge compacte et pliable pour recharger simultanément votre smartphone, votre montre connectée et vos écouteurs sans fil. Idéal pour le voyage et le bureau.",
@@ -6911,11 +7016,12 @@ export const PRODUCTS = [
     "imageDisplayMode": "contain",
     "shippingEU": "Stock UE disponible",
     "stock": 60,
-    "image": "/products/unsplash_5.jpg",
+    "image": "/products/bouteille-eau-intelligente-hero.jpg",
     "gallery": [
-      "/products/unsplash_5.jpg",
-      "/products/bouteille-eau-intelligente-features.jpg",
-      "/products/bouteille-eau-intelligente-details.jpg"
+      "/products/bouteille-eau-intelligente-hero.jpg",
+      "/products/bouteille-eau-intelligente-lifestyle.jpg",
+      "/products/bouteille-eau-intelligente-details.jpg",
+      "/products/bouteille-eau-intelligente-closeup.jpg"
     ],
     "altText": "Bouteille d'eau isotherme avec écran LED affichage température",
     "shortDescription": "Gourde isotherme en acier inoxydable avec un écran LED tactile sur le bouchon pour vérifier instantanément la température de votre boisson.",
@@ -6965,11 +7071,12 @@ export const PRODUCTS = [
     "imageDisplayMode": "contain",
     "shippingEU": "Stock UE disponible",
     "stock": 120,
-    "image": "/products/unsplash_8.jpg",
+    "image": "/products/aspirateur-bureau-compact-hero.jpg",
     "gallery": [
-      "/products/unsplash_8.jpg",
-      "/products/aspirateur-bureau-compact-features.jpg",
-      "/products/aspirateur-bureau-compact-details.jpg"
+      "/products/aspirateur-bureau-compact-hero.jpg",
+      "/products/aspirateur-bureau-compact-lifestyle.jpg",
+      "/products/aspirateur-bureau-compact-details.jpg",
+      "/products/aspirateur-bureau-compact-closeup.jpg"
     ],
     "altText": "Mini aspirateur de bureau design sans fil",
     "shortDescription": "Gardez votre espace de travail impeccable. Ce mini aspirateur aspire les miettes, la poussière et les résidus de gomme sur votre bureau ou clavier en un clin d'œil.",
@@ -7023,8 +7130,9 @@ export const PRODUCTS = [
     "image": "/products/unsplash_11.jpg",
     "gallery": [
       "/products/unsplash_11.jpg",
-      "/products/mini-compresseur-air-features.jpg",
-      "/products/mini-compresseur-air-details.jpg"
+      "/products/mini-compresseur-air-lifestyle.jpg",
+      "/products/mini-compresseur-air-details.jpg",
+      "/products/mini-compresseur-air-closeup.jpg"
     ],
     "altText": "Mini compresseur d'air portatif sur batterie pour pneus de voiture et vélo",
     "shortDescription": "Gonflez vos pneus de voiture, vélo ou ballons n'importe où. Pompe à air électrique de poche avec arrêt automatique et lampe LED intégrée.",
@@ -7074,11 +7182,12 @@ export const PRODUCTS = [
     "imageDisplayMode": "contain",
     "shippingEU": "Stock UE disponible",
     "stock": 80,
-    "image": "/products/unsplash_14.jpg",
+    "image": "/products/reveil-lumineux-simulateur-aube-hero.jpg",
     "gallery": [
-      "/products/unsplash_14.jpg",
-      "/products/reveil-lumineux-simulateur-aube-features.jpg",
-      "/products/reveil-lumineux-simulateur-aube-details.jpg"
+      "/products/reveil-lumineux-simulateur-aube-hero.jpg",
+      "/products/reveil-lumineux-simulateur-aube-lifestyle.jpg",
+      "/products/reveil-lumineux-simulateur-aube-details.jpg",
+      "/products/reveil-lumineux-simulateur-aube-closeup.jpg"
     ],
     "altText": "Réveil lumineux avec simulateur d'aube et sons de la nature",
     "shortDescription": "Réveillez-vous en douceur et sans stress grâce à ce réveil qui simule le lever du soleil. Idéal pour les matins difficiles en hiver.",

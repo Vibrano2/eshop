@@ -48,8 +48,14 @@ router.get('/', (req, res) => {
     const params = [];
 
     if (category && category !== 'all') {
-      conditions.push('category = ?');
-      params.push(category);
+      if (category === 'tech' || category === 'technologie') {
+        conditions.push("(category = 'tech' OR category = 'technologie')");
+      } else if (category === 'voyage-auto' || category === 'voyage' || category === 'auto') {
+        conditions.push("(category = 'voyage-auto' OR category = 'voyage' OR category = 'auto')");
+      } else {
+        conditions.push('category = ?');
+        params.push(category);
+      }
     }
 
     if (subcategory) {
@@ -75,7 +81,7 @@ router.get('/', (req, res) => {
 
     let whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
 
-    let orderBy = 'ORDER BY is_best_seller DESC, rating DESC';
+    let orderBy = "ORDER BY CASE WHEN json_extract(details_json, '$.isCurated') = 1 THEN 0 ELSE 1 END ASC, is_best_seller DESC, rating DESC";
     if (sort === 'price-asc') orderBy = 'ORDER BY price ASC';
     if (sort === 'price-desc') orderBy = 'ORDER BY price DESC';
     if (sort === 'rating') orderBy = 'ORDER BY rating DESC';

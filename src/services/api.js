@@ -468,27 +468,8 @@ export async function apiLogin(email, password) {
     }
     return data;
   } catch (err) {
-    console.warn('[API fallback] Local login fallback:', err.message);
-    // Offline simulated demo account
-    if (email.toLowerCase() === 'demo@eshopstore.shop') {
-      const fallbackUser = {
-        id: 1,
-        email: 'demo@eshopstore.shop',
-        firstName: 'Claire',
-        lastName: 'Laurent',
-        phone: '+33 6 12 34 56 78',
-        address: '15 Rue de Rivoli',
-        postalCode: '75001',
-        city: 'Paris',
-        countryCode: 'FR',
-        role: 'customer',
-        loyaltyCode: 'ESHOP-EU4821',
-        loyaltyPoints: 50
-      };
-      setAuthToken('mock-demo-token');
-      return { success: true, token: 'mock-demo-token', user: fallbackUser };
-    }
-    return { success: false, error: 'Serveur indisponible.' };
+    console.warn('[API error] Login failed:', err.message);
+    return { success: false, error: 'Identifiants incorrects ou serveur indisponible.' };
   }
 }
 
@@ -513,18 +494,8 @@ export async function apiRegister(userData) {
     }
     return data;
   } catch (err) {
-    console.warn('[API fallback] Local register fallback:', err.message);
-    const fallbackUser = {
-      id: Date.now(),
-      email: userData.email,
-      firstName: userData.firstName,
-      lastName: userData.lastName,
-      role: 'customer',
-      loyaltyCode: `ESHOP-EU${Math.floor(1000 + Math.random() * 9000)}`,
-      loyaltyPoints: 50
-    };
-    setAuthToken('mock-reg-token');
-    return { success: true, token: 'mock-reg-token', user: fallbackUser };
+    console.warn('[API error] Registration failed:', err.message);
+    return { success: false, error: 'Impossible de créer le compte. Serveur indisponible.' };
   }
 }
 
@@ -557,23 +528,7 @@ export async function apiGetMe() {
     }
     return null;
   } catch (err) {
-    console.warn('[API fallback] GetMe fallback:', err.message);
-    // If mock token was used
-    if (token === 'mock-demo-token') {
-      return {
-        id: 1,
-        email: 'demo@eshopstore.shop',
-        firstName: 'Claire',
-        lastName: 'Laurent',
-        address: '15 Rue de Rivoli',
-        postalCode: '75001',
-        city: 'Paris',
-        countryCode: 'FR',
-        role: 'customer',
-        loyaltyCode: 'ESHOP-EU4821',
-        loyaltyPoints: 50
-      };
-    }
+    console.warn('[API error] GetMe failed:', err.message);
     return null;
   }
 }
@@ -584,7 +539,7 @@ export async function apiGetMe() {
 export async function apiLogout() {
   const token = getAuthToken();
   try {
-    if (token && !token.startsWith('mock-')) {
+    if (token) {
       await fetch(`${API_BASE}/auth/logout`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
@@ -717,12 +672,8 @@ export async function apiGetAdminOrders(params = {}) {
     const data = await res.json();
     return data.orders || [];
   } catch (err) {
-    console.warn('[API fallback] Admin orders fallback:', err.message);
-    try {
-      return JSON.parse(localStorage.getItem('eshop_orders') || '[]');
-    } catch {
-      return [];
-    }
+    console.warn('[API error] Admin orders request failed:', err.message);
+    return [];
   }
 }
 
@@ -766,8 +717,8 @@ export async function apiGetAdminProducts(params = {}) {
     const data = await res.json();
     return data.products || [];
   } catch (err) {
-    console.warn('[API fallback] Admin products fallback:', err.message);
-    return PRODUCTS;
+    console.warn('[API error] Admin products request failed:', err.message);
+    return [];
   }
 }
 
@@ -972,12 +923,8 @@ export async function apiGetAdminReturns(params = {}) {
     const data = await res.json();
     return data.returns || [];
   } catch (err) {
-    console.warn('[API fallback] Admin returns fallback:', err.message);
-    try {
-      return JSON.parse(localStorage.getItem('eshop_returns') || '[]');
-    } catch {
-      return [];
-    }
+    console.warn('[API error] Admin returns request failed:', err.message);
+    return [];
   }
 }
 

@@ -22,9 +22,13 @@ import {
   Mail,
   ExternalLink
 } from 'lucide-react';
+import { loadStripe } from '@stripe/stripe-js';
 import { PROMO_CODES } from '../data/promoCodes';
-import { apiCreateOrder, apiCreateCheckoutSession } from '../services/api';
+import { apiCreateOrder, apiCreateCheckoutSession, apiCreatePaymentIntent } from '../services/api';
 import { firebaseCreateOrder } from '../services/firebase';
+
+const stripePublishableKey = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_STRIPE_PUBLISHABLE_KEY) || '';
+const stripePromise = stripePublishableKey ? loadStripe(stripePublishableKey) : null;
 
 const EU_COUNTRIES = [
   { code: 'FR', name: 'France (Métropolitaine)', minDays: 2, maxDays: 3, delayText: '2 à 3 jours' },
@@ -64,36 +68,8 @@ export default function CheckoutModal({
     city: currentUser?.city || '',
     country: currentUser?.countryCode || 'FR',
     phone: currentUser?.phone || '',
-    paymentMethod: 'card' // card, applepay, paypal
+    paymentMethod: 'stripe'
   });
-
-  // Re-sync with currentUser if modal opened while already logged in or state updated
-  React.useEffect(() => {
-    if (currentUser) {
-      setFormData((prev) => ({
-        ...prev,
-        email: prev.email || currentUser.email || '',
-        firstName: prev.firstName || currentUser.firstName || '',
-        lastName: prev.lastName || currentUser.lastName || '',
-        address: prev.address || currentUser.address || '',
-        postalCode: prev.postalCode || currentUser.postalCode || '',
-        city: prev.city || currentUser.city || '',
-        country: prev.country || currentUser.countryCode || 'FR',
-        phone: prev.phone || currentUser.phone || ''
-      }));
-    }
-  }, [currentUser]);
-
-  const [formErrors, setFormErrors] = useState({});
-  const [isSummaryExpanded, setIsSummaryExpanded] = useState(false);
-  const [checkoutPromoInput, setCheckoutPromoInput] = useState('');
-  const [checkoutPromoError, setCheckoutPromoError] = useState('');
-  const [createdOrder, setCreatedOrder] = useState(null);
-  const [isCopied, setIsCopied] = useState(false);
-
-  // Payment Gateway States
-  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
-  const [paymentError, setPaymentError] = useState('');
 
   const selectedCountry = useMemo(() => {
     return EU_COUNTRIES.find((c) => c.code === formData.country) || EU_COUNTRIES[0];
@@ -112,6 +88,186 @@ export default function CheckoutModal({
     const endStr = endDate.toLocaleDateString('fr-FR', { ...formatOpts, year: 'numeric' });
     return `Entre le ${startStr} et le ${endStr}`;
   }, [selectedCountry]);
+
+  // Wallet availability reported directly by Stripe SDK (Apple Pay, Google Pay)
+  const [stripeWallets, setStripeWallets] = useState({
+    applePay: false,
+    googlePay: false
+  });
+
+  // Stripe Payment Element integration state
+  const [paymentIntentData, setPaymentIntentData] = useState(null);
+  const [isInitializingStripe, setIsInitializingStripe] = useState(false);
+  const [elementsInstance, setElementsInstance] = useState(null);
+  const [isElementMounted, setIsElementMounted] = useState(false);
+
+  // Form, promo, order & UI states
+  const [formErrors, setFormErrors] = useState({});
+  const [isSummaryExpanded, setIsSummaryExpanded] = useState(false);
+  const [checkoutPromoInput, setCheckoutPromoInput] = useState('');
+  const [checkoutPromoError, setCheckoutPromoError] = useState('');
+  const [createdOrder, setCreatedOrder] = useState(null);
+  const [isCopied, setIsCopied] = useState(false);
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+  const [paymentError, setPaymentError] = useState('');
+
+  // Ask Stripe if Apple Pay / Google Pay are actually available for this device, merchant & currency
+  React.useEffect(() => {
+    if (!stripePromise) return;
+    let isMounted = true;
+
+    stripePromise.then(async (stripe) => {
+      if (!stripe || !isMounted) return;
+      try {
+        const pr = stripe.paymentRequest({
+          country: selectedCountry?.code || 'FR',
+          currency: 'eur',
+          total: {
+            label: 'Commande eShopStore',
+            amount: Math.max(100, Math.round(totalAmount * 100))
+          },
+          requestPayerName: true,
+          requestPayerEmail: true
+        });
+
+        const res = await pr.canMakePayment();
+        if (isMounted) {
+          setStripeWallets({
+            applePay: Boolean(res && res.applePay),
+            googlePay: Boolean(res && res.googlePay)
+          });
+        }
+      } catch {
+        if (isMounted) {
+          setStripeWallets({ applePay: false, googlePay: false });
+        }
+      }
+    }).catch(() => {
+      if (isMounted) setStripeWallets({ applePay: false, googlePay: false });
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [selectedCountry?.code, totalAmount]);
+
+  // Mount official Stripe Payment Element when entering Step 2
+  React.useEffect(() => {
+    if (step !== 2) return;
+    let isCancelled = false;
+
+    async function initStripeElements() {
+      setIsInitializingStripe(true);
+      setPaymentError('');
+
+      try {
+        const orderPayload = {
+          customer: { ...formData },
+          items: [...items],
+          subtotal,
+          discountAmount,
+          discountCode,
+          shippingFee,
+          totalAmount,
+          countryCode: selectedCountry.code
+        };
+
+        const res = await apiCreatePaymentIntent(orderPayload);
+        if (isCancelled) return;
+
+        if (res && res.success && res.clientSecret) {
+          setPaymentIntentData(res);
+          const stripe = await stripePromise;
+          if (!stripe) {
+            setIsInitializingStripe(false);
+            return;
+          }
+
+          const elements = stripe.elements({
+            clientSecret: res.clientSecret,
+            appearance: {
+              theme: 'flat',
+              variables: {
+                colorPrimary: '#1e3a8a',
+                colorBackground: '#ffffff',
+                colorText: '#0f172a',
+                colorDanger: '#ef4444',
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                borderRadius: '8px'
+              }
+            }
+          });
+
+          const paymentElement = elements.create('payment', {
+            layout: 'tabs',
+            fields: {
+              billingDetails: {
+                name: 'auto',
+                email: 'auto'
+              }
+            }
+          });
+
+          setTimeout(() => {
+            if (isCancelled) return;
+            const mountPoint = document.getElementById('stripe-payment-element-mount');
+            if (mountPoint) {
+              mountPoint.innerHTML = '';
+              paymentElement.mount(mountPoint);
+              paymentElement.on('ready', () => {
+                if (!isCancelled) {
+                  setIsElementMounted(true);
+                  setIsInitializingStripe(false);
+                }
+              });
+              paymentElement.on('change', (ev) => {
+                if (ev.error) {
+                  setPaymentError(ev.error.message);
+                } else {
+                  setPaymentError('');
+                }
+              });
+              setElementsInstance(elements);
+            } else {
+              setIsInitializingStripe(false);
+            }
+          }, 80);
+        } else {
+          setIsInitializingStripe(false);
+          // Keep checkout redirect option available
+        }
+      } catch (err) {
+        if (!isCancelled) {
+          console.error('Error mounting Stripe Payment Element:', err);
+          setIsInitializingStripe(false);
+        }
+      }
+    }
+
+    initStripeElements();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [step]);
+
+  // Re-sync with currentUser if modal opened while already logged in or state updated
+  React.useEffect(() => {
+    if (currentUser) {
+      setFormData((prev) => ({
+        ...prev,
+        email: prev.email || currentUser.email || '',
+        firstName: prev.firstName || currentUser.firstName || '',
+        lastName: prev.lastName || currentUser.lastName || '',
+        address: prev.address || currentUser.address || '',
+        postalCode: prev.postalCode || currentUser.postalCode || '',
+        city: prev.city || currentUser.city || '',
+        country: prev.country || currentUser.countryCode || 'FR',
+        phone: prev.phone || currentUser.phone || ''
+      }));
+    }
+  }, [currentUser]);
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -178,8 +334,9 @@ export default function CheckoutModal({
 
   const handleProcessPayment = async (e) => {
     e.preventDefault();
-    setPaymentError('');
+    if (isProcessingPayment) return; // Prevent duplicate submissions
     setIsProcessingPayment(true);
+    setPaymentError('');
 
     const orderPayload = {
       customer: { ...formData },
@@ -192,8 +349,47 @@ export default function CheckoutModal({
       countryCode: selectedCountry.code
     };
 
-    // Official Real Stripe Hosted Checkout flow (Card, Apple Pay, Google Pay)
-    if (formData.paymentMethod === 'card' || formData.paymentMethod === 'applepay') {
+    // 1. If Stripe Payment Element is initialized and mounted, confirm payment directly through Stripe
+    if (elementsInstance && paymentIntentData?.orderNumber) {
+      try {
+        const stripe = await stripePromise;
+        const returnUrl = `${window.location.origin}/?payment_status=success&session_id=${paymentIntentData.paymentIntentId || ''}&order_number=${paymentIntentData.orderNumber}`;
+
+        const { error } = await stripe.confirmPayment({
+          elements: elementsInstance,
+          confirmParams: {
+            return_url: returnUrl,
+            receipt_email: formData.email,
+            payment_method_data: {
+              billing_details: {
+                name: `${formData.firstName} ${formData.lastName}`.trim() || undefined,
+                email: formData.email,
+                phone: formData.phone || undefined,
+                address: {
+                  line1: formData.address || undefined,
+                  postal_code: formData.postalCode || undefined,
+                  city: formData.city || undefined,
+                  country: selectedCountry.code || 'FR'
+                }
+              }
+            }
+          }
+        });
+
+        if (error) {
+          // Display Stripe error directly from Stripe
+          setPaymentError(error.message || 'La transaction n\'a pas pu être validée.');
+          setIsProcessingPayment(false);
+          return;
+        }
+      } catch (err) {
+        console.error('Stripe Payment Element confirmation error:', err);
+        setPaymentError('Erreur de communication avec Stripe. Vous pouvez également régler via la page hébergée Stripe Checkout.');
+        setIsProcessingPayment(false);
+        return;
+      }
+    } else {
+      // 2. Fallback to Stripe Hosted Checkout
       try {
         const sessionRes = await apiCreateCheckoutSession(orderPayload);
         if (sessionRes && sessionRes.success && sessionRes.url) {
@@ -215,15 +411,38 @@ export default function CheckoutModal({
         setIsProcessingPayment(false);
         return;
       }
-    } else {
-      // Direct PayPal flow
-      try {
-        await finalizeOrder(orderPayload, { method: 'paypal' });
-      } catch (err) {
-        console.warn('PayPal order processing error:', err);
-        setPaymentError('Erreur lors du traitement de la commande. Veuillez réessayer.');
+    }
+  };
+
+  const handleHostedCheckoutRedirect = async () => {
+    if (isProcessingPayment) return;
+    setIsProcessingPayment(true);
+    setPaymentError('');
+
+    const orderPayload = {
+      customer: { ...formData },
+      items: [...items],
+      subtotal,
+      discountAmount,
+      discountCode,
+      shippingFee,
+      totalAmount,
+      countryCode: selectedCountry.code
+    };
+
+    try {
+      const sessionRes = await apiCreateCheckoutSession(orderPayload);
+      if (sessionRes && sessionRes.success && sessionRes.url) {
+        localStorage.setItem('eshop_pending_order', sessionRes.orderNumber);
+        window.location.href = sessionRes.url;
+      } else {
+        setPaymentError(sessionRes?.error || 'Impossible d\'initialiser Stripe Checkout.');
         setIsProcessingPayment(false);
       }
+    } catch (err) {
+      console.error('Stripe redirect error:', err);
+      setPaymentError('Erreur de connexion avec Stripe.');
+      setIsProcessingPayment(false);
     }
   };
 
@@ -627,44 +846,14 @@ export default function CheckoutModal({
           <form onSubmit={handleProcessPayment} className="checkout-form">
             <div className="checkout-section-header">
               <div>
-                <h3 className="checkout-section-title">Mode de règlement</h3>
+                <h3 className="checkout-section-title">Paiement sécurisé</h3>
                 <p className="checkout-section-subtitle">
-                  Toutes les transactions sont chiffrées en SSL 256 bits conforme DSP2 / UE
+                  Votre paiement est traité de manière sécurisée par Stripe.
                 </p>
               </div>
               <span style={{ fontSize: '0.75rem', color: '#059669', display: 'flex', alignItems: 'center', gap: '0.25rem', fontWeight: 600 }}>
-                <Lock size={14} /> 100% Sécurisé
+                <Lock size={14} /> Paiement sécurisé par Stripe
               </span>
-            </div>
-
-            {/* Payment Method Selector */}
-            <div className="payment-selector">
-              <div
-                className={`payment-method-card ${formData.paymentMethod === 'card' ? 'selected' : ''}`}
-                onClick={() => setFormData({ ...formData, paymentMethod: 'card' })}
-              >
-                <CreditCard size={22} color="#1e3a8a" />
-                <span className="method-label">Carte Bancaire</span>
-                <span className="method-sub">CB, Visa, Mastercard</span>
-              </div>
-
-              <div
-                className={`payment-method-card ${formData.paymentMethod === 'applepay' ? 'selected' : ''}`}
-                onClick={() => setFormData({ ...formData, paymentMethod: 'applepay' })}
-              >
-                <span style={{ fontSize: '1.2rem', fontWeight: 800 }}> Pay</span>
-                <span className="method-label">Apple / Google Pay</span>
-                <span className="method-sub">Biométrie 1-clic</span>
-              </div>
-
-              <div
-                className={`payment-method-card ${formData.paymentMethod === 'paypal' ? 'selected' : ''}`}
-                onClick={() => setFormData({ ...formData, paymentMethod: 'paypal' })}
-              >
-                <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#0079C1' }}>PayPal</span>
-                <span className="method-label">PayPal Express</span>
-                <span className="method-sub">Paiement en 4x sans frais</span>
-              </div>
             </div>
 
             {/* Payment Error Banner */}
@@ -678,78 +867,97 @@ export default function CheckoutModal({
               </div>
             )}
 
-            {/* Real Stripe Official Payment Showcase */}
-            {(formData.paymentMethod === 'card' || formData.paymentMethod === 'applepay') && (
-              <div className="real-stripe-payment-card">
-                <div className="stripe-header-badge">
-                  <div className="stripe-official-logo">
-                    <span className="stripe-brand-text">stripe</span>
-                    <span className="stripe-certified-tag">OFFICIEL • PCI-DSS NIVEAU 1</span>
-                  </div>
-                  <span className="stripe-secure-indicator">
-                    <ShieldCheck size={14} color="#059669" /> 100% Chiffré SSL 256 bits
-                  </span>
+            {/* Single Unified Stripe Official Payment Showcase */}
+            <div className="real-stripe-payment-card">
+              <div className="stripe-header-badge">
+                <div className="stripe-official-logo">
+                  <span className="stripe-brand-text">stripe</span>
+                  <span className="stripe-certified-tag">PASSERELLE SÉCURISÉE</span>
                 </div>
+                <span className="stripe-secure-indicator">
+                  <ShieldCheck size={14} color="#059669" /> Chiffrement direct Stripe
+                </span>
+              </div>
 
-                <div className="stripe-card-body">
-                  <p className="stripe-description">
-                    Votre règlement est 100% sécurisé et traité directement sur les serveurs certifiés de <strong>Stripe</strong>.
-                  </p>
+              <div className="stripe-card-body">
+                <p className="stripe-description">
+                  Vos données de paiement sont traitées directement par Stripe. Aucune coordonnée bancaire ne transite ni n'est stockée sur notre boutique.
+                </p>
 
+                <div className="stripe-methods-available-block">
+                  <div style={{ fontSize: '0.8125rem', fontWeight: 700, color: '#475569', marginBottom: '0.45rem' }}>
+                    Cartes et méthodes acceptées via Stripe :
+                  </div>
                   <div className="accepted-cards-row">
                     <span className="accepted-card-pill">💳 Carte Bancaire (CB)</span>
                     <span className="accepted-card-pill">Visa</span>
                     <span className="accepted-card-pill">Mastercard</span>
                     <span className="accepted-card-pill">American Express</span>
-                    <span className="accepted-card-pill"> Apple Pay</span>
-                    <span className="accepted-card-pill">Google Pay</span>
-                  </div>
-
-                  <div className="stripe-trust-highlights">
-                    <div className="trust-highlight-item">
-                      <Lock size={14} color="#38bdf8" />
-                      <span><strong>Confidentialité totale</strong> : Aucune donnée bancaire ne transite ni n'est stockée sur notre boutique.</span>
-                    </div>
-                    <div className="trust-highlight-item">
-                      <ShieldCheck size={14} color="#10b981" />
-                      <span><strong>Protocole 3D Secure v2</strong> avec validation biométrique ou SMS auprès de votre établissement bancaire.</span>
-                    </div>
-                    <div className="trust-highlight-item">
-                      <CheckCircle2 size={14} color="#38bdf8" />
-                      <span><strong>Validation immédiate</strong> : Déclenchement de la préparation sous 24h et envoi de la facture avec TVA.</span>
-                    </div>
+                    {stripeWallets.applePay && (
+                      <span className="accepted-card-pill" style={{ color: '#0f172a', fontWeight: 700 }}>
+                         Apple Pay
+                      </span>
+                    )}
+                    {stripeWallets.googlePay && (
+                      <span className="accepted-card-pill" style={{ color: '#0f172a', fontWeight: 700 }}>
+                        Google Pay
+                      </span>
+                    )}
                   </div>
                 </div>
-              </div>
-            )}
 
-            {formData.paymentMethod === 'paypal' && (
-              <div className="real-stripe-payment-card paypal-card">
-                <div className="stripe-header-badge">
-                  <div className="paypal-logo-text">PayPal</div>
-                  <span className="stripe-secure-indicator">
-                    <ShieldCheck size={14} color="#059669" /> Protection des Achats
-                  </span>
-                </div>
-
-                <div className="stripe-card-body">
-                  <p className="stripe-description">
-                    Réglez en toute sécurité via votre compte <strong>PayPal</strong> ou profitez de l'option de paiement en <strong>4x sans frais</strong>.
-                  </p>
-
-                  <div className="stripe-trust-highlights">
-                    <div className="trust-highlight-item">
-                      <CheckCircle2 size={14} color="#0079C1" />
-                      <span>Validation immédiate en un clic sans saisir votre numéro de carte.</span>
-                    </div>
-                    <div className="trust-highlight-item">
-                      <ShieldCheck size={14} color="#10b981" />
-                      <span>Éligible à la garantie de Protection des Achats PayPal européenne.</span>
-                    </div>
+                <div className="stripe-trust-highlights">
+                  <div className="trust-highlight-item">
+                    <Lock size={14} color="#38bdf8" />
+                    <span><strong>Paiement sécurisé par Stripe</strong> : Vos données de paiement sont traitées directement par Stripe.</span>
+                  </div>
+                  <div className="trust-highlight-item">
+                    <ShieldCheck size={14} color="#10b981" />
+                    <span><strong>Authentification renforcée</strong> : Votre banque peut demander une validation supplémentaire lorsque nécessaire.</span>
                   </div>
                 </div>
               </div>
-            )}
+            </div>
+
+            {/* Official Real Stripe Payment Component */}
+            <div className="stripe-element-container-card" style={{ background: '#ffffff', border: '1.5px solid #e2e8f0', borderRadius: '12px', padding: '1.25rem', marginBottom: '1.25rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.85rem' }}>
+                <span style={{ fontSize: '0.875rem', fontWeight: 700, color: '#1e293b' }}>
+                  Coordonnées de paiement
+                </span>
+                <span style={{ fontSize: '0.75rem', color: '#059669', display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600 }}>
+                  <Lock size={13} color="#059669" /> Formulaire sécurisé Stripe
+                </span>
+              </div>
+
+              {isInitializingStripe && (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '2rem 1rem', color: '#64748b', fontSize: '0.875rem' }}>
+                  <RefreshCw size={18} className="spin-icon" color="#1e3a8a" />
+                  <span>Chargement sécurisé du formulaire Stripe...</span>
+                </div>
+              )}
+
+              <div id="stripe-payment-element-mount" style={{ minHeight: isInitializingStripe ? '0px' : '150px' }} />
+
+              <div style={{ textAlign: 'center', marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px dashed #e2e8f0' }}>
+                <button
+                  type="button"
+                  onClick={handleHostedCheckoutRedirect}
+                  disabled={isProcessingPayment}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: '#475569',
+                    fontSize: '0.8125rem',
+                    textDecoration: 'underline',
+                    cursor: 'pointer',
+                    padding: '0.25rem'
+                  }}
+                >
+                  Ou payer sur la page sécurisée Stripe Checkout →
+                </button>
+              </div>
+            </div>
 
             {/* In-Checkout Promo Code Adder */}
             <div className="checkout-promo-box">
@@ -829,11 +1037,7 @@ export default function CheckoutModal({
                 ) : (
                   <>
                     <ShieldCheck size={18} />
-                    <span>
-                      {formData.paymentMethod === 'paypal'
-                        ? `Régler ${totalAmount.toFixed(2)} € avec PayPal`
-                        : `Payer ${totalAmount.toFixed(2)} € via Stripe Sécurisé`}
-                    </span>
+                    <span>Payer {totalAmount.toFixed(2)} € avec Stripe</span>
                   </>
                 )}
               </button>
@@ -855,12 +1059,12 @@ export default function CheckoutModal({
               Votre commande a bien été enregistrée. Un accusé de réception a été envoyé à <strong>{createdOrder.customer.email}</strong>.
             </p>
 
-            {/* 3D Secure Protection Seal */}
+            {/* Stripe Payment Confirmation Seal */}
             <div className="success-3ds-seal">
               <ShieldCheck size={20} color="#059669" />
               <div>
-                <strong>Authentification 3D Secure v2 Validée (DSP2)</strong>
-                <p>Transaction vérifiée et autorisée avec succès par votre établissement bancaire via protocole sécurisé SCA.</p>
+                <strong>Paiement sécurisé par Stripe validé</strong>
+                <p>Votre transaction a été traitée directement et en toute sécurité par la passerelle Stripe.</p>
               </div>
             </div>
 

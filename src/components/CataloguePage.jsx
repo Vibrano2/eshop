@@ -13,7 +13,6 @@ import {
   Tag,
   Sparkles
 } from 'lucide-react';
-import { CATEGORIES } from '../data/products';
 import { MAIN_CATEGORIES } from '../data/categories';
 import { updatePageSEO, injectBreadcrumbJsonLd, resetSEO } from '../services/seo';
 

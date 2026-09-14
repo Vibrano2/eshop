@@ -94,7 +94,7 @@
 ## 7. Tunnel de paiement
 
 **Étape 1 — Livraison** : email, adresse, pays (liste UE en priorité)
-**Étape 2 — Paiement** : carte bancaire, PayPal, Apple Pay / Google Pay affichés en boutons visuels reconnaissables
+**Étape 2 — Paiement** : Paiement sécurisé traité directement par Stripe (CB, Visa, Mastercard, American Express, Apple Pay, Google Pay)
 **Étape 3 — Confirmation** : récapitulatif + numéro de commande + email de confirmation automatique
 
 - Indicateur de progression visible (1/3, 2/3, 3/3)

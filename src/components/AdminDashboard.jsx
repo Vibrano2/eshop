@@ -363,12 +363,22 @@ export default function AdminDashboard({ onNavigateHome, currentUser, onAuthSucc
                 Accès non autorisé
               </div>
               Connecté en tant que client ({currentUser.email}). Ce rôle ne permet pas d'accéder aux fonctions d'administration.
-              <button
-                onClick={onLogout}
-                style={{ display: 'block', marginTop: '0.75rem', fontSize: '0.8rem', color: '#b91c1c', fontWeight: '700', textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
-              >
-                Se déconnecter de ce compte
-              </button>
+              <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.75rem' }}>
+                <button
+                  type="button"
+                  onClick={onNavigateHome}
+                  style={{ flex: 1, padding: '0.5rem 0.75rem', background: '#2563eb', color: '#ffffff', borderRadius: '6px', border: 'none', fontSize: '0.8rem', fontWeight: '600', cursor: 'pointer' }}
+                >
+                  Retourner à la boutique
+                </button>
+                <button
+                  type="button"
+                  onClick={onLogout}
+                  style={{ padding: '0.5rem 0.75rem', background: '#fee2e2', color: '#b91c1c', borderRadius: '6px', border: 'none', fontSize: '0.8rem', fontWeight: '700', cursor: 'pointer' }}
+                >
+                  Se déconnecter
+                </button>
+              </div>
             </div>
           )}
 

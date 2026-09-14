@@ -10,8 +10,8 @@ export default function WhyChooseUs({ onOpenReassurance }) {
     },
     {
       icon: ShieldCheck,
-      title: 'Paiements 100% sécurisés',
-      desc: 'Protocoles de cryptage SSL 256 bits et 3D Secure v2 pour régler en toute sérénité par CB ou Apple Pay.'
+      title: 'Paiement sécurisé par Stripe',
+      desc: 'Vos paiements sont traités directement par Stripe avec chiffrement de bout en bout et authentification 3D Secure.'
     },
     {
       icon: Truck,

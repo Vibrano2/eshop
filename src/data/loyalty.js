@@ -55,19 +55,11 @@ export const LOYALTY_REWARDS = [
 ];
 
 export const INITIAL_LOYALTY_STATE = {
-  points: 50, // Welcome gift points
-  referralCode: 'ESHOP-EU' + Math.floor(1000 + Math.random() * 9000),
+  points: 0,
+  referralCode: '',
   referralsCount: 0,
   claimedCoupons: [],
-  history: [
-    {
-      id: 'h-welcome',
-      date: new Date().toLocaleDateString('fr-FR'),
-      label: 'Cadeau de bienvenue',
-      points: 50,
-      type: 'credit'
-    }
-  ]
+  history: []
 };
 
 export function calculatePointsForAmount(amount) {

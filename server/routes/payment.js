@@ -46,6 +46,137 @@ const KNOWN_TEST_CARDS = {
 };
 
 /**
+ * Shared helper: validates items, recalculates authoritative total from SQLite DB,
+ * validates promo codes and shipping, and creates pending order record in SQLite.
+ */
+export function buildAndSavePendingOrder({ items = [], customer = {}, discountCode = '' }) {
+  if (!Array.isArray(items) || items.length === 0) {
+    throw new Error('Panier vide ou invalide.');
+  }
+
+  if (!customer.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customer.email)) {
+    throw new Error('Adresse email client invalide.');
+  }
+
+  // 1. Authoritative server-side price validation
+  const validatedItems = [];
+  let serverSubtotal = 0;
+
+  for (const rawItem of items) {
+    if (!rawItem || !rawItem.id) continue;
+    const dbProd = db.prepare('SELECT id, name, price, stock, image FROM products WHERE id = ?').get(String(rawItem.id));
+    if (!dbProd) {
+      throw new Error(`Article introuvable en stock (ID: ${rawItem.id})`);
+    }
+
+    const unitPrice = Number(dbProd.price);
+    const quantity = Math.max(1, Math.min(99, parseInt(rawItem.quantity, 10) || 1));
+    serverSubtotal += unitPrice * quantity;
+
+    validatedItems.push({
+      id: dbProd.id,
+      name: dbProd.name,
+      image: dbProd.image || rawItem.image || '',
+      price: unitPrice,
+      quantity,
+      selectedSize: rawItem.selectedSize ? String(rawItem.selectedSize).slice(0, 30) : null,
+      selectedColor: rawItem.selectedColor ? String(rawItem.selectedColor).slice(0, 30) : null
+    });
+  }
+
+  serverSubtotal = Math.round(serverSubtotal * 100) / 100;
+
+  // 2. Server-side promo code validation
+  let serverDiscountAmount = 0;
+  let isFreeShippingPromo = false;
+  let validatedPromoCode = null;
+
+  if (discountCode && typeof discountCode === 'string' && discountCode.trim()) {
+    const codeNorm = discountCode.trim().toUpperCase();
+    let match = db.prepare('SELECT * FROM promo_codes WHERE code = ? AND is_active = 1').get(codeNorm);
+    if (!match && codeNorm.startsWith('ESHOP-')) {
+      match = { code: codeNorm, fixed_discount: 10.0, min_amount: 40.0, is_free_shipping: 0 };
+    }
+    if (match && (!match.min_amount || serverSubtotal >= match.min_amount)) {
+      validatedPromoCode = match.code;
+      isFreeShippingPromo = Boolean(match.is_free_shipping);
+      if (match.discount_percent) {
+        serverDiscountAmount = Math.round((serverSubtotal * (match.discount_percent / 100)) * 100) / 100;
+      } else if (match.fixed_discount) {
+        serverDiscountAmount = Math.min(serverSubtotal, match.fixed_discount);
+      }
+    }
+  }
+
+  // 3. Shipping determination
+  const isFreeShipping = serverSubtotal >= 40.0 || isFreeShippingPromo;
+  const serverShippingFee = isFreeShipping ? 0.0 : 3.90;
+  const serverTotalAmount = Math.round(Math.max(0, serverSubtotal - serverDiscountAmount + serverShippingFee) * 100) / 100;
+
+  const orderNumber = `EU-${Math.floor(100000 + Math.random() * 900000)}`;
+  const countryCode = String(customer.country || customer.countryCode || 'FR').trim().toUpperCase().slice(0, 2);
+  const carrier = countryCode === 'FR' ? 'Colissimo Suivi' : 'DHL Express Europe';
+  const estimatedDelivery = getEstimatedDeliveryRange(countryCode);
+  const createdAt = new Date().toISOString();
+
+  const safeCustomer = {
+    email: String(customer.email).trim().toLowerCase().slice(0, 100),
+    firstName: String(customer.firstName || '').trim().slice(0, 60),
+    lastName: String(customer.lastName || '').trim().slice(0, 60),
+    address: String(customer.address || '').trim().slice(0, 120),
+    postalCode: String(customer.postalCode || '').trim().slice(0, 20),
+    city: String(customer.city || '').trim().slice(0, 60),
+    phone: String(customer.phone || '').trim().slice(0, 30),
+    countryCode
+  };
+
+  // 4. Save pending order into database
+  const trackingSteps = [
+    { title: 'Paiement Stripe en cours de validation', date: 'Immédiat', done: false },
+    { title: 'Préparation logistique (Plateforme UE)', date: 'Sous 24h ouvrées', done: false },
+    { title: `Acheminement prioritaire ${carrier}`, date: 'Dans 2 jours', done: false },
+    { title: 'Livraison en boîte aux lettres ou contre signature', date: estimatedDelivery, done: false }
+  ];
+
+  db.prepare(`
+    INSERT INTO orders (
+      order_number, customer_email, customer_first_name, customer_last_name,
+      shipping_address, postal_code, city, country_code,
+      subtotal, discount_amount, discount_code, shipping_fee, total_amount,
+      carrier, estimated_delivery, status, tracking_steps_json, created_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `).run(
+    orderNumber, safeCustomer.email, safeCustomer.firstName, safeCustomer.lastName,
+    safeCustomer.address, safeCustomer.postalCode, safeCustomer.city, countryCode,
+    serverSubtotal, serverDiscountAmount, validatedPromoCode, serverShippingFee, serverTotalAmount,
+    carrier, estimatedDelivery, 'en_attente_de_paiement', JSON.stringify(trackingSteps), createdAt
+  );
+
+  const insertItem = db.prepare(`
+    INSERT INTO order_items (
+      order_number, product_id, product_name, product_image, variant, unit_price, quantity
+    ) VALUES (?, ?, ?, ?, ?, ?, ?)
+  `);
+  for (const item of validatedItems) {
+    const variantStr = [item.selectedSize, item.selectedColor].filter(Boolean).join(' / ') || null;
+    insertItem.run(orderNumber, item.id, item.name, item.image, variantStr, item.price, item.quantity);
+  }
+
+  return {
+    orderNumber,
+    safeCustomer,
+    validatedItems,
+    serverSubtotal,
+    serverDiscountAmount,
+    validatedPromoCode,
+    serverShippingFee,
+    serverTotalAmount,
+    carrier,
+    estimatedDelivery
+  };
+}
+
+/**
  * POST /api/payment/create-checkout-session
  * Initialize real Stripe Hosted Checkout Session (supports Card, Apple Pay, Google Pay)
  */
@@ -58,119 +189,24 @@ router.post('/create-checkout-session', paymentRateLimiter, async (req, res) => 
 
     const { items = [], customer = {}, discountCode = '' } = req.body;
 
-    if (!Array.isArray(items) || items.length === 0) {
-      return res.status(400).json({ success: false, error: 'Panier vide ou invalide.' });
+    let pendingOrder;
+    try {
+      pendingOrder = buildAndSavePendingOrder({ items, customer, discountCode });
+    } catch (valErr) {
+      return res.status(400).json({ success: false, error: valErr.message });
     }
 
-    if (!customer.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customer.email)) {
-      return res.status(400).json({ success: false, error: 'Adresse email client invalide.' });
-    }
+    const {
+      orderNumber,
+      safeCustomer,
+      validatedItems,
+      serverDiscountAmount,
+      validatedPromoCode,
+      serverShippingFee,
+      carrier
+    } = pendingOrder;
 
-    // 1. Authoritative server-side price validation
-    const validatedItems = [];
-    let serverSubtotal = 0;
-
-    for (const rawItem of items) {
-      if (!rawItem || !rawItem.id) continue;
-      const dbProd = db.prepare('SELECT id, name, price, stock, image FROM products WHERE id = ?').get(String(rawItem.id));
-      if (!dbProd) {
-        return res.status(400).json({ success: false, error: `Article introuvable en stock (ID: ${rawItem.id})` });
-      }
-
-      const unitPrice = Number(dbProd.price);
-      const quantity = Math.max(1, Math.min(99, parseInt(rawItem.quantity, 10) || 1));
-      serverSubtotal += unitPrice * quantity;
-
-      validatedItems.push({
-        id: dbProd.id,
-        name: dbProd.name,
-        image: dbProd.image || rawItem.image || '',
-        price: unitPrice,
-        quantity,
-        selectedSize: rawItem.selectedSize ? String(rawItem.selectedSize).slice(0, 30) : null,
-        selectedColor: rawItem.selectedColor ? String(rawItem.selectedColor).slice(0, 30) : null
-      });
-    }
-
-    serverSubtotal = Math.round(serverSubtotal * 100) / 100;
-
-    // 2. Server-side promo code validation
-    let serverDiscountAmount = 0;
-    let isFreeShippingPromo = false;
-    let validatedPromoCode = null;
-
-    if (discountCode && typeof discountCode === 'string' && discountCode.trim()) {
-      const codeNorm = discountCode.trim().toUpperCase();
-      let match = db.prepare('SELECT * FROM promo_codes WHERE code = ? AND is_active = 1').get(codeNorm);
-      if (!match && codeNorm.startsWith('ESHOP-')) {
-        match = { code: codeNorm, fixed_discount: 10.0, min_amount: 40.0, is_free_shipping: 0 };
-      }
-      if (match && (!match.min_amount || serverSubtotal >= match.min_amount)) {
-        validatedPromoCode = match.code;
-        isFreeShippingPromo = Boolean(match.is_free_shipping);
-        if (match.discount_percent) {
-          serverDiscountAmount = Math.round((serverSubtotal * (match.discount_percent / 100)) * 100) / 100;
-        } else if (match.fixed_discount) {
-          serverDiscountAmount = Math.min(serverSubtotal, match.fixed_discount);
-        }
-      }
-    }
-
-    // 3. Shipping determination
-    const isFreeShipping = serverSubtotal >= 40.0 || isFreeShippingPromo;
-    const serverShippingFee = isFreeShipping ? 0.0 : 3.90;
-    const serverTotalAmount = Math.round(Math.max(0, serverSubtotal - serverDiscountAmount + serverShippingFee) * 100) / 100;
-
-    const orderNumber = `EU-${Math.floor(100000 + Math.random() * 900000)}`;
-    const countryCode = String(customer.country || customer.countryCode || 'FR').trim().toUpperCase().slice(0, 2);
-    const carrier = countryCode === 'FR' ? 'Colissimo Suivi' : 'DHL Express Europe';
-    const estimatedDelivery = getEstimatedDeliveryRange(countryCode);
-    const createdAt = new Date().toISOString();
-
-    const safeCustomer = {
-      email: String(customer.email).trim().toLowerCase().slice(0, 100),
-      firstName: String(customer.firstName || '').trim().slice(0, 60),
-      lastName: String(customer.lastName || '').trim().slice(0, 60),
-      address: String(customer.address || '').trim().slice(0, 120),
-      postalCode: String(customer.postalCode || '').trim().slice(0, 20),
-      city: String(customer.city || '').trim().slice(0, 60),
-      phone: String(customer.phone || '').trim().slice(0, 30),
-      countryCode
-    };
-
-    // 4. Save pending order into database
-    const trackingSteps = [
-      { title: 'Paiement Stripe en cours de validation', date: 'Immédiat', done: false },
-      { title: 'Préparation logistique (Plateforme UE)', date: 'Sous 24h ouvrées', done: false },
-      { title: `Acheminement prioritaire ${carrier}`, date: 'Dans 2 jours', done: false },
-      { title: 'Livraison en boîte aux lettres ou contre signature', date: estimatedDelivery, done: false }
-    ];
-
-    db.prepare(`
-      INSERT INTO orders (
-        order_number, customer_email, customer_first_name, customer_last_name,
-        shipping_address, postal_code, city, country_code,
-        subtotal, discount_amount, discount_code, shipping_fee, total_amount,
-        carrier, estimated_delivery, status, tracking_steps_json, created_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `).run(
-      orderNumber, safeCustomer.email, safeCustomer.firstName, safeCustomer.lastName,
-      safeCustomer.address, safeCustomer.postalCode, safeCustomer.city, countryCode,
-      serverSubtotal, serverDiscountAmount, validatedPromoCode, serverShippingFee, serverTotalAmount,
-      carrier, estimatedDelivery, 'en_attente_de_paiement', JSON.stringify(trackingSteps), createdAt
-    );
-
-    const insertItem = db.prepare(`
-      INSERT INTO order_items (
-        order_number, product_id, product_name, product_image, variant, unit_price, quantity
-      ) VALUES (?, ?, ?, ?, ?, ?, ?)
-    `);
-    for (const item of validatedItems) {
-      const variantStr = [item.selectedSize, item.selectedColor].filter(Boolean).join(' / ') || null;
-      insertItem.run(orderNumber, item.id, item.name, item.image, variantStr, item.price, item.quantity);
-    }
-
-    // 5. Build Stripe Checkout Session
+    // Build Stripe Checkout Session
     const clientOrigin = (req.headers.origin || process.env.CLIENT_URL || 'http://localhost:3001').replace(/\/+$/, '');
     const successUrl = `${clientOrigin}/?payment_status=success&session_id={CHECKOUT_SESSION_ID}&order_number=${orderNumber}`;
     const cancelUrl = `${clientOrigin}/?payment_status=cancelled`;
@@ -252,6 +288,69 @@ router.post('/create-checkout-session', paymentRateLimiter, async (req, res) => 
   }
 });
 
+export function processOrderPaymentSuccess(orderNumber, sessionOrPiId = '') {
+  const order = db.prepare('SELECT * FROM orders WHERE order_number = ?').get(orderNumber);
+  if (!order) return { success: false, reason: 'order_not_found' };
+
+  // Idempotency check: if order is already past pending payment, do not decrement stock or send duplicate emails
+  if (order.status !== 'en_attente_de_paiement') {
+    return { success: true, alreadyProcessed: true, order };
+  }
+
+  const trackingSteps = [
+    { title: 'Paiement Stripe confirmé avec succès', date: 'Aujourd’hui (Immédiat)', done: true },
+    { title: 'Préparation logistique (Plateforme UE)', date: 'Sous 24h ouvrées', done: true },
+    { title: `Acheminement prioritaire ${order.carrier}`, date: 'Dans 2 jours', done: false },
+    { title: 'Livraison en boîte aux lettres ou contre signature', date: order.estimated_delivery, done: false }
+  ];
+
+  db.prepare(`
+    UPDATE orders 
+    SET status = 'en_preparation', tracking_steps_json = ? 
+    WHERE order_number = ?
+  `).run(JSON.stringify(trackingSteps), orderNumber);
+
+  // Decrement stock in database
+  const items = db.prepare('SELECT product_id, quantity FROM order_items WHERE order_number = ?').all(orderNumber);
+  const updateStock = db.prepare('UPDATE products SET stock = MAX(0, stock - ?) WHERE id = ?');
+  for (const it of items) {
+    updateStock.run(it.quantity, it.product_id);
+  }
+
+  // Fetch full order for confirmation email
+  const fullItems = db.prepare('SELECT * FROM order_items WHERE order_number = ?').all(orderNumber);
+  const emailPayload = {
+    ...order,
+    status: 'en_preparation',
+    items: fullItems,
+    customerEmail: order.customer_email,
+    customer: {
+      firstName: order.customer_first_name,
+      lastName: order.customer_last_name,
+      email: order.customer_email,
+      address: order.shipping_address,
+      postalCode: order.postal_code,
+      city: order.city,
+      countryCode: order.country_code
+    }
+  };
+
+  sendOrderConfirmationEmail(emailPayload).catch((e) => console.warn('Post-checkout email warning:', e.message));
+
+  const updatedOrder = db.prepare('SELECT * FROM orders WHERE order_number = ?').get(orderNumber);
+  return { success: true, alreadyProcessed: false, order: updatedOrder };
+}
+
+export function processOrderPaymentFailure(orderNumber, failureReason = '') {
+  const order = db.prepare('SELECT * FROM orders WHERE order_number = ?').get(orderNumber);
+  if (!order) return { success: false, reason: 'order_not_found' };
+
+  if (order.status === 'en_attente_de_paiement') {
+    db.prepare(`UPDATE orders SET status = 'paiement_echoue' WHERE order_number = ?`).run(orderNumber);
+  }
+  return { success: true };
+}
+
 /**
  * GET /api/payment/verify-session?sessionId=...
  * Verify completed payment with Stripe, update database and send email
@@ -289,45 +388,8 @@ router.get('/verify-session', async (req, res) => {
       return res.status(404).json({ success: false, error: 'Commande introuvable.' });
     }
 
-    if (isPaid && order.status === 'en_attente_de_paiement') {
-      const trackingSteps = [
-        { title: 'Paiement Stripe confirmé avec succès', date: 'Aujourd’hui (Immédiat)', done: true },
-        { title: 'Préparation logistique (Plateforme UE)', date: 'Sous 24h ouvrées', done: true },
-        { title: `Acheminement prioritaire ${order.carrier}`, date: 'Dans 2 jours', done: false },
-        { title: 'Livraison en boîte aux lettres ou contre signature', date: order.estimated_delivery, done: false }
-      ];
-
-      db.prepare(`
-        UPDATE orders 
-        SET status = 'en_preparation', tracking_steps_json = ? 
-        WHERE order_number = ?
-      `).run(JSON.stringify(trackingSteps), orderNumber);
-
-      // Decrement stock in database
-      const items = db.prepare('SELECT product_id, quantity FROM order_items WHERE order_number = ?').all(orderNumber);
-      const updateStock = db.prepare('UPDATE products SET stock = MAX(0, stock - ?) WHERE id = ?');
-      for (const it of items) {
-        updateStock.run(it.quantity, it.product_id);
-      }
-
-      // Fetch full order for email
-      const fullItems = db.prepare('SELECT * FROM order_items WHERE order_number = ?').all(orderNumber);
-      const emailPayload = {
-        ...order,
-        items: fullItems,
-        customerEmail: order.customer_email,
-        customer: {
-          firstName: order.customer_first_name,
-          lastName: order.customer_last_name,
-          email: order.customer_email,
-          address: order.shipping_address,
-          postalCode: order.postal_code,
-          city: order.city,
-          countryCode: order.country_code
-        }
-      };
-
-      sendOrderConfirmationEmail(emailPayload).catch(e => console.warn('Post-checkout email warning:', e.message));
+    if (isPaid) {
+      processOrderPaymentSuccess(orderNumber, session.id);
     }
 
     const updatedOrder = db.prepare('SELECT * FROM orders WHERE order_number = ?').get(orderNumber);
@@ -353,10 +415,27 @@ router.get('/verify-session', async (req, res) => {
  */
 router.post('/create-intent', paymentRateLimiter, async (req, res) => {
   try {
-    const { amount, currency = 'eur', customer = {}, cardNumber = '' } = req.body;
+    const { items, customer = {}, discountCode = '', amount: legacyAmount, currency = 'eur', cardNumber = '' } = req.body;
 
-    if (!amount || amount <= 0) {
-      return res.status(400).json({ success: false, error: 'Montant invalide pour le paiement.' });
+    let targetAmount;
+    let orderNumber = null;
+    let customerEmail = customer.email || '';
+
+    // If items are provided, validate authoritative price and create pending order in DB
+    if (Array.isArray(items) && items.length > 0) {
+      let pendingOrder;
+      try {
+        pendingOrder = buildAndSavePendingOrder({ items, customer, discountCode });
+      } catch (valErr) {
+        return res.status(400).json({ success: false, error: valErr.message });
+      }
+      targetAmount = pendingOrder.serverTotalAmount;
+      orderNumber = pendingOrder.orderNumber;
+      customerEmail = pendingOrder.safeCustomer.email;
+    } else if (legacyAmount && Number(legacyAmount) > 0) {
+      targetAmount = Number(legacyAmount);
+    } else {
+      return res.status(400).json({ success: false, error: 'Montant ou articles invalides pour le paiement.' });
     }
 
     const stripeSecret = (process.env.STRIPE_SECRET_KEY || '').trim();
@@ -371,16 +450,22 @@ router.post('/create-intent', paymentRateLimiter, async (req, res) => {
             'Content-Type': 'application/x-www-form-urlencoded'
           },
           body: new URLSearchParams({
-            amount: String(Math.round(amount * 100)),
+            amount: String(Math.round(targetAmount * 100)),
             currency: currency.toLowerCase(),
             'automatic_payment_methods[enabled]': 'true',
-            'metadata[customerEmail]': customer.email || ''
+            'metadata[customerEmail]': customerEmail,
+            ...(orderNumber ? { 'metadata[orderNumber]': orderNumber } : {})
           })
         });
         const pi = await stripeRes.json();
         if (pi.id) {
           return res.json({
             success: true,
+            clientSecret: pi.client_secret,
+            paymentIntentId: pi.id,
+            orderNumber,
+            totalAmount: targetAmount,
+            publishableKey: process.env.VITE_STRIPE_PUBLISHABLE_KEY || '',
             paymentIntent: {
               id: pi.id,
               clientSecret: pi.client_secret,
@@ -483,6 +568,96 @@ router.post('/confirm-intent', paymentRateLimiter, (req, res) => {
   } catch (err) {
     console.error('Confirm payment error:', err);
     res.status(500).json({ success: false, error: 'Erreur lors de la confirmation du règlement.' });
+  }
+});
+
+/**
+ * POST /api/payment/webhook
+ * Dedicated Stripe Webhook endpoint with HMAC-SHA256 signature verification and idempotent event handling
+ */
+router.post('/webhook', async (req, res) => {
+  const stripeSignature = req.headers['stripe-signature'];
+  const webhookSecret = (process.env.STRIPE_WEBHOOK_SECRET || '').trim();
+  let event;
+
+  if (webhookSecret && stripeSignature && req.rawBody) {
+    try {
+      // Official Stripe signature verification: t=timestamp,v1=signature
+      const sigElements = stripeSignature.split(',').reduce((acc, part) => {
+        const [k, v] = part.trim().split('=');
+        if (k && v) acc[k] = v;
+        return acc;
+      }, {});
+
+      const timestamp = sigElements.t;
+      const signature = sigElements.v1;
+
+      if (!timestamp || !signature) {
+        return res.status(400).json({ error: 'Signature Stripe invalide ou incomplète.' });
+      }
+
+      const signedPayload = `${timestamp}.${req.rawBody.toString('utf8')}`;
+      const computedHmac = crypto.createHmac('sha256', webhookSecret).update(signedPayload).digest('hex');
+
+      const expectedBuf = Buffer.from(signature, 'hex');
+      const computedBuf = Buffer.from(computedHmac, 'hex');
+
+      if (expectedBuf.length !== computedBuf.length || !crypto.timingSafeEqual(expectedBuf, computedBuf)) {
+        console.warn('Stripe webhook signature mismatch.');
+        return res.status(400).json({ error: 'Échec de vérification de la signature Stripe.' });
+      }
+
+      event = req.body;
+    } catch (sigErr) {
+      console.error('Error verifying Stripe webhook:', sigErr);
+      return res.status(400).json({ error: 'Erreur lors de la validation du webhook Stripe.' });
+    }
+  } else {
+    // If webhook secret is not set (e.g. in test or internal mode), parse payload safely
+    event = req.body;
+  }
+
+  if (!event || !event.type) {
+    return res.status(400).json({ error: 'Événement Stripe manquant ou non valide.' });
+  }
+
+  try {
+    switch (event.type) {
+      case 'checkout.session.completed': {
+        const session = event.data?.object;
+        const orderNumber = session?.client_reference_id || session?.metadata?.orderNumber;
+        if (orderNumber) {
+          const result = processOrderPaymentSuccess(orderNumber, session.id);
+          return res.json({ received: true, orderNumber, processed: !result.alreadyProcessed });
+        }
+        break;
+      }
+      case 'payment_intent.succeeded': {
+        const pi = event.data?.object;
+        const orderNumber = pi?.metadata?.orderNumber;
+        if (orderNumber) {
+          const result = processOrderPaymentSuccess(orderNumber, pi.id);
+          return res.json({ received: true, orderNumber, processed: !result.alreadyProcessed });
+        }
+        break;
+      }
+      case 'payment_intent.payment_failed': {
+        const pi = event.data?.object;
+        const orderNumber = pi?.metadata?.orderNumber;
+        if (orderNumber) {
+          processOrderPaymentFailure(orderNumber, pi?.last_payment_error?.message);
+          return res.json({ received: true, orderNumber, status: 'payment_failed' });
+        }
+        break;
+      }
+      default:
+        break;
+    }
+
+    res.json({ received: true, eventType: event.type });
+  } catch (handlerErr) {
+    console.error('Error handling Stripe webhook event:', handlerErr);
+    res.status(500).json({ error: 'Erreur interne de traitement du webhook.' });
   }
 });
 

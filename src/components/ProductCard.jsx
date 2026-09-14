@@ -16,9 +16,16 @@ export default function ProductCard({
     ? Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)
     : 0;
 
-  // Single badge priority: explicit product.badge > discount percent
-  const badgeText = product.badge || (discountPercent >= 15 ? `-${discountPercent}%` : null);
-  const isDiscountBadge = badgeText && (badgeText.startsWith('-') || badgeText.includes('%'));
+  // Single badge priority: only explicit product.badge (Bestseller, Nouveau, Offre, Tendance)
+  const badgeText = product.badge || null;
+  const badgeClass =
+    badgeText === 'Bestseller'
+      ? 'badge-bestseller'
+      : badgeText === 'Nouveau'
+      ? 'badge-new'
+      : badgeText === 'Offre' || (badgeText && (badgeText.startsWith('-') || badgeText.includes('%')))
+      ? 'badge-offer'
+      : 'badge-neutral';
 
   return (
     <article className="product-card-standardized" aria-label={product.name}>
@@ -50,7 +57,7 @@ export default function ProductCard({
 
         {/* Max single top-left badge */}
         {badgeText && (
-          <span className={`product-card-badge ${isDiscountBadge ? 'badge-discount' : 'badge-neutral'}`}>
+          <span className={`product-card-badge ${badgeClass}`}>
             {badgeText}
           </span>
         )}

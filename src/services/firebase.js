@@ -28,15 +28,16 @@ import {
   serverTimestamp
 } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
+import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check';
 
 // Configuration officielle du projet Firebase eshop-16b88
 export const firebaseConfig = {
-  apiKey: import.meta.env?.VITE_FIREBASE_API_KEY || "AIzaSyB6IMo_s5_YrjK4eqenVcYzqumZ9iN0Rco",
-  authDomain: import.meta.env?.VITE_FIREBASE_AUTH_DOMAIN || "eshop-16b88.firebaseapp.com",
-  projectId: import.meta.env?.VITE_FIREBASE_PROJECT_ID || "eshop-16b88",
-  storageBucket: import.meta.env?.VITE_FIREBASE_STORAGE_BUCKET || "eshop-16b88.firebasestorage.app",
-  messagingSenderId: import.meta.env?.VITE_FIREBASE_MESSAGING_SENDER_ID || "952885151547",
-  appId: import.meta.env?.VITE_FIREBASE_APP_ID || "1:952885151547:web:bbb79c7b93ae5ab058191e"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyB6IMo_s5_YrjK4eqenVcYzqumZ9iN0Rco",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "eshop-16b88.firebaseapp.com",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "eshop-16b88",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "eshop-16b88.firebasestorage.app",
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "952885151547",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:952885151547:web:bbb79c7b93ae5ab058191e"
 };
 
 // Initialisation Singleton de l'application Firebase
@@ -44,6 +45,25 @@ export const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
+
+// Initialisation sécurisée optionnelle de Firebase App Check (reCAPTCHA v3)
+let appCheckInstance = null;
+const appCheckKey = import.meta.env.VITE_FIREBASE_APPCHECK_KEY;
+
+if (typeof window !== 'undefined' && appCheckKey) {
+  try {
+    if (import.meta.env?.DEV) {
+      self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
+    }
+    appCheckInstance = initializeAppCheck(app, {
+      provider: new ReCaptchaV3Provider(appCheckKey),
+      isTokenAutoRefreshEnabled: true
+    });
+  } catch (appCheckErr) {
+    console.warn('[Firebase AppCheck] Initialization note:', appCheckErr.message);
+  }
+}
+export { appCheckInstance };
 
 // Fournisseur Google Auth
 export const googleProvider = new GoogleAuthProvider();
@@ -104,7 +124,7 @@ function formatEshopUser(firebaseUser, extraData = {}) {
     photoURL: firebaseUser.photoURL || null,
     role: extraData.role || 'customer',
     loyaltyCode: extraData.loyaltyCode || `ESHOP-FB${firebaseUser.uid.substring(0, 5).toUpperCase()}`,
-    loyaltyPoints: extraData.loyaltyPoints ?? 50,
+    loyaltyPoints: extraData.loyaltyPoints ?? 0,
     address: extraData.address || '',
     city: extraData.city || '',
     postalCode: extraData.postalCode || '',

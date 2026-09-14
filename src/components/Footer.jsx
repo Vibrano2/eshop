@@ -120,8 +120,12 @@ export default function Footer({ onOpenLegal, onOpenTracking, onSelectCategory, 
         <div className="footer-bottom-flex">
           <div className="footer-legal-copy">
             <div className="footer-brand-mini">
-              <span className="footer-flag">★</span>
-              <span>eshopstore.shop</span>
+              <img
+                src="/logo.svg"
+                alt="EshopStore"
+                style={{ width: '24px', height: '24px', objectFit: 'contain', borderRadius: '4px', verticalAlign: 'middle', marginRight: '6px' }}
+              />
+              <span>EshopStore</span>
             </div>
             <p className="copyright-text">
               © {new Date().getFullYear()} eshopstore.shop. Tous droits réservés. Vente en ligne conforme aux directives de l'Union Européenne (RGPD, droit de rétractation 14j, garantie légale 2 ans).
@@ -133,7 +137,7 @@ export default function Footer({ onOpenLegal, onOpenTracking, onSelectCategory, 
             <span className="payment-badge-pill">CB</span>
             <span className="payment-badge-pill">VISA</span>
             <span className="payment-badge-pill">MASTERCARD</span>
-            <span className="payment-badge-pill">PAYPAL</span>
+            <span className="payment-badge-pill">STRIPE</span>
             <span className="payment-badge-pill">APPLE PAY</span>
             <span className="payment-badge-pill">GOOGLE PAY</span>
           </div>

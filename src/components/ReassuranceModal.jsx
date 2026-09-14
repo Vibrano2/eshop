@@ -34,13 +34,13 @@ export default function ReassuranceModal({ isOpen, onClose, onOpenLegal }) {
       color: '#059669',
       bgColor: '#ecfdf5',
       borderColor: '#a7f3d0',
-      title: 'Paiement 100% Sécurisé',
-      subtitle: 'Transactions cryptées SSL 256-bits & 3D Secure v2',
+      title: 'Paiement Sécurisé Stripe',
+      subtitle: 'Transactions traitées de manière sécurisée par Stripe avec 3D Secure',
       details: [
-        'Cartes bancaires acceptées : Visa, Mastercard, CB',
-        'Paiements express 1-clic : Apple Pay, Google Pay et PayPal',
-        'Norme bancaire européenne PCI-DSS de niveau 1',
-        'Vos coordonnées bancaires ne sont jamais stockées sur nos serveurs'
+        'Cartes bancaires acceptées : CB, Visa, Mastercard, American Express',
+        'Paiements express pris en charge via Stripe : Apple Pay et Google Pay',
+        'Vos données de paiement sont traitées directement par Stripe',
+        'Aucune coordonnée bancaire ne transite ni n\'est stockée sur nos serveurs'
       ]
     },
     {

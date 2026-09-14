@@ -92,7 +92,7 @@ Catalogue complet, sans découpage par catégorie, avec détail d'usage pour cha
 - Page d'accueil avec mise en avant des produits phares et meilleures ventes
 - Fiches produit avec vidéo/GIF démonstratif, avis clients, FAQ produit
 - Bundles suggérés (ex. kit complet friteuse à air)
-- Paiement : carte bancaire, PayPal, Apple Pay/Google Pay
+- Paiement : Stripe (CB, Visa, Mastercard, American Express, Apple Pay, Google Pay)
 - Suivi de commande automatisé
 - Page de retours/remboursement claire (obligation légale UE)
 - Mentions légales conformes UE (CGV, politique de confidentialité RGPD, droit de rétractation 14 jours)

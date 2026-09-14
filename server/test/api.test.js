@@ -389,3 +389,168 @@ describe('6. Public Data Sanitization (Reviews & Loyalty)', () => {
     assert.equal(res.status, 400);
   });
 });
+
+describe('7. Stripe Payment Gateway & Webhook Idempotency', () => {
+  let testOrderNumber = null;
+
+  before(async () => {
+    // Create a pending order in the database to test webhook handling
+    const prod = db.prepare('SELECT id, price FROM products LIMIT 1').get();
+    testOrderNumber = `EU-STRIPE-${Date.now()}`;
+    const initialTracking = [
+      { title: 'Paiement Stripe en cours de validation', date: 'Immédiat', done: false }
+    ];
+
+    db.prepare(`
+      INSERT INTO orders (
+        order_number, customer_email, customer_first_name, customer_last_name,
+        shipping_address, postal_code, city, country_code,
+        subtotal, discount_amount, discount_code, shipping_fee, total_amount,
+        carrier, estimated_delivery, status, tracking_steps_json, created_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      testOrderNumber, 'stripe.buyer@example.eu', 'Lucas', 'Bernard',
+      '12 Rue de la République', '69002', 'Lyon', 'FR',
+      prod.price, 0, null, 0, prod.price,
+      'Colissimo Suivi', '2 à 3 jours', 'en_attente_de_paiement', JSON.stringify(initialTracking), new Date().toISOString()
+    );
+
+    db.prepare(`
+      INSERT INTO order_items (order_number, product_id, product_name, unit_price, quantity)
+      VALUES (?, ?, ?, ?, ?)
+    `).run(testOrderNumber, prod.id, 'Test Product', prod.price, 1);
+  });
+
+  test('POST /api/payment/create-checkout-session rejects empty items array', async () => {
+    const res = await fetch(`${baseUrl}/api/payment/create-checkout-session`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        customer: { email: 'buyer@example.com' },
+        items: []
+      })
+    });
+    assert.equal(res.status, 400);
+    const data = await res.json();
+    assert.equal(data.success, false);
+    assert.ok(data.error.includes('Panier vide'));
+  });
+
+  test('POST /api/payment/create-checkout-session rejects invalid email', async () => {
+    const prod = db.prepare('SELECT id FROM products LIMIT 1').get();
+    const res = await fetch(`${baseUrl}/api/payment/create-checkout-session`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        customer: { email: 'not-an-email' },
+        items: [{ id: prod.id, quantity: 1 }]
+      })
+    });
+    assert.equal(res.status, 400);
+    const data = await res.json();
+    assert.equal(data.success, false);
+    assert.ok(data.error.includes('email client invalide'));
+  });
+
+  test('POST /api/payment/webhook handles checkout.session.completed and marks order paid', async () => {
+    const webhookPayload = {
+      type: 'checkout.session.completed',
+      data: {
+        object: {
+          id: 'cs_test_sample_session_123',
+          client_reference_id: testOrderNumber,
+          payment_status: 'paid',
+          metadata: { orderNumber: testOrderNumber }
+        }
+      }
+    };
+
+    const res = await fetch(`${baseUrl}/api/payment/webhook`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(webhookPayload)
+    });
+
+    assert.equal(res.status, 200);
+    const data = await res.json();
+    assert.equal(data.received, true);
+    assert.equal(data.processed, true);
+
+    // Verify order in DB transitioned to 'en_preparation'
+    const order = db.prepare('SELECT status FROM orders WHERE order_number = ?').get(testOrderNumber);
+    assert.equal(order.status, 'en_preparation');
+  });
+
+  test('POST /api/payment/webhook is idempotent on duplicate checkout.session.completed', async () => {
+    // Re-send the exact same webhook payload
+    const duplicatePayload = {
+      type: 'checkout.session.completed',
+      data: {
+        object: {
+          id: 'cs_test_sample_session_123',
+          client_reference_id: testOrderNumber,
+          payment_status: 'paid',
+          metadata: { orderNumber: testOrderNumber }
+        }
+      }
+    };
+
+    const res = await fetch(`${baseUrl}/api/payment/webhook`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(duplicatePayload)
+    });
+
+    assert.equal(res.status, 200);
+    const data = await res.json();
+    assert.equal(data.received, true);
+    assert.equal(data.processed, false, 'Duplicate webhook must not re-process already paid order');
+
+    // Status remains en_preparation
+    const order = db.prepare('SELECT status FROM orders WHERE order_number = ?').get(testOrderNumber);
+    assert.equal(order.status, 'en_preparation');
+  });
+
+  test('POST /api/payment/webhook marks order as failed on payment_intent.payment_failed', async () => {
+    const failedOrderNum = `EU-FAILED-${Date.now()}`;
+    db.prepare(`
+      INSERT INTO orders (
+        order_number, customer_email, customer_first_name, customer_last_name,
+        shipping_address, postal_code, city, country_code,
+        subtotal, discount_amount, discount_code, shipping_fee, total_amount,
+        carrier, estimated_delivery, status, tracking_steps_json, created_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      failedOrderNum, 'failed.buyer@example.eu', 'Marc', 'Lemoine',
+      '5 Boulevard Haussmann', '75009', 'Paris', 'FR',
+      50, 0, null, 0, 50,
+      'Colissimo Suivi', '2 à 3 jours', 'en_attente_de_paiement', '[]', new Date().toISOString()
+    );
+
+    const failPayload = {
+      type: 'payment_intent.payment_failed',
+      data: {
+        object: {
+          id: 'pi_test_failed_456',
+          metadata: { orderNumber: failedOrderNum },
+          last_payment_error: { message: 'Fonds insuffisants' }
+        }
+      }
+    };
+
+    const res = await fetch(`${baseUrl}/api/payment/webhook`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(failPayload)
+    });
+
+    assert.equal(res.status, 200);
+    const data = await res.json();
+    assert.equal(data.received, true);
+    assert.equal(data.status, 'payment_failed');
+
+    const order = db.prepare('SELECT status FROM orders WHERE order_number = ?').get(failedOrderNum);
+    assert.equal(order.status, 'paiement_echoue');
+  });
+});
+

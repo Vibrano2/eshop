@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Image QA Review - 9 Priority Products</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #f8fafc; padding: 20px; }
+    h1 { color: #38bdf8; }
+    .product-section { background: #1e293b; border-radius: 12px; padding: 20px; margin-bottom: 24px; border: 1px solid #334155; }
+    .product-title { font-size: 1.25rem; font-weight: bold; margin-bottom: 8px; color: #f1f5f9; }
+    .problem { color: #f87171; font-size: 0.9rem; margin-bottom: 8px; }
+    .instructions { color: #34d399; font-size: 0.9rem; margin-bottom: 16px; }
+    .images-grid { display: flex; flex-wrap: wrap; gap: 16px; }
+    .image-card { background: #0f172a; border-radius: 8px; padding: 10px; border: 1px solid #475569; width: 220px; }
+    .image-card.current { border-color: #ef4444; }
+    .image-card.candidate { border-color: #38bdf8; }
+    .image-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 6px; background: #fff; }
+    .image-label { font-size: 0.75rem; margin-top: 6px; color: #94a3b8; word-break: break-all; }
+  </style>
+</head>
+<body>
+  <h1>Image QA Review - 9 Priority Products</h1>
+
+  <!-- 1. Chargeur 3-en-1 -->
+  <div class="product-section">
+    <div class="product-title">1. Chargeur Magnétique Sans Fil 3-en-1 Pliable (chargeur-magnetique-3-en-1)</div>
+    <div class="problem">CURRENT: Range Rover / car photo (unrelated)</div>
+    <div class="instructions">REPLACE WITH: Clean product image of foldable 3-in-1 magnetic wireless charger (phone + watch + earbuds)</div>
+    <div class="images-grid">
+      <div class="image-card current">
+        <img src="/products/unsplash_2.jpg">
+        <div class="image-label">Current: /products/unsplash_2.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/test_charger_0.jpg">
+        <div class="image-label">Candidate: test_charger_0.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/test_charger_1.jpg">
+        <div class="image-label">Candidate: test_charger_1.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/test_charger_2.jpg">
+        <div class="image-label">Candidate: test_charger_2.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/test_charger_3.jpg">
+        <div class="image-label">Candidate: test_charger_3.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/chargeur-sans-fil-induction.jpg">
+        <div class="image-label">Candidate: chargeur-sans-fil-induction.jpg</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. T-shirt classique homme -->
+  <div class="product-section">
+    <div class="product-title">2. T-shirt classique col rond en coton bio peigné (t-shirt-classique-homme)</div>
+    <div class="problem">CURRENT: Close-up portrait of a bearded man (t-shirt not visible)</div>
+    <div class="instructions">REPLACE WITH: Clean hero image showing the actual round-neck cotton T-shirt clearly as main subject</div>
+    <div class="images-grid">
+      <div class="image-card current">
+        <img src="/products/t-shirt-classique-homme.jpg">
+        <div class="image-label">Current: t-shirt-classique-homme.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/test_shirt.jpg">
+        <div class="image-label">Candidate: test_shirt.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/test_blue_shirt.jpg">
+        <div class="image-label">Candidate: test_blue_shirt.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/cand_tshirt_1.jpg">
+        <div class="image-label">Candidate: cand_tshirt_1.jpg</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Distributeur sacs déjections -->
+  <div class="product-section">
+    <div class="product-title">3. Distributeur de sacs à déjections avec mousqueton + 6 rouleaux (distributeur-sacs-dejections)</div>
+    <div class="problem">CURRENT: Two dogs running outdoors (dispenser not shown)</div>
+    <div class="instructions">REPLACE WITH: Dispenser with carabiner plus 6 rolls clearly visible. Dog photo as secondary.</div>
+    <div class="images-grid">
+      <div class="image-card current">
+        <img src="/products/distributeur-sacs-dejections.jpg">
+        <div class="image-label">Current: distributeur-sacs-dejections.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/cand_poopbag_1.jpg">
+        <div class="image-label">Candidate: cand_poopbag_1.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/cand_poopbag_2.jpg">
+        <div class="image-label">Candidate: cand_poopbag_2.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/cand_poopbag_3.jpg">
+        <div class="image-label">Candidate: cand_poopbag_3.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/test_distributeur_sacs.jpg">
+        <div class="image-label">Candidate: test_distributeur_sacs.jpg</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Balle friandises -->
+  <div class="product-section">
+    <div class="product-title">4. Balle distributrice de friandises anti-glouton pour chien (jouet-distributeur-friandises)</div>
+    <div class="problem">CURRENT: Puppy running outdoors (ball not shown)</div>
+    <div class="instructions">REPLACE WITH: The actual dog treat-dispensing ball as hero. Dog using it as secondary.</div>
+    <div class="images-grid">
+      <div class="image-card current">
+        <img src="/products/jouet-distributeur-friandises.jpg">
+        <div class="image-label">Current: jouet-distributeur-friandises.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/test_p_dog1.jpg">
+        <div class="image-label">Candidate: test_p_dog1.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/test_p_dog2.jpg">
+        <div class="image-label">Candidate: test_p_dog2.jpg</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Bracelet jonc -->
+  <div class="product-section">
+    <div class="product-title">5. Bracelet jonc ouvert minimaliste en acier inoxydable (bracelet-jonc-acier-inoxydable)</div>
+    <div class="problem">CURRENT: Jewelry on driftwood (unclear, not proper product hero)</div>
+    <div class="instructions">REPLACE WITH: Clean studio image of exact open cuff bracelet on light neutral background. Full shape clearly.</div>
+    <div class="images-grid">
+      <div class="image-card current">
+        <img src="/products/bracelet-jonc-acier-inoxydable.jpg">
+        <div class="image-label">Current: bracelet-jonc-acier-inoxydable.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/cand_bracelet_0.jpg">
+        <div class="image-label">Candidate: cand_bracelet_0.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/cand_bracelet_1.jpg">
+        <div class="image-label">Candidate: cand_bracelet_1.jpg</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Gants fitness -->
+  <div class="product-section">
+    <div class="product-title">6. Gants d'entraînement fitness respirants avec protège-poignets (gants-fitness-respirants)</div>
+    <div class="problem">CURRENT: Person lifting barbell (action lifestyle, gloves not visible enough)</div>
+    <div class="instructions">REPLACE WITH: Clean hero showing actual training gloves clearly with wrist support. Gym action as secondary.</div>
+    <div class="images-grid">
+      <div class="image-card current">
+        <img src="/products/gants-fitness-respirants.jpg">
+        <div class="image-label">Current: gants-fitness-respirants.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/test_pex_sport.jpg">
+        <div class="image-label">Candidate: test_pex_sport.jpg</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Sac de sport -->
+  <div class="product-section">
+    <div class="product-title">7. Sac de sport compartiment chaussures (sac-sport-compact)</div>
+    <div class="problem">CURRENT: Gym interior photo (bag completely missing)</div>
+    <div class="instructions">REPLACE WITH: Product-first image of sports duffel bag showing separate shoe compartment</div>
+    <div class="images-grid">
+      <div class="image-card current">
+        <img src="/products/sac-sport-compact.jpg">
+        <div class="image-label">Current: sac-sport-compact.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/sac-sport.jpg">
+        <div class="image-label">Candidate: sac-sport.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/test_p_duffel1.jpg">
+        <div class="image-label">Candidate: test_p_duffel1.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/test_p_duffel2.jpg">
+        <div class="image-label">Candidate: test_p_duffel2.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/test_duffel.jpg">
+        <div class="image-label">Candidate: test_duffel.jpg</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Parapluie compact -->
+  <div class="product-section">
+    <div class="product-title">8. Parapluie pliant ultra-compact coupe-vent (parapluie-compact)</div>
+    <div class="problem">CURRENT: Umbrella hanging indoors (weak hero)</div>
+    <div class="instructions">IMPROVE: Show folded umbrella and opened umbrella clearly. Compact size and product shape obvious.</div>
+    <div class="images-grid">
+      <div class="image-card current">
+        <img src="/products/parapluie-compact.jpg">
+        <div class="image-label">Current: parapluie-compact.jpg</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. Pare-soleil rétractable -->
+  <div class="product-section">
+    <div class="product-title">9. Pare-soleil rétractable pliable parapluie pour pare-brise (pare-soleil-retractable-parebrise)</div>
+    <div class="problem">Matches the product. Keep current hero.</div>
+    <div class="instructions">KEEP current hero. Add: clean isolated product image + installed windshield image + product-details infographic.</div>
+    <div class="images-grid">
+      <div class="image-card candidate">
+        <img src="/products/pare-soleil-retractable-parebrise-installed.jpg">
+        <div class="image-label">Installed Hero: pare-soleil-retractable-parebrise-installed.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/pare-soleil-retractable-parebrise.jpg">
+        <div class="image-label">Isolated Product: pare-soleil-retractable-parebrise.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/pare-soleil-retractable-parebrise-features.jpg">
+        <div class="image-label">Features: pare-soleil-retractable-parebrise-features.jpg</div>
+      </div>
+      <div class="image-card candidate">
+        <img src="/products/pare-soleil-retractable-parebrise-details.jpg">
+        <div class="image-label">Infographic: pare-soleil-retractable-parebrise-details.jpg</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -60,6 +60,11 @@ const VALID_CATEGORY_SLUGS = [
   'accessoires'
 ];
 
+const isAdminPath = (pathname) => {
+  const clean = (pathname || '').replace(/^\/+|\/+$/g, '').toLowerCase();
+  return clean === 'admin' || clean === 'admin/dashboard' || clean === 'dashboard/admin';
+};
+
 export default function App() {
   // Navigation / View state initialized from URL pathname if present
   const [activeView, setActiveView] = useState(() => {
@@ -67,8 +72,14 @@ export default function App() {
     if (!path || path === 'home') {
       return 'home';
     }
-    if (path === 'admin') {
-      return 'admin';
+    if (isAdminPath(path)) {
+      try {
+        const saved = JSON.parse(localStorage.getItem('eshop_user') || 'null');
+        if (saved && saved.role === 'admin') {
+          return 'admin';
+        }
+      } catch {}
+      return 'home';
     }
     if (path === 'account' || path === 'mon-compte') {
       return 'account';
@@ -110,12 +121,42 @@ export default function App() {
     setIsDarkMode((prev) => !prev);
   };
 
-  // Synchronize browser history / URL with view state
+  // Authenticated User State persisted across page refresh
+  const [currentUser, setCurrentUser] = useState(() => {
+    try {
+      const saved = localStorage.getItem('eshop_user');
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
+
+  // Keep localStorage synchronized whenever currentUser changes
+  useEffect(() => {
+    try {
+      if (currentUser) {
+        localStorage.setItem('eshop_user', JSON.stringify(currentUser));
+      } else {
+        localStorage.removeItem('eshop_user');
+      }
+    } catch (err) {
+      console.warn('Failed to sync user storage:', err);
+    }
+  }, [currentUser]);
+
+  // Synchronize browser history / URL with view state & enforce route protection
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
-      if (path === 'admin') {
-        setActiveView('admin');
+      if (isAdminPath(path)) {
+        if (currentUser?.role === 'admin') {
+          setActiveView('admin');
+        } else {
+          setActiveView('home');
+          if (window.location.pathname !== '/') {
+            window.history.replaceState({}, '', '/');
+          }
+        }
       } else if (path === 'account' || path === 'mon-compte') {
         setActiveView('account');
       } else if (VALID_CATEGORY_SLUGS.includes(path)) {
@@ -137,7 +178,7 @@ export default function App() {
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
+  }, [currentUser]);
 
   // Handle return redirect from Stripe Checkout
   useEffect(() => {
@@ -304,28 +345,7 @@ export default function App() {
     showCompareToast('Remise de -10% appliquée à votre panier !');
   };
 
-  // Authenticated User State persisted across page refresh
-  const [currentUser, setCurrentUser] = useState(() => {
-    try {
-      const saved = localStorage.getItem('eshop_user');
-      return saved ? JSON.parse(saved) : null;
-    } catch {
-      return null;
-    }
-  });
 
-  // Keep localStorage synchronized whenever currentUser changes
-  useEffect(() => {
-    try {
-      if (currentUser) {
-        localStorage.setItem('eshop_user', JSON.stringify(currentUser));
-      } else {
-        localStorage.removeItem('eshop_user');
-      }
-    } catch (err) {
-      console.warn('Failed to sync user storage:', err);
-    }
-  }, [currentUser]);
 
   // Restore & verify authenticated session on app load (Firebase + Local)
   useEffect(() => {
@@ -352,17 +372,24 @@ export default function App() {
     // 2. Also verify and refresh session from server if token exists
     apiGetMe()
       .then((user) => {
-        if (isMounted && user) {
-          setCurrentUser(user);
-          try {
-            localStorage.setItem('eshop_user', JSON.stringify(user));
-          } catch {}
-          if (user.loyaltyPoints !== undefined) {
+        if (isMounted) {
+          if (user) {
+            setCurrentUser(user);
+            try {
+              localStorage.setItem('eshop_user', JSON.stringify(user));
+            } catch {}
             setLoyaltyState((prev) => ({
               ...prev,
-              points: user.loyaltyPoints,
+              points: user.loyaltyPoints ?? 0,
               referralCode: user.loyaltyCode || prev.referralCode
             }));
+          } else {
+            // Unauthenticated or expired session: clear any stale user data
+            setCurrentUser(null);
+            try {
+              localStorage.removeItem('eshop_user');
+            } catch {}
+            setLoyaltyState(INITIAL_LOYALTY_STATE);
           }
         }
       })
@@ -376,6 +403,18 @@ export default function App() {
     };
   }, []);
 
+  // Strict route protection: If current view or URL is admin but user is not admin, kick out immediately
+  useEffect(() => {
+    if (isAdminPath(window.location.pathname) || activeView === 'admin') {
+      if (!currentUser || currentUser.role !== 'admin') {
+        setActiveView('home');
+        if (window.location.pathname !== '/') {
+          window.history.replaceState({}, '', '/');
+        }
+      }
+    }
+  }, [currentUser, activeView]);
+
   const handleOpenAuth = (mode = 'login') => {
     setAuthModalMode(mode);
     setIsAuthModalOpen(true);
@@ -386,13 +425,11 @@ export default function App() {
     try {
       localStorage.setItem('eshop_user', JSON.stringify(user));
     } catch {}
-    if (user.loyaltyPoints !== undefined) {
-      setLoyaltyState((prev) => ({
-        ...prev,
-        points: user.loyaltyPoints,
-        referralCode: user.loyaltyCode || prev.referralCode
-      }));
-    }
+    setLoyaltyState((prev) => ({
+      ...prev,
+      points: user?.loyaltyPoints ?? 0,
+      referralCode: user?.loyaltyCode || prev.referralCode
+    }));
   };
 
   const handleLogout = async () => {
@@ -405,7 +442,12 @@ export default function App() {
     setCurrentUser(null);
     try {
       localStorage.removeItem('eshop_user');
+      localStorage.removeItem('eshop_loyalty');
     } catch {}
+    setLoyaltyState(INITIAL_LOYALTY_STATE);
+    if (activeView === 'admin' || activeView === 'account') {
+      handleNavigateHome();
+    }
   };
 
   // Loyalty & Referral Program State persisted in localStorage
@@ -682,6 +724,9 @@ export default function App() {
   };
 
   const handleOpenAdmin = () => {
+    if (!currentUser || currentUser.role !== 'admin') {
+      return;
+    }
     setActiveView('admin');
     if (window.location.pathname !== '/admin') {
       window.history.pushState({}, '', '/admin');

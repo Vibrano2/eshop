@@ -169,8 +169,8 @@ export default function AuthModal({
       setErrorMessage('Veuillez renseigner une adresse e-mail valide.');
       return;
     }
-    if (!regPassword || regPassword.length < 6) {
-      setErrorMessage('Le mot de passe doit contenir au moins 6 caractères.');
+    if (!regPassword || regPassword.length < 8) {
+      setErrorMessage('Le mot de passe doit contenir au moins 8 caractères.');
       return;
     }
 
@@ -495,15 +495,15 @@ export default function AuthModal({
 
             <div className="auth-row-2">
               <div className="auth-form-group">
-                <label htmlFor="reg-password">Mot de passe (min 6 car.)</label>
+                <label htmlFor="reg-password">Mot de passe (min 8 car.)</label>
                 <div className="auth-input-wrapper">
                   <Lock size={18} className="auth-input-icon" />
                   <input
                     id="reg-password"
                     type={showPassword ? 'text' : 'password'}
                     required
-                    minLength={6}
-                    placeholder="Au moins 6 caractères"
+                    minLength={8}
+                    placeholder="Au moins 8 caractères"
                     value={regPassword}
                     onChange={(e) => setRegPassword(e.target.value)}
                     disabled={loading}

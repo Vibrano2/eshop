@@ -10,8 +10,8 @@ export default function ReassuranceBar() {
     },
     {
       icon: ShieldCheck,
-      title: 'Paiement 100% Sécurisé',
-      desc: 'Cartes, PayPal, Apple Pay & 3D Secure'
+      title: 'Paiement Sécurisé Stripe',
+      desc: 'Cartes bancaires, Apple Pay & Google Pay via Stripe'
     },
     {
       icon: RotateCcw,

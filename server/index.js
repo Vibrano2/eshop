@@ -64,8 +64,15 @@ app.use(
   })
 );
 
-// Body parser with 1MB safety limit
-app.use(express.json({ limit: '1mb' }));
+// Body parser with 1MB safety limit and rawBody capture for webhook signature verification
+app.use(
+  express.json({
+    limit: '1mb',
+    verify: (req, res, buf) => {
+      req.rawBody = buf;
+    }
+  })
+);
 
 // General rate limiter for /api routes
 app.use('/api', generalApiRateLimiter);

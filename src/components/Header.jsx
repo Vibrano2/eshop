@@ -43,7 +43,7 @@ export default function Header({
   setLang,
   onOpenAbout,
   onOpenLoyalty,
-  loyaltyPoints = 50,
+  loyaltyPoints = 0,
   currentUser = null,
   onOpenAuth,
   onLogout,
@@ -172,9 +172,13 @@ export default function Header({
             className="brand-logo-modern"
             title="Retour à l'accueil"
           >
-            <span className="brand-flag-icon">★</span>
+            <img
+              src="/logo.svg"
+              alt="EshopStore Logo"
+              className="brand-logo-img"
+            />
             <span className="brand-text">
-              eshop<span className="brand-suffix">-store.eu</span>
+              Eshop<span className="brand-suffix">Store</span>
             </span>
           </button>
 
@@ -361,8 +365,8 @@ export default function Header({
 
           {/* Header Action Items */}
           <div className="header-actions-group">
-            {/* Language Selector Dropdown */}
-            <div className="header-lang-wrapper" ref={langMenuRef}>
+            {/* Language Selector Dropdown - Desktop only */}
+            <div className="header-lang-wrapper header-desktop-control" ref={langMenuRef}>
               <button
                 className="action-pill-lang"
                 onClick={() => setIsLangMenuOpen((prev) => !prev)}
@@ -394,10 +398,10 @@ export default function Header({
               )}
             </div>
 
-            {/* Dark / Light Mode Switcher */}
+            {/* Dark / Light Mode Switcher - Desktop only */}
             <button
               type="button"
-              className={`action-pill-theme ${isDarkMode ? 'dark-active' : 'light-active'}`}
+              className={`action-pill-theme header-desktop-control ${isDarkMode ? 'dark-active' : 'light-active'}`}
               onClick={onToggleDarkMode}
               title={isDarkMode ? 'Passer en mode clair' : 'Passer en mode sombre'}
               aria-label={isDarkMode ? 'Passer en mode clair' : 'Passer en mode sombre'}
@@ -410,9 +414,9 @@ export default function Header({
               <span className="pill-theme-label">{isDarkMode ? 'Clair' : 'Sombre'}</span>
             </button>
 
-            {/* EU Guarantees badge */}
+            {/* EU Guarantees badge - Desktop only */}
             <button
-              className="action-pill-guarantee"
+              className="action-pill-guarantee header-desktop-control"
               onClick={onOpenReassurance}
               title="Garanties & Engagements UE"
             >
@@ -420,22 +424,29 @@ export default function Header({
               <span className="pill-text">{t.nav.guarantees || 'Garanties UE'}</span>
             </button>
 
-            {/* Loyalty & Referral Button */}
+            {/* Loyalty & Referral Button - Desktop only */}
             <button
-              className="action-pill-loyalty"
+              className="action-pill-loyalty header-desktop-control"
               onClick={onOpenLoyalty}
               title={t.loyalty?.headerBtn || 'Fidélité & Parrainage'}
             >
               <Gift size={15} color="#ec4899" />
-              <span className="pill-points-val">{currentUser?.loyaltyPoints !== undefined ? currentUser.loyaltyPoints : loyaltyPoints}</span>
-              <span className="pill-points-unit">{t.loyalty?.pointsSuffix || 'pts'}</span>
+              {currentUser ? (
+                <>
+                  <span className="pill-points-val">{currentUser.loyaltyPoints ?? 0}</span>
+                  <span className="pill-points-unit">{t.loyalty?.pointsSuffix || 'pts'}</span>
+                </>
+              ) : (
+                <span className="pill-points-val">{t.loyalty?.title || 'Fidélité'}</span>
+              )}
             </button>
 
             {/* User Account / Login Action */}
             {currentUser ? (
               <div className="header-user-wrapper" ref={userMenuRef}>
+                {/* Desktop pill */}
                 <button
-                  className="action-pill-user"
+                  className="action-pill-user header-desktop-control"
                   onClick={() => setIsUserMenuOpen((prev) => !prev)}
                   title={`Mon compte (${currentUser.firstName || 'Client'})`}
                   aria-expanded={isUserMenuOpen}
@@ -447,6 +458,18 @@ export default function Header({
                   <ChevronDown size={12} className={`lang-chevron ${isUserMenuOpen ? 'open' : ''}`} />
                 </button>
 
+                {/* Mobile compact avatar button only (icon only, no name) */}
+                <button
+                  className="header-user-mobile-btn"
+                  onClick={() => (onOpenAccount ? onOpenAccount() : setIsMobileMenuOpen(true))}
+                  title={`Mon compte (${currentUser.firstName || 'Client'})`}
+                  aria-label="Mon compte"
+                >
+                  <div className="user-avatar-badge mobile-avatar">
+                    {currentUser.firstName ? currentUser.firstName.charAt(0).toUpperCase() : 'U'}
+                  </div>
+                </button>
+
                 {isUserMenuOpen && (
                   <div className="header-user-dropdown">
                     <div className="user-dropdown-header">
@@ -454,7 +477,7 @@ export default function Header({
                       <div className="user-dropdown-email">{currentUser.email}</div>
                       <div className="user-dropdown-loyalty">
                         <Gift size={13} color="#ec4899" />
-                        <span>{currentUser.loyaltyPoints !== undefined ? currentUser.loyaltyPoints : loyaltyPoints} points fidélité</span>
+                        <span>{currentUser.loyaltyPoints ?? 0} points fidélité</span>
                       </div>
                     </div>
                     <div className="user-dropdown-divider" />
@@ -517,7 +540,7 @@ export default function Header({
               </div>
             ) : (
               <button
-                className="header-icon-action"
+                className="header-icon-action header-desktop-control"
                 onClick={() => onOpenAuth && onOpenAuth('login')}
                 title="Se connecter / Mon compte"
                 aria-label="Se connecter"
@@ -527,9 +550,9 @@ export default function Header({
               </button>
             )}
 
-            {/* Order Tracking */}
+            {/* Order Tracking - Desktop only */}
             <button
-              className="header-icon-action"
+              className="header-icon-action header-desktop-control"
               onClick={onOpenTracking}
               title="Suivre ma commande"
               aria-label="Suivre ma commande"
@@ -538,9 +561,9 @@ export default function Header({
               <span className="action-text">Suivi Colis</span>
             </button>
 
-            {/* Wishlist */}
+            {/* Wishlist - Desktop only */}
             <button
-              className="header-icon-action"
+              className="header-icon-action header-desktop-control"
               onClick={() => (onOpenShop ? onOpenShop('all') : null)}
               title={`Favoris (${wishlistCount})`}
               aria-label={`Favoris (${wishlistCount})`}
@@ -551,7 +574,7 @@ export default function Header({
               )}
             </button>
 
-            {/* Cart Button */}
+            {/* Cart Button - Mobile & Desktop */}
             <button
               className="header-cart-action"
               onClick={onOpenCart}
@@ -590,102 +613,24 @@ export default function Header({
               </button>
             </li>
 
-            {/* 1. Mode with Mega-Menu */}
-            <li
-              className="nav-item-with-megamenu"
-              onMouseEnter={() => handleMouseEnterNav('mode')}
-            >
-              <button
-                className={`secondary-nav-link ${activeView === 'shop' && selectedCategory === 'mode' ? 'active' : ''}`}
-                onClick={() => onOpenShop('mode')}
-              >
-                <span>Mode</span>
-                <ChevronDown size={13} className="nav-chevron" />
-              </button>
-
-              {/* Mode Mega-Menu Dropdown */}
-              {activeMegaMenu === 'mode' && modeCategory && (
-                <div
-                  className="desktop-megamenu-panel"
-                  onMouseEnter={() => {
-                    if (megaMenuTimeoutRef.current) clearTimeout(megaMenuTimeoutRef.current);
-                  }}
-                  onMouseLeave={handleMouseLeaveNav}
-                >
-                  <div className="megamenu-content-wrap">
-                    <div className="megamenu-grid">
-                      {modeCategory.megaMenuGroups.map((group, idx) => (
-                        <div key={idx} className="megamenu-col">
-                          <h4
-                            className="megamenu-col-title"
-                            onClick={() => {
-                              setActiveMegaMenu(null);
-                              onOpenShop('mode', group.subcategoryId);
-                            }}
-                          >
-                            {group.title}
-                          </h4>
-                          <ul className="megamenu-items-list">
-                            {group.items.map((item, itemIdx) => (
-                              <li key={itemIdx}>
-                                <button
-                                  className="megamenu-sublink"
-                                  onClick={() => {
-                                    setActiveMegaMenu(null);
-                                    setSearchQuery(item);
-                                    onOpenShop('mode', group.subcategoryId);
-                                  }}
-                                >
-                                  {item}
-                                </button>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="megamenu-footer-banner">
-                      <div className="megamenu-banner-info">
-                        <span className="badge-pill-accent">Mode tendance</span>
-                        <p>Livraison rapide 2-4 jours depuis nos entrepôts de l'UE</p>
-                      </div>
-                      <button
-                        className="btn btn-sm btn-primary"
-                        onClick={() => {
-                          setActiveMegaMenu(null);
-                          onOpenShop('mode');
-                        }}
-                      >
-                        Voir toute la collection Mode →
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </li>
-
-            {/* 2. Beauté */}
             <li>
               <button
-                className={`secondary-nav-link ${activeView === 'shop' && selectedCategory === 'beaute' ? 'active' : ''}`}
-                onClick={() => onOpenShop('beaute')}
+                className={`secondary-nav-link ${activeView === 'shop' && selectedCategory === 'all' ? 'active' : ''}`}
+                onClick={() => onOpenShop('all')}
               >
-                Beauté
+                Boutique
               </button>
             </li>
 
-            {/* 3. Technologie */}
             <li>
               <button
-                className={`secondary-nav-link ${activeView === 'shop' && selectedCategory === 'technologie' ? 'active' : ''}`}
-                onClick={() => onOpenShop('technologie')}
+                className={`secondary-nav-link ${activeView === 'shop' && (selectedCategory === 'tech' || selectedCategory === 'technologie') ? 'active' : ''}`}
+                onClick={() => onOpenShop('tech')}
               >
-                Technologie
+                Tech
               </button>
             </li>
 
-            {/* 4. Maison */}
             <li>
               <button
                 className={`secondary-nav-link ${activeView === 'shop' && selectedCategory === 'maison' ? 'active' : ''}`}
@@ -695,87 +640,31 @@ export default function Header({
               </button>
             </li>
 
-            {/* 5. Animaux */}
             <li>
               <button
-                className={`secondary-nav-link ${activeView === 'shop' && selectedCategory === 'animaux' ? 'active' : ''}`}
-                onClick={() => onOpenShop('animaux')}
+                className={`secondary-nav-link ${activeView === 'shop' && selectedCategory === 'beaute' ? 'active' : ''}`}
+                onClick={() => onOpenShop('beaute')}
               >
-                Animaux
+                Beauté
               </button>
             </li>
 
-            {/* 6. Sport */}
             <li>
               <button
-                className={`secondary-nav-link ${activeView === 'shop' && selectedCategory === 'sport' ? 'active' : ''}`}
-                onClick={() => onOpenShop('sport')}
+                className={`secondary-nav-link ${activeView === 'shop' && (selectedCategory === 'voyage-auto' || selectedCategory === 'voyage' || selectedCategory === 'auto') ? 'active' : ''}`}
+                onClick={() => onOpenShop('voyage-auto')}
               >
-                Sport
+                Voyage & Auto
               </button>
             </li>
 
-            {/* 7. Auto */}
-            <li>
-              <button
-                className={`secondary-nav-link ${activeView === 'shop' && selectedCategory === 'auto' ? 'active' : ''}`}
-                onClick={() => onOpenShop('auto')}
-              >
-                Auto
-              </button>
-            </li>
-
-            {/* 8. Sécurité */}
-            <li>
-              <button
-                className={`secondary-nav-link ${activeView === 'shop' && selectedCategory === 'securite' ? 'active' : ''}`}
-                onClick={() => onOpenShop('securite')}
-              >
-                Sécurité
-              </button>
-            </li>
-
-            {/* 9. Voyage */}
-            <li>
-              <button
-                className={`secondary-nav-link ${activeView === 'shop' && selectedCategory === 'voyage' ? 'active' : ''}`}
-                onClick={() => onOpenShop('voyage')}
-              >
-                Voyage
-              </button>
-            </li>
-
-            {/* 10. Accessoires */}
-            <li>
-              <button
-                className={`secondary-nav-link ${activeView === 'shop' && selectedCategory === 'accessoires' ? 'active' : ''}`}
-                onClick={() => onOpenShop('accessoires')}
-              >
-                Accessoires
-              </button>
-            </li>
-
-            <li className="nav-separator" />
-
-            {/* Toutes les catégories */}
-            <li>
-              <button
-                className={`secondary-nav-link ${activeView === 'shop' && selectedCategory === 'all' ? 'active' : ''}`}
-                onClick={() => onOpenShop('all')}
-              >
-                {t.nav.allCategories || 'Toutes les catégories'}
-              </button>
-            </li>
-
-            <li className="nav-separator" />
-
-            {/* À propos */}
+            {/* Contact */}
             <li>
               <button
                 className="secondary-nav-link"
                 onClick={onOpenAbout}
               >
-                {t.nav.about || 'À propos'}
+                Contact
               </button>
             </li>
           </ul>
@@ -819,7 +708,8 @@ export default function Header({
                 </form>
               </div>
 
-              {/* User Account / Profile Section (Mobile) */}
+              {/* Customer Section */}
+              <div className="mobile-nav-section-title">Espace Client</div>
               <div className="mobile-user-section">
                 {currentUser ? (
                   <div className="mobile-user-card">
@@ -834,7 +724,7 @@ export default function Header({
                     </div>
                     <div className="mobile-user-points">
                       <Gift size={14} color="#ec4899" />
-                      <span>{currentUser.loyaltyPoints !== undefined ? currentUser.loyaltyPoints : loyaltyPoints} points fidélité</span>
+                      <span>{currentUser.loyaltyPoints ?? 0} points fidélité</span>
                     </div>
                     <div className="mobile-user-actions">
                       <button
@@ -845,7 +735,7 @@ export default function Header({
                         }}
                       >
                         <User size={15} color="#2563eb" />
-                        <span>Mon Compte</span>
+                        <span>Mon compte</span>
                       </button>
                       <button
                         className="mobile-user-btn"
@@ -856,7 +746,27 @@ export default function Header({
                         }}
                       >
                         <Package size={15} />
-                        <span>Mes Commandes</span>
+                        <span>Mes commandes</span>
+                      </button>
+                      <button
+                        className="mobile-user-btn"
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          if (onOpenLoyalty) onOpenLoyalty();
+                        }}
+                      >
+                        <Gift size={15} color="#ec4899" />
+                        <span>Fidélité</span>
+                      </button>
+                      <button
+                        className="mobile-user-btn"
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          if (onOpenTracking) onOpenTracking();
+                        }}
+                      >
+                        <Package size={15} />
+                        <span>Suivi colis</span>
                       </button>
                       {currentUser.role === 'admin' && (
                         <button
@@ -883,22 +793,66 @@ export default function Header({
                     </div>
                   </div>
                 ) : (
-                  <button
-                    className="mobile-auth-btn"
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                      if (onOpenAuth) onOpenAuth('login');
-                    }}
-                  >
-                    <User size={18} />
-                    <span>Se connecter / Créer un compte</span>
-                    <span className="mobile-auth-badge">+50 pts</span>
-                  </button>
+                  <div className="mobile-guest-card">
+                    <button
+                      className="mobile-auth-btn"
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        if (onOpenAuth) onOpenAuth('login');
+                      }}
+                    >
+                      <User size={18} />
+                      <span>Se connecter / Créer un compte</span>
+                      <span className="mobile-auth-badge">+50 pts</span>
+                    </button>
+                    <div className="mobile-user-actions" style={{ marginTop: '0.65rem' }}>
+                      <button
+                        className="mobile-user-btn"
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          if (onOpenAuth) onOpenAuth('login');
+                        }}
+                      >
+                        <User size={15} color="#2563eb" />
+                        <span>Mon compte</span>
+                      </button>
+                      <button
+                        className="mobile-user-btn"
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          if (onOpenTracking) onOpenTracking();
+                        }}
+                      >
+                        <Package size={15} />
+                        <span>Mes commandes</span>
+                      </button>
+                      <button
+                        className="mobile-user-btn"
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          if (onOpenLoyalty) onOpenLoyalty();
+                        }}
+                      >
+                        <Gift size={15} color="#ec4899" />
+                        <span>Fidélité</span>
+                      </button>
+                      <button
+                        className="mobile-user-btn"
+                        onClick={() => {
+                          setIsMobileMenuOpen(false);
+                          if (onOpenTracking) onOpenTracking();
+                        }}
+                      >
+                        <Package size={15} />
+                        <span>Suivi colis</span>
+                      </button>
+                    </div>
+                  </div>
                 )}
               </div>
 
-              {/* Quick links */}
-              <div className="mobile-nav-section-title">{t.nav.menu || 'Navigation'}</div>
+              {/* Navigation links */}
+              <div className="mobile-nav-section-title">Navigation</div>
               <ul className="mobile-nav-links">
                 <li>
                   <button
@@ -907,7 +861,7 @@ export default function Header({
                       setIsMobileMenuOpen(false);
                     }}
                   >
-                    {t.nav.home || 'Accueil'}
+                    Accueil
                   </button>
                 </li>
                 <li>
@@ -917,7 +871,47 @@ export default function Header({
                       setIsMobileMenuOpen(false);
                     }}
                   >
-                    {t.nav.allCategories || 'Toutes les catégories'}
+                    Boutique
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => {
+                      onOpenShop('tech');
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    Tech
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => {
+                      onOpenShop('maison');
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    Maison
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => {
+                      onOpenShop('beaute');
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    Beauté
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => {
+                      onOpenShop('voyage-auto');
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    Voyage & Auto
                   </button>
                 </li>
                 <li>
@@ -927,18 +921,7 @@ export default function Header({
                       setIsMobileMenuOpen(false);
                     }}
                   >
-                    {t.nav.about || 'À propos'}
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() => {
-                      onOpenLoyalty?.();
-                      setIsMobileMenuOpen(false);
-                    }}
-                  >
-                    <Gift size={15} style={{ marginRight: 6, color: '#ec4899' }} />
-                    {t.loyalty?.headerBtn || 'Fidélité & Parrainage'} ({loyaltyPoints} pts)
+                    Contact
                   </button>
                 </li>
               </ul>

@@ -63,11 +63,11 @@ export default function AnnouncementBar({ cartSubtotal = 0, onOpenReassurance, l
       title="Cliquez pour voir nos engagements & garanties UE"
     >
       <span className="announcement-badge">OFFRE UE</span>
-      <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
-        <CurrentIcon size={14} />
-        <span>{getSubtotalNotice()}</span>
+      <div className="announcement-msg-wrap">
+        <CurrentIcon size={14} className="announcement-icon" />
+        <span className="announcement-text">{getSubtotalNotice()}</span>
       </div>
-      <span style={{ fontSize: '0.6875rem', textDecoration: 'underline', opacity: 0.8, marginLeft: '0.25rem' }}>
+      <span className="announcement-link">
         ({lang === 'de' ? 'Garantien ➔' : lang === 'en' ? 'Guarantees ➔' : 'Garanties ➔'})
       </span>
     </div>
